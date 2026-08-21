@@ -1,0 +1,9 @@
+title: The Rippers — Player Dossiers
+description: Player-facing character dossiers for The Rippers campaign.
+url: "https://findlerman09-lgtm.github.io"
+baseurl: "/CoCplayertest"
+markdown: kramdown
+permalink: pretty
+exclude:
+  - README.md
+  - docs

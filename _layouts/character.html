@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ page.name }} — Character Dossier</title>
+  <link rel="stylesheet" href="{{ '/assets/rippers.css' | relative_url }}">
+</head>
+<body>
+  <main class="page-shell">
+    <header class="dossier-header">
+      <button class="print-button" onclick="window.print()">Print dossier</button>
+      <p class="eyebrow">Player Character Dossier</p>
+      <h1>{{ page.name }}</h1>
+      <p class="subtitle">{{ page.tagline }}</p>
+      <div class="identity-strip">
+        <span><strong>Occupation:</strong> {{ page.occupation }}</span>
+        <span><strong>Age:</strong> {{ page.age }}</span>
+        <span><strong>Residence:</strong> {{ page.residence }}</span>
+        <span><strong>Social standing:</strong> {{ page.social_status }}</span>
+      </div>
+    </header>
+
+    <nav class="dossier-nav" aria-label="Dossier sections">
+      <a href="#story">Story</a>
+      <a href="#people">People</a>
+      <a href="#knowledge">What you know</a>
+      <a href="#updates">Updates</a>
+      <a href="#mechanics">Mechanics</a>
+      <a href="#gear">Gear</a>
+    </nav>
+
+    <div class="content">
+      <section class="section" id="story">
+        <p class="section-kicker">Player-facing identity</p>
+        <h2>Who you are</h2>
+        <div class="two-column">
+          <div>
+            <p class="lede">{{ page.background }}</p>
+            <p>{{ page.history }}</p>
+          </div>
+          <aside>
+            <div class="quote-card">{{ page.roleplay_anchor }}</div>
+            <div class="note-box" style="margin-top:14px"><strong>Small habit.</strong> {{ page.human_detail }}</div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section" id="people">
+        <p class="section-kicker">Relationships</p>
+        <h2>People who matter</h2>
+        <div class="cards">
+          {% for person in page.people %}
+          <article class="card">
+            <h3>{{ person.name }}</h3>
+            <p class="meta">{{ person.relationship }}</p>
+            <p>{{ person.text }}</p>
+          </article>
+          {% endfor %}
+        </div>
+      </section>
+
+      <section class="section" id="knowledge">
+        <p class="section-kicker">Personal starting information</p>
+        <h2>What you know</h2>
+        <div class="cards">
+          {% for item in page.knowledge %}
+          <article class="card"><h3>{{ item.title }}</h3><p>{{ item.text }}</p></article>
+          {% endfor %}
+        </div>
+      </section>
+
+      <section class="section" id="updates">
+        <p class="section-kicker">Only information already released to the player belongs here</p>
+        <h2>Dossier updates</h2>
+        {% for update in page.updates %}
+        <article class="entry">
+          <div class="entry-header"><span class="entry-title">{{ update.title }}</span><span class="entry-date">{{ update.date }}</span></div>
+          <p><span class="tag {{ update.class }}">{{ update.label }}</span></p>
+          <p>{{ update.text }}</p>
+        </article>
+        {% endfor %}
+      </section>
+
+      <section class="section" id="mechanics">
+        <p class="section-kicker">Call of Cthulhu 7e / Gaslight / low-pulp proof</p>
+        <h2>At the table</h2>
+        <div class="stat-grid">
+          {% for stat in page.characteristics %}
+          <div class="stat"><span class="label">{{ stat.name }}</span><span class="value">{{ stat.value }}</span><span class="levels">{{ stat.half }} / {{ stat.fifth }}</span></div>
+          {% endfor %}
+        </div>
+        <div class="vital-strip">
+          {% for vital in page.vitals %}<div class="vital"><b>{{ vital.value }}</b><span>{{ vital.name }}</span></div>{% endfor %}
+        </div>
+
+        <div class="two-column" style="margin-top:26px">
+          <div>
+            <h3>Skills</h3>
+            <div class="skill-list">
+              {% for skill in page.skills %}
+              <div class="skill"><span class="skill-name">{{ skill.name }}{% if skill.note %}<span class="skill-note">{{ skill.note }}</span>{% endif %}</span><span class="skill-value">{{ skill.value }}%</span></div>
+              {% endfor %}
+            </div>
+          </div>
+          <aside>
+            <div class="card"><h3>Talent</h3><p><strong>{{ page.talent.name }}</strong></p><p>{{ page.talent.text }}</p></div>
+            <div class="card" style="margin-top:14px"><h3>Combat</h3><p><strong>Brawl:</strong> {{ page.combat.brawl }}</p><p><strong>Dodge:</strong> {{ page.combat.dodge }}</p><p><strong>Damage bonus:</strong> {{ page.combat.db }} &nbsp; <strong>Build:</strong> {{ page.combat.build }}</p><p><strong>Move:</strong> {{ page.combat.mov }}</p></div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section" id="gear">
+        <p class="section-kicker">Ordinary, period-plausible possessions</p>
+        <h2>Gear & means</h2>
+        <div class="two-column">
+          <div><ul class="gear-list">{% for item in page.gear %}<li>{{ item }}</li>{% endfor %}</ul></div>
+          <aside class="card"><h3>Credit Rating</h3><p class="credit-number">{{ page.credit_rating }}%</p><p>{{ page.wealth_note }}</p></aside>
+        </div>
+      </section>
+    </div>
+
+    <footer class="footer">Player-facing document. No unrevealed Keeper information is stored here.</footer>
+  </main>
+</body>
+</html>
