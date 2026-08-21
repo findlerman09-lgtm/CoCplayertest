@@ -10,7 +10,7 @@ breadcrumb: The Rippers / Investigators / Clara Whitcombe
 page_status: Live Tracker
 page_status_class: active
 kicker: Clara Whitcombe
-summary: The practical play screen: persistent condition tracking and skill-use marks, with no automated rolling.
+summary: Current condition, skills, and improvement marks.
 ---
 {% assign c = site.data.characters[page.character_slug] %}
 
@@ -24,12 +24,12 @@ summary: The practical play screen: persistent condition tracking and skill-use 
   <div class="tracker-card">
     <span>Sanity</span>
     <div class="tracker-value-row"><button type="button" data-state-key="sanity" data-state-delta="-1" data-state-max="{{ c.max_sanity }}">−</button><input type="number" min="0" max="{{ c.max_sanity }}" value="{{ c.sanity }}" data-state-input="sanity"><button type="button" data-state-key="sanity" data-state-delta="1" data-state-max="{{ c.max_sanity }}">+</button></div>
-    <small>Current SAN persists on this device</small>
+    <small>Current value is remembered on this device</small>
   </div>
   <div class="tracker-card">
     <span>Luck</span>
     <div class="tracker-value-row"><button type="button" data-state-key="luck" data-state-delta="-1" data-state-max="99">−</button><input type="number" min="0" max="99" value="{{ c.luck }}" data-state-input="luck"><button type="button" data-state-key="luck" data-state-delta="1" data-state-max="99">+</button></div>
-    <small>Included because Luck is spendable in play</small>
+    <small>Current value is remembered on this device</small>
   </div>
 </div>
 
@@ -37,7 +37,7 @@ summary: The practical play screen: persistent condition tracking and skill-use 
   <article class="frame parchment-frame">
     <header><span>Skills</span><b>01</b></header>
     <div class="frame-body">
-      <p>Mark a skill after a successful use that qualifies for an improvement check. The marks persist until the between-scenario improvement phase.</p>
+      <p>Mark a skill after a successful use that qualifies for an improvement check. A skill only needs to be marked once before the next improvement phase.</p>
       <div class="interactive-skill-list">
         {% for skill in c.skills %}
         <label class="skill-check-row{% unless skill.improvable %} disabled{% endunless %}">
@@ -53,14 +53,14 @@ summary: The practical play screen: persistent condition tracking and skill-use 
     <article class="frame dark-frame">
       <header><span>Improvement Queue</span><b>02</b></header>
       <div class="frame-body">
-        <p>Between scenarios, this is the short list to resolve with the Keeper. The website does not roll improvement checks.</p>
+        <p>Marked skills collect here for the next improvement phase.</p>
         <ul class="improvement-list" data-improvement-list><li class="empty-improvement">No skill checks marked yet.</li></ul>
         <div class="improvement-actions"><button class="small-action" type="button" data-clear-skill-checks>Clear resolved checks</button></div>
       </div>
     </article>
     <article class="frame dark-frame">
       <header><span>Quick Reference</span><b>03</b></header>
-      <div class="frame-body"><strong>Keen Vision</strong><p>Bonus die to Spot Hidden. Brawl 40% · Dodge 30% · Damage Bonus +1D4 · Build 1 · Move 7.</p><button class="small-action" type="button" data-reset-character-state>Reset local tracker</button><p class="sheet-note">Resetting only clears this browser's HP, SAN, Luck and skill marks. It does not alter the published character.</p></div>
+      <div class="frame-body"><strong>Keen Vision</strong><p>Bonus die to Spot Hidden. Brawl 40% · Dodge 30% · Damage Bonus +1D4 · Build 1 · Move 7.</p><button class="small-action" type="button" data-reset-character-state>Reset local tracker</button><p class="sheet-note">Resetting restores this device's HP, SAN, Luck, wound marker, and skill marks to the dossier defaults.</p></div>
     </article>
   </div>
 </div>
