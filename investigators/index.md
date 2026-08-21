@@ -1,34 +1,13 @@
 ---
 layout: section
 permalink: /investigators/
-title: Investigators
+title: Investigator
 display_title: Private Dossier
 top_nav: investigators
 hide_info_rail: true
 hide_context_rail: true
-breadcrumb: The Rippers / Investigators
+breadcrumb: The Rippers / Investigator
 ---
-{% assign team_view = site.data.site_state.team_view %}
-{% if team_view %}
-<section class="team-roster-view">
-  <div class="section-intro team-intro">
-    <p class="eyebrow">Investigators</p>
-    <p class="section-summary">The people now known to be involved.</p>
-  </div>
-  <div class="team-roster-grid">
-    {% for slot in site.data.investigator_slots %}
-      {% if slot.slug %}
-        {% assign person = site.data.characters[slot.slug] %}
-        <a class="team-investigator-card" href="{{ '/characters/' | append: slot.slug | append: '/' | relative_url }}">
-          <span class="slot-roman">{{ slot.numeral }}</span>
-          <img src="{{ person.portrait | relative_url }}" alt="{{ person.name }}">
-          <div class="team-investigator-copy"><small>{{ person.occupation }}</small><strong>{{ person.name }}</strong><span>Open dossier →</span></div>
-        </a>
-      {% endif %}
-    {% endfor %}
-  </div>
-</section>
-{% else %}
 <section class="investigator-entry-screen" data-investigator-cabinet>
   <div class="lock-card investigator-entry-card">
     <div class="lock-mark">R</div>
@@ -51,4 +30,3 @@ breadcrumb: The Rippers / Investigators
     </div>
   </div>
 </section>
-{% endif %}

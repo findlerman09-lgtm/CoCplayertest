@@ -6,7 +6,7 @@ display_title: At the Table
 top_nav: investigators
 character_slug: clara-whitcombe
 context_nav: sheet
-breadcrumb: The Rippers / Investigators / Clara Whitcombe
+breadcrumb: The Rippers / Investigator / Clara Whitcombe
 page_status: Live Tracker
 page_status_class: active
 kicker: Clara Whitcombe
@@ -66,6 +66,23 @@ summary: Current condition, fast mechanical reference, and improvement marks.
   </section>
 </div>
 
+<section class="private-effects-board">
+  <div class="private-effects-heading">
+    <div><small>For your eyes first</small><strong>Private Effects</strong></div>
+    <p>When a Major Wound or bout of madness occurs, this device draws the detail for you. Bring it into play when it becomes apparent. The Keeper can adapt wording that conflicts with the fiction.</p>
+  </div>
+  <div class="private-effects-grid">
+    <article class="private-effect-card wound-effect-card">
+      <header><span>Major Wounds</span><b>Physical</b></header>
+      <div data-wound-effects><p class="empty-private-effect">No Major Wound has been assigned.</p></div>
+    </article>
+    <article class="private-effect-card madness-effect-card">
+      <header><span>Bouts of Madness</span><b>Mental</b></header>
+      <div data-madness-effects><p class="empty-private-effect">No bout has been assigned.</p></div>
+    </article>
+  </div>
+</section>
+
 <article class="frame dark-frame characteristic-frame">
   <header><span>Characteristics</span><b>01</b></header>
   <div class="frame-body characteristic-grid">
@@ -108,7 +125,7 @@ summary: Current condition, fast mechanical reference, and improvement marks.
         <div><small>Brawl</small><strong>{{ dossier.combat.brawl }}</strong></div>
         <div><small>Dodge</small><strong>{{ dossier.combat.dodge }}</strong></div>
         <button class="small-action" type="button" data-reset-character-state>Reset local tracker</button>
-        <p class="sheet-note">Reset restores this device's condition and improvement state to the dossier defaults.</p>
+        <p class="sheet-note">Reset restores this device's condition, private effects, and improvement state to the dossier defaults.</p>
       </div>
     </article>
   </div>

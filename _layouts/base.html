@@ -11,10 +11,12 @@
   <link rel="stylesheet" href="{{ '/assets/pass-1-5.css' | relative_url }}">
   <link rel="stylesheet" href="{{ '/assets/pass-1-6.css' | relative_url }}">
   <link rel="stylesheet" href="{{ '/assets/pass-2.css' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/assets/pass-2-1.css' | relative_url }}">
   <script defer src="{{ '/assets/archive-gate.js' | relative_url }}"></script>
   <script defer src="{{ '/assets/reveal.js' | relative_url }}"></script>
   <script defer src="{{ '/assets/character-lock.js' | relative_url }}"></script>
   <script defer src="{{ '/assets/character-state.js' | relative_url }}"></script>
+  <script defer src="{{ '/assets/private-effects.js' | relative_url }}"></script>
   <script defer src="{{ '/assets/pass-1-5.js' | relative_url }}"></script>
   <script defer src="{{ '/assets/investigator-gate.js' | relative_url }}"></script>
 </head>
@@ -33,7 +35,7 @@
       </a>
 
       <nav class="global-nav" aria-label="Primary navigation">
-        <a href="{{ '/investigators/' | relative_url }}" {% if page.top_nav == 'investigators' %}class="active"{% endif %}>Investigators</a>
+        <a href="{{ '/investigators/' | relative_url }}" {% if page.top_nav == 'investigators' %}class="active"{% endif %}>Investigator</a>
         <a href="{{ '/documents/' | relative_url }}" {% if page.top_nav == 'documents' %}class="active"{% endif %}>Documents</a>
         <a href="{{ '/campaign-files/' | relative_url }}" {% if page.top_nav == 'campaign' %}class="active"{% endif %}>Case Files</a>
       </nav>
@@ -96,7 +98,7 @@
             <a href="{{ '/campaign-files/' | relative_url }}" class="active"><span>01</span>Current File</a>
           </nav>
           {% else %}
-          <div class="context-heading"><small>Archive section</small><strong>Investigators</strong><p>A personal password opens one private dossier.</p></div>
+          <div class="context-heading"><small>Archive section</small><strong>Investigator</strong><p>Your personal password opens your private dossier.</p></div>
           <nav class="context-nav" aria-label="Investigator navigation">
             <a href="{{ '/investigators/' | relative_url }}" class="active"><span>01</span>Private Dossier</a>
           </nav>
@@ -147,8 +149,8 @@
               <p>Only material already released in play appears in the archive.</p>
             </section>
             <section class="rail-panel">
-              <p class="rail-kicker">Private dossiers</p>
-              <p>Each investigator opens only their own file until the roster becomes shared in play.</p>
+              <p class="rail-kicker">Private dossier</p>
+              <p>Your personal password opens only your investigator file.</p>
             </section>
           {% endif %}
         </aside>
