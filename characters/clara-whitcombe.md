@@ -6,6 +6,13 @@ occupation: Photographer
 age: 34
 residence: London
 social_status: Middle class
+top_nav: investigators
+character_slug: clara-whitcombe
+context_nav: overview
+display_title: Clara Whitcombe
+breadcrumb: The Rippers / Investigators / Clara Whitcombe
+page_status: Active
+page_status_class: active
 dossier_number: "CW-01"
 status: Active
 featured_skills:

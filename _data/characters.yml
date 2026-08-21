@@ -1,0 +1,43 @@
+clara-whitcombe:
+  name: Clara Whitcombe
+  occupation: Photographer
+  portrait: /assets/images/clara-portrait.webp
+  status: Active
+  hp: 13
+  max_hp: 13
+  sanity: 45
+  max_sanity: 99
+  luck: 75
+  state_version: 1
+  lock:
+    salt: "M6K8IvGtDUQxmf/oNe4Y+w=="
+    verifier: "bbSVV2dNis+Ut3HyhNEG3RGmGJZTBc8mWrXGkcxLQI8="
+    iterations: 120000
+  skills:
+    - { id: photography, name: "Art/Craft (Photography)", value: 80, improvable: true }
+    - { id: spot-hidden, name: "Spot Hidden", value: 75, improvable: true }
+    - { id: library-use, name: "Library Use", value: 70, improvable: true }
+    - { id: chemistry, name: "Science (Chemistry)", value: 63, improvable: true }
+    - { id: psychology, name: "Psychology", value: 60, improvable: true }
+    - { id: stealth, name: "Stealth", value: 58, improvable: true }
+    - { id: listen, name: "Listen", value: 55, improvable: true }
+    - { id: first-aid, name: "First Aid", value: 50, improvable: true }
+    - { id: persuade, name: "Persuade", value: 50, improvable: true }
+    - { id: mechanical-repair, name: "Mechanical Repair", value: 45, improvable: true }
+    - { id: brawl, name: "Fighting (Brawl)", value: 40, improvable: true }
+    - { id: history, name: "History", value: 40, improvable: true }
+    - { id: ride, name: "Ride", value: 40, improvable: true }
+    - { id: credit-rating, name: "Credit Rating", value: 35, improvable: false }
+    - { id: appraise, name: "Appraise", value: 30, improvable: true }
+    - { id: dodge, name: "Dodge", value: 30, improvable: true }
+    - { id: fast-talk, name: "Fast Talk", value: 30, improvable: true }
+    - { id: french, name: "Language (French)", value: 26, improvable: true }
+    - { id: navigate, name: "Navigate", value: 22, improvable: true }
+    - { id: english, name: "Language (Own: English)", value: 90, improvable: true }
+  recent:
+    - type: Correspondence
+      label: Sealed demonstration letter
+      href: /characters/clara-whitcombe/correspondence/
+    - type: Dossier
+      label: Character overview available
+      href: /characters/clara-whitcombe/

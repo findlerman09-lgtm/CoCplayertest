@@ -1,234 +1,35 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#071014">
-  <title>{{ page.name }} — The Rippers</title>
-  <link rel="stylesheet" href="{{ '/assets/rippers.css' | relative_url }}">
-  <script defer src="{{ '/assets/reveal.js' | relative_url }}"></script>
-</head>
-<body class="rippers-body">
-  <div class="site-frame">
-    <aside class="side-rail">
-      <a class="brand-block" href="{{ '/' | relative_url }}" aria-label="The Rippers home">
-        <span class="brand-monogram">R</span>
-        <span class="brand-title">The Rippers</span>
-        <span class="brand-subtitle">London · 1888</span>
-      </a>
-
-      <nav class="rail-nav" aria-label="Dossier navigation">
-        <a href="#dossier" class="active"><span class="rail-icon">◆</span><span>Dossier</span></a>
-        <a href="#people"><span class="rail-icon">♟</span><span>People</span></a>
-        <a href="#knowledge"><span class="rail-icon">◉</span><span>What You Know</span></a>
-        <a href="#sealed"><span class="rail-icon">✉</span><span>Correspondence</span></a>
-        <a href="#mechanics"><span class="rail-icon">✦</span><span>At the Table</span></a>
-        <a href="#gear"><span class="rail-icon">▣</span><span>Gear & Means</span></a>
-      </nav>
-
-      <div class="rail-divider"></div>
-      <div class="case-progress" aria-label="Campaign file progress">
-        <p class="rail-label">Campaign files</p>
-        {% for file in page.campaign_files %}
-        <div class="case-step {{ file.state }}">
-          <span class="case-number">{{ file.number }}</span>
-          <span class="case-copy"><b>{{ file.label }}</b><small>{{ file.note }}</small></span>
-          <span class="case-state">{% if file.state == 'active' %}●{% else %}◇{% endif %}</span>
-        </div>
-        {% endfor %}
-      </div>
-
-      <div class="rail-motto">
-        <span>Observe carefully.</span>
-        <span>Record precisely.</span>
-        <span>Decide for yourself.</span>
-      </div>
-    </aside>
-
-    <main class="stage">
-      <header class="topbar">
-        <div>
-          <span class="topbar-kicker">Player dossier</span>
-          <strong>{{ page.dossier_number }}</strong>
-        </div>
-        <div class="topbar-actions">
-          <span class="status-chip"><i></i>{{ page.status }}</span>
-          <button class="icon-button" type="button" onclick="window.print()">Print</button>
-        </div>
-      </header>
-
-      <section class="identity-hero" id="dossier" style="--hero-image: url('{{ page.hero_art | relative_url }}')">
-        <div class="fog fog-one"></div>
-        <div class="fog fog-two"></div>
-        <div class="gaslight-glow"></div>
-
-        <div class="portrait-bay">
-          <div class="portrait-frame">
-            <img src="{{ page.portrait | relative_url }}" alt="Portrait of {{ page.name }}" class="character-portrait">
-          </div>
-          <div class="portrait-caption">
-            <span>{{ page.occupation }}</span>
-            <span>Age {{ page.age }}</span>
-          </div>
-        </div>
-
-        <div class="identity-copy">
-          <p class="section-kicker gold">Character dossier</p>
-          <h1>{{ page.name }}</h1>
-          <p class="hero-tagline">{{ page.tagline }}</p>
-          <div class="hero-rule"><span></span><i>✦</i><span></span></div>
-          <dl class="identity-facts">
-            <div><dt>Occupation</dt><dd>{{ page.occupation }}</dd></div>
-            <div><dt>Residence</dt><dd>{{ page.residence }}</dd></div>
-            <div><dt>Standing</dt><dd>{{ page.social_status }}</dd></div>
-          </dl>
-          <blockquote>{{ page.roleplay_anchor }}</blockquote>
-        </div>
-
-        <aside class="competence-panel">
-          <p class="panel-title">Professional strengths</p>
-          {% for skill in page.featured_skills %}
-          <div class="meter-row">
-            <div class="meter-label"><span>{{ skill.name }}</span><b>{{ skill.value }}</b></div>
-            <div class="meter-track"><span style="width: {{ skill.value }}%"></span></div>
-          </div>
-          {% endfor %}
-          <div class="talent-sigil">
-            <span class="sigil-mark">✧</span>
-            <div><small>Talent</small><strong>{{ page.talent.name }}</strong></div>
-          </div>
-        </aside>
-      </section>
-
-      <section class="dashboard-grid">
-        <article class="panel parchment panel-wide" id="story">
-          <div class="panel-heading"><span>Who You Are</span><i>01</i></div>
-          <div class="paper-body story-body">
-            <div>
-              <p class="lede">{{ page.background }}</p>
-              <p>{{ page.history }}</p>
-            </div>
-            <aside class="margin-note">
-              <span class="note-stamp">PERSONAL</span>
-              <p><strong>Small habit</strong><br>{{ page.human_detail }}</p>
-            </aside>
-          </div>
-        </article>
-
-        <article class="panel parchment" id="people">
-          <div class="panel-heading"><span>People Who Matter</span><i>02</i></div>
-          <div class="paper-body compact-stack">
-            {% for person in page.people %}
-            <div class="contact-line">
-              <span class="contact-seal">{{ person.name | slice: 0 }}</span>
-              <div><strong>{{ person.name }}</strong><small>{{ person.relationship }}</small><p>{{ person.text }}</p></div>
-            </div>
-            {% endfor %}
-          </div>
-        </article>
-
-        <article class="panel parchment" id="knowledge">
-          <div class="panel-heading"><span>What You Know</span><i>03</i></div>
-          <div class="paper-body knowledge-list">
-            {% for item in page.knowledge %}
-            <div class="knowledge-item"><span>✦</span><div><strong>{{ item.title }}</strong><p>{{ item.text }}</p></div></div>
-            {% endfor %}
-          </div>
-        </article>
-
-        <article class="panel parchment sealed-panel" id="sealed">
-          <div class="panel-heading"><span>Sealed Correspondence</span><i>04</i></div>
-          <div class="paper-body">
-            {% for item in page.sealed %}
-            <div class="reveal-card" data-lock-id="{{ item.lock_id }}" data-salt="{{ item.salt }}" data-iv="{{ item.iv }}" data-ciphertext="{{ item.ciphertext }}">
-              <div class="sealed-envelope" aria-hidden="true">
-                <span class="envelope-flap"></span>
-                <span class="wax-seal">R</span>
-              </div>
-              <div class="reveal-copy">
-                <strong>{{ item.title }}</strong>
-                <small>{{ item.subtitle }}</small>
-                <p>{{ item.teaser }}</p>
-              </div>
-              <form class="reveal-form">
-                <label><span>Enter code word</span><input type="password" autocomplete="off"></label>
-                <button type="submit" class="brass-button">Unseal</button>
-                <p class="reveal-status">Awaiting Keeper code.</p>
-              </form>
-              <div class="reveal-body" aria-live="polite"></div>
-            </div>
-            {% endfor %}
-          </div>
-        </article>
-
-        <article class="panel dark-panel updates-panel" id="updates">
-          <div class="panel-heading"><span>Dossier Updates</span><i>05</i></div>
-          <div class="dark-body">
-            {% for update in page.updates %}
-            <div class="timeline-entry">
-              <span class="timeline-dot"></span>
-              <div><small>{{ update.date }}</small><strong>{{ update.title }}</strong><p>{{ update.text }}</p></div>
-              <span class="update-stamp">{{ update.label }}</span>
-            </div>
-            {% endfor %}
-          </div>
-        </article>
-      </section>
-
-      <section class="mechanics-row" id="mechanics">
-        <article class="panel dark-panel mechanics-panel">
-          <div class="panel-heading"><span>At the Table</span><i>06</i></div>
-          <div class="dark-body">
-            <div class="stat-grid">
-              {% for stat in page.characteristics %}
-              <div class="stat-card"><span>{{ stat.name }}</span><b>{{ stat.value }}</b><small>{{ stat.half }} / {{ stat.fifth }}</small></div>
-              {% endfor %}
-            </div>
-            <div class="vital-strip">
-              {% for vital in page.vitals %}
-              <div><b>{{ vital.value }}</b><span>{{ vital.name }}</span></div>
-              {% endfor %}
-            </div>
-          </div>
-        </article>
-
-        <article class="panel parchment skills-panel">
-          <div class="panel-heading"><span>Skills</span><i>07</i></div>
-          <div class="paper-body skill-columns">
-            {% for skill in page.skills %}
-            <div class="skill-line"><span>{{ skill.name }}{% if skill.note %}<small>{{ skill.note }}</small>{% endif %}</span><b>{{ skill.value }}%</b></div>
-            {% endfor %}
-          </div>
-        </article>
-      </section>
-
-      <section class="gear-row" id="gear">
-        <article class="panel parchment gear-panel">
-          <div class="panel-heading"><span>Gear & Means</span><i>08</i></div>
-          <div class="paper-body gear-layout">
-            <ul class="gear-list">{% for item in page.gear %}<li>{{ item }}</li>{% endfor %}</ul>
-            <div class="wealth-card">
-              <span>Credit Rating</span>
-              <b>{{ page.credit_rating }}%</b>
-              <p>{{ page.wealth_note }}</p>
-            </div>
-          </div>
-        </article>
-
-        <article class="panel dark-panel compact-reference">
-          <div class="panel-heading"><span>Quick Reference</span><i>09</i></div>
-          <div class="dark-body reference-grid">
-            <div><span>Talent</span><b>{{ page.talent.name }}</b><p>{{ page.talent.text }}</p></div>
-            <div><span>Combat</span><b>{{ page.combat.brawl }}</b><p>Dodge {{ page.combat.dodge }} · DB {{ page.combat.db }} · MOV {{ page.combat.mov }}</p></div>
-          </div>
-        </article>
-      </section>
-
-      <footer class="site-footer">
-        <span>The Rippers · Player Dossier</span>
-        <span>Only information released in play belongs on this page.</span>
-      </footer>
-    </main>
+---
+layout: base
+---
+{% capture character_base %}/characters/{{ page.character_slug }}{% endcapture %}
+<section class="overview-hero" style="--hero-image:url('{{ page.hero_art | relative_url }}')">
+  <div class="overview-art"></div>
+  <div class="overview-portrait"><img src="{{ page.portrait | relative_url }}" alt="Portrait of {{ page.name }}"></div>
+  <div class="overview-copy">
+    <p class="eyebrow">{{ page.occupation }} · Age {{ page.age }}</p>
+    <h2>{{ page.name }}</h2>
+    <p class="hero-tagline">{{ page.tagline }}</p>
+    <dl class="fact-row">
+      <div><dt>Residence</dt><dd>{{ page.residence }}</dd></div>
+      <div><dt>Standing</dt><dd>{{ page.social_status }}</dd></div>
+      <div><dt>Dossier</dt><dd>{{ page.dossier_number }}</dd></div>
+    </dl>
   </div>
-</body>
-</html>
+</section>
+
+<section class="frame-grid two-one">
+  <article class="frame parchment-frame">
+    <header><span>Who You Are</span><b>01</b></header>
+    <div class="frame-body prose"><p class="lede">{{ page.background }}</p><p>{{ page.history }}</p></div>
+  </article>
+  <article class="frame dark-frame">
+    <header><span>Character Anchor</span><b>02</b></header>
+    <div class="frame-body"><blockquote>{{ page.roleplay_anchor }}</blockquote><p><strong>Small habit.</strong> {{ page.human_detail }}</p></div>
+  </article>
+</section>
+
+<section class="frame-grid thirds">
+  <a class="frame link-frame" href="{{ character_base | append: '/sheet/' | relative_url }}"><header><span>At the Table</span><b>→</b></header><div class="frame-body"><strong>Character Sheet</strong><p>Vitals, characteristics, skills, talent, combat and fast mechanical reference.</p></div></a>
+  <a class="frame link-frame" href="{{ character_base | append: '/people/' | relative_url }}"><header><span>Social World</span><b>→</b></header><div class="frame-body"><strong>People</strong><p>Important relationships, professional connections and personal pressures.</p></div></a>
+  <a class="frame link-frame" href="{{ character_base | append: '/correspondence/' | relative_url }}"><header><span>Private Material</span><b>→</b></header><div class="frame-body"><strong>Correspondence</strong><p>Letters, telegrams and code-word releases addressed specifically to this investigator.</p></div></a>
+</section>
