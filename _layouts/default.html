@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ page.title | default: site.title }}</title>
+  <link rel="stylesheet" href="{{ '/assets/rippers.css' | relative_url }}">
+</head>
+<body>
+  <main class="page-shell landing-shell">
+    <header class="dossier-header">
+      <p class="eyebrow">Player Archive</p>
+      <h1>{{ site.title }}</h1>
+      <p class="subtitle">Character dossiers, correspondence, discoveries, and campaign records.</p>
+    </header>
+    <div class="content prose-content">
+      {{ content }}
+    </div>
+  </main>
+</body>
+</html>
