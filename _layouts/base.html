@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#091116">
+  <title>{{ page.title | default: page.name | default: site.title }} — The Rippers</title>
+  <link rel="stylesheet" href="{{ '/assets/rippers.css' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/assets/architecture.css' | relative_url }}">
+  <script defer src="{{ '/assets/reveal.js' | relative_url }}"></script>
+</head>
+<body class="app-body">
+  {% assign character = nil %}
+  {% if page.character_slug %}
+    {% assign character = site.data.characters[page.character_slug] %}
+    {% capture character_base %}/characters/{{ page.character_slug }}{% endcapture %}
+  {% endif %}
+
+  <div class="app-shell">
+    <header class="global-bar">
+      <a class="global-brand" href="{{ '/' | relative_url }}">
+        <span class="brand-mark">R</span>
+        <span><b>The Rippers</b><small>Player Archive</small></span>
+      </a>
+
+      <nav class="global-nav" aria-label="Primary navigation">
+        <a href="{{ '/' | relative_url }}" {% if page.top_nav == 'home' %}class="active"{% endif %}>Home</a>
+        <a href="{{ '/investigators/' | relative_url }}" {% if page.top_nav == 'investigators' %}class="active"{% endif %}>Investigators</a>
+        <a href="{{ '/documents/' | relative_url }}" {% if page.top_nav == 'documents' %}class="active"{% endif %}>Documents</a>
+        <a href="{{ '/campaign-files/' | relative_url }}" {% if page.top_nav == 'campaign' %}class="active"{% endif %}>Campaign Files</a>
+      </nav>
+
+      <div class="global-meta">
+        <span>London</span>
+        <span>1888</span>
+      </div>
+    </header>
+
+    <div class="workspace-grid">
+      <aside class="context-rail">
+        {% if character %}
+        <div class="context-identity">
+          <img src="{{ character.portrait | relative_url }}" alt="" aria-hidden="true">
+          <div><small>Investigator dossier</small><strong>{{ character.name }}</strong><span>{{ character.occupation }}</span></div>
+        </div>
+        <nav class="context-nav" aria-label="Character dossier">
+          <a href="{{ character_base | append: '/' | relative_url }}" {% if page.context_nav == 'overview' %}class="active"{% endif %}><span>01</span>Overview</a>
+          <a href="{{ character_base | append: '/sheet/' | relative_url }}" {% if page.context_nav == 'sheet' %}class="active"{% endif %}><span>02</span>Character Sheet</a>
+          <a href="{{ character_base | append: '/people/' | relative_url }}" {% if page.context_nav == 'people' %}class="active"{% endif %}><span>03</span>People</a>
+          <a href="{{ character_base | append: '/correspondence/' | relative_url }}" {% if page.context_nav == 'correspondence' %}class="active"{% endif %}><span>04</span>Correspondence</a>
+          <a href="{{ character_base | append: '/documents/' | relative_url }}" {% if page.context_nav == 'documents' %}class="active"{% endif %}><span>05</span>Documents</a>
+          <a href="{{ character_base | append: '/possessions/' | relative_url }}" {% if page.context_nav == 'possessions' %}class="active"{% endif %}><span>06</span>Possessions</a>
+        </nav>
+        {% else %}
+        <div class="context-heading">
+          <small>Archive section</small>
+          <strong>{{ page.section_title | default: 'Player Archive' }}</strong>
+          <p>{{ page.section_note | default: 'A compact record of the investigators and the material released during play.' }}</p>
+        </div>
+        <nav class="context-nav" aria-label="Archive navigation">
+          <a href="{{ '/investigators/' | relative_url }}" {% if page.top_nav == 'investigators' %}class="active"{% endif %}><span>01</span>Investigator Roster</a>
+          <a href="{{ '/documents/' | relative_url }}" {% if page.top_nav == 'documents' %}class="active"{% endif %}><span>02</span>Shared Documents</a>
+          <a href="{{ '/campaign-files/' | relative_url }}" {% if page.top_nav == 'campaign' %}class="active"{% endif %}><span>03</span>Campaign Files</a>
+        </nav>
+        {% endif %}
+
+        <div class="context-cases">
+          <p>Three case files</p>
+          <div class="case-dot active"><b>I</b><span>Current</span></div>
+          <div class="case-dot sealed"><b>II</b><span>Sealed</span></div>
+          <div class="case-dot sealed"><b>III</b><span>Sealed</span></div>
+        </div>
+      </aside>
+
+      <main class="workspace-main">
+        <div class="workspace-titlebar">
+          <div>
+            <small>{{ page.breadcrumb | default: 'The Rippers / Player Archive' }}</small>
+            <h1>{{ page.display_title | default: page.title | default: page.name }}</h1>
+          </div>
+          {% if page.page_status %}<span class="status-pill {{ page.page_status_class | default: 'active' }}">{{ page.page_status }}</span>{% endif %}
+        </div>
+        {{ content }}
+      </main>
+
+      <aside class="info-rail">
+        {% if character %}
+          <section class="rail-panel">
+            <p class="rail-kicker">Current state</p>
+            <div class="mini-vitals">
+              <div><b>{{ character.hp }}</b><span>HP</span></div>
+              <div><b>{{ character.sanity }}</b><span>SAN</span></div>
+              <div><b>{{ character.luck }}</b><span>Luck</span></div>
+            </div>
+            <p class="rail-status"><i></i>{{ character.status }}</p>
+          </section>
+          <section class="rail-panel">
+            <p class="rail-kicker">Recent</p>
+            {% for item in character.recent %}
+            <a class="recent-item" href="{{ item.href | relative_url }}"><small>{{ item.type }}</small><strong>{{ item.label }}</strong></a>
+            {% endfor %}
+          </section>
+          <section class="rail-panel rail-note">
+            <p class="rail-kicker">At the table</p>
+            <p>Overview gives identity. Character Sheet gives numbers. Correspondence and Documents hold material received in play.</p>
+          </section>
+        {% else %}
+          <section class="rail-panel">
+            <p class="rail-kicker">Current file</p>
+            <strong class="large-rail-text">Case File I</strong>
+            <p>Active player archive. Later files remain sealed until they enter play.</p>
+          </section>
+          <section class="rail-panel">
+            <p class="rail-kicker">Archive design</p>
+            <p>Home answers “what is new?” Investigator pages answer “who am I?” Documents answer “what do we have?”</p>
+          </section>
+        {% endif %}
+      </aside>
+    </div>
+  </div>
+</body>
+</html>
