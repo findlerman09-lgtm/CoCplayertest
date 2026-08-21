@@ -3,19 +3,23 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#071014">
   <title>{{ page.title | default: site.title }}</title>
   <link rel="stylesheet" href="{{ '/assets/rippers.css' | relative_url }}">
 </head>
-<body>
-  <main class="page-shell landing-shell">
-    <header class="dossier-header">
-      <p class="eyebrow">Player Archive</p>
-      <h1>{{ site.title }}</h1>
-      <p class="subtitle">Character dossiers, correspondence, discoveries, and campaign records.</p>
+<body class="rippers-body hub-body">
+  <main class="hub-shell" style="--hub-image: url('{{ '/assets/images/hero-collage.webp' | relative_url }}')">
+    <div class="hub-atmosphere"></div>
+    <header class="hub-header">
+      <div class="hub-monogram">R</div>
+      <p>London · 1888</p>
+      <h1>The Rippers</h1>
+      <div class="hub-rule"><span></span><i>✦</i><span></span></div>
+      <p class="hub-subtitle">Player dossiers, correspondence, and personal records.</p>
     </header>
-    <div class="content prose-content">
+    <section class="hub-content">
       {{ content }}
-    </div>
+    </section>
   </main>
 </body>
 </html>
