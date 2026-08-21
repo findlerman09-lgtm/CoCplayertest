@@ -10,8 +10,22 @@ breadcrumb: The Rippers / Investigators / Clara Whitcombe
 kicker: Relationships & Connections
 summary: The people Clara knows, trusts, works with, or would rather avoid.
 ---
-<div class="frame-grid thirds">
-  <article class="frame parchment-frame"><header><span>Margaret Whitcombe</span><b>01</b></header><div class="frame-body"><small>Older sister</small><p>The person Clara trusts to tell her when precision has become stubbornness.</p></div></article>
-  <article class="frame parchment-frame"><header><span>Edwin Bell</span><b>02</b></header><div class="frame-body"><small>Newspaper acquaintance</small><p>A practical sub-editor who sometimes sends photographic commissions Clara's way.</p></div></article>
-  <article class="frame parchment-frame"><header><span>Arthur Henshaw</span><b>03</b></header><div class="frame-body"><small>Former employer & rival</small><p>Respects Clara's work enough to resent it.</p></div></article>
+{% assign dossier_pages = site.pages | where: "character_slug", page.character_slug %}
+{% assign dossier = dossier_pages | where: "context_nav", "overview" | first %}
+
+<div class="relationship-grid">
+  {% for person in dossier.people %}
+  <article class="frame parchment-frame relationship-card">
+    <header><span>{{ person.name }}</span><b>0{{ forloop.index }}</b></header>
+    <div class="frame-body">
+      <div class="relationship-heading"><span class="person-initial large">{{ person.name | slice: 0 }}</span><div><small>{{ person.relationship }}</small><strong>{{ person.name }}</strong></div></div>
+      <p>{{ person.text }}</p>
+    </div>
+  </article>
+  {% endfor %}
 </div>
+
+<article class="frame dark-frame relationship-note">
+  <header><span>Using Your Connections</span><b>04</b></header>
+  <div class="frame-body"><p>These are people in Clara's ordinary life, not a standing investigative organization. Their help, patience, and willingness to become involved can change through play.</p></div>
+</article>
