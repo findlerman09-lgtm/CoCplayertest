@@ -7,8 +7,6 @@ top_nav: investigators
 character_slug: clara-whitcombe
 context_nav: correspondence
 breadcrumb: The Rippers / Investigator / Clara Whitcombe
-page_status: 1 Sealed Item
-page_status_class: sealed
 kicker: Private Material
 summary: Letters and telegrams addressed specifically to Clara.
 ---
