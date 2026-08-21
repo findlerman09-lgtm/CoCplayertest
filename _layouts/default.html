@@ -1,25 +1,4 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#071014">
-  <title>{{ page.title | default: site.title }}</title>
-  <link rel="stylesheet" href="{{ '/assets/rippers.css' | relative_url }}">
-</head>
-<body class="rippers-body hub-body">
-  <main class="hub-shell" style="--hub-image: url('{{ '/assets/images/hero-collage.webp' | relative_url }}')">
-    <div class="hub-atmosphere"></div>
-    <header class="hub-header">
-      <div class="hub-monogram">R</div>
-      <p>London · 1888</p>
-      <h1>The Rippers</h1>
-      <div class="hub-rule"><span></span><i>✦</i><span></span></div>
-      <p class="hub-subtitle">Player dossiers, correspondence, and personal records.</p>
-    </header>
-    <section class="hub-content">
-      {{ content }}
-    </section>
-  </main>
-</body>
-</html>
+---
+layout: base
+---
+{{ content }}
