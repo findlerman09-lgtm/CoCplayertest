@@ -11,14 +11,31 @@ window.addEventListener('DOMContentLoaded', () => {
     majorWound: false,
     skillChecks: []
   };
-  const storageKey = `rippers-character-state:${slug}:v${version}`;
+
+  const storageKey = `rippers-character-state:${slug}`;
+  const legacyKey = `rippers-character-state:${slug}:v${version}`;
+
+  function readStored(key) {
+    try {
+      const raw = localStorage.getItem(key);
+      return raw ? JSON.parse(raw) : null;
+    } catch {
+      return null;
+    }
+  }
 
   function loadState() {
-    try {
-      return { ...defaults, ...JSON.parse(localStorage.getItem(storageKey) || '{}') };
-    } catch {
-      return { ...defaults };
+    const stable = readStored(storageKey);
+    if (stable) return { ...defaults, ...stable };
+
+    const legacy = readStored(legacyKey);
+    if (legacy) {
+      const migrated = { ...defaults, ...legacy };
+      localStorage.setItem(storageKey, JSON.stringify(migrated));
+      return migrated;
     }
+
+    return { ...defaults };
   }
 
   let state = loadState();

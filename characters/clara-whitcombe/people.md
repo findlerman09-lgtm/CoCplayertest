@@ -8,7 +8,7 @@ character_slug: clara-whitcombe
 context_nav: people
 breadcrumb: The Rippers / Investigators / Clara Whitcombe
 kicker: Relationships & Connections
-summary: Personal relationships and useful professional contacts live here, separate from case-wide NPC reference.
+summary: The people Clara knows, trusts, works with, or would rather avoid.
 ---
 <div class="frame-grid thirds">
   <article class="frame parchment-frame"><header><span>Margaret Whitcombe</span><b>01</b></header><div class="frame-body"><small>Older sister</small><p>The person Clara trusts to tell her when precision has become stubbornness.</p></div></article>

@@ -4,14 +4,13 @@ permalink: /documents/
 title: Documents
 display_title: Shared Documents
 top_nav: documents
-section_title: Documents
-section_note: Only material released to the whole table belongs in the shared archive.
+hide_info_rail: true
 breadcrumb: The Rippers / Documents
-kicker: Shared Player Material
-summary: Letters, photographs, clippings, maps, reports and other handouts known to the entire group.
+kicker: Shared Material
+summary: Material currently available to the whole table.
 ---
 <div class="frame-grid thirds">
-  <article class="frame parchment-frame empty-frame"><header><span>Photographs</span><b>01</b></header><div class="frame-body"><p>Shared photographs and plates will collect here.</p></div></article>
-  <article class="frame parchment-frame empty-frame"><header><span>Correspondence</span><b>02</b></header><div class="frame-body"><p>Letters and telegrams released to everyone will collect here.</p></div></article>
-  <article class="frame parchment-frame empty-frame"><header><span>Clippings & Reports</span><b>03</b></header><div class="frame-body"><p>Newspaper items, formal reports and other shared records will collect here.</p></div></article>
+  <article class="frame parchment-frame empty-frame" id="photographs"><header><span>Photographs</span><b>01</b></header><div class="frame-body"><p>No shared photographs are currently filed here.</p></div></article>
+  <article class="frame parchment-frame empty-frame" id="correspondence"><header><span>Correspondence</span><b>02</b></header><div class="frame-body"><p>No shared correspondence is currently filed here.</p></div></article>
+  <article class="frame parchment-frame empty-frame" id="reports"><header><span>Press & Reports</span><b>03</b></header><div class="frame-body"><p>No shared clippings or reports are currently filed here.</p></div></article>
 </div>
