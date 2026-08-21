@@ -15,6 +15,8 @@ summary: Current condition, fast mechanical reference, and improvement marks.
 {% assign c = site.data.characters[page.character_slug] %}
 {% assign dossier_pages = site.pages | where: "character_slug", page.character_slug %}
 {% assign dossier = dossier_pages | where: "context_nav", "overview" | first %}
+{% assign mp_entries = dossier.vitals | where: "name", "Magic Points" %}
+{% assign mp = mp_entries | first %}
 
 <div class="condition-banner-row">
   <div><small>Physical</small><strong class="condition-chip stable" data-hp-condition>Stable</strong></div>
@@ -56,7 +58,7 @@ summary: Current condition, fast mechanical reference, and improvement marks.
     <div class="tracker-value-row"><button type="button" data-state-key="luck" data-state-delta="-1" data-state-max="99">−</button><input type="number" min="0" max="99" value="{{ c.luck }}" data-state-input="luck" aria-label="Current Luck"><button type="button" data-state-key="luck" data-state-delta="1" data-state-max="99">+</button></div>
     <small class="manual-note">Current Luck is remembered on this device.</small>
     <div class="quick-derived">
-      <div><span>MP</span><b>9</b></div>
+      <div><span>MP</span><b>{{ mp.value }}</b></div>
       <div><span>Move</span><b>{{ dossier.combat.mov }}</b></div>
       <div><span>Build</span><b>{{ dossier.combat.build }}</b></div>
       <div><span>DB</span><b>{{ dossier.combat.db }}</b></div>
@@ -102,7 +104,7 @@ summary: Current condition, fast mechanical reference, and improvement marks.
     <article class="frame dark-frame">
       <header><span>Talent & Combat</span><b>04</b></header>
       <div class="frame-body quick-rule-stack">
-        <div><small>Talent</small><strong>{{ dossier.talent.name }}</strong><p>{{ dossier.talent.text }}</p></div>
+        <div><small>Talent</small><strong>{{ dossier.talent.name }}</strong><p>{{ dossier.talent.text | replace: 'In this proof-of-concept it represents', 'It represents' }}</p></div>
         <div><small>Brawl</small><strong>{{ dossier.combat.brawl }}</strong></div>
         <div><small>Dodge</small><strong>{{ dossier.combat.dodge }}</strong></div>
         <button class="small-action" type="button" data-reset-character-state>Reset local tracker</button>
