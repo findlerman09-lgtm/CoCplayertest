@@ -1,6 +1,7 @@
 ---
 layout: base
 ---
+{% capture character_base %}/characters/{{ page.character_slug }}{% endcapture %}
 <section class="overview-hero" style="--hero-image:url('{{ page.hero_art | relative_url }}')">
   <div class="overview-art"></div>
   <div class="overview-portrait"><img src="{{ page.portrait | relative_url }}" alt="Portrait of {{ page.name }}"></div>
@@ -28,7 +29,7 @@ layout: base
 </section>
 
 <section class="frame-grid thirds">
-  <a class="frame link-frame" href="{{ '/characters/clara-whitcombe/sheet/' | relative_url }}"><header><span>At the Table</span><b>→</b></header><div class="frame-body"><strong>Character Sheet</strong><p>Vitals, characteristics, skills, talent, combat and fast mechanical reference.</p></div></a>
-  <a class="frame link-frame" href="{{ '/characters/clara-whitcombe/people/' | relative_url }}"><header><span>Social World</span><b>→</b></header><div class="frame-body"><strong>People</strong><p>Important relationships, professional connections and personal pressures.</p></div></a>
-  <a class="frame link-frame" href="{{ '/characters/clara-whitcombe/correspondence/' | relative_url }}"><header><span>Private Material</span><b>→</b></header><div class="frame-body"><strong>Correspondence</strong><p>Letters, telegrams and code-word releases addressed specifically to this investigator.</p></div></a>
+  <a class="frame link-frame" href="{{ character_base | append: '/sheet/' | relative_url }}"><header><span>At the Table</span><b>→</b></header><div class="frame-body"><strong>Character Sheet</strong><p>Vitals, characteristics, skills, talent, combat and fast mechanical reference.</p></div></a>
+  <a class="frame link-frame" href="{{ character_base | append: '/people/' | relative_url }}"><header><span>Social World</span><b>→</b></header><div class="frame-body"><strong>People</strong><p>Important relationships, professional connections and personal pressures.</p></div></a>
+  <a class="frame link-frame" href="{{ character_base | append: '/correspondence/' | relative_url }}"><header><span>Private Material</span><b>→</b></header><div class="frame-body"><strong>Correspondence</strong><p>Letters, telegrams and code-word releases addressed specifically to this investigator.</p></div></a>
 </section>
