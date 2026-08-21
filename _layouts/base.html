@@ -9,12 +9,15 @@
   <link rel="stylesheet" href="{{ '/assets/architecture.css' | relative_url }}">
   <link rel="stylesheet" href="{{ '/assets/state.css' | relative_url }}">
   <link rel="stylesheet" href="{{ '/assets/pass-1-5.css' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/assets/pass-1-6.css' | relative_url }}">
+  <script defer src="{{ '/assets/archive-gate.js' | relative_url }}"></script>
   <script defer src="{{ '/assets/reveal.js' | relative_url }}"></script>
   <script defer src="{{ '/assets/character-lock.js' | relative_url }}"></script>
   <script defer src="{{ '/assets/character-state.js' | relative_url }}"></script>
   <script defer src="{{ '/assets/pass-1-5.js' | relative_url }}"></script>
+  <script defer src="{{ '/assets/investigator-gate.js' | relative_url }}"></script>
 </head>
-<body class="app-body{% if page.character_slug %} is-locked{% endif %}">
+<body class="app-body archive-guard-pending{% if page.character_slug %} is-locked{% endif %}" data-archive-guard data-archive-verifier="{{ site.data.site_state.archive.verifier }}" data-archive-root="{{ '/' | relative_url }}">
   {% assign character = nil %}
   {% if page.character_slug %}
     {% assign character = site.data.characters[page.character_slug] %}
@@ -61,7 +64,7 @@
         {% unless page.hide_context_rail %}
         <aside class="context-rail">
           {% if character %}
-          <a class="context-back" href="{{ '/investigators/' | relative_url }}">← Investigator roster</a>
+          <a class="context-back" href="{{ '/investigators/' | relative_url }}">← Private dossiers</a>
           <div class="context-identity">
             <img src="{{ character.portrait | relative_url }}" alt="" aria-hidden="true">
             <div><small>Investigator dossier</small><strong>{{ character.name }}</strong><span>{{ character.occupation }}</span></div>
@@ -92,9 +95,9 @@
             <a href="{{ '/campaign-files/' | relative_url }}" class="active"><span>01</span>Current File</a>
           </nav>
           {% else %}
-          <div class="context-heading"><small>Archive section</small><strong>Investigators</strong><p>Private dossiers for the player characters.</p></div>
+          <div class="context-heading"><small>Archive section</small><strong>Investigators</strong><p>Private files. A personal key opens one dossier.</p></div>
           <nav class="context-nav" aria-label="Investigator navigation">
-            <a href="{{ '/investigators/' | relative_url }}" class="active"><span>01</span>Roster</a>
+            <a href="{{ '/investigators/' | relative_url }}" class="active"><span>01</span>Private Dossiers</a>
           </nav>
           {% endif %}
         </aside>
@@ -140,8 +143,8 @@
               <p>Only material already released in play appears in the archive.</p>
             </section>
             <section class="rail-panel">
-              <p class="rail-kicker">Recently available</p>
-              <a class="recent-item" href="{{ '/investigators/' | relative_url }}"><small>Investigator</small><strong>Clara Whitcombe dossier</strong></a>
+              <p class="rail-kicker">Private dossiers</p>
+              <p>Investigator identities remain sealed until opened with the correct personal key.</p>
             </section>
           {% endif %}
         </aside>

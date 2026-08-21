@@ -7,16 +7,26 @@
   <title>The Rippers</title>
   <link rel="stylesheet" href="{{ '/assets/rippers.css' | relative_url }}">
   <link rel="stylesheet" href="{{ '/assets/pass-1-5.css' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/assets/pass-1-6.css' | relative_url }}">
+  <script defer src="{{ '/assets/archive-gate.js' | relative_url }}"></script>
 </head>
 <body class="splash-body">
   <main class="splash-screen" style="--splash-image:url('{{ '/assets/images/hero-collage.webp' | relative_url }}')">
     <div class="splash-vignette"></div>
-    <div class="splash-copy">
+    <div class="splash-copy" data-archive-gate data-salt="{{ site.data.site_state.archive.salt }}" data-verifier="{{ site.data.site_state.archive.verifier }}" data-iterations="{{ site.data.site_state.archive.iterations }}" data-target="{{ '/archive/' | relative_url }}">
       <div class="splash-monogram">R</div>
       <p>London · 1888</p>
       <h1>The Rippers</h1>
       <div class="splash-rule"><span></span><i>✦</i><span></span></div>
-      <a class="splash-enter" href="{{ '/archive/' | relative_url }}">Enter the Archive</a>
+      <div class="archive-key-wrap">
+        <form class="archive-key-form" data-archive-key-form>
+          <label class="visually-hidden" for="archive-key">Archive key</label>
+          <input id="archive-key" type="password" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="ARCHIVE KEY">
+          <button type="submit">Enter the Archive</button>
+          <p class="archive-key-status" data-archive-key-status></p>
+        </form>
+        <a class="splash-enter archive-return" data-archive-return hidden href="{{ '/archive/' | relative_url }}">Enter the Archive</a>
+      </div>
     </div>
   </main>
 </body>
