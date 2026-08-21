@@ -1,0 +1,50 @@
+{% assign doc = include.doc %}
+<details id="document-{{ doc.id }}" class="document-record document-type-{{ doc.type }}{% if doc.status == 'sealed' %} is-sealed{% endif %}" data-document-record="{{ doc.id }}" data-document-section="{{ doc.section }}">
+  <summary>
+    <span class="document-type-mark" aria-hidden="true">{% case doc.type %}{% when 'letter' %}✉{% when 'telegram' %}T{% when 'photograph' %}▣{% when 'newspaper' %}N{% when 'notebook' %}✎{% when 'report' %}R{% when 'map' %}⌖{% else %}•{% endcase %}</span>
+    <span class="document-summary-copy">
+      <small>{{ doc.type_label | default: doc.type }}</small>
+      <strong>{{ doc.title }}</strong>
+      <span>{{ doc.summary }}</span>
+    </span>
+    <span class="document-status{% if doc.status == 'sealed' %} sealed{% else %} available{% endif %}" data-document-status>{% if doc.status == 'sealed' %}SEALED{% else %}FILED{% endif %}</span>
+  </summary>
+
+  <div class="document-record-content">
+    <aside class="document-metadata" aria-label="Document information">
+      <div><small>Type</small><strong>{{ doc.type_label | default: doc.type }}</strong></div>
+      {% if doc.source %}<div><small>Source</small><strong>{{ doc.source }}</strong></div>{% endif %}
+      {% if doc.date %}<div><small>Date</small><strong>{{ doc.date }}</strong></div>{% endif %}
+      {% if doc.owner_label %}<div><small>Filed to</small><strong>{{ doc.owner_label }}</strong></div>{% endif %}
+      {% if doc.provenance %}<div><small>Provenance</small><strong>{{ doc.provenance }}</strong></div>{% endif %}
+    </aside>
+
+    <div class="document-object document-object-{{ doc.type }}">
+      {% if doc.status == 'sealed' %}
+      <section class="document-sealed reveal-card" data-lock-id="{{ doc.lock.id }}" data-salt="{{ doc.lock.salt }}" data-iv="{{ doc.lock.iv }}" data-ciphertext="{{ doc.lock.ciphertext }}" data-iterations="{{ doc.lock.iterations | default: 100000 }}">
+        <div class="sealed-document-face" data-reveal-locked>
+          <span class="sealed-document-mark">R</span>
+          <small>Code-word release</small>
+          <strong>Contents Sealed</strong>
+          <p>{{ doc.summary }}</p>
+          <form class="reveal-form">
+            <label><span>Code word</span><input type="password" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="Enter code word"></label>
+            <button type="submit">Break Seal</button>
+            <p class="reveal-status">Awaiting code word.</p>
+          </form>
+        </div>
+        <div class="document-paper reveal-body" aria-live="polite" hidden></div>
+      </section>
+      {% else %}
+        {% if doc.asset %}
+        <figure class="document-image-mount">
+          <img src="{{ doc.asset | relative_url }}" alt="{{ doc.alt | default: doc.title }}">
+          {% if doc.caption %}<figcaption>{{ doc.caption }}</figcaption>{% endif %}
+        </figure>
+        {% endif %}
+        {% if doc.body %}<div class="document-paper">{{ doc.body | markdownify }}</div>{% endif %}
+        {% if doc.transcript %}<details class="document-transcript"><summary>Transcript</summary><div>{{ doc.transcript | markdownify }}</div></details>{% endif %}
+      {% endif %}
+    </div>
+  </div>
+</details>

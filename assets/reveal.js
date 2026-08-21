@@ -1,4 +1,4 @@
-async function deriveKey(password, saltB64) {
+async function deriveRevealKey(password, saltB64, iterations = 100000) {
   const encoder = new TextEncoder();
   const passwordKey = await crypto.subtle.importKey(
     'raw',
@@ -12,7 +12,7 @@ async function deriveKey(password, saltB64) {
     {
       name: 'PBKDF2',
       salt,
-      iterations: 100000,
+      iterations,
       hash: 'SHA-256'
     },
     passwordKey,
@@ -22,14 +22,34 @@ async function deriveKey(password, saltB64) {
   );
 }
 
-function decodeB64(b64) {
+function decodeRevealB64(b64) {
   return Uint8Array.from(atob(b64), c => c.charCodeAt(0));
 }
 
-async function unlockCard(card, password) {
-  const key = await deriveKey(password, card.dataset.salt);
-  const iv = decodeB64(card.dataset.iv);
-  const encrypted = decodeB64(card.dataset.ciphertext);
+function setRevealOpenState(card) {
+  card.classList.add('is-unlocked');
+  card.querySelectorAll('[data-reveal-locked]').forEach(el => { el.hidden = true; });
+  const body = card.querySelector('.reveal-body');
+  if (body) body.hidden = false;
+
+  const record = card.closest('[data-document-record]');
+  if (record) {
+    record.classList.remove('is-sealed');
+    record.classList.add('is-unlocked');
+    const status = record.querySelector('[data-document-status]');
+    if (status) {
+      status.textContent = 'OPEN';
+      status.classList.remove('sealed');
+      status.classList.add('available');
+    }
+  }
+}
+
+async function unlockReveal(card, password) {
+  const iterations = Number(card.dataset.iterations || 100000);
+  const key = await deriveRevealKey(password, card.dataset.salt, iterations);
+  const iv = decodeRevealB64(card.dataset.iv);
+  const encrypted = decodeRevealB64(card.dataset.ciphertext);
   const plaintext = await crypto.subtle.decrypt(
     { name: 'AES-GCM', iv },
     key,
@@ -38,40 +58,56 @@ async function unlockCard(card, password) {
   const decoder = new TextDecoder();
   const html = decoder.decode(plaintext);
   const body = card.querySelector('.reveal-body');
+  if (!body) throw new Error('Reveal body missing');
   body.innerHTML = html;
-  card.classList.add('is-unlocked');
+  setRevealOpenState(card);
+
   const storageKey = `rippers-unlock-${card.dataset.lockId}`;
   localStorage.setItem(storageKey, password);
+  window.dispatchEvent(new CustomEvent('rippers:document-unlocked', {
+    detail: { lockId: card.dataset.lockId }
+  }));
 }
 
-async function tryStoredUnlock(card) {
+async function tryStoredReveal(card) {
   const storageKey = `rippers-unlock-${card.dataset.lockId}`;
   const saved = localStorage.getItem(storageKey);
   if (!saved) return;
-  try { await unlockCard(card, saved); } catch {}
+  try {
+    await unlockReveal(card, saved);
+  } catch {
+    localStorage.removeItem(storageKey);
+  }
 }
 
 window.addEventListener('DOMContentLoaded', () => {
   const cards = document.querySelectorAll('[data-lock-id]');
   cards.forEach(card => {
-    tryStoredUnlock(card);
+    tryStoredReveal(card);
     const form = card.querySelector('.reveal-form');
     if (!form) return;
-    form.addEventListener('submit', async (event) => {
+
+    form.addEventListener('submit', async event => {
       event.preventDefault();
       const input = form.querySelector('input');
       const status = form.querySelector('.reveal-status');
-      const password = input.value.trim();
+      const password = (input?.value || '').trim().toUpperCase();
       if (!password) {
-        status.textContent = 'Enter a code word.';
+        if (status) status.textContent = 'Enter a code word.';
         return;
       }
-      status.textContent = 'Unlocking…';
+
+      if (status) status.textContent = 'Testing the seal…';
+      form.classList.add('is-working');
       try {
-        await unlockCard(card, password);
-        status.textContent = 'Unlocked.';
+        await unlockReveal(card, password);
+        if (status) status.textContent = 'Opened.';
+        if (input) input.value = '';
       } catch {
-        status.textContent = 'That code word did not open this item.';
+        if (status) status.textContent = 'That code word did not open this item.';
+        input?.select();
+      } finally {
+        form.classList.remove('is-working');
       }
     });
   });
