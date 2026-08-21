@@ -1,0 +1,22 @@
+items:
+  - id: clara-demo-letter
+    title: Sealed Correspondence
+    type: letter
+    type_label: Letter
+    section: correspondence
+    channel: correspondence
+    visibility: personal
+    owner: clara-whitcombe
+    owner_label: Clara Whitcombe
+    source: Edwin Bell
+    date: Undated
+    released: true
+    status: sealed
+    summary: A private item filed to Clara's correspondence. Its contents remain sealed until a code word is received.
+    development_note: Non-canon proof item retained to validate the encrypted reveal system.
+    lock:
+      id: clara-demo-letter
+      iterations: 100000
+      salt: "8meVQdnUFRzv1mLg8gSmNw=="
+      iv: "nAdTN52LkoZ6/U0Y"
+      ciphertext: "P65nP3bZhzEn8Js2EOjsjd/jcnicXETmDqtb5Zg9UsHOsPfVCnW+UxFuLlsMKcE1NB27965zgZc1YHYhJx4kdVp0GlMblX4AkqCgEhuZYcxNCYAovS+lKOBmAyEruoGEjjmG61sEH46t4Xg17ATAGnZuagW+n6/ApwAqOvl7CDTc/WPNLi8PXSRQsPt4Xqh58QPPFJCvVEh8v6N0mFKkonWtg2BN9ZeUit0eCx8RxhOlh1a346EVgmm1aViAodAgXpNpam6iuSILqpqQGAlJbqyF4lDTp4kPJxE09TaWWOpCrjJKdN15hkbVpe0hAeDNGKVSQHGiyjDKIzrrLgMICQ0NDuomfK5fSP9wnb8fwcI3yUg9X2UGWzLvJtyGA9AUTQjMxCzZIEaRf4VBlBp1RlkYxmm1KHyV+wTsGxOa1ZQUzf3hndRGAiuiCZnttgVWH2xx1N0ikze6Auqayfe5+ZIk5vRJxVbpTSxkPgMhmkio0vyJfyr3oetuobS3evs2X9k4M0C+hw9bm41i3ymZr6xJOpgwFa4kl5xnwMRcBgaWErTs+1HTgKxw8cELTkSS7cTIvpuqVFxNiQ+GCbyTWeyrmHI5nrCWY2qkcYDiTsLdQ5qxyJUgN+l2sznJKGY="
