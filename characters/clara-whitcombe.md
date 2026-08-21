@@ -6,6 +6,17 @@ occupation: Photographer
 age: 34
 residence: London
 social_status: Middle class
+dossier_number: "CW-01"
+status: Active
+featured_skills:
+  - { name: Photography, value: 80 }
+  - { name: Spot Hidden, value: 75 }
+  - { name: Library Use, value: 70 }
+  - { name: Chemistry, value: 63 }
+campaign_files:
+  - { number: I, label: Case File I, note: Current, state: active }
+  - { number: II, label: Case File II, note: Sealed, state: sealed }
+  - { number: III, label: Case File III, note: Sealed, state: sealed }
 portrait: /assets/images/clara-portrait.webp
 hero_art: /assets/images/hero-collage.webp
 tagline: "A meticulous commercial photographer who notices discrepancies other people would rather dismiss."
