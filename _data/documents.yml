@@ -12,6 +12,7 @@ items:
     date: Undated
     released: true
     status: sealed
+    basis: development_only
     summary: A private item filed to Clara's correspondence. Its contents remain sealed until a code word is received.
     development_note: Non-canon proof item retained to validate the encrypted reveal system.
     lock:
