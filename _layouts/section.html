@@ -1,0 +1,8 @@
+---
+layout: base
+---
+<section class="section-intro">
+  {% if page.kicker %}<p class="eyebrow">{{ page.kicker }}</p>{% endif %}
+  {% if page.summary %}<p class="section-summary">{{ page.summary }}</p>{% endif %}
+</section>
+{{ content }}
