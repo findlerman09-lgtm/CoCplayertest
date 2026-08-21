@@ -1,0 +1,15 @@
+clara-whitcombe:
+  name: Clara Whitcombe
+  occupation: Photographer
+  portrait: /assets/images/clara-portrait.webp
+  status: Active
+  hp: 13
+  sanity: 45
+  luck: 75
+  recent:
+    - type: Correspondence
+      label: Sealed demonstration letter
+      href: /characters/clara-whitcombe/correspondence/
+    - type: Dossier
+      label: Character overview available
+      href: /characters/clara-whitcombe/
