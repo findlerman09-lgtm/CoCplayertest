@@ -74,6 +74,10 @@ window.addEventListener('DOMContentLoaded', () => {
     return { label: 'Stable', className: 'stable' };
   }
 
+  function emit(type, detail = {}) {
+    window.dispatchEvent(new CustomEvent(`rippers:${type}`, { detail: { slug, ...detail } }));
+  }
+
   function saveState() {
     localStorage.setItem(storageKey, JSON.stringify(state));
     render();
@@ -143,11 +147,16 @@ window.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('[data-state-input]').forEach(input => {
     input.addEventListener('change', () => {
       const key = input.dataset.stateInput;
-      if (key === 'majorWound') state.majorWound = input.checked;
-      else {
-        const max = Number(input.max || 999);
-        state[key] = clamp(Number(input.value), 0, max);
+      if (key === 'majorWound') {
+        const wasMarked = Boolean(state.majorWound);
+        state.majorWound = input.checked;
+        saveState();
+        if (!wasMarked && state.majorWound) emit('major-wound', { source: 'manual' });
+        return;
       }
+
+      const max = Number(input.max || 999);
+      state[key] = clamp(Number(input.value), 0, max);
       saveState();
     });
   });
@@ -160,15 +169,16 @@ window.addEventListener('DOMContentLoaded', () => {
     const majorThreshold = Math.ceil(maxHp / 2);
     state.hp = clamp(state.hp - damage, 0, maxHp);
 
-    if (damage >= maxHp) {
+    if (damage > maxHp) {
       state.fatalDamage = true;
       state.majorWound = true;
-      state.lastHpNotice = `Fatal injury: ${damage} damage from one attack equals or exceeds maximum HP (${maxHp}).`;
+      state.lastHpNotice = `Fatal injury: ${damage} damage from one attack exceeds maximum HP (${maxHp}).`;
     } else if (damage >= majorThreshold) {
       state.majorWound = true;
       state.lastHpNotice = state.hp <= 0
-        ? `Major Wound and 0 HP: the investigator is dying. First Aid is required to stabilize them.`
+        ? 'Major Wound and 0 HP: the investigator is dying. First Aid is required to stabilize them.'
         : `Major Wound: ${damage} damage is at least half maximum HP. Fall prone and make a CON roll to remain conscious.`;
+      emit('major-wound', { source: 'damage', damage });
     } else if (state.hp <= 0) {
       state.lastHpNotice = '0 HP without a Major Wound: the investigator is unconscious, but is not dying from this injury.';
     } else {
@@ -184,6 +194,7 @@ window.addEventListener('DOMContentLoaded', () => {
     const requestedLoss = Math.max(0, Math.floor(Number(input?.value || 0)));
     if (!requestedLoss) return;
 
+    const wasUnderlying = Boolean(state.temporaryInsanity || state.indefiniteInsanity);
     const actualLoss = Math.min(requestedLoss, state.sanity);
     state.sanity = clamp(state.sanity - actualLoss, 0, maxSanity);
     state.sanityPeriodLoss += actualLoss;
@@ -193,10 +204,19 @@ window.addEventListener('DOMContentLoaded', () => {
       state.temporaryInsanity = false;
       state.indefiniteInsanity = false;
       state.lastSanNotice = 'SAN has reached 0: permanent insanity.';
+      emit('madness-bout', { reason: 'permanent', sanityLoss: actualLoss });
+    } else if (wasUnderlying) {
+      if (state.sanityPeriodLoss >= sanityThreshold()) {
+        state.indefiniteInsanity = true;
+        state.temporaryInsanity = false;
+      }
+      state.lastSanNotice = `Further SAN loss while insane triggers another bout of madness. Period loss is ${state.sanityPeriodLoss} of ${sanityThreshold()}.`;
+      emit('madness-bout', { reason: 'further-loss', sanityLoss: actualLoss });
     } else if (state.sanityPeriodLoss >= sanityThreshold()) {
       state.indefiniteInsanity = true;
       state.temporaryInsanity = false;
       state.lastSanNotice = `Cumulative SAN loss is ${state.sanityPeriodLoss}, reaching the one-fifth threshold of ${sanityThreshold()}: indefinite insanity.`;
+      emit('madness-bout', { reason: 'indefinite', sanityLoss: actualLoss });
     } else if (actualLoss >= 5) {
       state.temporaryCheckPending = true;
       state.lastSanNotice = `${actualLoss} SAN lost from one event. Make an INT roll: success means temporary insanity; failure means the investigator retains control.`;
@@ -214,7 +234,8 @@ window.addEventListener('DOMContentLoaded', () => {
       state.temporaryCheckPending = false;
       if (result === 'success') {
         state.temporaryInsanity = true;
-        state.lastSanNotice = 'INT roll succeeded: temporary insanity marked.';
+        state.lastSanNotice = 'INT roll succeeded: temporary insanity marked. A private bout has been assigned below.';
+        emit('madness-bout', { reason: 'temporary' });
       } else {
         state.temporaryInsanity = false;
         state.lastSanNotice = 'INT roll failed: no temporary insanity from that one-time loss.';
@@ -234,7 +255,7 @@ window.addEventListener('DOMContentLoaded', () => {
     state.temporaryCheckPending = false;
     state.temporaryInsanity = false;
     state.indefiniteInsanity = false;
-    state.lastSanNotice = 'Insanity condition cleared by Keeper decision. SAN totals are unchanged.';
+    state.lastSanNotice = 'Insanity condition cleared by Keeper decision. SAN totals and previous private effects are unchanged.';
     saveState();
   });
 
@@ -256,6 +277,7 @@ window.addEventListener('DOMContentLoaded', () => {
   document.querySelector('[data-reset-character-state]')?.addEventListener('click', () => {
     state = { ...defaults, skillChecks: [] };
     saveState();
+    emit('tracker-reset');
   });
 
   render();
