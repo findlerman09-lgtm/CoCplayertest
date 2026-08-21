@@ -36,6 +36,19 @@ roleplay_anchor: >-
 character_read: >-
   This page is the tone target for the whole project: evocative first impression, then practical dossier depth. Clara should feel like a person before she feels like a stat block.
 human_detail: "She makes tea before beginning darkroom work and almost always discovers it cold hours later."
+player_edges:
+  - label: Competence spotlight
+    title: Technical observation
+    text: >-
+      Clara is at her best when a problem can be fixed in a record: a plate, a repeated view, a reflection, an edge, a chemical flaw, or a small physical discrepancy that somebody else dismissed.
+  - label: Unique access
+    title: The photographic trade
+    text: >-
+      Printers, framers, stationers, suppliers, newspaper staff, clients, and other photographers form an ordinary professional network that can open doors without turning Clara into a detective by profession.
+  - label: Personal pressure
+    title: Accuracy has a cost
+    text: >-
+      Clara's refusal to soften inconvenient facts has already cost her work. The same stubborn precision that makes her useful can threaten income, reputation, and relationships when discretion would be easier.
 people:
   - name: Margaret Whitcombe
     relationship: Older sister
