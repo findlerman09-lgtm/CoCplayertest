@@ -8,9 +8,11 @@
   <link rel="stylesheet" href="{{ '/assets/rippers.css' | relative_url }}">
   <link rel="stylesheet" href="{{ '/assets/architecture.css' | relative_url }}">
   <link rel="stylesheet" href="{{ '/assets/state.css' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/assets/pass-1-5.css' | relative_url }}">
   <script defer src="{{ '/assets/reveal.js' | relative_url }}"></script>
   <script defer src="{{ '/assets/character-lock.js' | relative_url }}"></script>
   <script defer src="{{ '/assets/character-state.js' | relative_url }}"></script>
+  <script defer src="{{ '/assets/pass-1-5.js' | relative_url }}"></script>
 </head>
 <body class="app-body{% if page.character_slug %} is-locked{% endif %}">
   {% assign character = nil %}
@@ -21,16 +23,15 @@
 
   <div class="app-shell">
     <header class="global-bar">
-      <a class="global-brand" href="{{ '/' | relative_url }}">
+      <a class="global-brand" href="{{ '/archive/' | relative_url }}" aria-label="The Rippers archive">
         <span class="brand-mark">R</span>
         <span><b>The Rippers</b><small>Player Archive</small></span>
       </a>
 
       <nav class="global-nav" aria-label="Primary navigation">
-        <a href="{{ '/' | relative_url }}" {% if page.top_nav == 'home' %}class="active"{% endif %}>Home</a>
         <a href="{{ '/investigators/' | relative_url }}" {% if page.top_nav == 'investigators' %}class="active"{% endif %}>Investigators</a>
         <a href="{{ '/documents/' | relative_url }}" {% if page.top_nav == 'documents' %}class="active"{% endif %}>Documents</a>
-        <a href="{{ '/campaign-files/' | relative_url }}" {% if page.top_nav == 'campaign' %}class="active"{% endif %}>Campaign Files</a>
+        <a href="{{ '/campaign-files/' | relative_url }}" {% if page.top_nav == 'campaign' %}class="active"{% endif %}>Case Files</a>
       </nav>
 
       <div class="global-meta">
@@ -56,9 +57,11 @@
     {% endif %}
 
     <div class="protected-shell" {% if character %}data-protected-character hidden{% endif %}>
-      <div class="workspace-grid" {% if character %}data-character-state="{{ page.character_slug }}" data-state-version="{{ character.state_version }}" data-default-hp="{{ character.hp }}" data-default-sanity="{{ character.sanity }}" data-default-luck="{{ character.luck }}"{% endif %}>
+      <div class="workspace-grid{% if page.hide_context_rail %} no-context-rail{% endif %}{% if page.hide_info_rail %} no-info-rail{% endif %}" {% if character %}data-character-state="{{ page.character_slug }}" data-state-version="{{ character.state_version }}" data-default-hp="{{ character.hp }}" data-default-sanity="{{ character.sanity }}" data-default-luck="{{ character.luck }}"{% endif %}>
+        {% unless page.hide_context_rail %}
         <aside class="context-rail">
           {% if character %}
+          <a class="context-back" href="{{ '/investigators/' | relative_url }}">← Investigator roster</a>
           <div class="context-identity">
             <img src="{{ character.portrait | relative_url }}" alt="" aria-hidden="true">
             <div><small>Investigator dossier</small><strong>{{ character.name }}</strong><span>{{ character.occupation }}</span></div>
@@ -71,26 +74,31 @@
             <a href="{{ character_base | append: '/documents/' | relative_url }}" {% if page.context_nav == 'documents' %}class="active"{% endif %}><span>05</span>Documents</a>
             <a href="{{ character_base | append: '/possessions/' | relative_url }}" {% if page.context_nav == 'possessions' %}class="active"{% endif %}><span>06</span>Possessions</a>
           </nav>
-          {% else %}
-          <div class="context-heading">
-            <small>Archive section</small>
-            <strong>{{ page.section_title | default: 'Player Archive' }}</strong>
-            <p>{{ page.section_note | default: 'A compact record of the investigators and the material released during play.' }}</p>
+          <div class="context-current-file">
+            <small>Current file</small>
+            <strong>Open</strong>
           </div>
-          <nav class="context-nav" aria-label="Archive navigation">
-            <a href="{{ '/investigators/' | relative_url }}" {% if page.top_nav == 'investigators' %}class="active"{% endif %}><span>01</span>Investigator Roster</a>
-            <a href="{{ '/documents/' | relative_url }}" {% if page.top_nav == 'documents' %}class="active"{% endif %}><span>02</span>Shared Documents</a>
-            <a href="{{ '/campaign-files/' | relative_url }}" {% if page.top_nav == 'campaign' %}class="active"{% endif %}><span>03</span>Campaign Files</a>
+          {% elsif page.top_nav == 'documents' %}
+          <div class="context-heading"><small>Archive section</small><strong>Documents</strong><p>Material available to the whole table.</p></div>
+          <nav class="context-nav" aria-label="Document navigation">
+            <a href="{{ '/documents/' | relative_url }}" class="active"><span>01</span>All Documents</a>
+            <a href="{{ '/documents/#photographs' | relative_url }}"><span>02</span>Photographs</a>
+            <a href="{{ '/documents/#correspondence' | relative_url }}"><span>03</span>Correspondence</a>
+            <a href="{{ '/documents/#reports' | relative_url }}"><span>04</span>Press & Reports</a>
+          </nav>
+          {% elsif page.top_nav == 'campaign' %}
+          <div class="context-heading"><small>Archive section</small><strong>Case Files</strong><p>Released material associated with the currently open file.</p></div>
+          <nav class="context-nav" aria-label="Case file navigation">
+            <a href="{{ '/campaign-files/' | relative_url }}" class="active"><span>01</span>Current File</a>
+          </nav>
+          {% else %}
+          <div class="context-heading"><small>Archive section</small><strong>Investigators</strong><p>Private dossiers for the player characters.</p></div>
+          <nav class="context-nav" aria-label="Investigator navigation">
+            <a href="{{ '/investigators/' | relative_url }}" class="active"><span>01</span>Roster</a>
           </nav>
           {% endif %}
-
-          <div class="context-cases">
-            <p>Three case files</p>
-            <div class="case-dot active"><b>I</b><span>Current</span></div>
-            <div class="case-dot sealed"><b>II</b><span>Sealed</span></div>
-            <div class="case-dot sealed"><b>III</b><span>Sealed</span></div>
-          </div>
         </aside>
+        {% endunless %}
 
         <main class="workspace-main">
           <div class="workspace-titlebar">
@@ -103,6 +111,7 @@
           {{ content }}
         </main>
 
+        {% unless page.hide_info_rail %}
         <aside class="info-rail">
           {% if character %}
             <section class="rail-panel">
@@ -120,22 +129,23 @@
               <a class="recent-item" href="{{ item.href | relative_url }}"><small>{{ item.type }}</small><strong>{{ item.label }}</strong></a>
               {% endfor %}
             </section>
-            <section class="rail-panel rail-note">
-              <p class="rail-kicker">At the table</p>
-              <p>Current HP, SAN and marked skill checks persist on this device. Canonical skill values remain part of the dossier and can be updated between scenarios.</p>
+            <section class="rail-panel">
+              <button type="button" class="lock-dossier-button" data-lock-dossier="{{ page.character_slug }}">Lock Dossier</button>
+              <p class="rail-fineprint">Forgets dossier access on this device. Character sheet state is retained.</p>
             </section>
-          {% else %}
+          {% elsif page.archive_home %}
             <section class="rail-panel">
               <p class="rail-kicker">Current file</p>
-              <strong class="large-rail-text">Case File I</strong>
-              <p>Active player archive. Later files remain sealed until they enter play.</p>
+              <strong class="large-rail-text">Open</strong>
+              <p>Only material already released in play appears in the archive.</p>
             </section>
             <section class="rail-panel">
-              <p class="rail-kicker">Archive design</p>
-              <p>Home answers “what is new?” Investigator pages answer “who am I?” Documents answer “what do we have?”</p>
+              <p class="rail-kicker">Recently available</p>
+              <a class="recent-item" href="{{ '/investigators/' | relative_url }}"><small>Investigator</small><strong>Clara Whitcombe dossier</strong></a>
             </section>
           {% endif %}
         </aside>
+        {% endunless %}
       </div>
     </div>
   </div>
