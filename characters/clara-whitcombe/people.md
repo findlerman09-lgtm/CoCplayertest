@@ -26,6 +26,6 @@ summary: The people Clara knows, trusts, works with, or would rather avoid.
 </div>
 
 <article class="frame dark-frame relationship-note">
-  <header><span>Using Your Connections</span><b>04</b></header>
-  <div class="frame-body"><p>These are people in Clara's ordinary life, not a standing investigative organization. Their help, patience, and willingness to become involved can change through play.</p></div>
+  <header><span>Favors Have Limits</span><b>04</b></header>
+  <div class="frame-body"><p>These people belong to Clara's ordinary life. Their help, patience, and willingness to become involved can change through play, especially when a favor costs time, money, reputation, or safety.</p></div>
 </article>
