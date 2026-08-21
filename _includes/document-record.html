@@ -1,5 +1,5 @@
 {% assign doc = include.doc %}
-<details class="document-record document-type-{{ doc.type }}{% if doc.status == 'sealed' %} is-sealed{% endif %}" data-document-record="{{ doc.id }}" data-document-section="{{ doc.section }}">
+<details id="document-{{ doc.id }}" class="document-record document-type-{{ doc.type }}{% if doc.status == 'sealed' %} is-sealed{% endif %}" data-document-record="{{ doc.id }}" data-document-section="{{ doc.section }}">
   <summary>
     <span class="document-type-mark" aria-hidden="true">{% case doc.type %}{% when 'letter' %}✉{% when 'telegram' %}T{% when 'photograph' %}▣{% when 'newspaper' %}N{% when 'notebook' %}✎{% when 'report' %}R{% when 'map' %}⌖{% else %}•{% endcase %}</span>
     <span class="document-summary-copy">
