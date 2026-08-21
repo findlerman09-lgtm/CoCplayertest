@@ -1,0 +1,51 @@
+# NON-CANON TEMPLATE VALIDATION ONLY. Never expose in player navigation.
+name: Thomas Keene
+age: 46
+occupation: Thames lighterman and river pilot
+social_status: Working class
+concept: "A river worker who reads current, cargo, weather, and dangerous men faster than paperwork."
+validation_purpose:
+  - tests a physically capable, lower-status investigator against Clara's educated professional profile
+  - tests a character whose useful access comes from docks, boats, labor networks, and practical movement rather than institutions
+  - tests sparse personal equipment and lower Credit Rating
+  - tests a relationship set centered on family, employers, and working contacts
+characteristics:
+  STR: 70
+  CON: 75
+  SIZ: 70
+  DEX: 65
+  APP: 40
+  INT: 65
+  POW: 60
+  EDU: 50
+vitals:
+  hp: 14
+  sanity: 60
+  luck: 55
+  move: 8
+  build: 1
+  db: "+1D4"
+spotlight: "Boat handling, river geography, dangerous physical access, and judging practical risk."
+unique_access: "Wharves, lightermen, dock laborers, river traffic, cargo routines, and people who work before respectable London wakes."
+pressure: "A missed tide or lost day's work costs money immediately; employers and family cannot absorb endless unexplained absences."
+skills:
+  - { name: "Pilot (Boat)", value: 80 }
+  - { name: "Navigate", value: 75 }
+  - { name: "Swim", value: 65 }
+  - { name: "Listen", value: 65 }
+  - { name: "Fighting (Brawl)", value: 60 }
+  - { name: "Mechanical Repair", value: 55 }
+  - { name: "Spot Hidden", value: 55 }
+  - { name: "First Aid", value: 45 }
+  - { name: "Credit Rating", value: 15 }
+gear:
+  - heavy river coat
+  - work gloves
+  - rope knife
+  - lantern
+  - tobacco tin
+  - small notebook with tide and cargo notes
+people:
+  - { name: "Eliza Keene", relationship: "Wife", function: "home pressure and emotional truth" }
+  - { name: "Samuel Pike", relationship: "Lighter owner", function: "employment, boats, and obligations" }
+  - { name: "Ned Farren", relationship: "Dock acquaintance", function: "working rumor and access" }
