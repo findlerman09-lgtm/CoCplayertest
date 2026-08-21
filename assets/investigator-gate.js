@@ -1,36 +1,37 @@
 window.addEventListener('DOMContentLoaded', () => {
-  const cabinet = document.querySelector('[data-investigator-cabinet]');
-  if (!cabinet) return;
+  const gate = document.querySelector('[data-investigator-cabinet]');
+  if (!gate) return;
 
-  const candidates = [...cabinet.querySelectorAll('[data-dossier-candidate]')];
-  const form = cabinet.querySelector('[data-dossier-key-form]');
+  const candidates = [...gate.querySelectorAll('[data-dossier-candidate]')];
+  const form = gate.querySelector('[data-dossier-key-form]');
   const input = form?.querySelector('input');
-  const status = cabinet.querySelector('[data-dossier-key-status]');
+  const status = gate.querySelector('[data-dossier-key-status]');
 
   function storageKey(slug) {
     return `rippers-dossier-access:${slug}`;
   }
 
-  function revealCard(card) {
-    card.classList.remove('is-sealed');
-    card.classList.add('is-unlocked');
-    const sealed = card.querySelector('[data-sealed-face]');
-    const open = card.querySelector('[data-unlocked-face]');
-    if (sealed) sealed.hidden = true;
-    if (open) open.hidden = false;
+  function openDossier(candidate) {
+    const target = candidate.dataset.target;
+    if (target) window.location.assign(target);
   }
 
-  candidates.forEach(card => {
-    const slug = card.dataset.dossierSlug;
-    const verifier = card.dataset.verifier;
-    if (slug && localStorage.getItem(storageKey(slug)) === verifier) revealCard(card);
+  const remembered = candidates.find(candidate => {
+    const slug = candidate.dataset.dossierSlug;
+    return slug && localStorage.getItem(storageKey(slug)) === candidate.dataset.verifier;
   });
+
+  if (remembered) {
+    if (status) status.textContent = 'Dossier recognized. Opening…';
+    openDossier(remembered);
+    return;
+  }
 
   form?.addEventListener('submit', async event => {
     event.preventDefault();
     const password = input?.value || '';
     if (!password) {
-      status.textContent = 'Enter your dossier key.';
+      status.textContent = 'Enter your dossier password.';
       return;
     }
 
@@ -38,25 +39,28 @@ window.addEventListener('DOMContentLoaded', () => {
     form.classList.add('is-working');
 
     try {
-      for (const card of candidates) {
-        const salt = card.dataset.salt;
-        const verifier = card.dataset.verifier;
-        const iterations = Number(card.dataset.iterations || 120000);
-        const candidate = await rippersDeriveVerifier(password, salt, iterations);
-        if (candidate === verifier) {
-          const slug = card.dataset.dossierSlug;
+      for (const candidate of candidates) {
+        const verifier = candidate.dataset.verifier;
+        const derived = await rippersDeriveVerifier(
+          password,
+          candidate.dataset.salt,
+          Number(candidate.dataset.iterations || 120000)
+        );
+
+        if (derived === verifier) {
+          const slug = candidate.dataset.dossierSlug;
           localStorage.setItem(storageKey(slug), verifier);
-          revealCard(card);
           status.textContent = 'Dossier key accepted.';
           input.value = '';
-          card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          openDossier(candidate);
           return;
         }
       }
-      status.textContent = 'That key does not open a dossier here.';
+
+      status.textContent = 'That password does not open a dossier here.';
       input.select();
     } catch {
-      status.textContent = 'This browser could not verify the dossier key.';
+      status.textContent = 'This browser could not verify the dossier password.';
     } finally {
       form.classList.remove('is-working');
     }

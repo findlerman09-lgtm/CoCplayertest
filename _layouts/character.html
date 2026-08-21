@@ -22,14 +22,38 @@ layout: base
     <header><span>Who You Are</span><b>01</b></header>
     <div class="frame-body prose"><p class="lede">{{ page.background }}</p><p>{{ page.history }}</p></div>
   </article>
-  <article class="frame dark-frame">
+  <article class="frame dark-frame character-anchor-frame">
     <header><span>Character Anchor</span><b>02</b></header>
     <div class="frame-body"><blockquote>{{ page.roleplay_anchor }}</blockquote><p><strong>Small habit.</strong> {{ page.human_detail }}</p></div>
   </article>
 </section>
 
-<section class="frame-grid thirds">
-  <a class="frame link-frame" href="{{ character_base | append: '/sheet/' | relative_url }}"><header><span>At the Table</span><b>→</b></header><div class="frame-body"><strong>Character Sheet</strong><p>Vitals, characteristics, skills, talent, combat and fast mechanical reference.</p></div></a>
-  <a class="frame link-frame" href="{{ character_base | append: '/people/' | relative_url }}"><header><span>Social World</span><b>→</b></header><div class="frame-body"><strong>People</strong><p>Important relationships, professional connections and personal pressures.</p></div></a>
-  <a class="frame link-frame" href="{{ character_base | append: '/correspondence/' | relative_url }}"><header><span>Private Material</span><b>→</b></header><div class="frame-body"><strong>Correspondence</strong><p>Letters, telegrams and code-word releases addressed specifically to this investigator.</p></div></a>
+<section class="frame-grid thirds character-edge-grid">
+  {% for edge in page.player_edges %}
+  <article class="frame edge-frame">
+    <header><span>{{ edge.label }}</span><b>0{{ forloop.index | plus: 2 }}</b></header>
+    <div class="frame-body"><strong>{{ edge.title }}</strong><p>{{ edge.text }}</p></div>
+  </article>
+  {% endfor %}
+</section>
+
+<section class="frame-grid two-one overview-lower-grid">
+  <article class="frame parchment-frame people-preview-frame">
+    <header><span>People Who Matter</span><b>06</b></header>
+    <div class="frame-body people-preview-list">
+      {% for person in page.people %}
+      <a href="{{ character_base | append: '/people/' | relative_url }}"><span class="person-initial">{{ person.name | slice: 0 }}</span><div><strong>{{ person.name }}</strong><small>{{ person.relationship }}</small><p>{{ person.text }}</p></div></a>
+      {% endfor %}
+    </div>
+  </article>
+
+  <article class="frame dark-frame dossier-shortcuts">
+    <header><span>Open the Dossier</span><b>07</b></header>
+    <div class="frame-body shortcut-list">
+      <a href="{{ character_base | append: '/sheet/' | relative_url }}"><small>At the table</small><strong>Character Sheet</strong><span>Current condition, skills, combat and improvement marks.</span></a>
+      <a href="{{ character_base | append: '/correspondence/' | relative_url }}"><small>Private material</small><strong>Correspondence</strong><span>Letters, telegrams and code-word releases.</span></a>
+      <a href="{{ character_base | append: '/documents/' | relative_url }}"><small>Personal archive</small><strong>Documents</strong><span>Material received, created, or uniquely interpreted.</span></a>
+      <a href="{{ character_base | append: '/possessions/' | relative_url }}"><small>Resources</small><strong>Possessions & Means</strong><span>Equipment, carried items and financial standing.</span></a>
+    </div>
+  </article>
 </section>

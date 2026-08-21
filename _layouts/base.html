@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="{{ '/assets/state.css' | relative_url }}">
   <link rel="stylesheet" href="{{ '/assets/pass-1-5.css' | relative_url }}">
   <link rel="stylesheet" href="{{ '/assets/pass-1-6.css' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/assets/pass-2.css' | relative_url }}">
   <script defer src="{{ '/assets/archive-gate.js' | relative_url }}"></script>
   <script defer src="{{ '/assets/reveal.js' | relative_url }}"></script>
   <script defer src="{{ '/assets/character-lock.js' | relative_url }}"></script>
@@ -60,11 +61,11 @@
     {% endif %}
 
     <div class="protected-shell" {% if character %}data-protected-character hidden{% endif %}>
-      <div class="workspace-grid{% if page.hide_context_rail %} no-context-rail{% endif %}{% if page.hide_info_rail %} no-info-rail{% endif %}" {% if character %}data-character-state="{{ page.character_slug }}" data-state-version="{{ character.state_version }}" data-default-hp="{{ character.hp }}" data-default-sanity="{{ character.sanity }}" data-default-luck="{{ character.luck }}"{% endif %}>
+      <div class="workspace-grid{% if page.hide_context_rail %} no-context-rail{% endif %}{% if page.hide_info_rail %} no-info-rail{% endif %}" {% if character %}data-character-state="{{ page.character_slug }}" data-state-version="{{ character.state_version }}" data-default-hp="{{ character.hp }}" data-max-hp="{{ character.max_hp }}" data-default-sanity="{{ character.sanity }}" data-max-sanity="{{ character.max_sanity }}" data-default-luck="{{ character.luck }}"{% endif %}>
         {% unless page.hide_context_rail %}
         <aside class="context-rail">
           {% if character %}
-          <a class="context-back" href="{{ '/investigators/' | relative_url }}">← Private dossiers</a>
+          <a class="context-back" href="{{ '/investigators/' | relative_url }}">← Private dossier</a>
           <div class="context-identity">
             <img src="{{ character.portrait | relative_url }}" alt="" aria-hidden="true">
             <div><small>Investigator dossier</small><strong>{{ character.name }}</strong><span>{{ character.occupation }}</span></div>
@@ -95,9 +96,9 @@
             <a href="{{ '/campaign-files/' | relative_url }}" class="active"><span>01</span>Current File</a>
           </nav>
           {% else %}
-          <div class="context-heading"><small>Archive section</small><strong>Investigators</strong><p>Private files. A personal key opens one dossier.</p></div>
+          <div class="context-heading"><small>Archive section</small><strong>Investigators</strong><p>A personal password opens one private dossier.</p></div>
           <nav class="context-nav" aria-label="Investigator navigation">
-            <a href="{{ '/investigators/' | relative_url }}" class="active"><span>01</span>Private Dossiers</a>
+            <a href="{{ '/investigators/' | relative_url }}" class="active"><span>01</span>Private Dossier</a>
           </nav>
           {% endif %}
         </aside>
@@ -124,7 +125,10 @@
                 <div><b class="state-readout" data-state-display="sanity">{{ character.sanity }}</b><span>SAN</span></div>
                 <div><b class="state-readout" data-state-display="luck">{{ character.luck }}</b><span>Luck</span></div>
               </div>
-              <p class="rail-status"><i></i>{{ character.status }}</p>
+              <div class="rail-condition-stack">
+                <span class="condition-chip stable" data-hp-condition>Stable</span>
+                <span class="condition-chip stable" data-san-condition>Stable</span>
+              </div>
             </section>
             <section class="rail-panel">
               <p class="rail-kicker">Recent</p>
@@ -144,7 +148,7 @@
             </section>
             <section class="rail-panel">
               <p class="rail-kicker">Private dossiers</p>
-              <p>Investigator identities remain sealed until opened with the correct personal key.</p>
+              <p>Each investigator opens only their own file until the roster becomes shared in play.</p>
             </section>
           {% endif %}
         </aside>
