@@ -36,8 +36,8 @@ clara-whitcombe:
     - { id: english, name: "Language (Own: English)", value: 90, improvable: true }
   recent:
     - type: Correspondence
-      label: Sealed demonstration letter
+      label: Sealed correspondence
       href: /characters/clara-whitcombe/correspondence/
     - type: Dossier
-      label: Character overview available
+      label: Clara Whitcombe
       href: /characters/clara-whitcombe/
