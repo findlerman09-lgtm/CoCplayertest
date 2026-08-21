@@ -6,6 +6,8 @@ occupation: Photographer
 age: 34
 residence: London
 social_status: Middle class
+portrait: /assets/images/clara-portrait.webp
+hero_art: /assets/images/hero-collage.webp
 tagline: "A meticulous commercial photographer who notices discrepancies other people would rather dismiss."
 background: >-
   Clara earns her living behind a camera and beneath a dark cloth, making careful records for clients who want a room, a machine, an object, or a person fixed exactly as it appeared. She prefers subjects that cannot flatter her and has built a modest reputation for technically exact work. Her eye is exceptionally quick; the rest of her is not. Clara moves deliberately, dislikes being hurried, and routinely sees the troublesome detail before she has decided what to do about it.
@@ -13,6 +15,8 @@ history: >-
   Years ago, a well-paying client asked for a second plate after Clara's first image preserved an embarrassing defect the client wanted ignored. She refused to pretend the fault was not there. The argument cost her the commission and several weeks of income, but it also established the trait that now defines her professional life: if something is present, Clara believes it belongs in the record. She is not an investigator and does not think of herself as brave. She simply finds unresolved discrepancies almost impossible to leave alone.
 roleplay_anchor: >-
   Accuracy is a form of respect. If the truth is inconvenient, that is not the camera's fault—and usually not Clara's either.
+character_read: >-
+  This page is the tone target for the whole project: evocative first impression, then practical dossier depth. Clara should feel like a person before she feels like a stat block.
 human_detail: "She makes tea before beginning darkroom work and almost always discovers it cold hours later."
 people:
   - name: Margaret Whitcombe
@@ -37,13 +41,22 @@ knowledge:
   - title: Observation is not interpretation
     text: >-
       You are very good at saying what is actually visible. You are slower to accept a dramatic explanation for it. This makes you useful when other people become certain too quickly.
+sealed:
+  - lock_id: clara-demo-letter
+    title: Sealed correspondence
+    subtitle: Demonstration item
+    teaser: >-
+      This is a proof-of-concept locked item. The Keeper can give the player a code word at the table, at which point the browser unlocks the text and remembers it on that device.
+    salt: "8meVQdnUFRzv1mLg8gSmNw=="
+    iv: "nAdTN52LkoZ6/U0Y"
+    ciphertext: "P65nP3bZhzEn8Js2EOjsjd/jcnicXETmDqtb5Zg9UsHOsPfVCnW+UxFuLlsMKcE1NB27965zgZc1YHYhJx4kdVp0GlMblX4AkqCgEhuZYcxNCYAovS+lKOBmAyEruoGEjjmG61sEH46t4Xg17ATAGnZuagW+n6/ApwAqOvl7CDTc/WPNLi8PXSRQsPt4Xqh58QPPFJCvVEh8v6N0mFKkonWtg2BN9ZeUit0eCx8RxhOlh1a346EVgmm1aViAodAgXpNpam6iuSILqpqQGAlJbqyF4lDTp4kPJxE09TaWWOpCrjJKdN15hkbVpe0hAeDNGKVSQHGiyjDKIzrrLgMICQ0NDuomfK5fSP9wnb8fwcI3yUg9X2UGWzLvJtyGA9AUTQjMxCzZIEaRf4VBlBp1RlkYxmm1KHyV+wTsGxOa1ZQUzf3hndRGAiuiCZnttgVWH2xx1N0ikze6Auqayfe5+ZIk5vRJxVbpTSxkPgMhmkio0vyJfyr3oetuobS3evs2X9k4M0C+hw9bm41i3ymZr6xJOpgwFa4kl5xnwMRcBgaWErTs+1HTgKxw8cELTkSS7cTIvpuqVFxNiQ+GCbyTWeyrmHI5nrCWY2qkcYDiTsLdQ5qxyJUgN+l2sznJKGY="
 updates:
   - title: How a personal clue will appear
     date: Demo only
     label: Non-canon example
     class: demo
     text: >-
-      During play, a clue meant specifically for this character can be added here with the date it became available, a short description, and any image or transcript the player has actually received. Nothing unrevealed is stored in the page source.
+      During play, a clue meant specifically for this character can be added here with the date it became available, a short description, and any image or transcript the player has actually received.
   - title: How a changed relationship will appear
     date: Demo only
     label: Non-canon example
