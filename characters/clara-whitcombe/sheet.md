@@ -44,13 +44,14 @@ summary: Current condition, fast mechanical reference, and improvement marks.
       <label for="sanity-loss-entry">SAN lost from one event</label>
       <div class="event-entry-row"><input id="sanity-loss-entry" type="number" min="0" inputmode="numeric" data-sanity-loss-entry><button type="button" data-apply-sanity-loss>Apply</button></div>
     </div>
-    <div class="sanity-period-meter"><span>Current period</span><b><span data-sanity-period-loss>0</span> / <span data-sanity-threshold>9</span></b><small>Started at <span data-sanity-period-start>{{ c.sanity }}</span> SAN</small></div>
+    <div class="sanity-period-meter"><span>Cumulative SAN-loss period</span><b><span data-sanity-period-loss>0</span> / <span data-sanity-threshold>9</span></b><small>Started at <span data-sanity-period-start>{{ c.sanity }}</span> SAN</small></div>
     <p class="tracker-alert" data-san-alert>Enter SAN lost from one event to test one-time and cumulative thresholds.</p>
     <div class="temp-resolution" data-temp-resolution-panel hidden>
       <span>Resolve the required INT roll:</span>
       <div><button type="button" data-temp-resolution="success">INT Success</button><button type="button" data-temp-resolution="failure">INT Failure</button></div>
     </div>
-    <div class="tracker-utility-row"><button type="button" class="small-action" data-reset-sanity-period>New SAN period</button><button type="button" class="small-action" data-clear-sanity-condition>Clear insanity condition</button></div>
+    <div class="tracker-utility-row"><button type="button" class="small-action" data-reset-sanity-period>Reset cumulative loss</button><button type="button" class="small-action" data-clear-sanity-condition>End insanity condition</button></div>
+    <small class="manual-note sanity-control-note" data-sanity-control-note>Resetting cumulative loss starts a fresh one-fifth threshold; it does not end an active insanity condition.</small>
   </section>
 
   <section class="tracker-card luck-card">
