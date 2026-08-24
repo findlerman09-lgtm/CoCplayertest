@@ -1,5 +1,5 @@
 {% assign doc = include.doc %}
-<details id="document-{{ doc.id }}" class="document-record document-type-{{ doc.type }}{% if doc.status == 'sealed' %} is-sealed{% endif %}" data-document-record="{{ doc.id }}" data-document-section="{{ doc.section }}">
+<details id="document-{{ doc.id }}" class="document-record document-type-{{ doc.type }}{% if doc.status == 'sealed' %} is-sealed{% endif %}" data-document-record="{{ doc.id }}" data-document-section="{{ doc.section }}" data-document-visibility="{{ doc.visibility }}">
   <summary>
     <span class="document-type-mark" aria-hidden="true">{% case doc.type %}{% when 'letter' %}✉{% when 'telegram' %}T{% when 'photograph' %}▣{% when 'newspaper' %}N{% when 'notebook' %}✎{% when 'report' %}R{% when 'map' %}⌖{% else %}•{% endcase %}</span>
     <span class="document-summary-copy">
@@ -13,6 +13,8 @@
   <div class="document-record-content">
     <aside class="document-metadata" aria-label="Document information">
       <div><small>Type</small><strong>{{ doc.type_label | default: doc.type }}</strong></div>
+      <div><small>Status</small><strong data-document-meta-status>{% if doc.status == 'sealed' %}Sealed{% else %}Filed{% endif %}</strong></div>
+      <div><small>Access</small><strong>{% if doc.visibility == 'personal' %}Private{% else %}Shared{% endif %}</strong></div>
       {% if doc.source %}<div><small>Source</small><strong>{{ doc.source }}</strong></div>{% endif %}
       {% if doc.date %}<div><small>Date</small><strong>{{ doc.date }}</strong></div>{% endif %}
       {% if doc.owner_label %}<div><small>Filed to</small><strong>{{ doc.owner_label }}</strong></div>{% endif %}
