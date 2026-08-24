@@ -58,6 +58,14 @@ window.addEventListener('DOMContentLoaded', () => {
     return Math.max(1, Math.ceil(Number(state.sanityPeriodStart || state.sanity || 1) / 5));
   }
 
+  function activeInsanityLabel() {
+    if (state.sanity <= 0) return 'Permanent insanity';
+    if (state.indefiniteInsanity) return 'Indefinite insanity';
+    if (state.temporaryInsanity) return 'Temporary insanity';
+    if (state.temporaryCheckPending) return 'INT check pending';
+    return '';
+  }
+
   function hpCondition() {
     if (state.fatalDamage) return { label: 'Death', className: 'critical' };
     if (state.hp <= 0 && state.majorWound) return { label: 'Dying', className: 'critical' };
@@ -119,6 +127,19 @@ window.addEventListener('DOMContentLoaded', () => {
     });
     document.querySelectorAll('[data-san-alert]').forEach(el => {
       el.textContent = state.lastSanNotice || 'Enter SAN lost from one event to test one-time and cumulative thresholds.';
+    });
+
+    document.querySelectorAll('[data-sanity-control-note]').forEach(el => {
+      const active = activeInsanityLabel();
+      if (state.sanity <= 0) {
+        el.textContent = 'SAN is 0: permanent insanity cannot be ended with the condition control.';
+      } else if (state.temporaryInsanity || state.indefiniteInsanity) {
+        el.textContent = `${active} is still active. Resetting cumulative SAN loss does not end it; any further SAN loss will cause another bout until End insanity condition is used.`;
+      } else if (state.temporaryCheckPending) {
+        el.textContent = 'Resolve the pending INT check before treating the investigator as recovered.';
+      } else {
+        el.textContent = 'Resetting cumulative loss starts a fresh one-fifth threshold.';
+      }
     });
 
     document.querySelectorAll('[data-temp-resolution-panel]').forEach(el => {
@@ -210,7 +231,7 @@ window.addEventListener('DOMContentLoaded', () => {
         state.indefiniteInsanity = true;
         state.temporaryInsanity = false;
       }
-      state.lastSanNotice = `Further SAN loss while insane triggers another bout of madness. Period loss is ${state.sanityPeriodLoss} of ${sanityThreshold()}.`;
+      state.lastSanNotice = `Further SAN loss while an insanity condition is active triggers another bout. Cumulative period loss is ${state.sanityPeriodLoss} of ${sanityThreshold()}.`;
       emit('madness-bout', { reason: 'further-loss', sanityLoss: actualLoss });
     } else if (state.sanityPeriodLoss >= sanityThreshold()) {
       state.indefiniteInsanity = true;
@@ -247,15 +268,24 @@ window.addEventListener('DOMContentLoaded', () => {
   document.querySelector('[data-reset-sanity-period]')?.addEventListener('click', () => {
     state.sanityPeriodStart = state.sanity;
     state.sanityPeriodLoss = 0;
-    state.lastSanNotice = `New SAN-loss period started at ${state.sanity} SAN. Existing insanity conditions are unchanged.`;
+    const active = activeInsanityLabel();
+    state.lastSanNotice = (state.temporaryInsanity || state.indefiniteInsanity)
+      ? `Cumulative SAN-loss period reset at ${state.sanity} SAN. ${active} remains active; any further SAN loss will cause another bout until End insanity condition is used.`
+      : `Cumulative SAN-loss period reset at ${state.sanity} SAN. A fresh one-fifth threshold is now being tracked.`;
     saveState();
   });
 
   document.querySelector('[data-clear-sanity-condition]')?.addEventListener('click', () => {
+    if (state.sanity <= 0) {
+      state.lastSanNotice = 'SAN is 0: permanent insanity cannot be ended with this control.';
+      saveState();
+      return;
+    }
+
     state.temporaryCheckPending = false;
     state.temporaryInsanity = false;
     state.indefiniteInsanity = false;
-    state.lastSanNotice = 'Insanity condition cleared by Keeper decision. SAN totals and previous private effects are unchanged.';
+    state.lastSanNotice = 'Insanity condition ended by Keeper decision. Remaining bout cards are cleared. SAN total and the cumulative SAN-loss period are unchanged.';
     saveState();
   });
 
