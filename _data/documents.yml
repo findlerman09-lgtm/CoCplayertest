@@ -21,3 +21,194 @@ items:
       salt: "8meVQdnUFRzv1mLg8gSmNw=="
       iv: "nAdTN52LkoZ6/U0Y"
       ciphertext: "P65nP3bZhzEn8Js2EOjsjd/jcnicXETmDqtb5Zg9UsHOsPfVCnW+UxFuLlsMKcE1NB27965zgZc1YHYhJx4kdVp0GlMblX4AkqCgEhuZYcxNCYAovS+lKOBmAyEruoGEjjmG61sEH46t4Xg17ATAGnZuagW+n6/ApwAqOvl7CDTc/WPNLi8PXSRQsPt4Xqh58QPPFJCvVEh8v6N0mFKkonWtg2BN9ZeUit0eCx8RxhOlh1a346EVgmm1aViAodAgXpNpam6iuSILqpqQGAlJbqyF4lDTp4kPJxE09TaWWOpCrjJKdN15hkbVpe0hAeDNGKVSQHGiyjDKIzrrLgMICQ0NDuomfK5fSP9wnb8fwcI3yUg9X2UGWzLvJtyGA9AUTQjMxCzZIEaRf4VBlBp1RlkYxmm1KHyV+wTsGxOa1ZQUzf3hndRGAiuiCZnttgVWH2xx1N0ikze6Auqayfe5+ZIk5vRJxVbpTSxkPgMhmkio0vyJfyr3oetuobS3evs2X9k4M0C+hw9bm41i3ymZr6xJOpgwFa4kl5xnwMRcBgaWErTs+1HTgKxw8cELTkSS7cTIvpuqVFxNiQ+GCbyTWeyrmHI5nrCWY2qkcYDiTsLdQ5qxyJUgN+l2sznJKGY="
+
+  - id: clara-demo-open-letter
+    title: DEMO — Open Letter
+    type: letter
+    type_label: Letter
+    section: correspondence
+    channel: correspondence
+    visibility: personal
+    owner: clara-whitcombe
+    owner_label: Clara Whitcombe
+    source: Demonstration Sender
+    date: Layout sample
+    released: true
+    status: open
+    basis: development_only
+    summary: Non-canon open correspondence used only to test how an ordinary letter sits beside a sealed item.
+    body: |
+      **NON-CANON DEMONSTRATION RECORD**
+
+      Miss Whitcombe,
+
+      This letter exists only to test the open-correspondence presentation. It intentionally contains no campaign clue, historical claim, or scenario information.
+
+      The second paragraph is slightly longer so the layout can be judged when ordinary prose begins to wrap and the paper object needs more vertical room.
+
+      — Demonstration Sender
+
+  - id: clara-demo-telegram
+    title: DEMO — Private Telegram
+    type: telegram
+    type_label: Telegram
+    section: correspondence
+    channel: correspondence
+    visibility: personal
+    owner: clara-whitcombe
+    owner_label: Clara Whitcombe
+    source: Archive Test Desk
+    date: Layout sample
+    released: true
+    status: open
+    basis: development_only
+    summary: A short non-canon telegram used to test compact correspondence beside longer letters.
+    body: |
+      NON-CANON DEMONSTRATION TELEGRAM STOP
+
+      SHORT FORMAT FOR LAYOUT TESTING ONLY STOP
+
+      NO SCENARIO INFORMATION CONTAINED HERE STOP
+
+  - id: clara-demo-plate-note
+    title: DEMO — Plate Log Note
+    type: notebook
+    type_label: Notebook Note
+    section: notes
+    channel: documents
+    visibility: personal
+    owner: clara-whitcombe
+    owner_label: Clara Whitcombe
+    source: Clara Whitcombe
+    date: Layout sample
+    released: true
+    status: open
+    basis: development_only
+    summary: A non-canon personal work note used to test the ruled-paper document treatment.
+    body: |
+      **NON-CANON DEMONSTRATION RECORD**
+
+      Plate 12 — exposure satisfactory. Plate 13 — edge fogging. Plate 14 — repeat after cleaning holder.
+
+      This is interface test material only.
+
+  - id: clara-demo-private-photo
+    title: DEMO — Mounted Photograph
+    type: photograph
+    type_label: Photograph
+    section: images
+    channel: documents
+    visibility: personal
+    owner: clara-whitcombe
+    owner_label: Clara Whitcombe
+    source: Demonstration archive
+    date: Layout sample
+    released: true
+    status: open
+    basis: development_only
+    summary: The existing campaign splash artwork reused temporarily to test a private mounted-image record.
+    asset: /assets/images/hero-collage-hd.webp
+    alt: Non-canon visual-layout demonstration image
+    caption: Non-canon layout sample. This image is standing in only to test the mounted-photograph container.
+
+  - id: shared-demo-photo
+    title: DEMO — Shared Photograph
+    type: photograph
+    type_label: Photograph
+    section: images
+    channel: documents
+    visibility: shared
+    source: Demonstration archive
+    date: Layout sample
+    released: true
+    status: open
+    basis: development_only
+    case_file: current-file
+    summary: A non-canon image record for testing shared visual material and Case File linking.
+    asset: /assets/images/hero-collage-hd.webp
+    alt: Non-canon shared-document layout demonstration
+    caption: Demonstration only. No location, event, or clue should be inferred from this image.
+
+  - id: shared-demo-telegram
+    title: DEMO — Shared Telegram
+    type: telegram
+    type_label: Telegram
+    section: correspondence
+    channel: documents
+    visibility: shared
+    source: Demonstration office
+    date: Layout sample
+    released: true
+    status: open
+    basis: development_only
+    case_file: current-file
+    summary: A compact shared record used to test shelf density and a short physical-paper object.
+    body: |
+      NON-CANON SHARED TELEGRAM STOP
+
+      ARCHIVE CONTAINER VALIDATION ONLY STOP
+
+  - id: shared-demo-newspaper
+    title: DEMO — Newspaper Cutting
+    type: newspaper
+    type_label: Newspaper Cutting
+    section: reports
+    channel: documents
+    visibility: shared
+    source: Demonstration press file
+    date: Layout sample
+    released: true
+    status: open
+    basis: development_only
+    case_file: current-file
+    summary: A longer non-canon summary tests wrapping in the archive shelf and the wider newspaper paper treatment when opened.
+    body: |
+      # DEMONSTRATION HEADING
+
+      **NON-CANON LAYOUT SAMPLE.** This newspaper-style record exists solely to test typography, wrapping, open-record spacing, and the visual relationship between metadata and a wider paper object.
+
+      Nothing in this text represents historical research or campaign content.
+
+  - id: shared-demo-report
+    title: DEMO — Formal Report
+    type: report
+    type_label: Formal Report
+    section: reports
+    channel: documents
+    visibility: shared
+    source: Demonstration records office
+    date: Layout sample
+    released: true
+    status: open
+    basis: development_only
+    case_file: current-file
+    summary: A neutral report-format sample used to test a denser page of prose inside the shared archive.
+    body: |
+      **NON-CANON DEMONSTRATION REPORT**
+
+      **Purpose:** Validate the formal-report container at realistic reading length.
+
+      **Observation:** Metadata should remain subordinate to the document itself. The paper should feel like one object within the archive rather than a separate web panel.
+
+      **Disposition:** Remove or replace this demonstration record when scenario-authorized material becomes available.
+
+  - id: shared-demo-notebook
+    title: DEMO — Filed Notebook Page
+    type: notebook
+    type_label: Notebook Page
+    section: notes
+    channel: documents
+    visibility: shared
+    source: Demonstration archive
+    date: Layout sample
+    released: true
+    status: open
+    basis: development_only
+    case_file: current-file
+    summary: A ruled-note sample used to test a fourth shelf category and repeated document stacking.
+    body: |
+      **NON-CANON DEMONSTRATION RECORD**
+
+      One short line.
+
+      A second line long enough to wrap at smaller widths and reveal whether the ruled background remains readable.
