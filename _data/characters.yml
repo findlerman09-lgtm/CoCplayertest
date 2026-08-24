@@ -37,6 +37,8 @@ clara-whitcombe:
   recent:
     - type: Correspondence
       label: Sealed correspondence
+      open_label: Opened correspondence
+      lock_id: clara-demo-letter
       href: /characters/clara-whitcombe/correspondence/
     - type: Dossier
       label: Clara Whitcombe
