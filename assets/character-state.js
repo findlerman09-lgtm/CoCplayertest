@@ -24,6 +24,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
   const storageKey = `rippers-character-state:${slug}`;
   const legacyKey = `rippers-character-state:${slug}:v${version}`;
+  const privateEffectsKey = `rippers-private-effects:${slug}`;
 
   function readStored(key) {
     try {
@@ -153,6 +154,117 @@ window.addEventListener('DOMContentLoaded', () => {
         ? checked.map(input => `<li><span>${input.dataset.skillName}</span><b>${input.dataset.skillValue}%</b></li>`).join('')
         : '<li class="empty-improvement">No skill checks marked yet.</li>';
     }
+  }
+
+  function setupStateSettings() {
+    const lockButton = document.querySelector('.lock-dossier-button');
+    const railPanel = lockButton?.closest('.rail-panel');
+    if (!railPanel || railPanel.querySelector('[data-state-settings-open]')) return;
+
+    const trigger = document.createElement('button');
+    trigger.type = 'button';
+    trigger.className = 'state-settings-trigger';
+    trigger.dataset.stateSettingsOpen = '';
+    trigger.setAttribute('aria-label', 'Player state settings');
+    trigger.title = 'Player state settings';
+    trigger.textContent = '⚙';
+    railPanel.append(trigger);
+
+    const dialog = document.createElement('dialog');
+    dialog.className = 'state-settings-dialog';
+    dialog.innerHTML = `
+      <div class="state-settings-head">
+        <div><small>Local dossier</small><strong>Player State</strong></div>
+        <button type="button" data-state-settings-close aria-label="Close settings">×</button>
+      </div>
+      <p>Back up or restore this investigator's current HP, SAN, Luck, improvement marks, Major Wounds, and private mental effects.</p>
+      <div class="state-settings-actions">
+        <button type="button" data-export-player-state>Export state</button>
+        <label class="state-import-button">Import state<input type="file" accept="application/json,.json" data-import-player-state hidden></label>
+      </div>
+      <p class="state-settings-note">The backup does not contain the dossier password or archive key.</p>
+      <p class="state-settings-status" data-state-settings-status></p>
+    `;
+    document.body.append(dialog);
+
+    const status = dialog.querySelector('[data-state-settings-status]');
+    const importInput = dialog.querySelector('[data-import-player-state]');
+
+    function openDialog() {
+      if (typeof dialog.showModal === 'function') dialog.showModal();
+      else dialog.setAttribute('open', '');
+    }
+
+    function closeDialog() {
+      if (typeof dialog.close === 'function') dialog.close();
+      else dialog.removeAttribute('open');
+    }
+
+    trigger.addEventListener('click', openDialog);
+    dialog.querySelector('[data-state-settings-close]')?.addEventListener('click', closeDialog);
+    dialog.addEventListener('click', event => {
+      if (event.target === dialog) closeDialog();
+    });
+
+    dialog.querySelector('[data-export-player-state]')?.addEventListener('click', () => {
+      const payload = {
+        format: 'rippers-player-state',
+        version: 1,
+        character: slug,
+        exportedAt: new Date().toISOString(),
+        characterState: state,
+        privateEffects: readStored(privateEffectsKey)
+      };
+
+      const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      const day = new Date().toISOString().slice(0, 10);
+      link.href = url;
+      link.download = `rippers-${slug}-state-${day}.json`;
+      document.body.append(link);
+      link.click();
+      link.remove();
+      URL.revokeObjectURL(url);
+      if (status) status.textContent = 'State backup exported.';
+    });
+
+    importInput?.addEventListener('change', async () => {
+      const file = importInput.files?.[0];
+      if (!file) return;
+
+      try {
+        const payload = JSON.parse(await file.text());
+        if (payload?.format !== 'rippers-player-state' || payload?.version !== 1) {
+          throw new Error('That file is not a Rippers player-state backup.');
+        }
+        if (payload.character !== slug) {
+          throw new Error('That backup belongs to a different investigator.');
+        }
+        if (!payload.characterState || typeof payload.characterState !== 'object') {
+          throw new Error('The backup does not contain character state.');
+        }
+
+        const confirmed = window.confirm('Replace this device\'s current tracker state with the imported backup?');
+        if (!confirmed) {
+          importInput.value = '';
+          return;
+        }
+
+        localStorage.setItem(storageKey, JSON.stringify({ ...defaults, ...payload.characterState }));
+        if (payload.privateEffects && typeof payload.privateEffects === 'object') {
+          localStorage.setItem(privateEffectsKey, JSON.stringify(payload.privateEffects));
+        } else {
+          localStorage.removeItem(privateEffectsKey);
+        }
+
+        if (status) status.textContent = 'State restored. Reloading…';
+        window.setTimeout(() => window.location.reload(), 250);
+      } catch (error) {
+        if (status) status.textContent = error?.message || 'That backup could not be imported.';
+        importInput.value = '';
+      }
+    });
   }
 
   document.querySelectorAll('[data-state-delta]').forEach(button => {
@@ -311,4 +423,5 @@ window.addEventListener('DOMContentLoaded', () => {
   });
 
   render();
+  setupStateSettings();
 });
