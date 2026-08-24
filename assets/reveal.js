@@ -42,6 +42,8 @@ function setRevealOpenState(card) {
       status.classList.remove('sealed');
       status.classList.add('available');
     }
+    const metaStatus = record.querySelector('[data-document-meta-status]');
+    if (metaStatus) metaStatus.textContent = 'Open';
   }
 }
 
@@ -80,6 +82,29 @@ async function tryStoredReveal(card) {
   }
 }
 
+function openDocumentFromHash({ smooth = false } = {}) {
+  if (!window.location.hash) return;
+
+  let id;
+  try {
+    id = decodeURIComponent(window.location.hash.slice(1));
+  } catch {
+    id = window.location.hash.slice(1);
+  }
+
+  const target = document.getElementById(id);
+  if (!target) return;
+
+  const record = target.matches?.('[data-document-record]')
+    ? target
+    : target.closest?.('[data-document-record]');
+  if (record?.tagName === 'DETAILS') record.open = true;
+
+  window.requestAnimationFrame(() => {
+    target.scrollIntoView({ behavior: smooth ? 'smooth' : 'auto', block: 'start' });
+  });
+}
+
 window.addEventListener('DOMContentLoaded', () => {
   const cards = document.querySelectorAll('[data-lock-id]');
   cards.forEach(card => {
@@ -111,4 +136,8 @@ window.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
+
+  openDocumentFromHash();
 });
+
+window.addEventListener('hashchange', () => openDocumentFromHash({ smooth: true }));
