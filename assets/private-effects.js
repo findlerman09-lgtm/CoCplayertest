@@ -86,7 +86,25 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  function loadMechanicalState() {
+    try {
+      return JSON.parse(localStorage.getItem(stateKey) || 'null');
+    } catch {
+      return null;
+    }
+  }
+
+  function hasActiveInsanity(state) {
+    return Boolean(state && (
+      Number(state.sanity) <= 0 ||
+      state.temporaryCheckPending ||
+      state.temporaryInsanity ||
+      state.indefiniteInsanity
+    ));
+  }
+
   let effects = loadEffects();
+  let lastMechanicalState = loadMechanicalState();
 
   function saveEffects() {
     localStorage.setItem(storageKey, JSON.stringify(effects));
@@ -122,6 +140,13 @@ window.addEventListener('DOMContentLoaded', () => {
     };
   }
 
+  function setMajorWoundMechanical(marked) {
+    const checkbox = document.querySelector('[data-state-input="majorWound"]');
+    if (!checkbox || checkbox.checked === marked) return;
+    checkbox.checked = marked;
+    checkbox.dispatchEvent(new Event('change', { bubbles: true }));
+  }
+
   function effectArticle(item, type, index) {
     const article = document.createElement('article');
     article.className = 'private-effect-entry';
@@ -139,16 +164,24 @@ window.addEventListener('DOMContentLoaded', () => {
 
     article.append(meta, title, detail);
 
-    if (type === 'wound') {
-      const note = document.createElement('em');
-      note.textContent = 'Narrative detail only: the Major Wound rules remain the mechanical effect.';
-      article.append(note);
-    } else {
-      const note = document.createElement('em');
-      note.textContent = 'You see this before the Keeper. Bring it into play; the Keeper decides how the scene accommodates it.';
-      article.append(note);
-    }
+    const note = document.createElement('em');
+    note.textContent = type === 'wound'
+      ? 'Narrative detail only: the Major Wound rules remain the mechanical effect.'
+      : 'You see this before the Keeper. Bring it into play; the Keeper decides how the scene accommodates it.';
+    article.append(note);
 
+    const actions = document.createElement('div');
+    actions.className = 'private-effect-actions';
+
+    const remove = document.createElement('button');
+    remove.type = 'button';
+    remove.className = 'private-effect-remove';
+    remove.dataset.effectType = type;
+    remove.dataset.effectId = item.id;
+    remove.textContent = type === 'wound' ? 'Resolve wound' : 'End bout';
+
+    actions.append(remove);
+    article.append(actions);
     return article;
   }
 
@@ -176,6 +209,26 @@ window.addEventListener('DOMContentLoaded', () => {
     renderList('[data-madness-effects]', effects.madness, 'madness', 'No bout has been assigned.');
   }
 
+  root.addEventListener('click', event => {
+    const button = event.target.closest('[data-effect-id]');
+    if (!button || !root.contains(button)) return;
+
+    const id = button.dataset.effectId;
+    const type = button.dataset.effectType;
+
+    if (type === 'wound') {
+      effects.wounds = effects.wounds.filter(item => item.id !== id);
+      saveEffects();
+      if (effects.wounds.length === 0) setMajorWoundMechanical(false);
+      return;
+    }
+
+    if (type === 'madness') {
+      effects.madness = effects.madness.filter(item => item.id !== id);
+      saveEffects();
+    }
+  });
+
   window.addEventListener('rippers:major-wound', event => {
     if (event.detail?.slug !== slug) return;
     effects.wounds.push(drawWound(event.detail?.source));
@@ -188,15 +241,38 @@ window.addEventListener('DOMContentLoaded', () => {
     saveEffects();
   });
 
+  window.addEventListener('rippers:state-change', event => {
+    if (event.detail?.slug !== slug || !event.detail?.state) return;
+    const nextState = event.detail.state;
+    const hadInsanity = hasActiveInsanity(lastMechanicalState);
+    const hasInsanity = hasActiveInsanity(nextState);
+    let changed = false;
+
+    if (hadInsanity && !hasInsanity && effects.madness.length) {
+      effects.madness = [];
+      changed = true;
+    }
+
+    if (lastMechanicalState?.majorWound && !nextState.majorWound && effects.wounds.length) {
+      effects.wounds = [];
+      changed = true;
+    }
+
+    lastMechanicalState = { ...nextState };
+    if (changed) saveEffects();
+  });
+
   window.addEventListener('rippers:tracker-reset', event => {
     if (event.detail?.slug !== slug) return;
     effects = { wounds: [], madness: [] };
+    lastMechanicalState = loadMechanicalState();
     localStorage.removeItem(storageKey);
     render();
   });
 
   try {
-    const currentState = JSON.parse(localStorage.getItem(stateKey) || 'null');
+    const currentState = loadMechanicalState();
+    lastMechanicalState = currentState;
     let changed = false;
     if (currentState?.majorWound && effects.wounds.length === 0) {
       effects.wounds.push(drawWound('existing-state'));
