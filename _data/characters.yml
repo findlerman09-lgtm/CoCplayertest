@@ -1,7 +1,7 @@
 clara-whitcombe:
   name: Clara Whitcombe
   occupation: Photographer
-  portrait: /assets/images/clara-portrait.webp
+  portrait: /assets/images/clara-portrait.webp?v=5a1
   status: Active
   hp: 13
   max_hp: 13
