@@ -2,12 +2,15 @@
 layout: base
 ---
 {% capture character_base %}/characters/{{ page.character_slug }}{% endcapture %}
+<style>
+.overview-hero:before,.overview-portrait:before{display:none!important}
+</style>
 <section class="overview-hero" style="--hero-image:url('{{ page.hero_art | relative_url }}?v=5a1')">
   <div class="overview-art"></div>
-  <div class="overview-portrait"><img src="{{ page.portrait | relative_url }}?v=5a1" alt="Portrait of {{ page.name }}"></div>
+  <div class="overview-portrait"><img src="{{ page.portrait | relative_url }}?v=5a1" alt="Portrait of {{ page.display_title | default: page.name }}"></div>
   <div class="overview-copy">
     <p class="eyebrow">{{ page.occupation }} · Age {{ page.age }}</p>
-    <h2>{{ page.name }}</h2>
+    <h2>{{ page.display_title | default: page.name }}</h2>
     <p class="hero-tagline">{{ page.tagline }}</p>
     <dl class="fact-row">
       <div><dt>Residence</dt><dd>{{ page.residence }}</dd></div>
