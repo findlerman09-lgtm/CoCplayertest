@@ -24,12 +24,15 @@ async function rippersDeriveVerifier(password, saltB64, iterations) {
 
 window.addEventListener('DOMContentLoaded', () => {
   const storageKey = 'rippers-archive-access';
+  const returnStorageKey = 'rippers-archive-return';
   const guard = document.querySelector('[data-archive-guard]');
 
   if (guard) {
     const verifier = guard.dataset.archiveVerifier;
     const rootUrl = guard.dataset.archiveRoot || '/';
     if (localStorage.getItem(storageKey) !== verifier) {
+      const requested = `${window.location.pathname}${window.location.search}${window.location.hash}`;
+      if (requested && requested !== rootUrl) sessionStorage.setItem(returnStorageKey, requested);
       window.location.replace(rootUrl);
       return;
     }
@@ -43,14 +46,39 @@ window.addEventListener('DOMContentLoaded', () => {
   const verifier = gate.dataset.verifier;
   const iterations = Number(gate.dataset.iterations || 120000);
   const target = gate.dataset.target;
+  const siteRoot = gate.dataset.siteRoot || '/';
   const form = gate.querySelector('[data-archive-key-form]');
   const input = gate.querySelector('input');
   const status = gate.querySelector('[data-archive-key-status]');
   const returnLink = gate.querySelector('[data-archive-return]');
 
+  function safeReturnTarget() {
+    const pending = sessionStorage.getItem(returnStorageKey);
+    if (!pending) return target;
+
+    try {
+      const candidate = new URL(pending, window.location.origin);
+      const allowedRoot = new URL(siteRoot, window.location.origin);
+      if (candidate.origin !== window.location.origin) return target;
+      if (!candidate.pathname.startsWith(allowedRoot.pathname)) return target;
+      if (candidate.pathname === allowedRoot.pathname) return target;
+      return `${candidate.pathname}${candidate.search}${candidate.hash}`;
+    } catch {
+      return target;
+    }
+  }
+
+  function clearPendingReturn() {
+    sessionStorage.removeItem(returnStorageKey);
+  }
+
   function showRememberedAccess() {
     if (form) form.hidden = true;
-    if (returnLink) returnLink.hidden = false;
+    if (returnLink) {
+      returnLink.href = safeReturnTarget();
+      returnLink.hidden = false;
+      returnLink.addEventListener('click', clearPendingReturn, { once: true });
+    }
     if (status) status.textContent = '';
   }
 
@@ -74,7 +102,9 @@ window.addEventListener('DOMContentLoaded', () => {
       if (candidate === verifier) {
         localStorage.setItem(storageKey, verifier);
         status.textContent = 'Accepted.';
-        window.location.assign(target);
+        const destination = safeReturnTarget();
+        clearPendingReturn();
+        window.location.assign(destination);
       } else {
         status.textContent = 'The archive remains closed.';
         input.select();
