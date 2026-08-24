@@ -36,12 +36,15 @@ The type changes presentation only. It does not change campaign truth or access 
   source: Edwin Bell
   date: 30 September 1888
   released: true
+  recent: false                 # optional; surfaces released shared material on Archive home
   status: available             # available | sealed
   basis: fictional_insertion    # internal only; never rendered
   summary: Spoiler-safe description visible before opening
 ```
 
 `basis` exists to preserve the project's historical-control discipline. Appropriate internal values include `historical_fact`, `historical_uncertainty`, `fictional_insertion`, `keeper_secret`, and `development_only`. It is not shown to players.
+
+The player-facing record displays type, filing status, access level, source, date, owner (when personal), and provenance when supplied. Development-only fields such as `basis` and `development_note` must never be rendered.
 
 ## Unsealed content
 
@@ -78,9 +81,15 @@ lock:
   ciphertext: "..."
 ```
 
-The browser uses PBKDF2-SHA256 and AES-256-GCM. A successful code word is remembered on that device and the document thereafter displays as OPEN.
+The browser uses PBKDF2-SHA256 and AES-256-GCM. A successful code word is remembered on that device and the document thereafter displays as OPEN. Both the summary badge and the document metadata update to the open state.
 
 The existing `MAGPIE` Clara item remains only as a non-canon development proof of this mechanism.
+
+## Archive links and recent material
+
+Document records are addressable as `#document-<id>`. When a player follows one of those links, the target record opens automatically and scrolls into view. This allows Archive-home “Recently Filed” links and future case-file links to point at the canonical record rather than maintaining duplicate document copies.
+
+Set `recent: true` only while a released **shared** record should be surfaced in the Archive-home Recently Filed area. Removing the flag does not remove or alter the document itself.
 
 ## Keeper content workflow
 
@@ -90,8 +99,9 @@ The existing `MAGPIE` Clara item remains only as a non-canon development proof o
 4. Add one record to `_data/documents.yml`.
 5. For normal released material, add `body`, `asset`, or both and set `status: available`.
 6. For a code-word reveal, encrypt the final HTML locally and put only the generated salt/IV/ciphertext into the record.
-7. Commit and deploy. The appropriate archive page renders the record automatically.
-8. Give the code word at the table only when the reveal is earned.
+7. Set `recent: true` only when a newly released shared item should be called out on Archive home.
+8. Commit and deploy. The appropriate archive page renders the record automatically.
+9. Give the code word at the table only when the reveal is earned.
 
 No duplicate copy should be maintained in both a character page and the shared archive. The data record is canonical; pages are views of it.
 
@@ -107,8 +117,10 @@ RIPPERS_CODEWORD=MAGPIE node tools/encrypt-document.mjs clara-letter-01 < /tmp/c
 
 Use a temporary plaintext file outside the repository and delete it after checking the ciphertext. Do not commit the plaintext of a sealed player reveal.
 
+The existing MAGPIE proof ciphertext has been checked against this encryption scheme and decrypts successfully with its intended code word.
+
 ## Scope boundary
 
-Pass 3 establishes document presentation, access, and reveal behavior. It does **not** decide the actual Adventure I handout list or populate the site with speculative clues. Those records should be added only after scenario clue architecture and PM reconciliation establish what the players can legitimately receive.
+Pass 3 establishes document presentation, access, navigation, and reveal behavior. It does **not** decide the actual Adventure I handout list or populate the site with speculative clues. Those records should be added only after scenario clue architecture and PM reconciliation establish what the players can legitimately receive.
 
 Scenario association and evolving case-folder continuity remain Pass 4 concerns.
