@@ -1,0 +1,9 @@
+files:
+  - id: current-file
+    visible: true
+    title: Current File
+    status: open
+    status_label: Open
+    summary: Released shared material associated with the open case.
+    known_people: []
+    known_locations: []
