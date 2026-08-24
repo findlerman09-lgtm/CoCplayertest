@@ -58,6 +58,19 @@ window.addEventListener('DOMContentLoaded', () => {
     { title: 'New Compulsion', detail: '' }
   ];
 
+  const underlyingTable = [
+    'The acute episode passes, but one image, sound, smell, or physical detail from what happened keeps returning whenever your attention loosens.',
+    'Your judgment still works, but certainty arrives more slowly. You find yourself checking ordinary details twice before trusting them.',
+    'Harmless coincidences feel charged with possible meaning until you deliberately test them against what is actually present.',
+    'Silence is difficult. When nothing demands your attention, your thoughts return to the event and search it again for an explanation.',
+    'You keep looking for the missing explanation that would make what happened ordinary again, even when there is no useful place left to look.',
+    'The world feels fractionally less reliable than it did before. Choose an ordinary situation that now puts you immediately on edge.',
+    'You remain capable, but you are more watchful around anything that resembles the circumstances of the triggering event.',
+    'A familiar routine becomes unusually important because performing it proves, for a moment, that the world is still behaving normally.',
+    'You catch yourself rehearsing what happened in different orders, searching for the point where events might have made ordinary sense.',
+    'You can function, but your trust in first impressions has been shaken. When it matters, decide whether you hesitate or over-check.'
+  ];
+
   function randomInt(max) {
     if (max <= 1) return 0;
     if (window.crypto?.getRandomValues) {
@@ -75,14 +88,15 @@ window.addEventListener('DOMContentLoaded', () => {
   function loadEffects() {
     try {
       const raw = localStorage.getItem(storageKey);
-      if (!raw) return { wounds: [], madness: [] };
+      if (!raw) return { wounds: [], madness: [], underlying: null };
       const parsed = JSON.parse(raw);
       return {
         wounds: Array.isArray(parsed.wounds) ? parsed.wounds : [],
-        madness: Array.isArray(parsed.madness) ? parsed.madness : []
+        madness: Array.isArray(parsed.madness) ? parsed.madness : [],
+        underlying: parsed.underlying && typeof parsed.underlying === 'object' ? parsed.underlying : null
       };
     } catch {
-      return { wounds: [], madness: [] };
+      return { wounds: [], madness: [], underlying: null };
     }
   }
 
@@ -140,6 +154,16 @@ window.addEventListener('DOMContentLoaded', () => {
     };
   }
 
+  function drawUnderlying(kind = 'indefinite') {
+    return {
+      id: `${Date.now()}-${randomInt(100000)}`,
+      kind,
+      title: kind === 'indefinite' ? 'Underlying Insanity — Indefinite' : 'Underlying Insanity — Temporary',
+      detail: underlyingTable[randomInt(underlyingTable.length)],
+      createdAt: Date.now()
+    };
+  }
+
   function setMajorWoundMechanical(marked) {
     const checkbox = document.querySelector('[data-state-input="majorWound"]');
     if (!checkbox || checkbox.checked === marked) return;
@@ -185,6 +209,28 @@ window.addEventListener('DOMContentLoaded', () => {
     return article;
   }
 
+  function underlyingArticle(item) {
+    const article = document.createElement('article');
+    article.className = `underlying-insanity-entry ${item.kind === 'indefinite' ? 'indefinite' : 'temporary'}`;
+
+    const meta = document.createElement('small');
+    meta.textContent = item.kind === 'indefinite' ? 'Ongoing condition' : 'Underlying condition';
+
+    const title = document.createElement('strong');
+    title.textContent = item.title;
+
+    const detail = document.createElement('p');
+    detail.textContent = item.detail;
+
+    const note = document.createElement('em');
+    note.textContent = item.kind === 'indefinite'
+      ? 'Roleplay prompt only; no extra penalty is added. While indefinite insanity remains active, any further SAN loss causes another Bout of Madness.'
+      : 'Roleplay prompt only; no extra penalty is added. The acute bout may end while the temporary underlying condition remains active.';
+
+    article.append(meta, title, detail, note);
+    return article;
+  }
+
   function renderList(selector, items, type, emptyText) {
     const container = document.querySelector(selector);
     if (!container) return;
@@ -204,9 +250,32 @@ window.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  function renderMental() {
+    const container = document.querySelector('[data-madness-effects]');
+    if (!container) return;
+    container.replaceChildren();
+
+    if (effects.underlying) container.append(underlyingArticle(effects.underlying));
+
+    if (!effects.madness.length) {
+      if (!effects.underlying) {
+        const empty = document.createElement('p');
+        empty.className = 'empty-private-effect';
+        empty.textContent = 'No bout has been assigned.';
+        container.append(empty);
+      }
+      return;
+    }
+
+    [...effects.madness].reverse().forEach((item, reverseIndex) => {
+      const index = effects.madness.length - reverseIndex - 1;
+      container.append(effectArticle(item, 'madness', index));
+    });
+  }
+
   function render() {
     renderList('[data-wound-effects]', effects.wounds, 'wound', 'No Major Wound has been assigned.');
-    renderList('[data-madness-effects]', effects.madness, 'madness', 'No bout has been assigned.');
+    renderMental();
   }
 
   root.addEventListener('click', event => {
@@ -237,7 +306,17 @@ window.addEventListener('DOMContentLoaded', () => {
 
   window.addEventListener('rippers:madness-bout', event => {
     if (event.detail?.slug !== slug) return;
-    effects.madness.push(drawMadness(event.detail?.reason));
+    const reason = event.detail?.reason || 'insanity';
+
+    if (reason === 'indefinite') {
+      effects.underlying = drawUnderlying('indefinite');
+    } else if (reason === 'temporary' && !effects.underlying) {
+      effects.underlying = drawUnderlying('temporary');
+    } else if (reason === 'permanent') {
+      effects.underlying = null;
+    }
+
+    effects.madness.push(drawMadness(reason));
     saveEffects();
   });
 
@@ -248,8 +327,22 @@ window.addEventListener('DOMContentLoaded', () => {
     const hasInsanity = hasActiveInsanity(nextState);
     let changed = false;
 
-    if (hadInsanity && !hasInsanity && effects.madness.length) {
-      effects.madness = [];
+    if (nextState.indefiniteInsanity && !lastMechanicalState?.indefiniteInsanity) {
+      effects.underlying = drawUnderlying('indefinite');
+      changed = true;
+    } else if (nextState.temporaryInsanity && !lastMechanicalState?.temporaryInsanity && !effects.underlying) {
+      effects.underlying = drawUnderlying('temporary');
+      changed = true;
+    }
+
+    if (nextState.sanity <= 0 && effects.underlying) {
+      effects.underlying = null;
+      changed = true;
+    }
+
+    if (hadInsanity && !hasInsanity) {
+      if (effects.madness.length) effects.madness = [];
+      if (effects.underlying) effects.underlying = null;
       changed = true;
     }
 
@@ -264,7 +357,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
   window.addEventListener('rippers:tracker-reset', event => {
     if (event.detail?.slug !== slug) return;
-    effects = { wounds: [], madness: [] };
+    effects = { wounds: [], madness: [], underlying: null };
     lastMechanicalState = loadMechanicalState();
     localStorage.removeItem(storageKey);
     render();
@@ -274,14 +367,25 @@ window.addEventListener('DOMContentLoaded', () => {
     const currentState = loadMechanicalState();
     lastMechanicalState = currentState;
     let changed = false;
+
     if (currentState?.majorWound && effects.wounds.length === 0) {
       effects.wounds.push(drawWound('existing-state'));
       changed = true;
     }
+
+    if (currentState?.indefiniteInsanity && (!effects.underlying || effects.underlying.kind !== 'indefinite')) {
+      effects.underlying = drawUnderlying('indefinite');
+      changed = true;
+    } else if (currentState?.temporaryInsanity && !effects.underlying) {
+      effects.underlying = drawUnderlying('temporary');
+      changed = true;
+    }
+
     if ((currentState?.temporaryInsanity || currentState?.indefiniteInsanity) && effects.madness.length === 0) {
       effects.madness.push(drawMadness('existing-state'));
       changed = true;
     }
+
     if (changed) localStorage.setItem(storageKey, JSON.stringify(effects));
   } catch {
     // Existing local state is optional; private effects can begin fresh.
