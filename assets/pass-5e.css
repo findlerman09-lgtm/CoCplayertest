@@ -1,0 +1,44 @@
+/* Pass 5E — usability/accessibility closure. No architecture or mechanical changes. */
+
+/* Readability: keep the restrained palette, but lift small utility text above evening-table contrast. */
+.global-nav a{font-size:.72rem;color:#c3cbc8}
+.global-nav a.active{color:#efd18a}
+.global-meta{color:#8e9b99;font-size:.63rem}
+.context-nav a{color:#b5c0bd;font-size:.73rem}
+.context-nav a span{color:#9c8559}
+.context-nav a.active{color:#efd18a}
+.context-heading small,.context-identity small,.context-current-file small{color:#9d895f}
+.context-heading p,.context-current-file strong,.context-identity span{color:#a5b0ad}
+.rail-kicker{color:#b7c0bd;font-size:.64rem}
+.info-rail .rail-panel>p:not(.rail-kicker),.rail-fineprint{color:#9ba7a4;font-size:.69rem;line-height:1.52}
+.recent-item small{color:#a28a5d;font-size:.59rem}
+.recent-item strong{color:#e5dac4;font-size:.75rem}
+.recent-item.is-opened strong{color:#efd18a}
+.document-metadata small{color:#8d9b99;font-size:.59rem}
+.document-metadata strong{color:#cbd3cf;font-size:.71rem}
+.document-summary-copy>span,.archive-document-links a>span{color:#9da9a6}
+.event-aware-tracker .manual-note,.event-aware-tracker .sanity-control-note{color:#a5b1ad!important;font-size:.69rem!important;line-height:1.5}
+.event-aware-tracker .tracker-alert{color:#b3bfbb!important;font-size:.72rem!important;line-height:1.48}
+.dark-frame .sheet-note{color:#9eaaa6!important;font-size:.69rem!important;line-height:1.5}
+.parchment-frame .skill-instruction{color:#554936;font-size:.75rem;line-height:1.5}
+
+/* A broken seal becomes the document. Do not leave the obsolete code-entry face behind. */
+.document-sealed .sealed-document-face[hidden],.document-sealed.is-unlocked .sealed-document-face{display:none!important}
+.document-sealed.is-unlocked .reveal-body{padding-top:0}
+.document-record.is-unlocked .document-object{padding-top:30px}
+
+/* Balance the anonymous Investigator landing card without disclosing the investigator before dossier unlock. */
+.archive-investigator-card-body{min-height:220px;display:grid;grid-template-columns:minmax(110px,.72fr) minmax(160px,1fr);gap:22px;align-items:center;padding:24px 28px}
+.archive-investigator-card-body .archive-dossier-symbol.single{min-height:0;margin:0;align-self:stretch}
+.archive-investigator-copy{padding-left:20px;border-left:1px solid rgba(201,168,102,.24)}
+.archive-investigator-copy strong{display:block;font-family:Georgia,'Times New Roman',serif;font-size:1.2rem;font-weight:normal;color:#efe2c8}
+.archive-investigator-copy p{margin:.55rem 0 0;color:#a6b0ad;font-size:.76rem;line-height:1.55}
+
+/* Keyboard focus should be visible wherever a player can act. */
+a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{outline:2px solid rgba(239,209,138,.82);outline-offset:3px}
+
+@media(max-width:720px){
+  .archive-investigator-card-body{grid-template-columns:1fr;min-height:0;padding:20px}
+  .archive-investigator-card-body .archive-dossier-symbol.single{min-height:120px}
+  .archive-investigator-copy{padding:16px 0 0;border-left:0;border-top:1px solid rgba(201,168,102,.24);text-align:center}
+}
