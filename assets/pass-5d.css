@@ -31,6 +31,13 @@
 .case-folder-shelf .archive-document-links>a{min-height:104px}
 .case-folder-shelf .archive-document-links strong{font-family:Georgia,'Times New Roman',serif;font-size:.94rem}
 
+/* The known-people/location cards sit on the dark Case File surface, so keep their type comfortably above it. */
+.case-known-grid .case-known-entry{border-top-color:rgba(201,168,102,.18)}
+.case-known-grid .case-known-entry strong{color:#eadfc8;font-size:.86rem;letter-spacing:.01em}
+.case-known-grid .case-known-entry p{color:#a7b3b2!important;font-size:.74rem!important;line-height:1.55!important}
+.case-known-grid .person-initial{color:#ddb96f;border-color:rgba(201,168,102,.36);background:rgba(201,168,102,.055)}
+.case-known-grid .frame>header{border-bottom-color:rgba(201,168,102,.28)}
+
 @media(max-width:900px){
   .personal-library .document-record-content{grid-template-columns:1fr}
   .document-sealed .sealed-document-face{padding:34px 28px}
