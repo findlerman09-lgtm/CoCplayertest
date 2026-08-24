@@ -1,5 +1,5 @@
 {% assign doc = include.doc %}
-<details id="document-{{ doc.id }}" class="document-record document-type-{{ doc.type }}{% if doc.status == 'sealed' %} is-sealed{% endif %}" data-document-record="{{ doc.id }}" data-document-section="{{ doc.section }}" data-document-visibility="{{ doc.visibility }}">
+<details id="document-{{ doc.id }}" class="document-record document-type-{{ doc.type }}{% if doc.status == 'sealed' %} is-sealed{% endif %}{% if doc.basis == 'development_only' %} is-development-demo{% endif %}" data-document-record="{{ doc.id }}" data-document-section="{{ doc.section }}" data-document-visibility="{{ doc.visibility }}">
   <summary>
     <span class="document-type-mark" aria-hidden="true">{% case doc.type %}{% when 'letter' %}✉{% when 'telegram' %}T{% when 'photograph' %}▣{% when 'newspaper' %}N{% when 'notebook' %}✎{% when 'report' %}R{% when 'map' %}⌖{% else %}•{% endcase %}</span>
     <span class="document-summary-copy">
@@ -12,6 +12,7 @@
 
   <div class="document-record-content">
     <aside class="document-metadata" aria-label="Document information">
+      {% if doc.basis == 'development_only' %}<div class="document-demo-meta"><small>Validation</small><strong>Non-canon demo</strong></div>{% endif %}
       <div><small>Type</small><strong>{{ doc.type_label | default: doc.type }}</strong></div>
       <div><small>Status</small><strong data-document-meta-status>{% if doc.status == 'sealed' %}Sealed{% else %}Filed{% endif %}</strong></div>
       <div><small>Access</small><strong>{% if doc.visibility == 'personal' %}Private{% else %}Shared{% endif %}</strong></div>
@@ -23,7 +24,7 @@
 
     <div class="document-object document-object-{{ doc.type }}">
       {% if doc.status == 'sealed' %}
-      <section class="document-sealed reveal-card" data-lock-id="{{ doc.lock.id }}" data-salt="{{ doc.lock.salt }}" data-iv="{{ doc.lock.iv }}" data-ciphertext="{{ doc.lock.ciphertext }}" data-iterations="{{ doc.lock.iterations | default: 100000 }}">
+      <section class="document-sealed" data-lock-id="{{ doc.lock.id }}" data-salt="{{ doc.lock.salt }}" data-iv="{{ doc.lock.iv }}" data-ciphertext="{{ doc.lock.ciphertext }}" data-iterations="{{ doc.lock.iterations | default: 100000 }}">
         <div class="sealed-document-face" data-reveal-locked>
           <span class="sealed-document-mark">R</span>
           <small>Code-word release</small>
