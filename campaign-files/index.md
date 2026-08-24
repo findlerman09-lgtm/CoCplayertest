@@ -26,47 +26,55 @@ summary: Shared material and known developments associated with cases already op
       <div class="frame-body">
         <p>{{ file.summary }}</p>
 
-        {% if case_documents.size > 0 %}
-        <section class="document-shelf case-folder-shelf">
-          <header><div><small>Filed Material</small><strong>Shared Documents</strong></div><span>{{ case_documents.size }}</span></header>
-          <div class="archive-document-links">
-            {% for doc in case_documents %}
-            <a href="{{ '/documents/#document-' | append: doc.id | relative_url }}"><small>{{ doc.type_label | default: doc.type }}</small><strong>{{ doc.title }}</strong><span>{{ doc.summary }}</span></a>
-            {% endfor %}
-          </div>
+        {% if file.status == 'sealed' %}
+        <section class="case-file-sealed">
+          <span aria-hidden="true">R</span>
+          <strong>File Sealed</strong>
+          <p>No contents are available from this file yet.</p>
         </section>
-        {% endif %}
-
-        {% assign people_count = file.known_people | size %}
-        {% assign location_count = file.known_locations | size %}
-        {% if people_count > 0 or location_count > 0 %}
-        <div class="frame-grid two-one case-known-grid">
-          {% if people_count > 0 %}
-          <section class="frame parchment-frame">
-            <header><span>Known People</span><b>{{ people_count }}</b></header>
-            <div class="frame-body people-preview-list">
-              {% for person in file.known_people %}
-              <div class="case-known-entry"><span class="person-initial">{{ person.name | slice: 0 }}</span><div><strong>{{ person.name }}</strong>{% if person.note %}<p>{{ person.note }}</p>{% endif %}</div></div>
+        {% else %}
+          {% if case_documents.size > 0 %}
+          <section class="document-shelf case-folder-shelf">
+            <header><div><small>Filed Material</small><strong>Shared Documents</strong></div><span>{{ case_documents.size }}</span></header>
+            <div class="archive-document-links">
+              {% for doc in case_documents %}
+              <a href="{{ '/documents/#document-' | append: doc.id | relative_url }}"><small>{{ doc.type_label | default: doc.type }}</small><strong>{{ doc.title }}</strong><span>{{ doc.summary }}</span></a>
               {% endfor %}
             </div>
           </section>
           {% endif %}
 
-          {% if location_count > 0 %}
-          <section class="frame parchment-frame">
-            <header><span>Known Locations</span><b>{{ location_count }}</b></header>
-            <div class="frame-body people-preview-list">
-              {% for place in file.known_locations %}
-              <div class="case-known-entry"><span class="person-initial">⌖</span><div><strong>{{ place.name }}</strong>{% if place.note %}<p>{{ place.note }}</p>{% endif %}</div></div>
-              {% endfor %}
-            </div>
-          </section>
-          {% endif %}
-        </div>
-        {% endif %}
+          {% assign people_count = file.known_people | size %}
+          {% assign location_count = file.known_locations | size %}
+          {% if people_count > 0 or location_count > 0 %}
+          <div class="frame-grid two-one case-known-grid">
+            {% if people_count > 0 %}
+            <section class="frame parchment-frame">
+              <header><span>Known People</span><b>{{ people_count }}</b></header>
+              <div class="frame-body people-preview-list">
+                {% for person in file.known_people %}
+                <div class="case-known-entry"><span class="person-initial">{{ person.name | slice: 0 }}</span><div><strong>{{ person.name }}</strong>{% if person.note %}<p>{{ person.note }}</p>{% endif %}</div></div>
+                {% endfor %}
+              </div>
+            </section>
+            {% endif %}
 
-        {% if case_documents.size == 0 and people_count == 0 and location_count == 0 %}
-        <p class="case-folder-empty">Nothing else has been filed to this case yet.</p>
+            {% if location_count > 0 %}
+            <section class="frame parchment-frame">
+              <header><span>Known Locations</span><b>{{ location_count }}</b></header>
+              <div class="frame-body people-preview-list">
+                {% for place in file.known_locations %}
+                <div class="case-known-entry"><span class="person-initial">⌖</span><div><strong>{{ place.name }}</strong>{% if place.note %}<p>{{ place.note }}</p>{% endif %}</div></div>
+                {% endfor %}
+              </div>
+            </section>
+            {% endif %}
+          </div>
+          {% endif %}
+
+          {% if case_documents.size == 0 and people_count == 0 and location_count == 0 %}
+          <p class="case-folder-empty">Nothing else has been filed to this case yet.</p>
+          {% endif %}
         {% endif %}
       </div>
     </article>
