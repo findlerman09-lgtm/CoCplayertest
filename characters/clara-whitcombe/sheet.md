@@ -18,6 +18,13 @@ summary: Current condition, fast mechanical reference, and improvement marks.
 {% assign mp_entries = dossier.vitals | where: "name", "Magic Points" %}
 {% assign mp = mp_entries | first %}
 
+<style>
+.tracker-value-row input[type="number"]{-moz-appearance:textfield;appearance:textfield}
+.tracker-value-row input[type="number"]::-webkit-outer-spin-button,.tracker-value-row input[type="number"]::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.tracker-value-row button{color:#efd18a;border-color:rgba(201,168,102,.52);background:linear-gradient(180deg,#13262d,#08161b);font-size:1.08rem;line-height:1;box-shadow:inset 0 0 0 1px rgba(0,0,0,.2)}
+.tracker-value-row button:hover,.tracker-value-row button:focus-visible{color:#fff0c4;border-color:#efd18a;background:linear-gradient(180deg,#1d353d,#0c2026);outline:none;box-shadow:0 0 0 2px rgba(201,168,102,.12),inset 0 0 0 1px rgba(0,0,0,.2)}
+</style>
+
 <div class="condition-banner-row">
   <div><small>Physical</small><strong class="condition-chip stable" data-hp-condition>Stable</strong></div>
   <div><small>Mental</small><strong class="condition-chip stable" data-san-condition>Stable</strong></div>
