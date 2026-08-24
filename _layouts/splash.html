@@ -14,7 +14,7 @@
 <body class="splash-body">
   <main class="splash-screen" style="--splash-image:url('{{ '/assets/images/hero-collage-hd.webp' | relative_url }}?v=5c1')">
     <div class="splash-vignette"></div>
-    <div class="splash-copy" data-archive-gate data-salt="{{ site.data.site_state.archive.salt }}" data-verifier="{{ site.data.site_state.archive.verifier }}" data-iterations="{{ site.data.site_state.archive.iterations }}" data-target="{{ '/archive/' | relative_url }}">
+    <div class="splash-copy" data-archive-gate data-salt="{{ site.data.site_state.archive.salt }}" data-verifier="{{ site.data.site_state.archive.verifier }}" data-iterations="{{ site.data.site_state.archive.iterations }}" data-target="{{ '/archive/' | relative_url }}" data-site-root="{{ '/' | relative_url }}">
       <div class="splash-monogram">R</div>
       <p>London · 1888</p>
       <h1>The Rippers</h1>
