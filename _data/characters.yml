@@ -88,3 +88,19 @@ miriam-hart:
     - type: Dossier
       label: Miriam Hart
       href: /characters/miriam-hart/
+
+clara-mercer:
+  name: Clara Mercer
+  occupation: Reporter — East-End district
+  portrait: /assets/favicon.svg
+  status: Issued
+  mechanics_pending: true
+  identity_pending: true
+  lock:
+    salt: "waAxbwvaOlbLow+qpOrtDA=="
+    verifier: "gyiuCjoh+HkA/oa3GEWXHPGlOk4mhbXBWwerV76DFkk="
+    iterations: 120000
+  recent:
+    - type: Dossier
+      label: Clara Mercer
+      href: /characters/clara-mercer/
