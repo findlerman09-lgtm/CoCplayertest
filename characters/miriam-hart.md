@@ -5,7 +5,7 @@ title: Miriam Hart
 name: Miriam Hart
 occupation: Certificated Assistant Mistress, School Board for London
 age: 32
-residence: East London
+residence: Modest rooms in East London, shared with her widowed mother
 social_status: Lower-middle class; educated, respectable, salaried, financially constrained
 top_nav: investigators
 character_slug: miriam-hart
@@ -18,7 +18,7 @@ portrait: /assets/favicon.svg
 hero_art: /assets/images/hero-collage-hd.webp
 tagline: "Tell me whose name it is first."
 background: >-
-  Miriam Hart grew up in a London Jewish household where education meant respectable work and a measure of independence. She entered the pupil-teacher system young, qualified, and became a certificated assistant mistress under the School Board for London. School has taught her that the facts of a household rarely fit cleanly into one line of a register. A child may live with an aunt for a week, a lodger may receive letters at a workplace, and yesterday's correct address may be wrong tonight. Miriam is good at records because she knows when a record has stopped being the same thing as the truth.
+  Miriam Hart is a London-born Jewish woman who grew up in a household where education meant respectable work and a measure of independence. She entered the pupil-teacher system young, qualified, and became a certificated assistant mistress under the School Board for London, working in the girls' department of an East London board school. School has taught her that the facts of a household rarely fit cleanly into one line of a register. A child may live with an aunt for a week, a lodger may receive letters at a workplace, and yesterday's correct address may be wrong tonight. Miriam is good at records because she knows when a record has stopped being the same thing as the truth.
 history: >-
   Two years ago pupil Annie Feld disappeared from school after her family left its registered rooms. Miriam remembered that Annie's mother had previously mentioned a married sister during a relief referral. Rather than treating that private knowledge as school property, Miriam asked that the address be rechecked through the proper channels. Annie was found safe in temporary rooms and returned to school. The incident left Miriam with three habits: an address has a date, a record has a purpose, and knowing something about a household does not mean she owns the information.
 roleplay_anchor: >-
