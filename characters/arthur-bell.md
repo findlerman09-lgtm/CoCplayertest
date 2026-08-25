@@ -19,6 +19,8 @@ hero_art: /assets/images/hero-collage-hd.webp
 tagline: "Before deciding what happened, find what had to move."
 background: >-
   Arthur Bell is a quiet, dry, observant fire-insurance surveyor whose work has made him thoroughly familiar with the practical life of commercial premises. Warehouses, yards, carts, horses, packing, storage, loads, access routes, and the ordinary movement of goods are not abstractions to him. Bell prefers to establish what a physical problem actually required before deciding which explanation sounds most convincing. His skepticism is curious rather than dismissive: when something makes no ordinary sense, his first assumption is that there is a mechanism he has not yet understood.
+history: >-
+  His professional history includes a warehouse fire in Wapping.
 roleplay_anchor: >-
   Before deciding what happened, find what had to move.
 human_detail: >-
