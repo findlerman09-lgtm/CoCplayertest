@@ -21,4 +21,3 @@ summary: The people Clara knows through family, the newspaper trade, and prior r
   {% endfor %}
 </div>
 <article class="frame dark-frame relationship-note"><header><span>A Source Is a Relationship</span><b>06</b></header><div class="frame-body"><p>Previous restraint, corrections, favors, payment, and trust can make a conversation possible. None of them guarantees cooperation. Sources may refuse, lie, bargain, protect somebody else, or decide that speaking to Clara is no longer worth the cost.</p></div></article>
----
