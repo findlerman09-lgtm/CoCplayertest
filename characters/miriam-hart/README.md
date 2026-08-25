@@ -7,4 +7,4 @@
 - `/characters/miriam-hart/documents/` — Personal Documents
 - `/characters/miriam-hart/possessions/` — Possessions & Means
 
-Narrative content is character-development locked with the PM publication wording applied. The exact school, relief-contact identity/title, physician relationship, all language percentages, mechanical values, Credit Rating, Pulp talents, combat values, and period/economic equipment details remain withheld pending their assigned verification passes. The dossier password is campaign-issued; only its salted verifier is stored in the public site repository.
+Narrative content is character-development locked with the PM publication wording applied. The exact school, relief-contact identity/title, all language percentages, mechanical values, Credit Rating, Pulp talents, combat values, and period/economic equipment details remain withheld pending their assigned verification passes. The physician relationship is now resolved as Laurence Kersey. The dossier password is campaign-issued; only its salted verifier is stored in the public site repository.
