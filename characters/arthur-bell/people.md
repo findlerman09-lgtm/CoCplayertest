@@ -8,7 +8,7 @@ character_slug: arthur-bell
 context_nav: people
 breadcrumb: The Rippers / Investigators / Arthur Bell
 kicker: Relationships & Connections
-summary: Approved connections in Bell's ordinary life.
+summary: Connections in Bell's ordinary life.
 ---
 {% assign dossier_pages = site.pages | where: "character_slug", page.character_slug %}
 {% assign dossier = dossier_pages | where: "context_nav", "overview" | first %}
@@ -20,4 +20,4 @@ summary: Approved connections in Bell's ordinary life.
   </article>
   {% endfor %}
 </div>
-<article class="frame dark-frame relationship-note"><header><span>Filing Hold</span><b>03</b></header><div class="frame-body"><p>Eliza Price and Henry Pritchard are approved Bell relationships. Their final reveal-safe relationship descriptions have not yet been supplied to this implementation pass. The unresolved reporter relationship is intentionally absent until its final identity is approved.</p></div></article>
+<article class="frame dark-frame relationship-note"><header><span>Further Particulars</span><b>03</b></header><div class="frame-body"><p>Some relationship details are not yet filed. The dossier will add them when their reveal-safe descriptions are available.</p></div></article>
