@@ -7,4 +7,4 @@
 - `/characters/thomas-merrick/documents/` — Personal Documents
 - `/characters/thomas-merrick/possessions/` — Possessions & Means
 
-Narrative content is P-06 locked with the PM tally-clerk correction applied. Mechanical values and period-equipment details remain withheld pending P-07. The live password is not registered until the player's actual dossier password is supplied.
+Narrative content is P-06 locked with the PM tally-clerk correction applied. Mechanical values and period-equipment details remain withheld pending P-07. The dossier password is campaign-issued; only its salted verifier is stored in the public site repository.
