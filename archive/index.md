@@ -17,7 +17,7 @@ summary: Your private investigator dossier and material already released in play
     <header><span>Investigator</span><b>01</b></header>
     <div class="archive-investigator-card-body">
       <div class="archive-dossier-symbol single" aria-hidden="true"><span>R</span></div>
-      <div class="archive-investigator-copy"><strong>Private Dossier</strong><p>Your survey password opens only your investigator file.</p></div>
+      <div class="archive-investigator-copy"><strong>Private Dossier</strong><p>Your issued dossier password opens only your investigator file.</p></div>
     </div>
   </a>
 
