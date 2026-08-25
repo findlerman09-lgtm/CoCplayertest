@@ -48,11 +48,11 @@ arthur-bell:
   name: Arthur Bell
   occupation: Fire-insurance Surveyor of Risks
   portrait: /assets/favicon.svg
-  status: Narrative Locked
+  status: Issued
   mechanics_pending: true
   lock:
-    salt: ""
-    verifier: "PENDING"
+    salt: "JaCqCiRwwhtM0+X69iavWw=="
+    verifier: "HPTT+4iPfr2OAdYsjnd/qaCTnMLDrl+ajgzycX/8AyU="
     iterations: 120000
   recent:
     - type: Dossier
@@ -63,11 +63,11 @@ thomas-merrick:
   name: Thomas Merrick
   occupation: Detective Constable, City of London Police
   portrait: /assets/favicon.svg
-  status: Narrative Locked
+  status: Issued
   mechanics_pending: true
   lock:
-    salt: ""
-    verifier: "PENDING"
+    salt: "urVpVC6xQnm4XAcZSg934w=="
+    verifier: "IEFLDehzcsRqxsf+qKOz8nHsNtUNTYqQTSwIqJQIJ/U="
     iterations: 120000
   recent:
     - type: Dossier
