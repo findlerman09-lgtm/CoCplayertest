@@ -1,62 +1,115 @@
 ---
 layout: base
 ---
+{% assign p = site.data.player_characters[page.character_slug] %}
+{% assign character_name = p.publication_name | default: page.display_title | default: page.name %}
+{% assign occupation_display = p.occupation_display | default: page.occupation %}
+{% assign residence_display = p.residence | default: page.residence %}
+{% assign standing_display = p.social_status | default: page.social_status %}
+{% assign summary_display = p.summary | default: page.tagline %}
+{% assign background_display = p.background | default: page.background %}
+{% assign history_display = p.history | default: page.history %}
+{% assign anchor_display = p.roleplay_anchor | default: page.roleplay_anchor %}
+{% assign habit_display = p.human_detail | default: page.human_detail %}
+{% assign edge_list = p.player_edges | default: page.player_edges %}
+{% assign knowledge_list = p.knowledge | default: page.knowledge %}
+{% assign people_list = p.people | default: page.people %}
+{% assign relationship_list = p.relationships %}
 {% capture character_base %}/characters/{{ page.character_slug }}{% endcapture %}
 <style>
 .overview-hero:before,.overview-portrait:before{display:none!important}
 </style>
+
 <section class="overview-hero" style="--hero-image:url('{{ page.hero_art | relative_url }}?v=5a1')">
   <div class="overview-art"></div>
-  <div class="overview-portrait"><img src="{{ page.portrait | relative_url }}?v=5a1" alt="Portrait of {{ page.display_title | default: page.name }}"></div>
+  <div class="overview-portrait"><img src="{{ page.portrait | relative_url }}?v=5a1" alt="Portrait of {{ character_name }}"></div>
   <div class="overview-copy">
-    <p class="eyebrow">{{ page.occupation }} · Age {{ page.age }}</p>
-    <h2>{{ page.display_title | default: page.name }}</h2>
-    <p class="hero-tagline">{{ page.tagline }}</p>
+    <p class="eyebrow">{{ occupation_display }} · Age {{ p.age | default: page.age }}</p>
+    <h2>{{ character_name }}</h2>
+    <p class="hero-tagline">{{ summary_display }}</p>
     <dl class="fact-row">
-      <div><dt>Residence</dt><dd>{{ page.residence }}</dd></div>
-      <div><dt>Standing</dt><dd>{{ page.social_status }}</dd></div>
-      <div><dt>Dossier</dt><dd>{{ page.dossier_number }}</dd></div>
+      <div><dt>Residence</dt><dd>{{ residence_display }}</dd></div>
+      <div><dt>Standing</dt><dd>{{ standing_display }}</dd></div>
+      {% if p.occupation_full %}<div><dt>Work</dt><dd>{{ p.occupation_full }}</dd></div>{% elsif page.dossier_number %}<div><dt>Dossier</dt><dd>{{ page.dossier_number }}</dd></div>{% endif %}
     </dl>
+    {% if p.qualifications or p.training %}
+    <p class="sheet-note">{% if p.qualifications %}{{ p.qualifications }}{% endif %}{% if p.qualifications and p.training %} · {% endif %}{% if p.training %}{{ p.training }}{% endif %}</p>
+    {% endif %}
   </div>
 </section>
 
 <section class="frame-grid two-one">
   <article class="frame parchment-frame">
     <header><span>Who You Are</span><b>01</b></header>
-    <div class="frame-body prose"><p class="lede">{{ page.background }}</p><p>{{ page.history }}</p></div>
+    <div class="frame-body prose"><p class="lede">{{ background_display }}</p></div>
   </article>
-  <article class="frame dark-frame character-anchor-frame">
-    <header><span>Character Anchor</span><b>02</b></header>
-    <div class="frame-body"><blockquote>{{ page.roleplay_anchor }}</blockquote><p><strong>Small habit.</strong> {{ page.human_detail }}</p></div>
+  <article class="frame parchment-frame">
+    <header><span>Formative History</span><b>02</b></header>
+    <div class="frame-body prose"><p>{{ history_display }}</p></div>
   </article>
 </section>
 
+<article class="frame dark-frame character-anchor-frame">
+  <header><span>Roleplay Anchor</span><b>03</b></header>
+  <div class="frame-body"><blockquote>{{ anchor_display }}</blockquote><p><strong>Small habit.</strong> {{ habit_display }}</p></div>
+</article>
+
 <section class="frame-grid thirds character-edge-grid">
-  {% for edge in page.player_edges %}
+  {% for edge in edge_list %}
   <article class="frame edge-frame">
-    <header><span>{{ edge.label }}</span><b>0{{ forloop.index | plus: 2 }}</b></header>
+    <header><span>{{ edge.label }}</span><b>0{{ forloop.index | plus: 3 }}</b></header>
     <div class="frame-body"><strong>{{ edge.title }}</strong><p>{{ edge.text }}</p></div>
   </article>
   {% endfor %}
 </section>
 
+{% if knowledge_list and knowledge_list.size > 0 %}
+<article class="frame parchment-frame">
+  <header><span>Things You Know</span><b>07</b></header>
+  <div class="frame-body possession-list">
+    {% for item in knowledge_list %}
+    <div class="possession-row"><span>◆</span><p><strong>{{ item.title }}</strong><br>{{ item.text }}</p></div>
+    {% endfor %}
+  </div>
+</article>
+{% endif %}
+
 <section class="frame-grid two-one overview-lower-grid">
   <article class="frame parchment-frame people-preview-frame">
-    <header><span>People Who Matter</span><b>06</b></header>
+    <header><span>People Who Matter</span><b>08</b></header>
     <div class="frame-body people-preview-list">
-      {% for person in page.people %}
+      {% for person in people_list %}
       <a href="{{ character_base | append: '/people/' | relative_url }}"><span class="person-initial">{{ person.name | slice: 0 }}</span><div><strong>{{ person.name }}</strong><small>{{ person.relationship }}</small><p>{{ person.text }}</p></div></a>
       {% endfor %}
     </div>
   </article>
 
-  <article class="frame dark-frame dossier-shortcuts">
-    <header><span>Open the Dossier</span><b>07</b></header>
-    <div class="frame-body shortcut-list">
-      <a href="{{ character_base | append: '/sheet/' | relative_url }}"><small>At the table</small><strong>Character Sheet</strong><span>Current condition, skills, combat and improvement marks.</span></a>
-      <a href="{{ character_base | append: '/correspondence/' | relative_url }}"><small>Private material</small><strong>Correspondence</strong><span>Letters, telegrams and code-word releases.</span></a>
-      <a href="{{ character_base | append: '/documents/' | relative_url }}"><small>Personal archive</small><strong>Documents</strong><span>Material received, created, or uniquely interpreted.</span></a>
-      <a href="{{ character_base | append: '/possessions/' | relative_url }}"><small>Resources</small><strong>Possessions & Means</strong><span>Equipment, carried items and financial standing.</span></a>
+  {% if relationship_list and relationship_list.size > 0 %}
+  <article class="frame parchment-frame people-preview-frame">
+    <header><span>The Other Investigators</span><b>09</b></header>
+    <div class="frame-body people-preview-list">
+      {% for person in relationship_list %}
+      <a href="{{ character_base | append: '/people/' | relative_url }}"><span class="person-initial">{{ person.name | slice: 0 }}</span><div><strong>{{ person.name }}</strong><small>{{ person.relationship }}</small><p>{{ person.text }}</p></div></a>
+      {% endfor %}
     </div>
   </article>
+  {% endif %}
 </section>
+
+{% if p.known_pressure %}
+<article class="frame dark-frame relationship-note">
+  <header><span>Known Pressure</span><b>10</b></header>
+  <div class="frame-body"><p>{{ p.known_pressure }}</p></div>
+</article>
+{% endif %}
+
+<article class="frame dark-frame dossier-shortcuts">
+  <header><span>Open the Dossier</span><b>11</b></header>
+  <div class="frame-body shortcut-list">
+    <a href="{{ character_base | append: '/sheet/' | relative_url }}"><small>At the table</small><strong>Character Sheet</strong><span>Current condition, skills, combat, talent and improvement marks.</span></a>
+    <a href="{{ character_base | append: '/people/' | relative_url }}"><small>Relationships</small><strong>People</strong><span>Personal connections and the investigators you already know.</span></a>
+    <a href="{{ character_base | append: '/correspondence/' | relative_url }}"><small>Private material</small><strong>Correspondence</strong><span>Letters, telegrams and code-word releases.</span></a>
+    <a href="{{ character_base | append: '/documents/' | relative_url }}"><small>Personal archive</small><strong>Documents</strong><span>Material received, created, or uniquely interpreted.</span></a>
+    <a href="{{ character_base | append: '/possessions/' | relative_url }}"><small>Resources</small><strong>Possessions & Means</strong><span>Equipment, standing, languages and legitimate access.</span></a>
+  </div>
+</article>
