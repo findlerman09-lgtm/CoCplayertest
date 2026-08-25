@@ -1,0 +1,158 @@
+investigator_id: DH
+publication_name: Dr Laurence Kersey
+name_status: locked
+age: 36
+occupation_display: General Practitioner
+occupation_full: Registered Medical Practitioner
+residence: East London
+social_status: Respectable middle-class professional; established and financially viable, but dependent on his practice
+qualifications: M.R.C.S. Eng.; L.S.A. Lond.
+training: London Hospital Medical College
+summary: You treat the living patient first and solve difficult problems by reconstructing what changed, in what order, and
+  which explanation actually fits.
+roleplay_anchor: What changed first?
+human_detail: When an account becomes confused, Kersey uses coins, matches, corks, or folded scraps to represent people and
+  events, physically rearranging them until the sequence can be tested.
+background: 'Kersey is a London-born East-London general medical practitioner, son of chemist and druggist Alfred Kersey,
+  trained at London Hospital Medical College and qualified M.R.C.S. Eng.; L.S.A. Lond. His work is not confined to spectacular
+  illnesses or post-mortems. It is the ordinary business of living patients: pain, fever, injury, uncertainty, frightened
+  families, incomplete histories, limited materials, and the need to act without pretending to know more than medicine can
+  establish. He combines paying general practice with bounded charitable medical duties and has professional standing, but
+  not universal medical authority.'
+history: 'Kersey once treated a carman injured beside an overturned cart. Reconstructing the accounts showed that the man''s
+  collapse preceded the cart accident rather than simply resulting from it. The case reinforced a lesson medical training
+  had already begun to teach him: a correct explanation often depends on sequence. What changed first? What was already present?
+  What followed an injury rather than causing it? Which statement is observation, and which is somebody''s explanation of
+  the observation?'
+player_edges:
+- label: Analytical competence
+  title: Reconstruct the Chain
+  text: You may rearrange symptoms, movements, statements, and observations into a testable causal order, provided you do
+    not invent missing facts.
+- label: Living-patient access
+  title: The Patient Is Still Here
+  text: You are practiced at obtaining useful information while continuing to treat an injured, sick, frightened, or vulnerable
+    person as a patient rather than merely as a witness.
+- label: Practical action
+  title: Use What You Have
+  text: In medicine and rescue you can adapt ordinary available materials to immediate practical needs, within human ability
+    and period technology.
+knowledge:
+- title: Medicine Is Not Omniscience
+  text: You know medicine and practical anatomy, First Aid and triage, ordinary pharmacy and biology, and the distinction
+    between anatomical knowledge and formal professional qualification.
+- title: Sequence Matters
+  text: You know how misleading a symptom can become when somebody assigns its cause too quickly.
+- title: The Living Patient Comes First
+  text: An injured person may still have information worth preserving without interrogation becoming the priority.
+- title: No Modern Forensic Precision
+  text: Your medicine does not provide exact modern time-of-death science or supernatural diagnosis.
+people:
+- name: Alfred Kersey
+  relationship: Father; chemist and druggist
+  text: Practical, experienced, and affectionate; a grounding influence rather than an unlimited pharmaceutical resource.
+relationships:
+- name: Miriam Hart
+  relationship: Trusted referral relationship
+  text: When she brings a household to your attention, you know she has usually distinguished a person from the paperwork
+    around them.
+- name: Thomas Merrick
+  relationship: Professional disagreement and respect
+  text: Each of you has seen the other refuse an attractive certainty when the evidence did not justify it.
+- name: Arthur Bell
+  relationship: No substantial prior relationship
+  text: No substantial prior relationship is required.
+- name: Clara Mercer
+  relationship: No private relationship
+  text: No private access or automatic trust is assumed merely because she is a reporter.
+known_pressure: A Doctor Is Expected to Have an Answer. People want certainty from Kersey because he is a doctor. His pressure
+  is not whether to act; he is willing to act quickly when action is justified. The pressure is whether he can resist turning
+  “this is the best explanation available” into “this is what certainly happened.”
+characteristics:
+- name: STR
+  value: 55
+  half: 27
+  fifth: 11
+- name: CON
+  value: 70
+  half: 35
+  fifth: 14
+- name: SIZ
+  value: 65
+  half: 32
+  fifth: 13
+- name: DEX
+  value: 65
+  half: 32
+  fifth: 13
+- name: APP
+  value: 55
+  half: 27
+  fifth: 11
+- name: INT
+  value: 75
+  half: 37
+  fifth: 15
+- name: POW
+  value: 65
+  half: 32
+  fifth: 13
+- name: EDU
+  value: 80
+  half: 40
+  fifth: 16
+derived:
+  hp: 13
+  sanity: 65
+  mp: 13
+  luck: 55
+  mov: 8
+  db: '0'
+  build: 0
+  dodge: 40
+talent:
+  name: Sharp Witted
+  effect: Gain a bonus die on Intelligence rolls, but not Idea rolls.
+  note: Kersey collates facts quickly; this is not supernatural insight.
+credit_rating: 30
+wealth_note: The highest Credit Rating in the ensemble reflects professional standing, not wealth or universal status.
+languages:
+- name: English
+  value: 80
+  note: Language (Own)
+- name: Latin
+  value: 20
+combat:
+  brawl: 45%
+  unarmed_damage: 1D3
+  dodge: 40%
+  build: 0
+  firearm: None routinely carried
+  note: Willing to rescue, restrain, or defend at close quarters; not a fighting-doctor caricature.
+carried:
+- Ordinary personal and professional medical effects appropriate to current duty.
+- No firearm.
+owned_available:
+- Ordinary medical books, supplies, and professional materials associated with his practice may be available at the appropriate
+  location. They are not an endlessly portable laboratory.
+professional_access:
+- His own patients.
+- Households with which he has an actual medical relationship.
+- Physicians, apothecaries, and other medical workers through ordinary professional channels.
+- Medical information entrusted to him appropriately.
+- Living patients who consent to treatment and examination.
+requires_permission:
+- Another doctor’s patient, private medical notes, institutional records, a hospital room, a corpse, a post-mortem report,
+  police exhibits, or another practitioner’s cooperation require the proper professional, legal, or personal route.
+access_limits:
+- Cannot commandeer an official post-mortem.
+- Cannot demand another doctor’s confidential material.
+- Cannot turn Medicine 80 into exact modern time-of-death science.
+- Cannot identify an exotic mechanism solely from an injury.
+- Cannot use a portable laboratory that does not exist.
+- Cannot diagnose the supernatural.
+editorial_holds:
+- Exact practice address.
+- Exact dispensary/institution.
+- Minor medical-equipment terminology.
+- Samuel Harcourt institutional connection remains held and is not player-published.
