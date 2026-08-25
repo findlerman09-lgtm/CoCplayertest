@@ -57,4 +57,8 @@ people:
     relationship: Parent of a former pupil
     text: >-
       Sarah trusts Miriam because Miriam once helped without turning the household's difficulties into public information. That trust includes Sarah's right to refuse her.
+  - name: Laurence Kersey
+    relationship: Trusted professional referral
+    text: >-
+      A previous household medical concern established reciprocal respect. Miriam supplies precise household context without surrendering confidence; Kersey treats the person as a patient, separates observation from inference, and does not treat referral as permission to interrogate.
 ---
