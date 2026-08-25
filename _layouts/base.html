@@ -61,7 +61,7 @@
         <div class="lock-mark">R</div>
         <p class="eyebrow">Private investigator dossier</p>
         <h1>Password Required</h1>
-        <p>This character archive is reserved for its player. Enter the password created with the character survey.</p>
+        <p>This character archive is reserved for its player. Enter the dossier password issued to you for play.</p>
         <form class="lock-form">
           <label><span>Dossier password</span><input type="password" autocomplete="current-password" autofocus></label>
           <button type="submit">Open Dossier</button>
@@ -72,7 +72,7 @@
     {% endif %}
 
     <div class="protected-shell" {% if character %}data-protected-character hidden{% endif %}>
-      <div class="workspace-grid{% if page.hide_context_rail %} no-context-rail{% endif %}{% if page.hide_info_rail %} no-info-rail{% endif %}" {% if character %}data-character-state="{{ page.character_slug }}" data-state-version="{{ character.state_version }}" data-default-hp="{{ character.hp }}" data-max-hp="{{ character.max_hp }}" data-default-sanity="{{ character.sanity }}" data-max-sanity="{{ character.max_sanity }}" data-default-luck="{{ character.luck }}"{% endif %}>
+      <div class="workspace-grid{% if page.hide_context_rail %} no-context-rail{% endif %}{% if page.hide_info_rail %} no-info-rail{% endif %}" {% if character %}{% unless character.mechanics_pending %}data-character-state="{{ page.character_slug }}" data-state-version="{{ character.state_version }}" data-default-hp="{{ character.hp }}" data-max-hp="{{ character.max_hp }}" data-default-sanity="{{ character.sanity }}" data-max-sanity="{{ character.max_sanity }}" data-default-luck="{{ character.luck }}"{% endunless %}{% endif %}>
         {% unless page.hide_context_rail %}
         <aside class="context-rail">
           {% if character %}
@@ -107,7 +107,7 @@
             <a href="{{ '/campaign-files/' | relative_url }}" class="active"><span>01</span>Current File</a>
           </nav>
           {% else %}
-          <div class="context-heading"><small>Archive section</small><strong>Investigator</strong><p>Your personal password opens your private dossier.</p></div>
+          <div class="context-heading"><small>Archive section</small><strong>Investigator</strong><p>Your issued dossier password opens your private file.</p></div>
           <nav class="context-nav" aria-label="Investigator navigation">
             <a href="{{ '/investigators/' | relative_url }}" class="active"><span>01</span>Private Dossier</a>
           </nav>
@@ -130,16 +130,22 @@
         <aside class="info-rail">
           {% if character %}
             <section class="rail-panel">
-              <p class="rail-kicker">Current state</p>
-              <div class="mini-vitals">
-                <div><b class="state-readout" data-state-display="hp">{{ character.hp }}</b><span>HP</span></div>
-                <div><b class="state-readout" data-state-display="sanity">{{ character.sanity }}</b><span>SAN</span></div>
-                <div><b class="state-readout" data-state-display="luck">{{ character.luck }}</b><span>Luck</span></div>
-              </div>
-              <div class="rail-condition-stack">
-                <span class="condition-chip stable" data-hp-condition>Stable</span>
-                <span class="condition-chip stable" data-san-condition>Stable</span>
-              </div>
+              {% if character.mechanics_pending %}
+                <p class="rail-kicker">Character state</p>
+                <strong>Rules verification pending</strong>
+                <p>HP, SAN, Luck, skill marks, and other live mechanical tracking will appear after the final character-sheet pass.</p>
+              {% else %}
+                <p class="rail-kicker">Current state</p>
+                <div class="mini-vitals">
+                  <div><b class="state-readout" data-state-display="hp">{{ character.hp }}</b><span>HP</span></div>
+                  <div><b class="state-readout" data-state-display="sanity">{{ character.sanity }}</b><span>SAN</span></div>
+                  <div><b class="state-readout" data-state-display="luck">{{ character.luck }}</b><span>Luck</span></div>
+                </div>
+                <div class="rail-condition-stack">
+                  <span class="condition-chip stable" data-hp-condition>Stable</span>
+                  <span class="condition-chip stable" data-san-condition>Stable</span>
+                </div>
+              {% endif %}
             </section>
             <section class="rail-panel">
               <p class="rail-kicker">Recent</p>
@@ -159,7 +165,7 @@
             </section>
             <section class="rail-panel">
               <p class="rail-kicker">Private dossier</p>
-              <p>Your personal password opens only your investigator file.</p>
+              <p>Your issued dossier password opens only your investigator file.</p>
             </section>
           {% endif %}
         </aside>
