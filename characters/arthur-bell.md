@@ -36,11 +36,11 @@ player_edges:
       Your legitimate work gives you ordinary professional familiarity with warehouses, yards, cartage, storage, fire risk, and damage inspection. It does not give you universal inspection authority or the rights of police.
 people:
   - name: Eliza Price
-    relationship: Approved connection — detail pending
+    relationship: Known connection
     text: >-
-      This relationship is part of Bell's locked character baseline. Its final reveal-safe description has not yet been supplied to the website handoff.
+      An established connection in Bell's ordinary life. Further particulars are not yet filed in the dossier.
   - name: Henry Pritchard
-    relationship: Approved connection — detail pending
+    relationship: Known connection
     text: >-
-      This relationship is part of Bell's locked character baseline. Its final reveal-safe description has not yet been supplied to the website handoff.
+      An established connection in Bell's ordinary life. Further particulars are not yet filed in the dossier.
 ---
