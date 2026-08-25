@@ -1,8 +1,29 @@
 ---
 layout: base
 ---
+{% assign p = site.data.player_characters[page.character_slug] %}
 <section class="section-intro">
-  {% if page.kicker %}<p class="eyebrow">{{ page.kicker }}</p>{% endif %}
-  {% if page.summary %}<p class="section-summary">{{ page.summary }}</p>{% endif %}
+  {% if p and page.context_nav == 'sheet' %}
+    <p class="eyebrow">{{ p.publication_name }}</p>
+    <p class="section-summary">Current condition, mechanical reference, combat, talent and improvement marks.</p>
+  {% elsif p and page.context_nav == 'people' %}
+    <p class="eyebrow">Relationships & Connections</p>
+    <p class="section-summary">Personal relationships and the investigators already known before play.</p>
+  {% elsif p and page.context_nav == 'possessions' %}
+    <p class="eyebrow">Equipment, Standing & Access</p>
+    <p class="section-summary">What is carried, what is normally available, and which professional doors can legitimately open.</p>
+  {% else %}
+    {% if page.kicker %}<p class="eyebrow">{{ page.kicker }}</p>{% endif %}
+    {% if page.summary %}<p class="section-summary">{{ page.summary }}</p>{% endif %}
+  {% endif %}
 </section>
-{{ content }}
+
+{% if p and page.context_nav == 'sheet' %}
+  {% include character-sheet.html %}
+{% elsif p and page.context_nav == 'people' %}
+  {% include people-page.html %}
+{% elsif p and page.context_nav == 'possessions' %}
+  {% include possessions-means.html %}
+{% else %}
+  {{ content }}
+{% endif %}
