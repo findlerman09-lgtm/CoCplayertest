@@ -43,3 +43,33 @@ clara-whitcombe:
     - type: Dossier
       label: Clara Whitcombe
       href: /characters/clara-whitcombe/
+
+arthur-bell:
+  name: Arthur Bell
+  occupation: Fire-insurance Surveyor of Risks
+  portrait: /assets/favicon.svg
+  status: Narrative Locked
+  mechanics_pending: true
+  lock:
+    salt: ""
+    verifier: "PENDING"
+    iterations: 120000
+  recent:
+    - type: Dossier
+      label: Arthur Bell
+      href: /characters/arthur-bell/
+
+thomas-merrick:
+  name: Thomas Merrick
+  occupation: Detective Constable, City of London Police
+  portrait: /assets/favicon.svg
+  status: Narrative Locked
+  mechanics_pending: true
+  lock:
+    salt: ""
+    verifier: "PENDING"
+    iterations: 120000
+  recent:
+    - type: Dossier
+      label: Thomas Merrick
+      href: /characters/thomas-merrick/
