@@ -1,0 +1,153 @@
+investigator_id: DL
+publication_name: Miriam Hart
+name_status: locked
+age: 32
+occupation_display: Certificated Assistant Mistress
+occupation_full: School Board for London
+residence: Modest rooms in East London, shared with her widowed mother
+social_status: Lower-middle class; educated, respectable, salaried, financially constrained
+summary: You understand that names, addresses, records, and official summaries only become truthful when connected back to
+  the actual people whose lives they describe.
+roleplay_anchor: Tell me whose name it is first.
+human_detail: Miriam dates even personal notes in the upper-right corner.
+background: 'Miriam is a London-born Jewish woman working as a certificated assistant mistress under the School Board for
+  London. She is educated, respectable, salaried, and financially constrained: secure enough to be relied upon, not wealthy
+  enough for her obligations to become abstract. She lives with her widowed mother Rebecca Hart, within practical reach of
+  her school and households she genuinely knows. Her work gives her a close view of the difference between an address on paper
+  and a household in motion: children move, families change lodgings, work addresses differ from home addresses, names are
+  copied badly, and a record created for one purpose can become dangerously misleading when somebody later treats it as timeless
+  fact.'
+history: 'The Annie Feld case taught Miriam three lessons she has retained: an address has a date; a record has a purpose;
+  knowing something about a household does not mean you own the information. That experience made confidentiality and follow-through
+  practical responsibilities rather than abstractions.'
+player_edges:
+- label: Competence spotlight
+  title: Household Truth
+  text: 'You are especially good at distinguishing recorded names and addresses from the actual household relationships behind
+    them: lodging, family, work, moved addresses, stale entries, and people using different names in different settings.'
+- label: Unique access
+  title: Reciprocal Trust
+  text: Some particular people and households may speak to you because you have followed through for them before. This never
+    compels disclosure and never turns you into a universal community contact.
+- label: Personal pressure
+  title: If You Take the Name
+  text: When you ask someone vulnerable to trust you with a name, confidence, address, or promise, you understand that you
+    have accepted a human responsibility along with the information.
+knowledge:
+- title: Records Have Purposes
+  text: You understand school records and their practical limitations, household and address changes, letters, forms, lists,
+    and bureaucratic confusion.
+- title: People Change What They Say
+  text: You know how frightened people alter what they say depending on who is asking, and the difference between reassurance
+    and false promises.
+- title: Local Knowledge Is Bounded
+  text: You know the streets and households you actually know. You do not speak for Jewish London as a whole.
+people:
+- name: Rebecca Hart
+  relationship: Widowed mother
+  text: Your work and obligations are part of a shared household.
+- name: Sarah Feld
+  relationship: Parent of a former pupil
+  text: The Feld household is not an interchangeable “community contact.” Trust exists because Miriam has history with particular
+    people.
+relationships:
+- name: Dr Laurence Kersey
+  relationship: Trusted referral relationship
+  text: You know him as a physician who treats people as patients rather than occasions for public display.
+- name: Clara Mercer
+  relationship: Professional recognition and tension
+  text: You recognize one another professionally. You are aware that she is capable of restraint, which means you also hold
+    her responsible when she chooses publicity.
+- name: Thomas Merrick
+  relationship: Indirect recognition
+  text: You may know his name indirectly through professional contacts, but no friendship is assumed.
+- name: Arthur Bell
+  relationship: No prior relationship
+  text: You have not met before the campaign begins.
+known_pressure: Other people find Miriam useful. That usefulness can become an obligation from every direction—school, household,
+  relief work, officials, neighbors—and she has limited time, money, and institutional power with which to satisfy those demands.
+characteristics:
+- name: STR
+  value: 45
+  half: 22
+  fifth: 9
+- name: CON
+  value: 60
+  half: 30
+  fifth: 12
+- name: SIZ
+  value: 55
+  half: 27
+  fifth: 11
+- name: DEX
+  value: 60
+  half: 30
+  fifth: 12
+- name: APP
+  value: 60
+  half: 30
+  fifth: 12
+- name: INT
+  value: 75
+  half: 37
+  fifth: 15
+- name: POW
+  value: 75
+  half: 37
+  fifth: 15
+- name: EDU
+  value: 80
+  half: 40
+  fifth: 16
+derived:
+  hp: 11
+  sanity: 75
+  mp: 15
+  luck: 55
+  mov: 8
+  db: '0'
+  build: 0
+  dodge: 35
+talent:
+  name: Keen Hearing
+  effect: Gain a bonus die on Listen rolls.
+  note: Unusually attentive hearing, not supernatural perception.
+credit_rating: 9
+wealth_note: Respectable and salaried but financially constrained.
+languages:
+- name: English
+  value: 86
+  note: No purchased additional language at campaign start.
+combat:
+  brawl: 35%
+  unarmed_damage: 1D3
+  dodge: 35%
+  build: 0
+  firearm: No routine weapon
+  note: Physical courage is more likely to appear as staying with somebody, intervening, organizing help, or refusing to abandon
+    a person than as seeking a fight.
+carried:
+- Ordinary personal and school-related effects appropriate to her circumstances.
+- No routine weapon.
+owned_available:
+- Ordinary household and teaching materials at home or school. School property is not automatically Miriam’s personal inventory.
+professional_access:
+- Pupils and families she actually knows.
+- School staff and records appropriate to her duties.
+- Particular households with whom she has an established relationship.
+- Bounded educational, relief, or referral contacts.
+- People who know from experience that she follows through.
+requires_permission:
+- Confidential school information, another institution’s records, unfamiliar households, private rooms, and another person’s
+  secrets require a genuine relationship, consent, duty, or appropriate institutional route.
+access_limits:
+- Cannot speak for an entire community.
+- Cannot convert Jewish identity into universal access.
+- Cannot expose school or household confidences casually.
+- Cannot compel a family to speak because she is a teacher.
+- Cannot treat every East-End address as personally familiar.
+- Cannot use high social skills as automatic consent.
+editorial_holds:
+- Exact school.
+- Relief/referral contact identity and title.
+- Minor equipment terminology.
