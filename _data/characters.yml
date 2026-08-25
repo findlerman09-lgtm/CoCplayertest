@@ -104,3 +104,18 @@ clara-mercer:
     - type: Dossier
       label: Clara Mercer
       href: /characters/clara-mercer/
+
+laurence-kersey:
+  name: Laurence Kersey
+  occupation: Registered Medical Practitioner
+  portrait: /assets/favicon.svg
+  status: Issued
+  mechanics_pending: true
+  lock:
+    salt: "clQwGmK3CAZGPi1wsEz9Sg=="
+    verifier: "jioAFMQgOWbuxpl4ZzQeVCqJI5YBg45ThZjS7tDXVD8="
+    iterations: 120000
+  recent:
+    - type: Dossier
+      label: Laurence Kersey
+      href: /characters/laurence-kersey/
