@@ -1,0 +1,21 @@
+{% assign p = site.data.player_characters[page.character_slug] %}
+<div class="relationship-grid">
+  {% for person in p.people %}
+  <article class="frame parchment-frame relationship-card">
+    <header><span>{{ person.name }}</span><b>0{{ forloop.index }}</b></header>
+    <div class="frame-body"><div class="relationship-heading"><span class="person-initial large">{{ person.name | slice: 0 }}</span><div><small>{{ person.relationship }}</small><strong>{{ person.name }}</strong></div></div><p>{{ person.text }}</p></div>
+  </article>
+  {% endfor %}
+</div>
+
+{% if p.relationships and p.relationships.size > 0 %}
+<article class="frame dark-frame relationship-note"><header><span>The Other Investigators</span><b>05</b></header><div class="frame-body"><p>These are the relationships that exist before play begins. Nothing here creates a standing investigative organization.</p></div></article>
+<div class="relationship-grid">
+  {% for person in p.relationships %}
+  <article class="frame parchment-frame relationship-card">
+    <header><span>{{ person.name }}</span><b>0{{ forloop.index | plus: 5 }}</b></header>
+    <div class="frame-body"><div class="relationship-heading"><span class="person-initial large">{{ person.name | slice: 0 }}</span><div><small>{{ person.relationship }}</small><strong>{{ person.name }}</strong></div></div><p>{{ person.text }}</p></div>
+  </article>
+  {% endfor %}
+</div>
+{% endif %}
