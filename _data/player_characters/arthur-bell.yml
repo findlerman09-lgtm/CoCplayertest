@@ -1,0 +1,150 @@
+investigator_id: SH
+publication_name: Arthur Bell
+name_status: locked
+age: 43
+occupation_display: Surveyor of Risks
+occupation_full: Fire-insurance surveyor
+residence: Clerkenwell
+social_status: Self-made respectable commercial professional
+summary: You understand buildings, loads, commercial work, and practical movement by asking what the physical world required
+  somebody to do.
+roleplay_anchor: Before deciding what happened, find what had to move.
+human_detail: Bell counts stairs in unfamiliar buildings.
+background: 'Bell is a self-made commercial professional whose authority was earned rather than inherited. His earlier working
+  life gave him practical familiarity with warehouses, cartage, loads, horses, packing, and the ordinary physical compromises
+  of commercial work. He now surveys risk for fire insurance: premises, access, construction, storage, working arrangements,
+  and the ways in which a respectable written account may differ from what is physically happening on the floor. He knows
+  how to speak to proprietors without pretending to be one and how to speak to working men without pretending he never left
+  manual work behind.'
+history: Bell's present standing was hard won. Years of physical work taught him that a problem described neatly in an office
+  often looks different beside the actual load, wall, stable, doorway, or damaged structure. That rise also made him protective
+  of professional discretion. His reputation is useful precisely because people believe he will distinguish an observed condition
+  from an accusation he cannot support.
+player_edges:
+- label: Competence spotlight
+  title: The Physical Story
+  text: 'You are unusually good at reading physical arrangement: what moved, what bears weight, what is worn, what route is
+    practical, what access was required, and whether a proposed sequence fits the space.'
+- label: Unique access
+  title: Insured Premises
+  text: Your profession gives you legitimate reasons to approach certain commercial properties, proprietors, foremen, tradesmen,
+    and records when an insurance interest actually exists. It does not give you a right to inspect unrelated premises.
+- label: Professional pressure
+  title: Hard-Won Standing
+  text: Your reputation for practical judgment and discretion can make respectable commercial people take you seriously. The
+    same reputation gives you something to lose if you behave recklessly or make claims you cannot defend.
+knowledge:
+- title: Movement Has Constraints
+  text: Weight changes posture and pace. Awkward property changes the route people choose. Service entrances and yards often
+    tell a different story from front doors.
+- title: Commercial London Is Physical
+  text: You know the ordinary ecology of carts, packing, warehouses, stable arrangements, water, labor, estimates, invoices,
+    storage, and imperfect books.
+- title: A Mechanism Before a Miracle
+  text: When something mechanical appears impossible, your first assumption is that you have missed the mechanism—not that
+    ordinary rules have ceased to apply.
+people:
+- name: Professional associates & clients
+  relationship: Working relationships
+  text: Your livelihood depends on being trusted to report what you actually see, not what an owner, workman, or insurer wants
+    you to have seen.
+relationships:
+- name: Clara Mercer
+  relationship: Warehouse-fire acquaintance
+  text: You know the reporter through coverage of a warehouse fire in Wapping. There is genuine professional respect between
+    you, complicated by the fact that each believes the other once withheld something that mattered.
+- name: Thomas Merrick
+  relationship: Professional familiarity
+  text: No established friendship. His profession is familiar to you, but police authority and insurance inquiry are different
+    things.
+- name: Miriam Hart
+  relationship: No prior relationship
+  text: You have not previously met.
+- name: Dr Laurence Kersey
+  relationship: No substantial prior relationship
+  text: No substantial pre-existing relationship is required.
+known_pressure: Your standing depends upon being useful and defensible. Sensational conduct, unsupported accusations, careless
+  treatment of a client's affairs, or obvious neglect of your legitimate work can damage a reputation that took years to build.
+characteristics:
+- name: STR
+  value: 70
+  half: 35
+  fifth: 14
+- name: CON
+  value: 65
+  half: 32
+  fifth: 13
+- name: SIZ
+  value: 65
+  half: 32
+  fifth: 13
+- name: DEX
+  value: 60
+  half: 30
+  fifth: 12
+- name: APP
+  value: 50
+  half: 25
+  fifth: 10
+- name: INT
+  value: 75
+  half: 37
+  fifth: 15
+- name: POW
+  value: 60
+  half: 30
+  fifth: 12
+- name: EDU
+  value: 75
+  half: 37
+  fifth: 15
+derived:
+  hp: 13
+  sanity: 60
+  mp: 12
+  luck: 55
+  mov: 7
+  db: +1D4
+  build: 1
+  dodge: 40
+talent:
+  name: Handy
+  effect: The Keeper may reduce difficulty by one level or grant a bonus die on Electrical Repair, Mechanical Repair, or Operate
+    Heavy Machinery.
+  note: Exceptional practical facility, not supernatural mechanical intuition.
+credit_rating: 25
+wealth_note: Respectably established but not wealthy.
+languages:
+- name: English
+  value: 75
+  note: Language (Own)
+combat:
+  brawl: 45%
+  unarmed_damage: 1D3+1D4
+  dodge: 40%
+  build: 1
+  firearm: None routinely carried
+  note: Physically strong and useful in a rescue or rough fight; not a professional combatant.
+carried:
+- Ordinary personal and professional effects appropriate to the current assignment.
+- No firearm is routinely carried.
+owned_available:
+- Ordinary surveying, measuring, drawing, and professional work materials appropriate to his occupation may exist at his home
+  or office. They are not automatically assumed to be on his person.
+professional_access:
+- Insured or prospective insured premises when his office has a real business reason.
+- Property owners, managers, foremen, warehouse workers, carmen, stable workers, and tradesmen in the course of that work.
+- Relevant commercial records voluntarily supplied or properly available through an insurance assignment.
+- Colleagues and ordinary trade contacts.
+requires_permission:
+- A genuine insurance interest, invitation, consent, employer instruction, client relationship, or another lawful reason to
+  inspect private property or its books.
+access_limits:
+- Cannot demand entry to an unrelated business.
+- Cannot seize ledgers or correspondence.
+- Cannot conduct a universal commercial audit.
+- Cannot identify a person’s occupation merely from a generic packing practice.
+- Cannot turn Mechanical Repair into comprehension of an impossible mechanism.
+editorial_holds:
+- Minor survey-kit terminology.
+- Employer name if still provisional.
