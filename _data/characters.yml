@@ -73,3 +73,18 @@ thomas-merrick:
     - type: Dossier
       label: Thomas Merrick
       href: /characters/thomas-merrick/
+
+miriam-hart:
+  name: Miriam Hart
+  occupation: Certificated Assistant Mistress, School Board for London
+  portrait: /assets/favicon.svg
+  status: Issued
+  mechanics_pending: true
+  lock:
+    salt: "xivhvF1lCLgMlApbcv/QVA=="
+    verifier: "rP7nF0JEYVIENk+lE4Dv5AUoRlRLU2dX0K1sTje0hsk="
+    iterations: 120000
+  recent:
+    - type: Dossier
+      label: Miriam Hart
+      href: /characters/miriam-hart/
