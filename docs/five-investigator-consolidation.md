@@ -1,98 +1,87 @@
 # The Rippers — Five-Investigator Consolidation Handoff
 
-**Status:** roster consolidated / narrative dossiers staged / ready for P-07 mechanical population.
+**Status:** roster consolidated / P-07 mechanics populated / P-08 player presentation implemented.
 
 This is a downstream player-site status record. It does not create campaign canon or replace the controlling character-development and PM files.
 
 ## Player-facing roster
 
-| Investigator | Primary competence spotlight | Distinct access / perspective | Player-facing pressure or responsibility |
-| --- | --- | --- | --- |
-| Arthur Bell | Loads & Movement | Commercial premises, fire/damage inspection, warehousing/cartage knowledge | Existing locked Bell baseline; no new pressure invented in this site pass |
-| Thomas Merrick | The Human Sequence | Bounded City of London Police standing and procedure | A Defensible Decision |
-| Miriam Hart | Household Truth | School/household records and reciprocal personal trust | If You Take the Name |
-| Clara Mercer* | Follow It Back | Press/source provenance and public-information ecology | Before the Ink Dries |
-| Laurence Kersey | Reconstruct the Chain | Living-patient medical access and practical rescue | A Doctor Is Expected to Have an Answer |
+| Investigator | Primary competence | Talent | Credit Rating |
+| --- | --- | --- | ---: |
+| Arthur Bell | physical systems / commercial logistics | Handy | 25 |
+| Thomas Merrick | procedure / human sequence | Outmaneuver | 15 |
+| Miriam Hart | people / records / household truth | Keen Hearing | 9 |
+| Clara Mercer* | provenance / press / mobility | Endurance | 12 |
+| Dr Laurence Kersey | medicine / causal reconstruction | Sharp Witted | 30 |
 
-`* Clara Mercer` remains the current development identity pending final PM name/collision approval.
+`* Clara Mercer` remains the current development identity pending final PM publication-name approval.
 
-The five lanes overlap deliberately but are not interchangeable. Official procedure, medical reconstruction, household/community truth, press/source tracing, and commercial/physical logistics all remain bounded by the access limits already stated in the individual dossiers.
+All five begin Adventure I with Luck 55. The site now carries the P-07 characteristics, derived values, skills, talents, combat values, Credit Ratings and languages for all five, together with the P-08 player-facing explanation of their human-scale permissions and access limits.
 
-## Resolved cross-character seams
+## Presentation architecture
 
-The site now carries the approved reciprocal relationships needed before mechanical population:
+The permanent dossier is split by player use rather than duplicated across pages:
 
-- Arthur Bell ↔ Clara Mercer — prior professional contact through a warehouse fire in Wapping.
-- Miriam Hart ↔ Clara Mercer — prior anonymous quotation / professional recognition and tension.
-- Thomas Merrick ↔ Laurence Kersey — prior police/medical contact and disagreement over useful questioning of a living patient.
-- Miriam Hart ↔ Laurence Kersey — established referral trust with reciprocal confidentiality boundaries.
+- **Overview:** identity, one-sentence play fantasy, roleplay anchor, background, formative history, Player Edges, Things You Know, people, prior investigator relationships and known pressure.
+- **Character Sheet:** live HP/SAN/Luck tracking, characteristics, skills, improvement marks, talent, combat, Credit Rating, languages and shared campaign rules.
+- **People:** personal relationships and the investigator relationships that exist before play.
+- **Possessions & Means:** carried items, normally available resources, Credit Rating, languages, professional access, permission requirements and explicit access limits.
 
-No additional pre-campaign team relationship has been invented. The investigators still begin as people with separate ordinary lives rather than a standing investigation group.
+Professional access remains separate from inventory. Skills and Player Edges do not create warrants, consent, ownership or universal authority.
 
-## Publication holds still active
+## Shared mechanical controls
+
+- No Pulp archetypes or +100 archetype points.
+- Exactly one human-scale Pulp talent per investigator.
+- Starting Luck 55; no Luck Recovery roll before Session 1.
+- Maximum ordinary Luck spend of 25 on one eligible roll.
+- It's Only a Scratch! enabled for 20 Luck / 1D6 HP; an already-inflicted Major Wound remains.
+- Avoiding Unconsciousness enabled at 1, 2, 4, 8, 16… Luck by successive round.
+- Avoiding Certain Death disabled.
+- No investigator routinely begins with a firearm.
+- Merrick's Handgun 20 is base competence, not equipment availability.
+
+## Remaining editorial holds
 
 ### Arthur Bell
 
-- provisional employer identity / collision check;
-- fuller reveal-safe particulars for Eliza Price and Henry Pritchard are not currently filed;
-- all P-07 characteristics, skills, Credit Rating, talents, combat values, credentials/equipment and any firearm question.
+- minor survey-kit terminology;
+- employer name if still provisional.
 
 ### Thomas Merrick
 
-- all P-07 characteristics, skills, Credit Rating, talents and derived values;
-- final legality/period treatment of restraint equipment, credential form and any handgun availability;
-- City/Met authority ceiling remains fixed and must not expand during mechanical population.
+- minor police-duty equipment terminology;
+- final period wording for police identification/credentials.
 
 ### Miriam Hart
 
-- exact school identity;
-- relief/referral contact exact name and institutional title;
-- Yiddish percentage only if final family-history justification and P-07 approve it;
-- all other P-07 mechanics and period/economic equipment.
+- exact school;
+- relief/referral contact identity and title;
+- minor equipment terminology.
 
-### Clara Mercer
+### Reporter
 
-- final character name / modern professional collision decision;
-- newspaper title/model (`The Evening Beacon` remains provisional and unpublished as settled employer copy);
-- Edward Latham and Eliza Venn ordinary collision checks;
-- shorthand rules treatment and all other P-07 mechanics/equipment.
+- publication name: **Clara Mercer remains a development name**;
+- newspaper title;
+- minor equipment terminology.
 
-### Laurence Kersey
+### Dr Laurence Kersey
 
 - exact practice address;
-- exact charitable dispensary/institution;
-- Samuel Harcourt's final institutional connection;
-- exact medical-bag contents and other period/economic equipment;
-- all P-07 mechanics and balance decisions.
+- exact dispensary/institution;
+- minor medical-equipment terminology;
+- Samuel Harcourt institutional connection remains held and is not player-published.
 
-## Portrait status
+These are editorial/institutional cleanup items, not mechanical blockers.
 
-All five campaign investigators currently use the neutral Rippers monogram as temporary portrait art. Clara Whitcombe retains her proof portrait only for development/regression testing.
+## Reveal-state control
+
+Permanent dossier content contains no opening case-specific assignment, Keeper-only causal truth, antagonist information, supernatural explanation, pacing lever or unreleased clue. Opening material remains a separate SEALED publication object; Keeper-only material remains outside the player payload entirely.
 
 ## Proof-character status
 
-Clara Whitcombe remains a **non-canon development reference** for the completed mechanical sheet, character-state persistence, correspondence reveal, documents, and related UI behavior. She is no longer listed in the player-facing Investigator password cabinet.
-
-Do not use Clara Whitcombe's mechanics as automatic values or balance targets for the five campaign investigators. Her build is a proof of concept only.
-
-## P-07 site population checklist
-
-For each investigator, the mechanical handoff should identify or authorize as applicable:
-
-- STR, CON, SIZ, DEX, APP, INT, POW, EDU;
-- Luck and starting SAN;
-- HP, MP, MOV, Damage Bonus and Build, with the exact campaign HP rule stated;
-- occupation/archetype rules treatment;
-- final skill names and percentages, including specialties and Own Language;
-- Credit Rating;
-- approved Pulp/Gaslight talent(s), if any;
-- Dodge and Fighting values;
-- firearm skills only where explicitly approved;
-- weapons, armor/protection, and ordinary carried equipment;
-- any investigator-specific mechanical notes that the live state UI must track.
-
-Mechanical population must express the locked fiction rather than broaden professional authority or invent new character access.
+Clara Whitcombe remains a **non-canon development/regression reference** for UI and state behavior. She is not part of the five-investigator player gate and her mechanics are not balance targets for the campaign investigators.
 
 ## Readiness statement
 
-The player-site character architecture is ready for the five-character P-07 mechanics pass. Remaining narrative or historical holds are isolated and do not require redesigning the dossier structure.
+The five campaign investigators are mechanically populated and P-08-presented on the player-site branch. The remaining named holds can be resolved later without redesigning the dossier or reopening P-07 balance.
