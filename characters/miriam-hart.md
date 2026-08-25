@@ -61,4 +61,8 @@ people:
     relationship: Trusted professional referral
     text: >-
       A previous household medical concern established reciprocal respect. Miriam supplies precise household context without surrendering confidence; Kersey treats the person as a patient, separates observation from inference, and does not treat referral as permission to interrogate.
+  - name: Clara Mercer
+    relationship: Recognition / professional tension
+    text: >-
+      Clara once quoted a useful comment from Miriam without naming her. Miriam knows the reporter exercised restraint, but also knows that even an accurate quotation can change what happens to a household once it enters print.
 ---

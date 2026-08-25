@@ -1,11 +1,11 @@
-# Survey administrative field — player dossier password
+# Historical note — survey-created dossier password
 
-Add this after the spoiler-free character questions as an **administrative field**, not a scored personality question:
+**Status: SUPERSEDED / DO NOT IMPLEMENT**
 
-> **Private dossier password**
->
-> Create a password or passphrase you will remember. Later, it will open material prepared specifically for you. Do not reuse a password you use for an important real-world account.
->
-> Password: ______________________________
+An earlier access model asked players to create a private dossier password as an administrative field on the spoiler-free character survey.
 
-This field is not interpreted for character creation and does not count as an additional survey personality question.
+That model has been retired.
+
+The current player site uses **campaign-issued dossier passwords** generated during dossier assembly. The spoiler-free survey should not request, score, store, or export a dossier password for this purpose.
+
+Only salted PBKDF2 verifiers are stored in the public player-site repository; plaintext campaign-issued passwords are distributed separately to the relevant players.

@@ -43,4 +43,8 @@ people:
     relationship: Known connection
     text: >-
       An established connection in Bell's ordinary life. Further particulars are not yet filed in the dossier.
+  - name: Clara Mercer
+    relationship: Prior professional contact
+    text: >-
+      Mutual technical respect and professional suspicion dating from a warehouse fire in Wapping. Clara checked Bell's correction rather than defending an error, and Bell knows she can distinguish an allegation from something she can actually substantiate.
 ---

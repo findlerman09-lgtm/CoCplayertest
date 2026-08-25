@@ -1,35 +1,32 @@
-# The Rippers — Player Character Dossier POC
+# The Rippers — Player Dossier Site
 
-This repository is a proof of concept for the player-facing character webpages for **The Rippers**.
+This repository is the player-facing dossier and archive surface for **The Rippers**.
 
-The goal is not merely to reproduce a Call of Cthulhu character sheet in a browser. Each character gets an evolving dossier containing background, relationships, personal knowledge, released clues, mechanical reference, possessions, and later campaign updates.
+Each investigator receives a private evolving dossier containing reveal-safe background, relationships, personal knowledge, released clues, mechanical reference, possessions, correspondence, and later campaign updates. Shared Documents and Case Files provide material released to the whole table.
 
-## Prototype
+## Current investigator roster
 
-The current non-canon test character is **Clara Whitcombe**, a commercial photographer.
+The player-facing Investigator gate is configured for the five current campaign investigators:
 
-After GitHub Pages is enabled, her dossier will be available at:
+- Arthur Bell
+- Thomas Merrick
+- Miriam Hart
+- Clara Mercer — current development identity pending final name/collision approval
+- Laurence Kersey
 
-`https://findlerman09-lgtm.github.io/CoCplayertest/characters/clara-whitcombe/`
+The earlier **Clara Whitcombe** photographer dossier remains in the repository strictly as a non-canon development and mechanical-regression reference. It is not part of the player-facing Investigator cabinet.
 
-## Structure
+## Mechanical status
 
-```text
-/
-├── _config.yml
-├── _layouts/
-│   ├── default.html
-│   └── character.html
-├── assets/
-│   └── rippers.css
-├── characters/
-│   └── clara-whitcombe.md
-├── docs/
-│   └── character-build-audit.md
-└── index.md
-```
+The five campaign investigators are intentionally staged with their narrative dossiers ahead of final mechanics. Their live character-state fields remain disabled until the P-07 rules/balance/equipment pass supplies approved values.
 
-New player characters should primarily require a new Markdown dossier file; the layout and styling remain shared.
+Clara Whitcombe retains completed prototype mechanics because her purpose is to exercise and regression-test the character-state interface.
+
+## Access model
+
+Investigator dossiers use campaign-issued passwords. Only salted PBKDF2 verifiers are stored in this public repository; plaintext dossier passwords are distributed separately.
+
+The archive key and any sealed-document reveal codes are separate access layers.
 
 ## Spoiler-control rule
 
@@ -37,6 +34,6 @@ Never publish an unrevealed clue, Keeper secret, future NPC betrayal, hidden con
 
 A hidden browser element is not secret. Future material remains in Keeper/project files until it is actually released in play.
 
-## Status
+## Development principle
 
-**Prototype only.** Clara Whitcombe and her example dossier updates are non-canon.
+This website is a downstream publication surface. Character, scenario, historical, and mechanical decisions are incorporated here after their controlling development or PM pass; the site should not invent campaign canon to fill unresolved fields.
