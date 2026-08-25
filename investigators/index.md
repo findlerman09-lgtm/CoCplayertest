@@ -13,7 +13,7 @@ breadcrumb: The Rippers / Investigator
     <div class="lock-mark">R</div>
     <p class="eyebrow">Private investigator dossier</p>
     <h1>Password Required</h1>
-    <p>Enter the personal dossier password you created before play.</p>
+    <p>Enter the dossier password issued to you for play.</p>
     <form class="lock-form" data-dossier-key-form>
       <label><span>Dossier password</span><input type="password" autocomplete="current-password" autofocus></label>
       <button type="submit">Open Dossier</button>
