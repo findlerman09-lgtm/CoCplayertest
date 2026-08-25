@@ -37,8 +37,8 @@ window.addEventListener('DOMContentLoaded', () => {
   const status = gate.querySelector('[data-lock-status]');
 
   /* A PENDING verifier is a controlled publication hold, not a password.
-     It keeps prepared dossier routes closed until the player's real survey
-     password has been registered through the normal verifier workflow. */
+     It keeps prepared dossier routes closed until a campaign-issued password
+     has been registered through the normal verifier workflow. */
   if (verifier === 'PENDING') {
     const heading = gate.querySelector('h1');
     const description = gate.querySelector('.lock-card > p:not(.eyebrow)');
