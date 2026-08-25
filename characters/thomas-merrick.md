@@ -47,4 +47,8 @@ people:
     relationship: Senior City detective
     text: >-
       McWilliam is a demanding senior officer who values useful work more than theatrical certainty. Approval from above does not make an unsupported conclusion stronger.
+  - name: Laurence Kersey
+    relationship: Professional respect and disagreement
+    text: >-
+      A previous assault investigation taught both men the difference between questioning a living patient quickly and questioning them usefully. Merrick respects Kersey's refusal to turn a plausible medical inference into a fact merely because the investigation would prefer an answer.
 ---
