@@ -1,0 +1,65 @@
+{% assign p = site.data.player_characters[page.character_slug] %}
+
+<div class="frame-grid two-one possessions-grid">
+  <article class="frame parchment-frame">
+    <header><span>Carried</span><b>01</b></header>
+    <div class="frame-body possession-list">
+      {% for item in p.carried %}
+      <div class="possession-row"><span>◆</span><p>{{ item }}</p></div>
+      {% endfor %}
+    </div>
+  </article>
+
+  <div class="frame-grid possession-side-stack">
+    <article class="frame dark-frame means-card">
+      <header><span>Means</span><b>02</b></header>
+      <div class="frame-body"><strong>Credit Rating {{ p.credit_rating }}</strong><p>{{ p.wealth_note }}</p></div>
+    </article>
+    <article class="frame dark-frame">
+      <header><span>Languages</span><b>03</b></header>
+      <div class="frame-body quick-rule-stack">
+        {% for language in p.languages %}
+        <div><strong>{{ language.name }} {{ language.value }}</strong>{% if language.note %}<p>{{ language.note }}</p>{% endif %}</div>
+        {% endfor %}
+      </div>
+    </article>
+  </div>
+</div>
+
+<article class="frame parchment-frame">
+  <header><span>Owned / Normally Available</span><b>04</b></header>
+  <div class="frame-body possession-list">
+    {% for item in p.owned_available %}
+    <div class="possession-row"><span>◆</span><p>{{ item }}</p></div>
+    {% endfor %}
+  </div>
+</article>
+
+<section class="frame-grid two-one">
+  <article class="frame parchment-frame">
+    <header><span>Professional Access</span><b>05</b></header>
+    <div class="frame-body possession-list">
+      {% for item in p.professional_access %}
+      <div class="possession-row"><span>◆</span><p>{{ item }}</p></div>
+      {% endfor %}
+    </div>
+  </article>
+  <article class="frame dark-frame">
+    <header><span>Requires Permission / Circumstance</span><b>06</b></header>
+    <div class="frame-body possession-list">
+      {% for item in p.requires_permission %}
+      <div class="possession-row"><span>◆</span><p>{{ item }}</p></div>
+      {% endfor %}
+    </div>
+  </article>
+</section>
+
+<article class="frame dark-frame relationship-note">
+  <header><span>Access Limits</span><b>07</b></header>
+  <div class="frame-body possession-list">
+    {% for item in p.access_limits %}
+    <div class="possession-row"><span>◆</span><p>{{ item }}</p></div>
+    {% endfor %}
+    <p class="sheet-note">Skills and Player Edges describe competence and plausible proposals. They do not create warrants, consent, ownership, institutional authority, or automatic access.</p>
+  </div>
+</article>
