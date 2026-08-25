@@ -46,76 +46,394 @@ clara-whitcombe:
 
 arthur-bell:
   name: Arthur Bell
-  occupation: Fire-insurance Surveyor of Risks
+  occupation: Surveyor of Risks
   portrait: /assets/favicon.svg
   status: Issued
-  mechanics_pending: true
+  hp: 13
+  max_hp: 13
+  sanity: 60
+  max_sanity: 99
+  luck: 55
+  state_version: 1
   lock:
-    salt: "JaCqCiRwwhtM0+X69iavWw=="
-    verifier: "HPTT+4iPfr2OAdYsjnd/qaCTnMLDrl+ajgzycX/8AyU="
+    salt: JaCqCiRwwhtM0+X69iavWw==
+    verifier: HPTT+4iPfr2OAdYsjnd/qaCTnMLDrl+ajgzycX/8AyU=
     iterations: 120000
+  skills:
+  - id: spot-hidden
+    name: Spot Hidden
+    value: 70
+    improvable: true
+  - id: drive-carriage
+    name: Drive Carriage
+    value: 60
+    improvable: true
+  - id: mechanical-repair
+    name: Mechanical Repair
+    value: 60
+    improvable: true
+  - id: appraise
+    name: Appraise
+    value: 55
+    improvable: true
+  - id: accounting
+    name: Accounting
+    value: 50
+    improvable: true
+  - id: navigate
+    name: Navigate
+    value: 50
+    improvable: true
+  - id: climb
+    name: Climb
+    value: 50
+    improvable: true
+  - id: brawl
+    name: Fighting (Brawl)
+    value: 45
+    improvable: true
+  - id: technical-drawing
+    name: Art/Craft (Technical Drawing)
+    value: 40
+    improvable: true
+  - id: first-aid
+    name: First Aid
+    value: 40
+    improvable: true
+  - id: persuade
+    name: Persuade
+    value: 35
+    improvable: true
+  - id: library-use
+    name: Library Use
+    value: 35
+    improvable: true
+  - id: stealth
+    name: Stealth
+    value: 35
+    improvable: true
+  - id: jump
+    name: Jump
+    value: 30
+    improvable: true
+  - id: dodge
+    name: Dodge
+    value: 40
+    improvable: true
   recent:
-    - type: Dossier
-      label: Arthur Bell
-      href: /characters/arthur-bell/
-
+  - type: Dossier
+    label: Arthur Bell
+    href: /characters/arthur-bell/
 thomas-merrick:
   name: Thomas Merrick
-  occupation: Detective Constable, City of London Police
+  occupation: Detective Constable
   portrait: /assets/favicon.svg
   status: Issued
-  mechanics_pending: true
+  hp: 13
+  max_hp: 13
+  sanity: 70
+  max_sanity: 99
+  luck: 55
+  state_version: 1
   lock:
-    salt: "urVpVC6xQnm4XAcZSg934w=="
-    verifier: "IEFLDehzcsRqxsf+qKOz8nHsNtUNTYqQTSwIqJQIJ/U="
+    salt: urVpVC6xQnm4XAcZSg934w==
+    verifier: IEFLDehzcsRqxsf+qKOz8nHsNtUNTYqQTSwIqJQIJ/U=
     iterations: 120000
+  skills:
+  - id: law
+    name: Law
+    value: 70
+    improvable: true
+  - id: psychology
+    name: Psychology
+    value: 60
+    improvable: true
+  - id: spot-hidden
+    name: Spot Hidden
+    value: 60
+    improvable: true
+  - id: listen
+    name: Listen
+    value: 55
+    improvable: true
+  - id: track
+    name: Track
+    value: 55
+    improvable: true
+  - id: brawl
+    name: Fighting (Brawl)
+    value: 50
+    improvable: true
+  - id: navigate
+    name: Navigate
+    value: 50
+    improvable: true
+  - id: persuade
+    name: Persuade
+    value: 45
+    improvable: true
+  - id: stealth
+    name: Stealth
+    value: 40
+    improvable: true
+  - id: first-aid
+    name: First Aid
+    value: 40
+    improvable: true
+  - id: intimidate
+    name: Intimidate
+    value: 35
+    improvable: true
+  - id: library-use
+    name: Library Use
+    value: 35
+    improvable: true
+  - id: handgun
+    name: Handgun
+    value: 20
+    improvable: true
+  - id: accounting
+    name: Accounting
+    value: 10
+    improvable: true
+  - id: dodge
+    name: Dodge
+    value: 45
+    improvable: true
   recent:
-    - type: Dossier
-      label: Thomas Merrick
-      href: /characters/thomas-merrick/
-
+  - type: Dossier
+    label: Thomas Merrick
+    href: /characters/thomas-merrick/
 miriam-hart:
   name: Miriam Hart
-  occupation: Certificated Assistant Mistress, School Board for London
+  occupation: Certificated Assistant Mistress
   portrait: /assets/favicon.svg
   status: Issued
-  mechanics_pending: true
+  hp: 11
+  max_hp: 11
+  sanity: 75
+  max_sanity: 99
+  luck: 55
+  state_version: 1
   lock:
-    salt: "xivhvF1lCLgMlApbcv/QVA=="
-    verifier: "rP7nF0JEYVIENk+lE4Dv5AUoRlRLU2dX0K1sTje0hsk="
+    salt: xivhvF1lCLgMlApbcv/QVA==
+    verifier: rP7nF0JEYVIENk+lE4Dv5AUoRlRLU2dX0K1sTje0hsk=
     iterations: 120000
+  skills:
+  - id: library-use
+    name: Library Use
+    value: 70
+    improvable: true
+  - id: listen
+    name: Listen
+    value: 70
+    improvable: true
+  - id: psychology
+    name: Psychology
+    value: 65
+    improvable: true
+  - id: persuade
+    name: Persuade
+    value: 65
+    improvable: true
+  - id: reassure
+    name: Reassure
+    value: 62
+    improvable: true
+  - id: navigate
+    name: Navigate
+    value: 55
+    improvable: true
+  - id: history
+    name: History
+    value: 50
+    improvable: true
+  - id: spot-hidden
+    name: Spot Hidden
+    value: 50
+    improvable: true
+  - id: first-aid
+    name: First Aid
+    value: 45
+    improvable: true
+  - id: brawl
+    name: Fighting (Brawl)
+    value: 35
+    improvable: true
+  - id: accounting
+    name: Accounting
+    value: 35
+    improvable: true
+  - id: law
+    name: Law
+    value: 30
+    improvable: true
+  - id: dodge
+    name: Dodge
+    value: 35
+    improvable: true
   recent:
-    - type: Dossier
-      label: Miriam Hart
-      href: /characters/miriam-hart/
-
+  - type: Dossier
+    label: Miriam Hart
+    href: /characters/miriam-hart/
 clara-mercer:
   name: Clara Mercer
   occupation: Reporter — East-End district
   portrait: /assets/favicon.svg
   status: Issued
-  mechanics_pending: true
   identity_pending: true
+  hp: 11
+  max_hp: 11
+  sanity: 65
+  max_sanity: 99
+  luck: 55
+  state_version: 1
   lock:
-    salt: "waAxbwvaOlbLow+qpOrtDA=="
-    verifier: "gyiuCjoh+HkA/oa3GEWXHPGlOk4mhbXBWwerV76DFkk="
+    salt: waAxbwvaOlbLow+qpOrtDA==
+    verifier: gyiuCjoh+HkA/oa3GEWXHPGlOk4mhbXBWwerV76DFkk=
     iterations: 120000
+  skills:
+  - id: listen
+    name: Listen
+    value: 70
+    improvable: true
+  - id: fast-talk
+    name: Fast Talk
+    value: 65
+    improvable: true
+  - id: persuade
+    name: Persuade
+    value: 55
+    improvable: true
+  - id: stealth
+    name: Stealth
+    value: 55
+    improvable: true
+  - id: library-use
+    name: Library Use
+    value: 50
+    improvable: true
+  - id: spot-hidden
+    name: Spot Hidden
+    value: 50
+    improvable: true
+  - id: shorthand
+    name: Art/Craft (Shorthand)
+    value: 45
+    improvable: true
+  - id: navigate
+    name: Navigate
+    value: 40
+    improvable: true
+  - id: history
+    name: History
+    value: 40
+    improvable: true
+  - id: brawl
+    name: Fighting (Brawl)
+    value: 35
+    improvable: true
+  - id: climb
+    name: Climb
+    value: 35
+    improvable: true
+  - id: law
+    name: Law
+    value: 30
+    improvable: true
+  - id: psychology
+    name: Psychology
+    value: 10
+    improvable: true
+  - id: accounting
+    name: Accounting
+    value: 10
+    improvable: true
+  - id: dodge
+    name: Dodge
+    value: 45
+    improvable: true
   recent:
-    - type: Dossier
-      label: Clara Mercer
-      href: /characters/clara-mercer/
-
+  - type: Dossier
+    label: Clara Mercer
+    href: /characters/clara-mercer/
 laurence-kersey:
   name: Laurence Kersey
-  occupation: Registered Medical Practitioner
+  occupation: General Practitioner
   portrait: /assets/favicon.svg
   status: Issued
-  mechanics_pending: true
+  hp: 13
+  max_hp: 13
+  sanity: 65
+  max_sanity: 99
+  luck: 55
+  state_version: 1
   lock:
-    salt: "clQwGmK3CAZGPi1wsEz9Sg=="
-    verifier: "jioAFMQgOWbuxpl4ZzQeVCqJI5YBg45ThZjS7tDXVD8="
+    salt: clQwGmK3CAZGPi1wsEz9Sg==
+    verifier: jioAFMQgOWbuxpl4ZzQeVCqJI5YBg45ThZjS7tDXVD8=
     iterations: 120000
+  skills:
+  - id: medicine
+    name: Medicine
+    value: 80
+    improvable: true
+  - id: first-aid
+    name: First Aid
+    value: 70
+    improvable: true
+  - id: psychology
+    name: Psychology
+    value: 55
+    improvable: true
+  - id: reassure
+    name: Reassure
+    value: 55
+    improvable: true
+  - id: listen
+    name: Listen
+    value: 55
+    improvable: true
+  - id: brawl
+    name: Fighting (Brawl)
+    value: 45
+    improvable: true
+  - id: dodge
+    name: Dodge
+    value: 40
+    improvable: true
+  - id: spot-hidden
+    name: Spot Hidden
+    value: 40
+    improvable: true
+  - id: library-use
+    name: Library Use
+    value: 35
+    improvable: true
+  - id: persuade
+    name: Persuade
+    value: 35
+    improvable: true
+  - id: biology
+    name: Biology
+    value: 35
+    improvable: true
+  - id: pharmacy
+    name: Pharmacy
+    value: 35
+    improvable: true
+  - id: navigate
+    name: Navigate
+    value: 27
+    improvable: true
+  - id: latin
+    name: Latin
+    value: 20
+    improvable: true
+  - id: accounting
+    name: Accounting
+    value: 10
+    improvable: true
   recent:
-    - type: Dossier
-      label: Laurence Kersey
-      href: /characters/laurence-kersey/
+  - type: Dossier
+    label: Laurence Kersey
+    href: /characters/laurence-kersey/
