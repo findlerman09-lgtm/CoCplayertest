@@ -2,7 +2,7 @@
 
 Status: implementation branch acceptance record.
 
-This record documents site-layer corrections made from the 26 August playtest audit. It does not establish scenario canon or publish Keeper-only mechanics.
+This record documents site-layer corrections made from the 26 August playtest audit. It does not establish scenario canon or publish unreleased campaign material.
 
 ## Acceptance targets
 
@@ -22,4 +22,4 @@ This record documents site-layer corrections made from the 26 August playtest au
 
 ## Out of scope
 
-Keeper-only Vale, pursuit, Clockwork Surgeon, Cadosch, and SAN mechanics are controlled outside the public player repository and must not be copied into player-facing site data.
+Unreleased Keeper-only scenario mechanics and antagonist material are controlled outside the public player repository and must not be copied into player-facing site data.
