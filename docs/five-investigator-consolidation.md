@@ -1,8 +1,26 @@
 # The Rippers — Five-Investigator Consolidation Handoff
 
-**Status:** roster consolidated / P-07 mechanics populated / P-08 player presentation implemented.
+**Status:** roster consolidated / P-07 mechanics populated / P-08 player presentation reconciled to locked P-06 identity.
 
 This is a downstream player-site status record. It does not create campaign canon or replace the controlling character-development and PM files.
+
+## Controlling presentation rule
+
+P-08 is a presentation layer, not a character-development pass.
+
+> Do not rewrite, anonymize, rename, or summarize away P-06 locked identity elements merely for page consistency. Restore exact locked Edge titles, formative-history anchors, People Who Matter, and named pressures; retain holds only where the PM actually left a hold.
+
+The P-08 architecture is retained, but locked P-06 identity controls whenever a condensation or presentation label conflicts with the accepted character baseline.
+
+## P-08 canon-reconciliation corrections
+
+- **Arthur Bell:** restored the stronger accepted one-sentence identity and the locked named people **Eliza Price** and **Henry Pritchard**. Their fuller reveal-safe particulars remain unfiled rather than being invented.
+- **Thomas Merrick:** restored the locked Player Edge titles and permissions **The Human Sequence**, **City Police Standing**, and **A Defensible Decision**. The P-08 replacement labels are discarded.
+- **Miriam Hart:** verified **Rebecca Hart** and **Sarah Feld** as material already present in the accepted baseline; retained the relief/referral identity/title hold; restored **Trust Is Borrowed** as the visible pressure anchor.
+- **Dr Laurence Kersey:** restored **Before the Cart Moved**, including the specific carman/cart sequence and the locked lesson, and retained **Alfred Kersey** in People Who Matter.
+- **Reporter:** no P-06 identity correction was required in this reconciliation; the publication-name and newspaper-title holds remain active.
+
+No P-07 mechanics were changed by this correction pass.
 
 ## Player-facing roster
 
@@ -16,13 +34,13 @@ This is a downstream player-site status record. It does not create campaign cano
 
 `* Clara Mercer` remains the current development identity pending final PM publication-name approval.
 
-All five begin Adventure I with Luck 55. The site now carries the P-07 characteristics, derived values, skills, talents, combat values, Credit Ratings and languages for all five, together with the P-08 player-facing explanation of their human-scale permissions and access limits.
+All five begin Adventure I with Luck 55. The site carries the P-07 characteristics, derived values, skills, talents, combat values, Credit Ratings and languages for all five, together with the reconciled player-facing explanation of their human-scale permissions and access limits.
 
 ## Presentation architecture
 
 The permanent dossier is split by player use rather than duplicated across pages:
 
-- **Overview:** identity, one-sentence play fantasy, roleplay anchor, background, formative history, Player Edges, Things You Know, people, prior investigator relationships and known pressure.
+- **Overview:** identity, reveal-safe summary, roleplay anchor, background, formative history, Player Edges, Things You Know, People Who Matter, prior investigator relationships and known pressure.
 - **Character Sheet:** live HP/SAN/Luck tracking, characteristics, skills, improvement marks, talent, combat, Credit Rating, languages and shared campaign rules.
 - **People:** personal relationships and the investigator relationships that exist before play.
 - **Possessions & Means:** carried items, normally available resources, Credit Rating, languages, professional access, permission requirements and explicit access limits.
@@ -46,7 +64,8 @@ Professional access remains separate from inventory. Skills and Player Edges do 
 ### Arthur Bell
 
 - minor survey-kit terminology;
-- employer name if still provisional.
+- employer name if still provisional;
+- fuller reveal-safe particulars for Eliza Price and Henry Pritchard remain unfiled.
 
 ### Thomas Merrick
 
@@ -84,4 +103,4 @@ Clara Whitcombe remains a **non-canon development/regression reference** for UI 
 
 ## Readiness statement
 
-The five campaign investigators are mechanically populated and P-08-presented on the player-site branch. The remaining named holds can be resolved later without redesigning the dossier or reopening P-07 balance.
+The five campaign investigators are mechanically populated and the P-08 player presentation has been reconciled back to locked P-06 identity where the original presentation pass drifted. Remaining named holds can be resolved later without redesigning the dossier or reopening P-07 balance.
