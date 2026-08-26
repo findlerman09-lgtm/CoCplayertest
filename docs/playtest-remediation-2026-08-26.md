@@ -1,8 +1,8 @@
 # Player-site playtest remediation — 26 August 2026
 
-Status: implementation branch acceptance record.
+Status: **historical implementation record; superseded for current status by the RC1 website synchronization record.**
 
-This record documents site-layer corrections made from the 26 August playtest audit. It does not establish scenario canon or publish unreleased campaign material.
+This record documents site-layer corrections made from the 26 August playtest audit. It does not establish scenario canon, does not represent the final post-rehearsal acceptance gate, and does not publish unreleased campaign material.
 
 ## Acceptance targets
 
