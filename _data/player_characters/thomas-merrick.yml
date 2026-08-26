@@ -20,19 +20,15 @@ history: Earlier in Merrick's career, a plausible case narrowed around a recentl
   has never forgotten the distinction between suspicion, inquiry, detention, and proof. He is not timid because of that failure.
   He is disciplined.
 player_edges:
-- label: Presentation permission
-  title: Human Sequence
-  text: You are especially good at organizing statements, times, routes, opportunity, motives, and records into a coherent
-    human sequence—and at noticing when somebody's certainty depends on somebody else's retelling.
-- label: Presentation permission
-  title: Bounded City Authority
-  text: Inside the legitimate scope of your office, you can identify yourself as a City detective, make formal inquiries,
-    preserve testimony, request records or cooperation, and act against ordinary crime. You also know when another jurisdiction,
-    superior, warrant, owner, or procedure matters.
-- label: Presentation permission
-  title: Proof Before Entitlement
-  text: You distinguish “this person interests me” from “I am entitled to search, detain, accuse, or disclose.” When evidence
-    becomes strong enough, this discipline should make you decisive rather than hesitant.
+- label: Competence spotlight
+  title: The Human Sequence
+  text: You are exceptionally good at taking scattered statements, motives, routes, times, and records and turning them into a sequence that can actually be tested. A confident story matters less than one whose parts agree.
+- label: Unique access
+  title: City Police Standing
+  text: Within a City investigation you can act with legitimate police standing, review appropriate official material, make proper requests, question people, preserve evidence, and call upon City colleagues within their duties. Beyond City jurisdiction, cooperation must be obtained rather than assumed.
+- label: Personal pressure
+  title: A Defensible Decision
+  text: You have made a premature conclusion before and remember who paid for it. You are willing to act before everything is known, but you distinguish suspicion, grounds for inquiry, grounds for detention, and proof. Serious decisions may later require serious explanations.
 knowledge:
 - title: Witnesses Can Be Honest and Wrong
   text: Frightened witnesses can be truthful and inaccurate at once, and fear of police is not proof of guilt.
@@ -65,7 +61,7 @@ relationships:
 - name: Clara Mercer
   relationship: Professional presence
   text: You know reporters as a professional presence. There is no pre-existing private alliance.
-known_pressure: You must make defensible decisions under incomplete information. Your superiors, fellow officers, courts,
+known_pressure: A Defensible Decision. You must make defensible decisions under incomplete information. Your superiors, fellow officers, courts,
   witnesses, and household can all be affected by what you decide. Past experience has made you unwilling to confuse a strong
   suspicion with a right you have not earned.
 characteristics:
