@@ -6,7 +6,12 @@
 .tracker-value-row input[type="number"]::-webkit-outer-spin-button,.tracker-value-row input[type="number"]::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
 .tracker-value-row button{color:#efd18a;border-color:rgba(201,168,102,.52);background:linear-gradient(180deg,#13262d,#08161b);font-size:1.08rem;line-height:1;box-shadow:inset 0 0 0 1px rgba(0,0,0,.2)}
 .tracker-value-row button:hover,.tracker-value-row button:focus-visible{color:#fff0c4;border-color:#efd18a;background:linear-gradient(180deg,#1d353d,#0c2026);outline:none;box-shadow:0 0 0 2px rgba(201,168,102,.12),inset 0 0 0 1px rgba(0,0,0,.2)}
-.skill-thresholds{display:block;opacity:.7;font-size:.72rem;margin-top:.15rem}
+.tracker-value-row button:disabled,.event-entry-row button:disabled{opacity:.45;cursor:not-allowed}
+.skill-thresholds{display:block;opacity:.78;font-size:.72rem;margin-top:.15rem}
+.mythos-control{margin-top:12px;padding-top:10px;border-top:1px solid rgba(197,163,95,.18)}
+.mythos-control label{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:.76rem;color:#cbd2cf}
+.mythos-control input{width:72px;background:#071319;color:#f0e3c3;border:1px solid rgba(197,163,95,.38);padding:6px;text-align:center}
+.base-skill-reference{margin-top:14px;font-size:.78rem;line-height:1.5}.base-skill-reference summary{cursor:pointer;font-weight:600}.language-improvement{display:flex;align-items:center;gap:8px;margin-top:6px;font-size:.72rem}
 </style>
 
 <div class="condition-banner-row">
@@ -23,26 +28,31 @@
       <label for="damage-entry">Damage from one attack</label>
       <div class="event-entry-row"><input id="damage-entry" type="number" min="0" inputmode="numeric" data-damage-entry><button type="button" data-apply-damage>Apply</button></div>
     </div>
-    <p class="tracker-alert" data-hp-alert>Enter damage from one attack to apply wound rules automatically.</p>
+    <p class="tracker-alert" data-hp-alert role="status" aria-live="polite">Enter damage from one attack to apply wound rules automatically.</p>
     <label class="wound-toggle"><input type="checkbox" data-state-input="majorWound"> Major Wound marked</label>
+    <small class="manual-note">Clearing a Major Wound is a mechanical recovery decision, not the same as removing its narrative note.</small>
   </section>
 
   <section class="tracker-card event-tracker-card sanity-card">
-    <div class="tracker-heading"><span>Sanity</span><b><span data-state-display="sanity">{{ c.sanity }}</span> / {{ c.max_sanity }}</b></div>
+    <div class="tracker-heading"><span>Sanity</span><b><span data-state-display="sanity">{{ c.sanity }}</span> / <span data-state-display="max-sanity">{{ c.max_sanity }}</span></b></div>
     <div class="tracker-value-row"><button type="button" data-state-key="sanity" data-state-delta="-1" data-state-max="{{ c.max_sanity }}">−</button><input type="number" min="0" max="{{ c.max_sanity }}" value="{{ c.sanity }}" data-state-input="sanity" aria-label="Current sanity"><button type="button" data-state-key="sanity" data-state-delta="1" data-state-max="{{ c.max_sanity }}">+</button></div>
     <small class="manual-note">Use − / + only for manual correction or recovery.</small>
+    <div class="mythos-control">
+      <label><span>Cthulhu Mythos</span><input type="number" min="0" max="99" value="0" data-state-input="cthulhuMythos" aria-label="Cthulhu Mythos skill"></label>
+      <small>Maximum SAN is 99 minus Cthulhu Mythos.</small>
+    </div>
     <div class="event-entry-block">
       <label for="sanity-loss-entry">SAN lost from one event</label>
       <div class="event-entry-row"><input id="sanity-loss-entry" type="number" min="0" inputmode="numeric" data-sanity-loss-entry><button type="button" data-apply-sanity-loss>Apply</button></div>
     </div>
     <div class="sanity-period-meter"><span>Cumulative SAN-loss period</span><b><span data-sanity-period-loss>0</span> / <span data-sanity-threshold>{{ c.sanity | divided_by: 5 }}</span></b><small>Started at <span data-sanity-period-start>{{ c.sanity }}</span> SAN</small></div>
-    <p class="tracker-alert" data-san-alert>Enter SAN lost from one event to test one-time and cumulative thresholds.</p>
+    <p class="tracker-alert" data-san-alert role="status" aria-live="polite">Enter SAN lost from one event to test one-time and cumulative thresholds.</p>
     <div class="temp-resolution" data-temp-resolution-panel hidden>
-      <span>Resolve the required INT roll:</span>
+      <span>Resolve the required INT roll before entering another SAN-loss event:</span>
       <div><button type="button" data-temp-resolution="success">INT Success</button><button type="button" data-temp-resolution="failure">INT Failure</button></div>
     </div>
-    <div class="tracker-utility-row"><button type="button" class="small-action" data-reset-sanity-period>Reset cumulative loss</button><button type="button" class="small-action" data-clear-sanity-condition>End insanity condition</button></div>
-    <small class="manual-note sanity-control-note" data-sanity-control-note>Resetting cumulative loss starts a fresh one-fifth threshold; it does not end an active insanity condition.</small>
+    <div class="tracker-utility-row"><button type="button" class="small-action" data-reset-sanity-period>Start new SAN period (Keeper)</button><button type="button" class="small-action" data-clear-sanity-condition>End insanity (Keeper)</button></div>
+    <small class="manual-note sanity-control-note" data-sanity-control-note>Start a new SAN period only when the Keeper determines a new period of safety/rest begins.</small>
   </section>
 
   <section class="tracker-card luck-card">
@@ -60,13 +70,13 @@
 
 <section class="private-effects-board">
   <div class="private-effects-heading">
-    <div><small>For your eyes first</small><strong>Private Effects</strong></div>
-    <p>When a Major Wound or bout of madness occurs, this device draws the detail for you. Bring it into play when it becomes apparent. The Keeper can adapt wording that conflicts with the fiction.</p>
+    <div><small>Campaign house procedure</small><strong>Private Effects</strong></div>
+    <p>When a Major Wound or bout of madness occurs, this device may draw a private narrative prompt for you. It does not replace the mechanical rules or the Keeper's authority to choose, adapt, or replace a madness result.</p>
   </div>
   <div class="private-effects-grid">
     <article class="private-effect-card wound-effect-card">
       <header><span>Major Wounds</span><b>Physical</b></header>
-      <div data-wound-effects><p class="empty-private-effect">No Major Wound has been assigned.</p></div>
+      <div data-wound-effects><p class="empty-private-effect">No Major Wound narrative note is active.</p></div>
     </article>
     <article class="private-effect-card madness-effect-card">
       <header><span>Bouts of Madness</span><b>Mental</b></header>
@@ -89,7 +99,7 @@
     <header><span>Skills</span><b>02</b></header>
     <div class="frame-body">
       <p class="skill-instruction"><strong>Regular:</strong> listed value · <strong>Hard:</strong> half · <strong>Extreme:</strong> one-fifth. Skill values express competence, not permission.</p>
-      <p class="skill-instruction">Mark an eligible skill after a qualifying successful use. One mark is enough before the next improvement phase.</p>
+      <p class="skill-instruction">Mark an eligible skill after a qualifying successful use. A success bought with Luck does <strong>not</strong> earn an improvement check under the campaign's selected Pulp rule.</p>
       <div class="interactive-skill-list">
         {% for skill in c.skills %}
         {% assign hard = skill.value | divided_by: 2 %}
@@ -100,6 +110,7 @@
         </label>
         {% endfor %}
       </div>
+      <details class="base-skill-reference"><summary>What about skills not listed here?</summary><p>Unlisted skills are still available at their normal <em>Cthulhu by Gaslight</em> base chance. This dossier lists the investigator's raised or frequently referenced skills; omission does not mean a skill is unavailable. Ask the Keeper for the base value when an unlisted skill becomes relevant.</p></details>
     </div>
   </article>
 
@@ -130,10 +141,12 @@
       <div class="frame-body quick-rule-stack">
         <div><small>Credit Rating</small><strong>{{ p.credit_rating }}</strong><p>{{ p.wealth_note }}</p></div>
         {% for language in p.languages %}
-        <div><small>Language</small><strong>{{ language.name }} {{ language.value }}</strong>{% if language.note %}<p>{{ language.note }}</p>{% endif %}</div>
+        <div><small>Language</small><strong>{{ language.name }} {{ language.value }}</strong>{% if language.note %}<p>{{ language.note }}</p>{% endif %}
+          {% if language.note contains 'Own' %}<label class="language-improvement"><input type="checkbox" data-skill-check="language-own-{{ forloop.index }}" data-skill-name="Language (Own: {{ language.name }})" data-skill-value="{{ language.value }}"> Mark eligible improvement use</label>{% endif %}
+        </div>
         {% endfor %}
         <button class="small-action" type="button" data-reset-character-state>Reset local tracker</button>
-        <p class="sheet-note">Reset restores this device's condition, private effects, Luck, and improvement state to the dossier defaults.</p>
+        <p class="sheet-note">Reset restores this device's condition, private effects, Luck, Mythos, and improvement state to the dossier defaults.</p>
       </div>
     </article>
   </div>
