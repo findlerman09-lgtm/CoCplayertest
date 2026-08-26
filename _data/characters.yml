@@ -2,7 +2,8 @@ clara-whitcombe:
   name: Clara Whitcombe
   occupation: Photographer
   portrait: /assets/images/clara-portrait.webp?v=5a1
-  status: Active
+  status: Non-canon proof
+  legacy: true
   hp: 13
   max_hp: 13
   sanity: 45
@@ -35,18 +36,13 @@ clara-whitcombe:
     - { id: navigate, name: "Navigate", value: 22, improvable: true }
     - { id: english, name: "Language (Own: English)", value: 90, improvable: true }
   recent:
-    - type: Correspondence
-      label: Sealed correspondence
-      open_label: Opened correspondence
-      lock_id: clara-demo-letter
-      href: /characters/clara-whitcombe/correspondence/
     - type: Dossier
-      label: Clara Whitcombe
+      label: Clara Whitcombe — non-canon proof
       href: /characters/clara-whitcombe/
 
 arthur-bell:
   name: Arthur Bell
-  occupation: Surveyor of Risks
+  occupation: Fire-insurance Surveyor of Risks
   portrait: /assets/favicon.svg
   status: Issued
   hp: 13
@@ -54,7 +50,7 @@ arthur-bell:
   sanity: 60
   max_sanity: 99
   luck: 55
-  state_version: 1
+  state_version: 2
   lock:
     salt: JaCqCiRwwhtM0+X69iavWw==
     verifier: HPTT+4iPfr2OAdYsjnd/qaCTnMLDrl+ajgzycX/8AyU=
@@ -124,9 +120,10 @@ arthur-bell:
   - type: Dossier
     label: Arthur Bell
     href: /characters/arthur-bell/
+
 thomas-merrick:
   name: Thomas Merrick
-  occupation: Detective Constable
+  occupation: Detective Constable, City of London Police
   portrait: /assets/favicon.svg
   status: Issued
   hp: 13
@@ -134,7 +131,7 @@ thomas-merrick:
   sanity: 70
   max_sanity: 99
   luck: 55
-  state_version: 1
+  state_version: 2
   lock:
     salt: urVpVC6xQnm4XAcZSg934w==
     verifier: IEFLDehzcsRqxsf+qKOz8nHsNtUNTYqQTSwIqJQIJ/U=
@@ -204,9 +201,10 @@ thomas-merrick:
   - type: Dossier
     label: Thomas Merrick
     href: /characters/thomas-merrick/
+
 miriam-hart:
   name: Miriam Hart
-  occupation: Certificated Assistant Mistress
+  occupation: Certificated Assistant Mistress, School Board for London
   portrait: /assets/favicon.svg
   status: Issued
   hp: 11
@@ -214,7 +212,7 @@ miriam-hart:
   sanity: 75
   max_sanity: 99
   luck: 55
-  state_version: 1
+  state_version: 2
   lock:
     salt: xivhvF1lCLgMlApbcv/QVA==
     verifier: rP7nF0JEYVIENk+lE4Dv5AUoRlRLU2dX0K1sTje0hsk=
@@ -276,18 +274,18 @@ miriam-hart:
   - type: Dossier
     label: Miriam Hart
     href: /characters/miriam-hart/
+
 clara-mercer:
   name: Clara Mercer
   occupation: Reporter — East-End district
   portrait: /assets/favicon.svg
   status: Issued
-  identity_pending: true
   hp: 11
   max_hp: 11
   sanity: 65
   max_sanity: 99
   luck: 55
-  state_version: 1
+  state_version: 2
   lock:
     salt: waAxbwvaOlbLow+qpOrtDA==
     verifier: gyiuCjoh+HkA/oa3GEWXHPGlOk4mhbXBWwerV76DFkk=
@@ -357,9 +355,10 @@ clara-mercer:
   - type: Dossier
     label: Clara Mercer
     href: /characters/clara-mercer/
+
 laurence-kersey:
   name: Laurence Kersey
-  occupation: General Practitioner
+  occupation: Registered Medical Practitioner
   portrait: /assets/favicon.svg
   status: Issued
   hp: 13
@@ -367,7 +366,7 @@ laurence-kersey:
   sanity: 65
   max_sanity: 99
   luck: 55
-  state_version: 1
+  state_version: 2
   lock:
     salt: clQwGmK3CAZGPi1wsEz9Sg==
     verifier: jioAFMQgOWbuxpl4ZzQeVCqJI5YBg45ThZjS7tDXVD8=
