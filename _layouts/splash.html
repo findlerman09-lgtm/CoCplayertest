@@ -13,6 +13,7 @@
   <script defer src="{{ '/assets/archive-gate.js' | relative_url }}"></script>
 </head>
 <body class="splash-body">
+  <noscript><div style="position:relative;z-index:20;margin:1rem;padding:1rem;border:1px solid #c9a866;background:#111c20;color:#f0e3c3" role="alert"><strong>JavaScript is required to open the player archive.</strong> Enable JavaScript and reload this page.</div></noscript>
   <main class="splash-screen" style="--splash-image:url('{{ '/assets/images/hero-collage-hd.webp' | relative_url }}?v=5c1')">
     <div class="splash-vignette"></div>
     <div class="splash-copy" data-archive-gate data-salt="{{ site.data.site_state.archive.salt }}" data-verifier="{{ site.data.site_state.archive.verifier }}" data-iterations="{{ site.data.site_state.archive.iterations }}" data-target="{{ '/archive/' | relative_url }}" data-site-root="{{ '/' | relative_url }}">
@@ -25,7 +26,7 @@
           <label class="visually-hidden" for="archive-key">Archive key</label>
           <input id="archive-key" type="password" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="ARCHIVE KEY">
           <button type="submit">Enter the Archive</button>
-          <p class="archive-key-status" data-archive-key-status></p>
+          <p class="archive-key-status" data-archive-key-status role="status" aria-live="polite"></p>
         </form>
         <a class="splash-enter archive-return" data-archive-return hidden href="{{ '/archive/' | relative_url }}">Enter the Archive</a>
       </div>
