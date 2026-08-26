@@ -20,29 +20,17 @@ window.addEventListener('DOMContentLoaded', () => {
   ];
 
   const phobias = [
-    'dark enclosed rooms',
-    'open crowds and public squares',
-    'blood and fresh wounds',
-    'mirrors and reflected images',
-    'being left alone',
-    'fire and open flame',
-    'deep or black water',
-    'heights and exposed edges',
-    'locked doors and confinement',
-    'being watched from windows'
+    'dark enclosed rooms', 'open crowds and public squares', 'blood and fresh wounds', 'mirrors and reflected images',
+    'being left alone', 'fire and open flame', 'deep or black water', 'heights and exposed edges',
+    'locked doors and confinement', 'being watched from windows'
   ];
 
   const compulsions = [
-    'checking doors, locks, and windows repeatedly',
-    'keeping lamps or candles lit whenever possible',
-    'counting small objects or repeated details',
-    'writing down everything before trusting memory',
-    'rearranging objects until they feel correct',
-    'collecting scraps, tokens, or insignificant evidence',
-    'washing hands or tools again and again',
-    'listening at doors and around corners before entering',
-    'repeating a familiar route or ritual before acting',
-    'refusing to discard notes, receipts, or other records'
+    'checking doors, locks, and windows repeatedly', 'keeping lamps or candles lit whenever possible',
+    'counting small objects or repeated details', 'writing down everything before trusting memory',
+    'rearranging objects until they feel correct', 'collecting scraps, tokens, or insignificant evidence',
+    'washing hands or tools again and again', 'listening at doors and around corners before entering',
+    'repeating a familiar route or ritual before acting', 'refusing to discard notes, receipts, or other records'
   ];
 
   const madnessTable = [
@@ -102,7 +90,9 @@ window.addEventListener('DOMContentLoaded', () => {
 
   function loadMechanicalState() {
     try {
-      return JSON.parse(localStorage.getItem(stateKey) || 'null');
+      const parsed = JSON.parse(localStorage.getItem(stateKey) || 'null');
+      if (parsed?.state && typeof parsed.state === 'object') return parsed.state;
+      return parsed;
     } catch {
       return null;
     }
@@ -110,10 +100,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
   function hasActiveInsanity(state) {
     return Boolean(state && (
-      Number(state.sanity) <= 0 ||
-      state.temporaryCheckPending ||
-      state.temporaryInsanity ||
-      state.indefiniteInsanity
+      Number(state.sanity) <= 0 || state.temporaryCheckPending || state.temporaryInsanity || state.indefiniteInsanity
     ));
   }
 
@@ -127,31 +114,14 @@ window.addEventListener('DOMContentLoaded', () => {
 
   function drawWound(source = 'damage') {
     const result = woundTable[randomInt(woundTable.length)];
-    return {
-      id: `${Date.now()}-${randomInt(100000)}`,
-      title: result.title,
-      detail: result.detail,
-      source,
-      createdAt: Date.now()
-    };
+    return { id: `${Date.now()}-${randomInt(100000)}`, title: result.title, detail: result.detail, source, createdAt: Date.now() };
   }
 
   function drawMadness(reason = 'insanity') {
     const result = { ...madnessTable[randomInt(madnessTable.length)] };
-    if (result.title === 'New Phobia') {
-      result.detail = `A new fear takes hold: ${phobias[randomInt(phobias.length)]}.`;
-    } else if (result.title === 'New Compulsion') {
-      result.detail = `A new compulsive urge takes hold: ${compulsions[randomInt(compulsions.length)]}.`;
-    }
-
-    return {
-      id: `${Date.now()}-${randomInt(100000)}`,
-      title: result.title,
-      detail: result.detail,
-      reason,
-      duration: d10(),
-      createdAt: Date.now()
-    };
+    if (result.title === 'New Phobia') result.detail = `A new fear takes hold: ${phobias[randomInt(phobias.length)]}.`;
+    else if (result.title === 'New Compulsion') result.detail = `A new compulsive urge takes hold: ${compulsions[randomInt(compulsions.length)]}.`;
+    return { id: `${Date.now()}-${randomInt(100000)}`, title: result.title, detail: result.detail, reason, duration: d10(), createdAt: Date.now() };
   }
 
   function drawUnderlying(kind = 'indefinite') {
@@ -164,46 +134,32 @@ window.addEventListener('DOMContentLoaded', () => {
     };
   }
 
-  function setMajorWoundMechanical(marked) {
-    const checkbox = document.querySelector('[data-state-input="majorWound"]');
-    if (!checkbox || checkbox.checked === marked) return;
-    checkbox.checked = marked;
-    checkbox.dispatchEvent(new Event('change', { bubbles: true }));
-  }
-
   function effectArticle(item, type, index) {
     const article = document.createElement('article');
     article.className = 'private-effect-entry';
 
     const meta = document.createElement('small');
-    meta.textContent = type === 'wound'
-      ? `Private wound ${index + 1}`
-      : `Private bout ${index + 1} · duration roll ${item.duration}`;
-
+    meta.textContent = type === 'wound' ? `Private wound ${index + 1}` : `Private bout ${index + 1} · duration roll ${item.duration}`;
     const title = document.createElement('strong');
     title.textContent = item.title;
-
     const detail = document.createElement('p');
     detail.textContent = item.detail;
-
     article.append(meta, title, detail);
 
     const note = document.createElement('em');
     note.textContent = type === 'wound'
-      ? 'Narrative detail only: the Major Wound rules remain the mechanical effect.'
-      : 'You see this before the Keeper. Bring it into play; the Keeper decides how the scene accommodates it.';
+      ? 'Narrative note only. Removing this note does not clear the mechanical Major Wound; recovery remains Keeper-confirmed.'
+      : 'Campaign house procedure: this is a private prompt, not an automatic rules result. Bring it into play; the Keeper may adapt or replace it to fit the scene.';
     article.append(note);
 
     const actions = document.createElement('div');
     actions.className = 'private-effect-actions';
-
     const remove = document.createElement('button');
     remove.type = 'button';
     remove.className = 'private-effect-remove';
     remove.dataset.effectType = type;
     remove.dataset.effectId = item.id;
-    remove.textContent = type === 'wound' ? 'Resolve wound' : 'End bout';
-
+    remove.textContent = type === 'wound' ? 'Archive wound note' : 'End bout note';
     actions.append(remove);
     article.append(actions);
     return article;
@@ -212,21 +168,16 @@ window.addEventListener('DOMContentLoaded', () => {
   function underlyingArticle(item) {
     const article = document.createElement('article');
     article.className = `underlying-insanity-entry ${item.kind === 'indefinite' ? 'indefinite' : 'temporary'}`;
-
     const meta = document.createElement('small');
     meta.textContent = item.kind === 'indefinite' ? 'Ongoing condition' : 'Underlying condition';
-
     const title = document.createElement('strong');
     title.textContent = item.title;
-
     const detail = document.createElement('p');
     detail.textContent = item.detail;
-
     const note = document.createElement('em');
     note.textContent = item.kind === 'indefinite'
       ? 'Roleplay prompt only; no extra penalty is added. While indefinite insanity remains active, any further SAN loss causes another Bout of Madness.'
       : 'Roleplay prompt only; no extra penalty is added. The acute bout may end while the temporary underlying condition remains active.';
-
     article.append(meta, title, detail, note);
     return article;
   }
@@ -235,7 +186,6 @@ window.addEventListener('DOMContentLoaded', () => {
     const container = document.querySelector(selector);
     if (!container) return;
     container.replaceChildren();
-
     if (!items.length) {
       const empty = document.createElement('p');
       empty.className = 'empty-private-effect';
@@ -243,7 +193,6 @@ window.addEventListener('DOMContentLoaded', () => {
       container.append(empty);
       return;
     }
-
     [...items].reverse().forEach((item, reverseIndex) => {
       const index = items.length - reverseIndex - 1;
       container.append(effectArticle(item, type, index));
@@ -254,9 +203,7 @@ window.addEventListener('DOMContentLoaded', () => {
     const container = document.querySelector('[data-madness-effects]');
     if (!container) return;
     container.replaceChildren();
-
     if (effects.underlying) container.append(underlyingArticle(effects.underlying));
-
     if (!effects.madness.length) {
       if (!effects.underlying) {
         const empty = document.createElement('p');
@@ -266,7 +213,6 @@ window.addEventListener('DOMContentLoaded', () => {
       }
       return;
     }
-
     [...effects.madness].reverse().forEach((item, reverseIndex) => {
       const index = effects.madness.length - reverseIndex - 1;
       container.append(effectArticle(item, 'madness', index));
@@ -274,24 +220,21 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 
   function render() {
-    renderList('[data-wound-effects]', effects.wounds, 'wound', 'No Major Wound has been assigned.');
+    renderList('[data-wound-effects]', effects.wounds, 'wound', 'No Major Wound narrative note is active.');
     renderMental();
   }
 
   root.addEventListener('click', event => {
     const button = event.target.closest('[data-effect-id]');
     if (!button || !root.contains(button)) return;
-
     const id = button.dataset.effectId;
     const type = button.dataset.effectType;
 
     if (type === 'wound') {
       effects.wounds = effects.wounds.filter(item => item.id !== id);
       saveEffects();
-      if (effects.wounds.length === 0) setMajorWoundMechanical(false);
       return;
     }
-
     if (type === 'madness') {
       effects.madness = effects.madness.filter(item => item.id !== id);
       saveEffects();
@@ -307,15 +250,9 @@ window.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('rippers:madness-bout', event => {
     if (event.detail?.slug !== slug) return;
     const reason = event.detail?.reason || 'insanity';
-
-    if (reason === 'indefinite') {
-      effects.underlying = drawUnderlying('indefinite');
-    } else if (reason === 'temporary' && !effects.underlying) {
-      effects.underlying = drawUnderlying('temporary');
-    } else if (reason === 'permanent') {
-      effects.underlying = null;
-    }
-
+    if (reason === 'indefinite') effects.underlying = drawUnderlying('indefinite');
+    else if (reason === 'temporary' && !effects.underlying) effects.underlying = drawUnderlying('temporary');
+    else if (reason === 'permanent') effects.underlying = null;
     effects.madness.push(drawMadness(reason));
     saveEffects();
   });
@@ -334,18 +271,15 @@ window.addEventListener('DOMContentLoaded', () => {
       effects.underlying = drawUnderlying('temporary');
       changed = true;
     }
-
     if (nextState.sanity <= 0 && effects.underlying) {
       effects.underlying = null;
       changed = true;
     }
-
     if (hadInsanity && !hasInsanity) {
       if (effects.madness.length) effects.madness = [];
       if (effects.underlying) effects.underlying = null;
       changed = true;
     }
-
     if (lastMechanicalState?.majorWound && !nextState.majorWound && effects.wounds.length) {
       effects.wounds = [];
       changed = true;
@@ -367,12 +301,10 @@ window.addEventListener('DOMContentLoaded', () => {
     const currentState = loadMechanicalState();
     lastMechanicalState = currentState;
     let changed = false;
-
     if (currentState?.majorWound && effects.wounds.length === 0) {
       effects.wounds.push(drawWound('existing-state'));
       changed = true;
     }
-
     if (currentState?.indefiniteInsanity && (!effects.underlying || effects.underlying.kind !== 'indefinite')) {
       effects.underlying = drawUnderlying('indefinite');
       changed = true;
@@ -380,12 +312,10 @@ window.addEventListener('DOMContentLoaded', () => {
       effects.underlying = drawUnderlying('temporary');
       changed = true;
     }
-
     if ((currentState?.temporaryInsanity || currentState?.indefiniteInsanity) && effects.madness.length === 0) {
       effects.madness.push(drawMadness('existing-state'));
       changed = true;
     }
-
     if (changed) localStorage.setItem(storageKey, JSON.stringify(effects));
   } catch {
     // Existing local state is optional; private effects can begin fresh.

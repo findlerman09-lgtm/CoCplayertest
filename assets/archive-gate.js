@@ -25,7 +25,38 @@ async function rippersDeriveVerifier(password, saltB64, iterations) {
 window.addEventListener('DOMContentLoaded', () => {
   const storageKey = 'rippers-archive-access';
   const returnStorageKey = 'rippers-archive-return';
+  const lastDossierKey = 'rippers-last-dossier';
   const guard = document.querySelector('[data-archive-guard]');
+
+  function clearArchiveAccess() {
+    localStorage.removeItem(storageKey);
+    sessionStorage.removeItem(returnStorageKey);
+  }
+
+  function forgetDossierAccess() {
+    Object.keys(localStorage)
+      .filter(key => key.startsWith('rippers-dossier-access:'))
+      .forEach(key => localStorage.removeItem(key));
+    localStorage.removeItem(lastDossierKey);
+  }
+
+  document.querySelectorAll('[data-lock-archive]').forEach(button => {
+    button.addEventListener('click', () => {
+      if (!window.confirm('Lock the player archive on this device? Investigator tracker state will be retained.')) return;
+      clearArchiveAccess();
+      window.location.assign(button.dataset.archiveRoot || '/');
+    });
+  });
+
+  document.querySelectorAll('[data-forget-device]').forEach(button => {
+    button.addEventListener('click', () => {
+      const confirmed = window.confirm('Forget archive and dossier access on this device? HP, SAN, Luck, improvement marks, and private effects will be retained.');
+      if (!confirmed) return;
+      clearArchiveAccess();
+      forgetDossierAccess();
+      window.location.assign(button.dataset.archiveRoot || '/');
+    });
+  });
 
   if (guard) {
     const verifier = guard.dataset.archiveVerifier;
@@ -33,7 +64,11 @@ window.addEventListener('DOMContentLoaded', () => {
     if (localStorage.getItem(storageKey) !== verifier) {
       const requested = `${window.location.pathname}${window.location.search}${window.location.hash}`;
       if (requested && requested !== rootUrl) sessionStorage.setItem(returnStorageKey, requested);
-      window.location.replace(rootUrl);
+      if (window.location.pathname !== new URL(rootUrl, window.location.origin).pathname) {
+        window.location.replace(rootUrl);
+      } else {
+        document.body.classList.remove('archive-guard-pending');
+      }
       return;
     }
     document.body.classList.remove('archive-guard-pending');
@@ -49,8 +84,24 @@ window.addEventListener('DOMContentLoaded', () => {
   const siteRoot = gate.dataset.siteRoot || '/';
   const form = gate.querySelector('[data-archive-key-form]');
   const input = gate.querySelector('input');
+  const submit = form?.querySelector('button[type="submit"]');
   const status = gate.querySelector('[data-archive-key-status]');
   const returnLink = gate.querySelector('[data-archive-return]');
+
+  function setWorking(working) {
+    form?.classList.toggle('is-working', working);
+    if (input) input.disabled = working;
+    if (submit) submit.disabled = working;
+  }
+
+  function announce(message, focus = false) {
+    if (!status) return;
+    status.textContent = message;
+    if (focus) {
+      status.setAttribute('tabindex', '-1');
+      status.focus({ preventScroll: true });
+    }
+  }
 
   function safeReturnTarget() {
     const pending = sessionStorage.getItem(returnStorageKey);
@@ -79,7 +130,7 @@ window.addEventListener('DOMContentLoaded', () => {
       returnLink.hidden = false;
       returnLink.addEventListener('click', clearPendingReturn, { once: true });
     }
-    if (status) status.textContent = '';
+    announce('Archive access is remembered on this device.');
   }
 
   if (localStorage.getItem(storageKey) === verifier) {
@@ -91,28 +142,28 @@ window.addEventListener('DOMContentLoaded', () => {
     event.preventDefault();
     const key = (input?.value || '').trim().toUpperCase();
     if (!key) {
-      status.textContent = 'A key is required.';
+      announce('A key is required.', true);
       return;
     }
 
-    status.textContent = 'Checking…';
-    form.classList.add('is-working');
+    announce('Checking…');
+    setWorking(true);
     try {
       const candidate = await rippersDeriveVerifier(key, salt, iterations);
       if (candidate === verifier) {
         localStorage.setItem(storageKey, verifier);
-        status.textContent = 'Accepted.';
+        announce('Accepted.');
         const destination = safeReturnTarget();
         clearPendingReturn();
         window.location.assign(destination);
       } else {
-        status.textContent = 'The archive remains closed.';
-        input.select();
+        announce('The archive remains closed.', true);
+        input?.select();
       }
     } catch {
-      status.textContent = 'This browser could not verify the key.';
+      announce('This browser could not verify the key.', true);
     } finally {
-      form.classList.remove('is-working');
+      setWorking(false);
     }
   });
 });

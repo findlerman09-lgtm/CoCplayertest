@@ -1,6 +1,6 @@
 # The Rippers — Five-Investigator Consolidation Handoff
 
-**Status:** roster consolidated / P-07 mechanics populated / P-08 player presentation reconciled to locked P-06 identity, including the post-merge follow-up audit.
+**Status:** roster consolidated / P-07 mechanics populated / P-08 player presentation reconciled to locked P-06 identity, including the post-merge follow-up audit and the 26 August 2026 PM lock of Clara Mercer.
 
 This is a downstream player-site status record. It does not create campaign canon or replace the controlling character-development and PM files.
 
@@ -19,7 +19,7 @@ The initial reconciliation restored the most obvious omissions. A follow-up audi
 - **Arthur Bell:** restored the accepted one-sentence identity, full P-06 background, the exact formative-history wording **“a warehouse fire in Wapping,”** the accepted human detail, the locked Player Edges **Loads & Movement** and **Commercial Premises**, and the named People Who Matter **Eliza Price** and **Henry Pritchard**. The P-08-only replacement Edge labels and third consistency Edge were removed.
 - **Thomas Merrick:** restored the accepted occupation display, full P-06 background, full tally-clerk formative history, human detail and People Who Matter prose while retaining the locked Player Edge titles and permissions **The Human Sequence**, **City Police Standing**, and **A Defensible Decision**. His City/Met authority ceiling remains unchanged.
 - **Miriam Hart:** restored the formal occupation display **Certificated Assistant Mistress, School Board for London**, the full P-06 background and Annie Feld history, human detail, exact accepted Player Edge prose, accepted Things You Know, and the accepted Rebecca Hart / Sarah Feld material. **Trust Is Borrowed** remains the visible pressure anchor; the exact school and relief/referral institutional identity remain held.
-- **Reporter:** restored the accepted P-06 background, Wapping-fire formative history, source-margin habit, exact Player Edge prose, accepted Things You Know, George Mercer material, and the accepted Bell/Miriam relationship language. The publication-name and newspaper-title holds remain active.
+- **Clara Mercer:** restored the accepted P-06 background, Wapping-fire formative history, source-margin habit, exact Player Edge prose, accepted Things You Know, George Mercer material, and the accepted Bell/Miriam relationship language. **Clara Mercer is publication-locked by PM ruling dated 26 August 2026.** The fictional newspaper title remains held.
 - **Dr Laurence Kersey:** restored **Registered Medical Practitioner** as the dossier occupation, the accepted P-06 background, **Before the Cart Moved** with the specific carman/cart sequence and locked lesson, exact Player Edge and Things You Know prose, **Alfred Kersey**, and **Samuel Harcourt** as an accepted older medical colleague. Harcourt's exact institutional affiliation remains held; Harcourt himself is not withheld from People Who Matter.
 
 No P-07 mechanics were changed by either reconciliation pass.
@@ -31,10 +31,8 @@ No P-07 mechanics were changed by either reconciliation pass.
 | Arthur Bell | physical systems / commercial logistics | Handy | 25 |
 | Thomas Merrick | procedure / human sequence | Outmaneuver | 15 |
 | Miriam Hart | people / records / household truth | Keen Hearing | 9 |
-| Clara Mercer* | provenance / press / mobility | Endurance | 12 |
+| Clara Mercer | provenance / press / mobility | Endurance | 12 |
 | Dr Laurence Kersey | medicine / causal reconstruction | Sharp Witted | 30 |
-
-`* Clara Mercer` remains the current development identity pending final PM publication-name approval.
 
 All five begin Adventure I with Luck 55. The site carries the P-07 characteristics, derived values, skills, talents, combat values, Credit Ratings and languages for all five, together with the reconciled player-facing explanation of their human-scale permissions and access limits.
 
@@ -80,9 +78,8 @@ Professional access remains separate from inventory. Skills and Player Edges do 
 - relief/referral contact identity and title;
 - minor equipment terminology.
 
-### Reporter
+### Clara Mercer
 
-- publication name: **Clara Mercer remains a development name**;
 - newspaper title;
 - minor equipment terminology.
 
@@ -105,4 +102,4 @@ Clara Whitcombe remains a **non-canon development/regression reference** for UI 
 
 ## Readiness statement
 
-The five campaign investigators are mechanically populated and the P-08 player presentation now carries the accepted P-06 identity material without substituting consistency-driven paraphrases for locked dossier content. Remaining named holds can be resolved later without redesigning the dossier or reopening P-07 balance.
+The five campaign investigators are mechanically populated and the P-08 player presentation now carries the accepted P-06 identity material without substituting consistency-driven paraphrases for locked dossier content. Clara Mercer's publication identity is closed. Remaining named holds can be resolved later without redesigning the dossier or reopening P-07 balance.

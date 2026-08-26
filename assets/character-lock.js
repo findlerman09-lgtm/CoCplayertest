@@ -32,9 +32,26 @@ window.addEventListener('DOMContentLoaded', () => {
   const salt = gate.dataset.salt;
   const iterations = Number(gate.dataset.iterations || 120000);
   const storageKey = `rippers-dossier-access:${slug}`;
+  const lastDossierKey = 'rippers-last-dossier';
   const form = gate.querySelector('form');
   const input = gate.querySelector('input');
+  const submit = form?.querySelector('button[type="submit"]');
   const status = gate.querySelector('[data-lock-status]');
+
+  function setWorking(working) {
+    form?.classList.toggle('is-working', working);
+    if (input) input.disabled = working;
+    if (submit) submit.disabled = working;
+  }
+
+  function announce(message, focus = false) {
+    if (!status) return;
+    status.textContent = message;
+    if (focus) {
+      status.setAttribute('tabindex', '-1');
+      status.focus({ preventScroll: true });
+    }
+  }
 
   /* A PENDING verifier is a controlled publication hold, not a password.
      It keeps prepared dossier routes closed until a campaign-issued password
@@ -50,10 +67,18 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 
   function unlock() {
+    localStorage.setItem(lastDossierKey, slug);
     gate.hidden = true;
     protectedShell.hidden = false;
     document.body.classList.remove('is-locked');
     window.dispatchEvent(new CustomEvent('rippers:dossier-unlocked', { detail: { slug } }));
+    window.setTimeout(() => {
+      const heading = protectedShell.querySelector('.workspace-titlebar h1, main h1');
+      if (heading) {
+        heading.setAttribute('tabindex', '-1');
+        heading.focus({ preventScroll: true });
+      }
+    }, 0);
   }
 
   if (localStorage.getItem(storageKey) === verifier) {
@@ -61,30 +86,30 @@ window.addEventListener('DOMContentLoaded', () => {
     return;
   }
 
-  form.addEventListener('submit', async event => {
+  form?.addEventListener('submit', async event => {
     event.preventDefault();
-    const password = input.value;
+    const password = (input?.value || '').trim().toUpperCase();
     if (!password) {
-      status.textContent = 'Enter your dossier password.';
+      announce('Enter your dossier password.', true);
       return;
     }
 
-    status.textContent = 'Checking dossier key…';
-    form.classList.add('is-working');
+    announce('Checking dossier key…');
+    setWorking(true);
     try {
       const candidate = await deriveVerifier(password, salt, iterations);
       if (candidate === verifier) {
         localStorage.setItem(storageKey, verifier);
-        status.textContent = 'Dossier unlocked.';
+        announce('Dossier unlocked.');
         unlock();
       } else {
-        status.textContent = 'That password does not open this dossier.';
-        input.select();
+        announce('That password does not open this dossier.', true);
+        input?.select();
       }
     } catch (error) {
-      status.textContent = 'This browser could not verify the dossier password.';
+      announce('This browser could not verify the dossier password.', true);
     } finally {
-      form.classList.remove('is-working');
+      setWorking(false);
     }
   });
 });

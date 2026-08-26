@@ -15,16 +15,17 @@ breadcrumb: The Rippers / Investigator
     <h1>Password Required</h1>
     <p>Enter the dossier password issued to you for play.</p>
     <form class="lock-form" data-dossier-key-form>
-      <label><span>Dossier password</span><input type="password" autocomplete="current-password" autofocus></label>
+      <label><span>Dossier password</span><input type="password" autocomplete="off" autocapitalize="characters" spellcheck="false" autofocus></label>
       <button type="submit">Open Dossier</button>
-      <p class="lock-status" data-dossier-key-status>Your successful unlock will be remembered on this device.</p>
+      <p class="lock-status" data-dossier-key-status role="status" aria-live="polite">Your successful unlock will be remembered on this device.</p>
     </form>
 
     <div class="dossier-candidates" hidden aria-hidden="true">
       {% for slot in site.data.investigator_slots %}
         {% if slot.slug %}
           {% assign person = site.data.characters[slot.slug] %}
-          <span data-dossier-candidate data-dossier-slug="{{ slot.slug }}" data-salt="{{ person.lock.salt }}" data-verifier="{{ person.lock.verifier }}" data-iterations="{{ person.lock.iterations }}" data-target="{{ '/characters/' | append: slot.slug | append: '/' | relative_url }}"></span>
+          {% assign player_person = site.data.player_characters[slot.slug] %}
+          <span data-dossier-candidate data-dossier-slug="{{ slot.slug }}" data-dossier-label="{% if player_person %}{{ player_person.publication_name }}{% else %}{{ person.name }}{% endif %}" data-salt="{{ person.lock.salt }}" data-verifier="{{ person.lock.verifier }}" data-iterations="{{ person.lock.iterations }}" data-target="{{ '/characters/' | append: slot.slug | append: '/' | relative_url }}"></span>
         {% endif %}
       {% endfor %}
     </div>
