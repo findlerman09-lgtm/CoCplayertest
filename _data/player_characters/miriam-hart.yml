@@ -64,7 +64,7 @@ relationships:
 - name: Arthur Bell
   relationship: No prior relationship
   text: You have not met before the campaign begins.
-known_pressure: Trust Is Borrowed. Other people find Miriam useful, but every confidence, name, address, referral, and promise rests on trust she does not own outright. That trust can become an obligation from every direction—school, household, relief work, officials, and neighbors—and she has limited time, money, and institutional power with which to answer those demands.
+known_pressure: Trust Is Borrowed. Other people find Miriam useful. That usefulness can become an obligation from every direction—school, household, relief work, officials, neighbors—and she has limited time, money, and institutional power with which to satisfy those demands.
 characteristics:
 - name: STR
   value: 45
