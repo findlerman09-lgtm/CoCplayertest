@@ -1,0 +1,156 @@
+investigator_id: SS
+publication_name: Clara Mercer
+name_status: development_hold
+age: 32
+occupation_display: Reporter — East-End district
+occupation_full: Reporter, fictional London newspaper — East-End district
+residence: Modest rented rooms in Clerkenwell
+social_status: Lower-middle-class professional with working-class family origins; respectable but financially insecure
+summary: You investigate how information moves—who actually saw something, who repeated it, who altered it, and what will
+  happen if it reaches print.
+roleplay_anchor: Who heard it first?
+human_detail: Every notebook page has a narrow source margin. If you cannot identify where a claim came from, that margin
+  remains blank.
+background: You are a working woman in London journalism with a hard-news district assignment that is unusual enough to have
+  been earned rather than taken for granted. Your family origins are working-class. Your father worked as a compositor and
+  now has failing eyesight, so the physical labor of making a newspaper has never been invisible to you. You know that a newspaper
+  is not one mind. Reporters, runners, compositors, editors, owners, sellers, deadlines, corrections, and rivals all affect
+  what eventually becomes “what everybody knows.”
+history: 'Your career taught you that the most dramatic version of a story is often the version that has traveled furthest
+  from its source. It also taught you something harder: information is not harmless merely because it is true. Publication
+  can change a witness, a police inquiry, a source''s safety, a suspect''s behavior, a household''s reputation, or what the
+  next witness believes they remember.'
+player_edges:
+- label: Competence spotlight
+  title: Follow It Back
+  text: 'When a claim is circulating through several people, you may investigate its provenance: who contributed it, who merely
+    repeated it, and where the story changed.'
+- label: Unique access
+  title: A Source Is a Relationship
+  text: 'Your access comes through favors, restraint, corrections, payment, mutual usefulness, and trust. Sources remain people:
+    they may refuse, bargain, conceal, misunderstand, or lie.'
+- label: Personal responsibility
+  title: Before the Ink Dries
+  text: You understand that publication is an action with consequences. Choosing what to publish, hold, correct, attribute,
+    or protect can materially change later human behavior.
+knowledge:
+- title: The Newspaper Is a System
+  text: You understand London newspaper work and deadlines; runners, compositors, street sellers, offices, archives, and rival
+    reporting.
+- title: Follow the Claim Back
+  text: You know how to trace a quotation or rumor through human sources and how public records and advertisements can reveal
+    commercial footprints.
+- title: Mobility Is Part of the Work
+  text: You know how to follow somebody in public without looking like a police pursuit.
+- title: Corrections Travel Slowly
+  text: A correction usually travels less quickly than the original claim. You do not possess a perfect source network.
+people:
+- name: George Mercer
+  relationship: Father; former compositor
+  text: His failing eyesight keeps the physical labor and economics of newspaper work close to home. The reporter contributes
+    modestly to his expenses.
+relationships:
+- name: Arthur Bell
+  relationship: Warehouse-fire acquaintance
+  text: You know each other from a warehouse fire in Wapping. You respect his technical precision. He thinks you can be reckless
+    with adjectives; you think he sometimes hides behind what he is professionally permitted to say.
+- name: Miriam Hart
+  relationship: Professional recognition and tension
+  text: You recognize one another through prior local/professional contact. She knows you are capable of restraint and therefore
+    expects you to exercise it deliberately.
+- name: Thomas Merrick
+  relationship: Professional counterpart
+  text: You know City detectives as professional counterparts and obstacles, not as private contacts.
+- name: Dr Laurence Kersey
+  relationship: No private relationship
+  text: No intimate prior relationship is assumed.
+known_pressure: A reporter must produce something. Deadlines, competition, editor expectations, money, credibility, and source
+  relationships mean that waiting for perfect certainty can cost a story—but publishing before understanding what a story
+  will do can cost far more.
+characteristics:
+- name: STR
+  value: 55
+  half: 27
+  fifth: 11
+- name: CON
+  value: 60
+  half: 30
+  fifth: 12
+- name: SIZ
+  value: 50
+  half: 25
+  fifth: 10
+- name: DEX
+  value: 75
+  half: 37
+  fifth: 15
+- name: APP
+  value: 65
+  half: 32
+  fifth: 13
+- name: INT
+  value: 70
+  half: 35
+  fifth: 14
+- name: POW
+  value: 65
+  half: 32
+  fifth: 13
+- name: EDU
+  value: 70
+  half: 35
+  fifth: 14
+derived:
+  hp: 11
+  sanity: 65
+  mp: 13
+  luck: 55
+  mov: 9
+  db: '0'
+  build: 0
+  dodge: 45
+talent:
+  name: Endurance
+  effect: Gain a bonus die on CON rolls, including CON rolls made when determining MOV during a chase.
+  note: Stamina, not immunity to fatigue, injury, or bad terrain.
+credit_rating: 12
+wealth_note: A working professional with limited financial security.
+languages:
+- name: English
+  value: 70
+  note: Language (Own)
+combat:
+  brawl: 35%
+  unarmed_damage: 1D3
+  dodge: 45%
+  build: 0
+  firearm: None routinely carried
+  note: The reporter’s strongest action advantage is mobility, not combat dominance.
+carried:
+- Reporter’s notebook with a dedicated source margin.
+- Ordinary writing materials.
+- No firearm or automatic camera is assumed.
+owned_available:
+- Ordinary personal and journalistic materials available through home or work. Newspaper resources belong to the newspaper,
+  not automatically to the investigator.
+professional_access:
+- The newspaper office and appropriate internal files.
+- Reporters, runners, compositors, sellers, and other press workers.
+- Public commercial information and advertisements.
+- Cultivated sources.
+- Public houses, courts, street scenes, businesses, and public places where a reporter may legitimately ask questions.
+requires_permission:
+- Private business books, police evidence, confidential documents, restricted premises, an editor’s agreement, a source’s
+  anonymity, unusual expenses, or use of newspaper resources all depend on the actual circumstances.
+access_limits:
+- Cannot demand police evidence.
+- Cannot inspect private books by right.
+- Cannot guarantee that an editor will print—or suppress—copy.
+- Cannot guarantee source anonymity.
+- Cannot treat Fast Talk as coercion.
+- Cannot materialize a relevant source whenever convenient.
+- Cannot assume a camera or firearm is present.
+editorial_holds:
+- 'Publication name: Clara Mercer remains a development name.'
+- Newspaper title.
+- Minor equipment terminology.

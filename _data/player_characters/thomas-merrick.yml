@@ -1,0 +1,151 @@
+investigator_id: DK
+publication_name: Thomas Merrick
+name_status: locked
+age: 38
+occupation_display: Detective Constable
+occupation_full: City of London Police Detective Department, Old Jewry
+residence: Clerkenwell
+social_status: Respectable working-to-lower-middle-class police professional
+summary: You reconstruct what people actually did, in what order, and what the evidence really entitles authority to do next.
+roleplay_anchor: First what happened. Then what it means. Then what we are entitled to do about it.
+human_detail: Merrick saves used envelopes for household lists.
+background: 'Merrick is a sworn City of London Police detective constable. He knows the streets, offices, courts, statements,
+  reports, delays, and ordinary compromises of investigative work. His authority is genuine, but London is not one police
+  jurisdiction. His office is not a universal warrant, and he has learned that a man can damage an investigation by pretending
+  jurisdictional inconvenience does not exist. His strongest habit is reconstructive: statements, motives, routes, times,
+  records, opportunity, and the next thing a person would probably need to do.'
+history: Earlier in Merrick's career, a plausible case narrowed around a recently dismissed tally clerk. A confident witness
+  identification and a persuasive motive encouraged Merrick to put too much weight on certainty too early. Delivery and route
+  evidence eventually disproved the accusation. The correction mattered, but it came after harm had already been done. Merrick
+  has never forgotten the distinction between suspicion, inquiry, detention, and proof. He is not timid because of that failure.
+  He is disciplined.
+player_edges:
+- label: Competence spotlight
+  title: The Human Sequence
+  text: You are exceptionally good at taking scattered statements, motives, routes, times, and records and turning them into a sequence that can actually be tested. A confident story matters less than one whose parts agree.
+- label: Unique access
+  title: City Police Standing
+  text: Within a City investigation you can act with legitimate police standing, review appropriate official material, make proper requests, question people, preserve evidence, and call upon City colleagues within their duties. Beyond City jurisdiction, cooperation must be obtained rather than assumed.
+- label: Personal pressure
+  title: A Defensible Decision
+  text: You have made a premature conclusion before and remember who paid for it. You are willing to act before everything is known, but you distinguish suspicion, grounds for inquiry, grounds for detention, and proof. Serious decisions may later require serious explanations.
+knowledge:
+- title: Witnesses Can Be Honest and Wrong
+  text: Frightened witnesses can be truthful and inaccurate at once, and fear of police is not proof of guilt.
+- title: Sources Are Not Automatically Independent
+  text: Two witnesses repeating the same story are not automatically two independent sources.
+- title: Precision Can Be False
+  text: A precise time may rest on an imprecise clock; a confident statement still has to survive routes, records, and opportunity.
+- title: London Has Jurisdictions
+  text: Cooperation between police forces is possible without turning them into one organization.
+people:
+- name: Margaret Merrick
+  relationship: Wife
+  text: Your police work exists inside a household, not outside ordinary life. Night duty, reputation, injury, and institutional
+    trouble have consequences at home.
+- name: Detective Inspector James McWilliam
+  relationship: Senior City officer
+  text: A real professional relationship, not a patron who grants unrestricted freedom. His confidence matters because Merrick's
+    office and responsibilities matter.
+relationships:
+- name: Dr Laurence Kersey
+  relationship: Professional respect and disagreement
+  text: You know one another professionally. A previous case left each of you irritated by the other's refusal to overstate
+    what the evidence proved—and convinced that the refusal was made in good faith.
+- name: Arthur Bell
+  relationship: Professional familiarity
+  text: You know the kind of professional he is more readily than the man himself.
+- name: Miriam Hart
+  relationship: Indirect recognition
+  text: At most, a name encountered indirectly through shared professional contacts.
+- name: Clara Mercer
+  relationship: Professional presence
+  text: You know reporters as a professional presence. There is no pre-existing private alliance.
+known_pressure: A Defensible Decision. You must make defensible decisions under incomplete information. Your superiors, fellow officers, courts,
+  witnesses, and household can all be affected by what you decide. Past experience has made you unwilling to confuse a strong
+  suspicion with a right you have not earned.
+characteristics:
+- name: STR
+  value: 65
+  half: 32
+  fifth: 13
+- name: CON
+  value: 65
+  half: 32
+  fifth: 13
+- name: SIZ
+  value: 65
+  half: 32
+  fifth: 13
+- name: DEX
+  value: 70
+  half: 35
+  fifth: 14
+- name: APP
+  value: 55
+  half: 27
+  fifth: 11
+- name: INT
+  value: 70
+  half: 35
+  fifth: 14
+- name: POW
+  value: 70
+  half: 35
+  fifth: 14
+- name: EDU
+  value: 70
+  half: 35
+  fifth: 14
+derived:
+  hp: 13
+  sanity: 70
+  mp: 14
+  luck: 55
+  mov: 8
+  db: +1D4
+  build: 1
+  dodge: 45
+talent:
+  name: Outmaneuver
+  effect: When initiating a combat maneuver, count Merrick's Build as one point higher for the Build comparison.
+  note: Useful for human restraint and positioning; it does not make him superhuman.
+credit_rating: 15
+wealth_note: Respectable police employment does not make Merrick affluent.
+languages:
+- name: English
+  value: 70
+  note: Language (Own)
+combat:
+  brawl: 50%
+  unarmed_damage: 1D3+1D4
+  dodge: 45%
+  build: 1
+  firearm: Handgun 20% — base competence; no routine firearm
+  note: A firearm can enter play only through a specific justified police circumstance.
+carried:
+- Ordinary personal and police-duty effects appropriate to his current assignment.
+- No firearm is routinely carried.
+owned_available:
+- Ordinary personal possessions and police-duty resources that remain at home or the police office rather than magically accompanying
+  him everywhere.
+professional_access:
+- Approach City officers and superiors as a colleague.
+- Conduct and preserve witness interviews.
+- Consult or request appropriate police records.
+- Make formal civilian or commercial inquiries.
+- Identify himself credibly as a City detective.
+- Request cooperation from Metropolitan colleagues.
+requires_permission:
+- Private premises, private books, Metropolitan resources, medical confidences, evidence outside his assignment, and coercive
+  police steps require the actual authority or cooperation appropriate to the situation.
+access_limits:
+- Cannot command Metropolitan Police merely because he is a detective.
+- Cannot seize private books on suspicion alone.
+- Cannot treat companions as deputies.
+- Cannot disclose police material freely.
+- Cannot use Psychology as a lie detector.
+- Cannot use Handgun 20 as evidence that a revolver is available.
+editorial_holds:
+- Minor police-duty equipment terminology.
+- Period-appropriate police identification/credential wording.
