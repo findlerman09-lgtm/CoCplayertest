@@ -6,67 +6,51 @@ occupation_display: Reporter — East-End district
 occupation_full: Reporter, fictional London newspaper — East-End district
 residence: Modest rented rooms in Clerkenwell
 social_status: Lower-middle-class professional with working-class family origins; respectable but financially insecure
-summary: You investigate how information moves—who actually saw something, who repeated it, who altered it, and what will
-  happen if it reaches print.
+summary: You investigate how information moves—who actually saw something, who repeated it, who altered it, and what will happen if it reaches print.
 roleplay_anchor: Who heard it first?
-human_detail: Every notebook page has a narrow source margin. If you cannot identify where a claim came from, that margin
-  remains blank.
-background: You are a working woman in London journalism with a hard-news district assignment that is unusual enough to have
-  been earned rather than taken for granted. Your family origins are working-class. Your father worked as a compositor and
-  now has failing eyesight, so the physical labor of making a newspaper has never been invisible to you. You know that a newspaper
-  is not one mind. Reporters, runners, compositors, editors, owners, sellers, deadlines, corrections, and rivals all affect
-  what eventually becomes “what everybody knows.”
-history: 'Your career taught you that the most dramatic version of a story is often the version that has traveled furthest
-  from its source. It also taught you something harder: information is not harmless merely because it is true. Publication
-  can change a witness, a police inquiry, a source''s safety, a suspect''s behavior, a household''s reputation, or what the
-  next witness believes they remember.'
+human_detail: Clara leaves a narrow source margin down every notebook page. Initials go there. When she cannot identify where a statement came from, the margin remains blank.
+background: >-
+  Clara Mercer is the daughter of a London compositor and learned early that newspapers are made by ordinary people working against deadlines. She entered journalism through short local items, descriptive reporting, interviews, and subjects considered suitable for a woman writer. In a newsroom where routine district and crime reporting was ordinarily men's work, her harder East-End assignments were unusual and hard-won. She earned them by verifying names, tracing accounts to their sources, correcting mistakes, and returning with usable copy.
+history: >-
+  Clara once covered a warehouse fire in Wapping that Arthur Bell inspected professionally. The public explanation omitted problems Bell could not freely discuss. Bell corrected one technical error in Clara's understanding; Clara checked rather than defending her copy and published a correction. She did not print the larger allegation she could not substantiate. The lesson stayed with her: know which sentence is yours, which belongs to a source, and which nobody has actually proved.
 player_edges:
 - label: Competence spotlight
   title: Follow It Back
-  text: 'When a claim is circulating through several people, you may investigate its provenance: who contributed it, who merely
-    repeated it, and where the story changed.'
+  text: >-
+    You are unusually good at tracing circulating stories back to the people who actually contributed information, distinguishing independent reports from repeated rumor.
 - label: Unique access
   title: A Source Is a Relationship
-  text: 'Your access comes through favors, restraint, corrections, payment, mutual usefulness, and trust. Sources remain people:
-    they may refuse, bargain, conceal, misunderstand, or lie.'
+  text: >-
+    Particular people speak to you because of previous favors, restraint, corrections, payment, or trust. Sources can refuse, lie, bargain, protect others, or withdraw.
 - label: Personal responsibility
   title: Before the Ink Dries
-  text: You understand that publication is an action with consequences. Choosing what to publish, hold, correct, attribute,
-    or protect can materially change later human behavior.
+  text: >-
+    You understand that publication changes later testimony, police pressure, suspect behavior, household safety, and public belief. Filing copy is an action with consequences.
 knowledge:
-- title: The Newspaper Is a System
-  text: You understand London newspaper work and deadlines; runners, compositors, street sellers, offices, archives, and rival
-    reporting.
-- title: Follow the Claim Back
-  text: You know how to trace a quotation or rumor through human sources and how public records and advertisements can reveal
-    commercial footprints.
-- title: Mobility Is Part of the Work
-  text: You know how to follow somebody in public without looking like a police pursuit.
-- title: Corrections Travel Slowly
-  text: A correction usually travels less quickly than the original claim. You do not possess a perfect source network.
+- title: Three Voices May Still Be One Source
+  text: Repetition produces confidence faster than evidence. Establish who actually saw or heard the event before counting witnesses.
+- title: A Name in Print Changes the Next Interview
+  text: Once a public version circulates, later witnesses may repeat what they learned after the event.
+- title: A Question Is Not a Warrant
+  text: Journalism opens different doors from policing but grants no right to seize records, compel answers, search premises, or demand evidence.
 people:
 - name: George Mercer
-  relationship: Father; former compositor
-  text: His failing eyesight keeps the physical labor and economics of newspaper work close to home. The reporter contributes
-    modestly to his expenses.
+  relationship: Father
+  text: A former compositor with failing eyesight. Clara contributes modestly to his expenses. He respects newspapers without believing type makes a statement true.
 relationships:
 - name: Arthur Bell
-  relationship: Warehouse-fire acquaintance
-  text: You know each other from a warehouse fire in Wapping. You respect his technical precision. He thinks you can be reckless
-    with adjectives; you think he sometimes hides behind what he is professionally permitted to say.
+  relationship: Prior professional contact
+  text: Mutual technical respect and professional suspicion dating from a warehouse fire in Wapping.
 - name: Miriam Hart
-  relationship: Professional recognition and tension
-  text: You recognize one another through prior local/professional contact. She knows you are capable of restraint and therefore
-    expects you to exercise it deliberately.
+  relationship: Recognition / professional tension
+  text: Clara once quoted Miriam's useful comment without naming her. Their first substantive exchange occurs during the current investigation.
 - name: Thomas Merrick
   relationship: Professional counterpart
   text: You know City detectives as professional counterparts and obstacles, not as private contacts.
 - name: Dr Laurence Kersey
   relationship: No private relationship
   text: No intimate prior relationship is assumed.
-known_pressure: A reporter must produce something. Deadlines, competition, editor expectations, money, credibility, and source
-  relationships mean that waiting for perfect certainty can cost a story—but publishing before understanding what a story
-  will do can cost far more.
+known_pressure: A reporter must produce something. Deadlines, competition, editor expectations, money, credibility, and source relationships mean that waiting for perfect certainty can cost a story—but publishing before understanding what a story will do can cost far more.
 characteristics:
 - name: STR
   value: 55
@@ -131,8 +115,7 @@ carried:
 - Ordinary writing materials.
 - No firearm or automatic camera is assumed.
 owned_available:
-- Ordinary personal and journalistic materials available through home or work. Newspaper resources belong to the newspaper,
-  not automatically to the investigator.
+- Ordinary personal and journalistic materials available through home or work. Newspaper resources belong to the newspaper, not automatically to the investigator.
 professional_access:
 - The newspaper office and appropriate internal files.
 - Reporters, runners, compositors, sellers, and other press workers.
@@ -140,8 +123,7 @@ professional_access:
 - Cultivated sources.
 - Public houses, courts, street scenes, businesses, and public places where a reporter may legitimately ask questions.
 requires_permission:
-- Private business books, police evidence, confidential documents, restricted premises, an editor’s agreement, a source’s
-  anonymity, unusual expenses, or use of newspaper resources all depend on the actual circumstances.
+- Private business books, police evidence, confidential documents, restricted premises, an editor’s agreement, a source’s anonymity, unusual expenses, or use of newspaper resources all depend on the actual circumstances.
 access_limits:
 - Cannot demand police evidence.
 - Cannot inspect private books by right.

@@ -2,68 +2,60 @@ investigator_id: DH
 publication_name: Dr Laurence Kersey
 name_status: locked
 age: 36
-occupation_display: General Practitioner
+occupation_display: Registered Medical Practitioner
 occupation_full: Registered Medical Practitioner
 residence: East London
 social_status: Respectable middle-class professional; established and financially viable, but dependent on his practice
 qualifications: M.R.C.S. Eng.; L.S.A. Lond.
 training: London Hospital Medical College
-summary: You treat the living patient first and solve difficult problems by reconstructing what changed, in what order, and
-  which explanation actually fits.
+summary: You treat the living patient first and solve difficult problems by reconstructing what changed, in what order, and which explanation actually fits.
 roleplay_anchor: What changed first?
-human_detail: When an account becomes confused, Kersey uses coins, matches, corks, or folded scraps to represent people and
-  events, physically rearranging them until the sequence can be tested.
-background: 'Kersey is a London-born East-London general medical practitioner, son of chemist and druggist Alfred Kersey,
-  trained at London Hospital Medical College and qualified M.R.C.S. Eng.; L.S.A. Lond. His work is not confined to spectacular
-  illnesses or post-mortems. It is the ordinary business of living patients: pain, fever, injury, uncertainty, frightened
-  families, incomplete histories, limited materials, and the need to act without pretending to know more than medicine can
-  establish. He combines paying general practice with bounded charitable medical duties and has professional standing, but
-  not universal medical authority.'
-history: 'Before the Cart Moved. Kersey treated a carman injured beside an overturned cart. Reconstructing the accounts showed that the man''s collapse preceded the cart accident rather than simply resulting from it. The case taught Kersey that a collection of true facts can still produce a false explanation when they are placed in the wrong order. His lesson: “An explanation can contain every true fact and still put them in the wrong order.”'
+human_detail: When an account becomes confused, Kersey uses coins, matches, corks, or folded scraps to represent people and events, physically rearranging them until the sequence can be tested.
+background: >-
+  Laurence Kersey is a London-born general medical practitioner, the son of chemist and druggist Alfred Kersey. He grew up around practical medicine before training at London Hospital Medical College and qualifying M.R.C.S. Eng.; L.S.A. Lond. He now combines paying general practice with bounded charitable dispensary duties in East London. Kersey solves problems by putting events back into causal order, refuses to call uncertainty knowledge, and is willing to use his own hands when somebody needs saving.
+history: >-
+  Before the Cart Moved. Kersey once treated a carman injured beside an overturned cart. Reconstructing the accounts showed that the man's collapse preceded the cart accident rather than simply resulting from it. The case taught Kersey that a collection of true facts can still produce a false explanation when they are placed in the wrong order. His lasting lesson: “An explanation can contain every true fact and still put them in the wrong order.”
 player_edges:
 - label: Analytical competence
   title: Reconstruct the Chain
-  text: You may rearrange symptoms, movements, statements, and observations into a testable causal order, provided you do
-    not invent missing facts.
+  text: >-
+    Reassemble symptoms, physical states, movements, and observations into testable causal sequences. This exposes assumptions but never invents missing facts.
 - label: Living-patient access
   title: The Patient Is Still Here
-  text: You are practiced at obtaining useful information while continuing to treat an injured, sick, frightened, or vulnerable
-    person as a patient rather than merely as a witness.
+  text: >-
+    You can obtain useful information from injured, frightened, exhausted, or distressed people while recognizing their medical limits and preserving their status as patients rather than treating them merely as evidence.
 - label: Practical action
   title: Use What You Have
-  text: In medicine and rescue you can adapt ordinary available materials to immediate practical needs, within human ability
-    and period technology.
+  text: >-
+    Adapt ordinary available materials to immediate medical and rescue problems without creating impossible treatments, technology, or supernatural solutions.
 knowledge:
-- title: Medicine Is Not Omniscience
-  text: You know medicine and practical anatomy, First Aid and triage, ordinary pharmacy and biology, and the distinction
-    between anatomical knowledge and formal professional qualification.
-- title: Sequence Matters
-  text: You know how misleading a symptom can become when somebody assigns its cause too quickly.
-- title: The Living Patient Comes First
-  text: An injured person may still have information worth preserving without interrogation becoming the priority.
-- title: No Modern Forensic Precision
-  text: Your medicine does not provide exact modern time-of-death science or supernatural diagnosis.
+- title: Symptoms Have an Order
+  text: Establish what changed first and what followed before assigning cause.
+- title: A Wound Can Exclude More Than It Identifies
+  text: Medical evidence may rule out or weaken explanations without identifying an offender's profession, weapon, or identity automatically.
+- title: Stabilize Before You Explain
+  text: When someone is still endangered, determine the immediate threat to the living person before solving the theory.
 people:
 - name: Alfred Kersey
-  relationship: Father; chemist and druggist
-  text: Practical, experienced, and affectionate; a grounding influence rather than an unlimited pharmaceutical resource.
+  relationship: Father
+  text: A chemist and druggist easing toward retirement. Practical, experienced, and affectionate; a grounding influence rather than an unlimited pharmaceutical resource.
+- name: Samuel Harcourt
+  relationship: Older medical colleague
+  text: Harcourt respects Kersey's care but believes professional responsibility sometimes requires a usable answer before perfect certainty is available.
 relationships:
 - name: Miriam Hart
-  relationship: Trusted referral relationship
-  text: When she brings a household to your attention, you know she has usually distinguished a person from the paperwork
-    around them.
+  relationship: Established referral trust
+  text: A previous household medical concern established reciprocal respect; Miriam supplies precise household context without surrendering confidence, and Kersey separates observation from inference and does not treat referral as permission to interrogate.
 - name: Thomas Merrick
-  relationship: Professional disagreement and respect
-  text: Each of you has seen the other refuse an attractive certainty when the evidence did not justify it.
+  relationship: Professional respect and disagreement
+  text: A previous assault investigation taught both men the difference between questioning a living patient quickly and questioning them usefully.
 - name: Arthur Bell
   relationship: No substantial prior relationship
   text: No substantial prior relationship is required.
 - name: Clara Mercer
   relationship: No private relationship
   text: No private access or automatic trust is assumed merely because she is a reporter.
-known_pressure: A Doctor Is Expected to Have an Answer. People want certainty from Kersey because he is a doctor. His pressure
-  is not whether to act; he is willing to act quickly when action is justified. The pressure is whether he can resist turning
-  “this is the best explanation available” into “this is what certainly happened.”
+known_pressure: A Doctor Is Expected to Have an Answer. People want certainty from Kersey because he is a doctor. His pressure is not whether to act; he is willing to act quickly when action is justified. The pressure is whether he can resist turning “this is the best explanation available” into “this is what certainly happened.”
 characteristics:
 - name: STR
   value: 55
@@ -129,8 +121,7 @@ carried:
 - Ordinary personal and professional medical effects appropriate to current duty.
 - No firearm.
 owned_available:
-- Ordinary medical books, supplies, and professional materials associated with his practice may be available at the appropriate
-  location. They are not an endlessly portable laboratory.
+- Ordinary medical books, supplies, and professional materials associated with his practice may be available at the appropriate location. They are not an endlessly portable laboratory.
 professional_access:
 - His own patients.
 - Households with which he has an actual medical relationship.
@@ -138,8 +129,7 @@ professional_access:
 - Medical information entrusted to him appropriately.
 - Living patients who consent to treatment and examination.
 requires_permission:
-- Another doctor’s patient, private medical notes, institutional records, a hospital room, a corpse, a post-mortem report,
-  police exhibits, or another practitioner’s cooperation require the proper professional, legal, or personal route.
+- Another doctor’s patient, private medical notes, institutional records, a hospital room, a corpse, a post-mortem report, police exhibits, or another practitioner’s cooperation require the proper professional, legal, or personal route.
 access_limits:
 - Cannot commandeer an official post-mortem.
 - Cannot demand another doctor’s confidential material.
@@ -151,4 +141,4 @@ editorial_holds:
 - Exact practice address.
 - Exact dispensary/institution.
 - Minor medical-equipment terminology.
-- Samuel Harcourt institutional connection remains held and is not player-published.
+- Samuel Harcourt's exact institutional affiliation remains held.

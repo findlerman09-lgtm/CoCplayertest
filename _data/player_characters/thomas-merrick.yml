@@ -2,23 +2,17 @@ investigator_id: DK
 publication_name: Thomas Merrick
 name_status: locked
 age: 38
-occupation_display: Detective Constable
+occupation_display: Detective Constable, City of London Police
 occupation_full: City of London Police Detective Department, Old Jewry
 residence: Clerkenwell
 social_status: Respectable working-to-lower-middle-class police professional
 summary: You reconstruct what people actually did, in what order, and what the evidence really entitles authority to do next.
 roleplay_anchor: First what happened. Then what it means. Then what we are entitled to do about it.
-human_detail: Merrick saves used envelopes for household lists.
-background: 'Merrick is a sworn City of London Police detective constable. He knows the streets, offices, courts, statements,
-  reports, delays, and ordinary compromises of investigative work. His authority is genuine, but London is not one police
-  jurisdiction. His office is not a universal warrant, and he has learned that a man can damage an investigation by pretending
-  jurisdictional inconvenience does not exist. His strongest habit is reconstructive: statements, motives, routes, times,
-  records, opportunity, and the next thing a person would probably need to do.'
-history: Earlier in Merrick's career, a plausible case narrowed around a recently dismissed tally clerk. A confident witness
-  identification and a persuasive motive encouraged Merrick to put too much weight on certainty too early. Delivery and route
-  evidence eventually disproved the accusation. The correction mattered, but it came after harm had already been done. Merrick
-  has never forgotten the distinction between suspicion, inquiry, detention, and proof. He is not timid because of that failure.
-  He is disciplined.
+human_detail: Merrick saves used envelopes and writes household lists on their blank backs. He dislikes wasting good paper.
+background: >-
+  Thomas Merrick was raised in a household where a written account mattered. His father kept books for a small City tradesman, and Thomas learned early that names, deliveries, sums, and promises became much harder to dispute once somebody had written them down properly. He entered police work young and learned its less romantic habits: finding addresses, taking statements, noticing who came and went, and hearing the same event described very differently by several honest people. Detective work suited him. Merrick likes routes, times, motives, account books, lodging records, employment histories, and the ordinary facts from which a recent human sequence can be reconstructed. He believes procedure is useful because responsibility can be located within it: somebody asks, signs, requests authority, and decides when there are grounds to act.
+history: >-
+  Three years ago Merrick investigated the theft of valuable goods from a City warehouse. A night watchman confidently identified a recently dismissed tally clerk as the man he had seen leaving the premises. The motive appeared obvious and the timing seemed plausible. Merrick pressed the suspect hard and initially treated the watchman's certainty as stronger evidence than it deserved. A delivery record, a cabman's recollection, and a reconstruction of the route eventually established that the clerk could not reasonably have been where the witness believed he had seen him. Merrick corrected the investigation before a charge was carried through, but not before the man spent a night under suspicion and lost work. Merrick did not become afraid to act. He became exact about the difference between suspicion, grounds for inquiry, grounds for detention, and proof.
 player_edges:
 - label: Competence spotlight
   title: The Human Sequence
@@ -41,17 +35,14 @@ knowledge:
 people:
 - name: Margaret Merrick
   relationship: Wife
-  text: Your police work exists inside a household, not outside ordinary life. Night duty, reputation, injury, and institutional
-    trouble have consequences at home.
+  text: Margaret is a stationer's daughter and can make more sense of Thomas's handwriting than anyone alive. Their marriage is affectionate and practical, though police work has never shown much respect for supper, Sundays, or promises made before a bell rings at Old Jewry. She expects Thomas to notice when the work has begun consuming everything around it.
 - name: Detective Inspector James McWilliam
-  relationship: Senior City officer
-  text: A real professional relationship, not a patron who grants unrestricted freedom. His confidence matters because Merrick's
-    office and responsibilities matter.
+  relationship: Senior City detective
+  text: McWilliam is a demanding senior officer who values useful work more than theatrical certainty. Approval from above does not make an unsupported conclusion stronger.
 relationships:
 - name: Dr Laurence Kersey
   relationship: Professional respect and disagreement
-  text: You know one another professionally. A previous case left each of you irritated by the other's refusal to overstate
-    what the evidence proved—and convinced that the refusal was made in good faith.
+  text: A previous assault investigation taught both men the difference between questioning a living patient quickly and questioning them usefully. Merrick respects Kersey's refusal to turn a plausible medical inference into a fact merely because the investigation would prefer an answer.
 - name: Arthur Bell
   relationship: Professional familiarity
   text: You know the kind of professional he is more readily than the man himself.
@@ -61,9 +52,7 @@ relationships:
 - name: Clara Mercer
   relationship: Professional presence
   text: You know reporters as a professional presence. There is no pre-existing private alliance.
-known_pressure: A Defensible Decision. You must make defensible decisions under incomplete information. Your superiors, fellow officers, courts,
-  witnesses, and household can all be affected by what you decide. Past experience has made you unwilling to confuse a strong
-  suspicion with a right you have not earned.
+known_pressure: A Defensible Decision. You must make defensible decisions under incomplete information. Your superiors, fellow officers, courts, witnesses, and household can all be affected by what you decide. Past experience has made you unwilling to confuse a strong suspicion with a right you have not earned.
 characteristics:
 - name: STR
   value: 65
@@ -127,8 +116,7 @@ carried:
 - Ordinary personal and police-duty effects appropriate to his current assignment.
 - No firearm is routinely carried.
 owned_available:
-- Ordinary personal possessions and police-duty resources that remain at home or the police office rather than magically accompanying
-  him everywhere.
+- Ordinary personal possessions and police-duty resources that remain at home or the police office rather than magically accompanying him everywhere.
 professional_access:
 - Approach City officers and superiors as a colleague.
 - Conduct and preserve witness interviews.
@@ -137,8 +125,7 @@ professional_access:
 - Identify himself credibly as a City detective.
 - Request cooperation from Metropolitan colleagues.
 requires_permission:
-- Private premises, private books, Metropolitan resources, medical confidences, evidence outside his assignment, and coercive
-  police steps require the actual authority or cooperation appropriate to the situation.
+- Private premises, private books, Metropolitan resources, medical confidences, evidence outside his assignment, and coercive police steps require the actual authority or cooperation appropriate to the situation.
 access_limits:
 - Cannot command Metropolitan Police merely because he is a detective.
 - Cannot seize private books on suspicion alone.
