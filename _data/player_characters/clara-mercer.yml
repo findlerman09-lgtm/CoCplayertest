@@ -1,6 +1,6 @@
 investigator_id: SS
 publication_name: Clara Mercer
-name_status: development_hold
+name_status: locked
 age: 32
 occupation_display: Reporter — East-End district
 occupation_full: Reporter, fictional London newspaper — East-End district
@@ -133,6 +133,5 @@ access_limits:
 - Cannot materialize a relevant source whenever convenient.
 - Cannot assume a camera or firearm is present.
 editorial_holds:
-- 'Publication name: Clara Mercer remains a development name.'
 - Newspaper title.
 - Minor equipment terminology.
