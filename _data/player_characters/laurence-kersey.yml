@@ -19,11 +19,7 @@ background: 'Kersey is a London-born East-London general medical practitioner, s
   families, incomplete histories, limited materials, and the need to act without pretending to know more than medicine can
   establish. He combines paying general practice with bounded charitable medical duties and has professional standing, but
   not universal medical authority.'
-history: 'Kersey once treated a carman injured beside an overturned cart. Reconstructing the accounts showed that the man''s
-  collapse preceded the cart accident rather than simply resulting from it. The case reinforced a lesson medical training
-  had already begun to teach him: a correct explanation often depends on sequence. What changed first? What was already present?
-  What followed an injury rather than causing it? Which statement is observation, and which is somebody''s explanation of
-  the observation?'
+history: 'Before the Cart Moved. Kersey treated a carman injured beside an overturned cart. Reconstructing the accounts showed that the man''s collapse preceded the cart accident rather than simply resulting from it. The case taught Kersey that a collection of true facts can still produce a false explanation when they are placed in the wrong order. His lesson: “An explanation can contain every true fact and still put them in the wrong order.”'
 player_edges:
 - label: Analytical competence
   title: Reconstruct the Chain
