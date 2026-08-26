@@ -2,14 +2,16 @@ window.addEventListener('DOMContentLoaded', () => {
   const root = document.querySelector('[data-character-state]');
   if (!root) return;
 
+  const SCHEMA_VERSION = 2;
   const slug = root.dataset.characterState;
-  const version = root.dataset.stateVersion || '1';
+  const dataVersion = String(root.dataset.stateVersion || '1');
   const maxHp = Number(root.dataset.maxHp || root.dataset.defaultHp || 0);
-  const maxSanity = Number(root.dataset.maxSanity || 99);
+  const configuredMaxSanity = Number(root.dataset.maxSanity || 99);
   const defaults = {
     hp: Number(root.dataset.defaultHp || 0),
     sanity: Number(root.dataset.defaultSanity || 0),
     luck: Number(root.dataset.defaultLuck || 0),
+    cthulhuMythos: 0,
     majorWound: false,
     fatalDamage: false,
     temporaryCheckPending: false,
@@ -23,8 +25,9 @@ window.addEventListener('DOMContentLoaded', () => {
   };
 
   const storageKey = `rippers-character-state:${slug}`;
-  const legacyKey = `rippers-character-state:${slug}:v${version}`;
+  const legacyKey = `rippers-character-state:${slug}:v${dataVersion}`;
   const privateEffectsKey = `rippers-private-effects:${slug}`;
+  let migrationNotice = '';
 
   function readStored(key) {
     try {
@@ -35,15 +38,44 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  function loadState() {
-    const stable = readStored(storageKey);
-    if (stable) return { ...defaults, ...stable };
+  function stateEnvelope(value) {
+    return {
+      schemaVersion: SCHEMA_VERSION,
+      dataVersion,
+      state: value
+    };
+  }
 
-    const legacy = readStored(legacyKey);
+  function persist(value) {
+    localStorage.setItem(storageKey, JSON.stringify(stateEnvelope(value)));
+  }
+
+  function normalizeStoredState(candidate) {
+    if (!candidate || typeof candidate !== 'object') return null;
+
+    if (candidate.schemaVersion && candidate.state && typeof candidate.state === 'object') {
+      if (String(candidate.dataVersion || '') !== dataVersion || Number(candidate.schemaVersion) !== SCHEMA_VERSION) {
+        migrationNotice = 'Saved tracker state was migrated to the current dossier data version.';
+      }
+      return { ...defaults, ...candidate.state };
+    }
+
+    migrationNotice = 'Legacy tracker state was migrated to the current version.';
+    return { ...defaults, ...candidate };
+  }
+
+  function loadState() {
+    const stable = normalizeStoredState(readStored(storageKey));
+    if (stable) {
+      persist(stable);
+      return stable;
+    }
+
+    const legacy = normalizeStoredState(readStored(legacyKey));
     if (legacy) {
-      const migrated = { ...defaults, ...legacy };
-      localStorage.setItem(storageKey, JSON.stringify(migrated));
-      return migrated;
+      persist(legacy);
+      localStorage.removeItem(legacyKey);
+      return legacy;
     }
 
     return { ...defaults };
@@ -54,6 +86,14 @@ window.addEventListener('DOMContentLoaded', () => {
   function clamp(value, min, max) {
     return Math.min(max, Math.max(min, value));
   }
+
+  function sanityCap() {
+    const mythosCap = 99 - clamp(Number(state.cthulhuMythos || 0), 0, 99);
+    return Math.max(0, Math.min(configuredMaxSanity, mythosCap));
+  }
+
+  state.sanity = clamp(Number(state.sanity), 0, sanityCap());
+  state.sanityPeriodStart = clamp(Number(state.sanityPeriodStart), 0, configuredMaxSanity);
 
   function sanityThreshold() {
     return Math.max(1, Math.ceil(Number(state.sanityPeriodStart || state.sanity || 1) / 5));
@@ -88,7 +128,8 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 
   function saveState() {
-    localStorage.setItem(storageKey, JSON.stringify(state));
+    state.sanity = clamp(Number(state.sanity), 0, sanityCap());
+    persist(state);
     render();
     window.dispatchEvent(new CustomEvent('rippers:state-change', { detail: { slug, state } }));
   }
@@ -104,12 +145,15 @@ window.addEventListener('DOMContentLoaded', () => {
   function render() {
     document.querySelectorAll('[data-state-display="hp"]').forEach(el => el.textContent = state.hp);
     document.querySelectorAll('[data-state-display="sanity"]').forEach(el => el.textContent = state.sanity);
+    document.querySelectorAll('[data-state-display="max-sanity"]').forEach(el => el.textContent = sanityCap());
     document.querySelectorAll('[data-state-display="luck"]').forEach(el => el.textContent = state.luck);
+    document.querySelectorAll('[data-state-display="cthulhuMythos"]').forEach(el => el.textContent = state.cthulhuMythos);
 
     document.querySelectorAll('[data-state-input]').forEach(input => {
       const key = input.dataset.stateInput;
       if (key === 'majorWound') input.checked = Boolean(state.majorWound);
       else input.value = state[key];
+      if (key === 'sanity') input.max = sanityCap();
     });
 
     document.querySelectorAll('[data-skill-check]').forEach(input => {
@@ -127,7 +171,7 @@ window.addEventListener('DOMContentLoaded', () => {
       el.textContent = state.lastHpNotice || 'Enter damage from one attack to apply wound rules automatically.';
     });
     document.querySelectorAll('[data-san-alert]').forEach(el => {
-      el.textContent = state.lastSanNotice || 'Enter SAN lost from one event to test one-time and cumulative thresholds.';
+      el.textContent = state.lastSanNotice || migrationNotice || 'Enter SAN lost from one event to test one-time and cumulative thresholds.';
     });
 
     document.querySelectorAll('[data-sanity-control-note]').forEach(el => {
@@ -135,16 +179,21 @@ window.addEventListener('DOMContentLoaded', () => {
       if (state.sanity <= 0) {
         el.textContent = 'SAN is 0: permanent insanity cannot be ended with the condition control.';
       } else if (state.temporaryInsanity || state.indefiniteInsanity) {
-        el.textContent = `${active} is still active. Resetting cumulative SAN loss does not end it; any further SAN loss will cause another bout until End insanity condition is used.`;
+        el.textContent = `${active} is still active. Starting a new SAN period does not end it; any further SAN loss causes another bout until the Keeper ends the condition.`;
       } else if (state.temporaryCheckPending) {
-        el.textContent = 'Resolve the pending INT check before treating the investigator as recovered.';
+        el.textContent = 'Resolve the pending INT check before entering another SAN-loss event.';
       } else {
-        el.textContent = 'Resetting cumulative loss starts a fresh one-fifth threshold.';
+        el.textContent = 'Start a new SAN period only when the Keeper determines a new period of safety/rest begins.';
       }
     });
 
     document.querySelectorAll('[data-temp-resolution-panel]').forEach(el => {
       el.hidden = !state.temporaryCheckPending;
+    });
+
+    document.querySelectorAll('[data-apply-sanity-loss]').forEach(button => {
+      button.disabled = Boolean(state.temporaryCheckPending);
+      button.title = state.temporaryCheckPending ? 'Resolve the pending INT check first.' : '';
     });
 
     const improvementList = document.querySelector('[data-improvement-list]');
@@ -177,13 +226,13 @@ window.addEventListener('DOMContentLoaded', () => {
         <div><small>Local dossier</small><strong>Player State</strong></div>
         <button type="button" data-state-settings-close aria-label="Close settings">×</button>
       </div>
-      <p>Back up or restore this investigator's current HP, SAN, Luck, improvement marks, Major Wounds, and private mental effects.</p>
+      <p>Back up or restore this investigator's current HP, SAN, Luck, Mythos, improvement marks, Major Wounds, and private mental effects.</p>
       <div class="state-settings-actions">
         <button type="button" data-export-player-state>Export state</button>
         <label class="state-import-button">Import state<input type="file" accept="application/json,.json" data-import-player-state hidden></label>
       </div>
       <p class="state-settings-note">The backup does not contain the dossier password or archive key.</p>
-      <p class="state-settings-status" data-state-settings-status></p>
+      <p class="state-settings-status" data-state-settings-status role="status" aria-live="polite"></p>
     `;
     document.body.append(dialog);
 
@@ -209,7 +258,9 @@ window.addEventListener('DOMContentLoaded', () => {
     dialog.querySelector('[data-export-player-state]')?.addEventListener('click', () => {
       const payload = {
         format: 'rippers-player-state',
-        version: 1,
+        version: 2,
+        schemaVersion: SCHEMA_VERSION,
+        dataVersion,
         character: slug,
         exportedAt: new Date().toISOString(),
         characterState: state,
@@ -235,8 +286,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
       try {
         const payload = JSON.parse(await file.text());
-        if (payload?.format !== 'rippers-player-state' || payload?.version !== 1) {
-          throw new Error('That file is not a Rippers player-state backup.');
+        if (payload?.format !== 'rippers-player-state' || ![1, 2].includes(Number(payload?.version))) {
+          throw new Error('That file is not a supported Rippers player-state backup.');
         }
         if (payload.character !== slug) {
           throw new Error('That backup belongs to a different investigator.');
@@ -251,7 +302,11 @@ window.addEventListener('DOMContentLoaded', () => {
           return;
         }
 
-        localStorage.setItem(storageKey, JSON.stringify({ ...defaults, ...payload.characterState }));
+        const importedState = { ...defaults, ...payload.characterState };
+        importedState.cthulhuMythos = clamp(Number(importedState.cthulhuMythos || 0), 0, 99);
+        const importedCap = Math.max(0, Math.min(configuredMaxSanity, 99 - importedState.cthulhuMythos));
+        importedState.sanity = clamp(Number(importedState.sanity), 0, importedCap);
+        localStorage.setItem(storageKey, JSON.stringify(stateEnvelope(importedState)));
         if (payload.privateEffects && typeof payload.privateEffects === 'object') {
           localStorage.setItem(privateEffectsKey, JSON.stringify(payload.privateEffects));
         } else {
@@ -271,7 +326,7 @@ window.addEventListener('DOMContentLoaded', () => {
     button.addEventListener('click', () => {
       const key = button.dataset.stateKey;
       const delta = Number(button.dataset.stateDelta);
-      const max = Number(button.dataset.stateMax || 999);
+      const max = key === 'sanity' ? sanityCap() : Number(button.dataset.stateMax || 999);
       state[key] = clamp(Number(state[key]) + delta, 0, max);
       saveState();
     });
@@ -282,13 +337,28 @@ window.addEventListener('DOMContentLoaded', () => {
       const key = input.dataset.stateInput;
       if (key === 'majorWound') {
         const wasMarked = Boolean(state.majorWound);
+        if (wasMarked && !input.checked) {
+          const confirmed = window.confirm('Clear the mechanical Major Wound only after the Keeper confirms recovery under the healing rules. Clear it now?');
+          if (!confirmed) {
+            input.checked = true;
+            return;
+          }
+        }
         state.majorWound = input.checked;
         saveState();
         if (!wasMarked && state.majorWound) emit('major-wound', { source: 'manual' });
         return;
       }
 
-      const max = Number(input.max || 999);
+      if (key === 'cthulhuMythos') {
+        state.cthulhuMythos = clamp(Math.floor(Number(input.value || 0)), 0, 99);
+        state.sanity = clamp(state.sanity, 0, sanityCap());
+        state.lastSanNotice = `Cthulhu Mythos is ${state.cthulhuMythos}; maximum SAN is now ${sanityCap()}.`;
+        saveState();
+        return;
+      }
+
+      const max = key === 'sanity' ? sanityCap() : Number(input.max || 999);
       state[key] = clamp(Number(input.value), 0, max);
       saveState();
     });
@@ -323,17 +393,23 @@ window.addEventListener('DOMContentLoaded', () => {
   });
 
   document.querySelector('[data-apply-sanity-loss]')?.addEventListener('click', () => {
+    if (state.temporaryCheckPending) {
+      state.lastSanNotice = 'Resolve the pending INT check before entering another SAN-loss event.';
+      saveState();
+      return;
+    }
+
     const input = document.querySelector('[data-sanity-loss-entry]');
     const requestedLoss = Math.max(0, Math.floor(Number(input?.value || 0)));
     if (!requestedLoss) return;
 
     const wasUnderlying = Boolean(state.temporaryInsanity || state.indefiniteInsanity);
     const actualLoss = Math.min(requestedLoss, state.sanity);
-    state.sanity = clamp(state.sanity - actualLoss, 0, maxSanity);
+    state.sanity = clamp(state.sanity - actualLoss, 0, sanityCap());
     state.sanityPeriodLoss += actualLoss;
-    state.temporaryCheckPending = false;
 
     if (state.sanity <= 0) {
+      state.temporaryCheckPending = false;
       state.temporaryInsanity = false;
       state.indefiniteInsanity = false;
       state.lastSanNotice = 'SAN has reached 0: permanent insanity.';
@@ -363,11 +439,12 @@ window.addEventListener('DOMContentLoaded', () => {
 
   document.querySelectorAll('[data-temp-resolution]').forEach(button => {
     button.addEventListener('click', () => {
+      if (!state.temporaryCheckPending) return;
       const result = button.dataset.tempResolution;
       state.temporaryCheckPending = false;
       if (result === 'success') {
         state.temporaryInsanity = true;
-        state.lastSanNotice = 'INT roll succeeded: temporary insanity marked. A private bout has been assigned below.';
+        state.lastSanNotice = 'INT roll succeeded: temporary insanity marked. The campaign house procedure assigns a private bout prompt below; the Keeper may adapt or replace it.';
         emit('madness-bout', { reason: 'temporary' });
       } else {
         state.temporaryInsanity = false;
@@ -378,12 +455,13 @@ window.addEventListener('DOMContentLoaded', () => {
   });
 
   document.querySelector('[data-reset-sanity-period]')?.addEventListener('click', () => {
+    if (!window.confirm('Start a new cumulative SAN-loss period? Do this only when the Keeper determines a new period of safety/rest begins.')) return;
     state.sanityPeriodStart = state.sanity;
     state.sanityPeriodLoss = 0;
     const active = activeInsanityLabel();
     state.lastSanNotice = (state.temporaryInsanity || state.indefiniteInsanity)
-      ? `Cumulative SAN-loss period reset at ${state.sanity} SAN. ${active} remains active; any further SAN loss will cause another bout until End insanity condition is used.`
-      : `Cumulative SAN-loss period reset at ${state.sanity} SAN. A fresh one-fifth threshold is now being tracked.`;
+      ? `New SAN-loss period started at ${state.sanity} SAN. ${active} remains active; any further SAN loss causes another bout until the Keeper ends the condition.`
+      : `New SAN-loss period started at ${state.sanity} SAN. A fresh one-fifth threshold is now being tracked.`;
     saveState();
   });
 
@@ -393,6 +471,7 @@ window.addEventListener('DOMContentLoaded', () => {
       saveState();
       return;
     }
+    if (!window.confirm('End the current insanity condition by Keeper decision? This clears remaining private bout cards but does not restore SAN.')) return;
 
     state.temporaryCheckPending = false;
     state.temporaryInsanity = false;
@@ -412,16 +491,21 @@ window.addEventListener('DOMContentLoaded', () => {
   });
 
   document.querySelector('[data-clear-skill-checks]')?.addEventListener('click', () => {
+    if (!state.skillChecks.length) return;
+    if (!window.confirm('Clear all resolved improvement checks?')) return;
     state.skillChecks = [];
     saveState();
   });
 
   document.querySelector('[data-reset-character-state]')?.addEventListener('click', () => {
+    if (!window.confirm('Reset this investigator tracker to the dossier defaults? This clears HP/SAN/Luck changes, Mythos, conditions, improvement marks, and private effects on this device.')) return;
     state = { ...defaults, skillChecks: [] };
+    migrationNotice = '';
     saveState();
     emit('tracker-reset');
   });
 
+  persist(state);
   render();
   setupStateSettings();
 });
