@@ -10,9 +10,7 @@ items:
     date: Sunday, 30 September 1888
     released: true
     status: open
-    basis: historical_control
     case_file: current-file
-    release_cue: Opening chronology; available once the Double Event inquiry begins.
     summary: A concise chronology separating established times from what remains unknown.
     body: |
       **Sunday, 30 September 1888**
@@ -42,9 +40,7 @@ items:
     date: August–October 1888
     released: false
     status: open
-    basis: fictional_insertion
     case_file: current-file
-    release_cue: Release when investigators gain legitimate access to Penfold's day book.
     summary: Ordinary removal and storage entries surrounding the jobs under inquiry.
     body: |
       **2 Aug.** Mrs W. Prentice—Whitechapel Road to Stepney Green. Two rooms. Bedding & one chest to store. Van.
@@ -74,9 +70,7 @@ items:
     date: 1888
     released: false
     status: open
-    basis: fictional_insertion
     case_file: current-file
-    release_cue: Release if the Merton verification route is selected or the document is otherwise legitimately obtained.
     summary: A customer-side query about a small locked case or parcel from the August removal.
     body: |
       Sir,
@@ -102,9 +96,7 @@ items:
     date: 1888
     released: false
     status: open
-    basis: fictional_insertion
     case_file: current-file
-    release_cue: Release if the Canning verification route is selected or the note is otherwise legitimately obtained.
     summary: Instructions concerning return of the rear-yard key after a removal.
     body: |
       Mr Penfold,
@@ -124,9 +116,7 @@ items:
     date: Current inquiry
     released: true
     status: open
-    basis: player_tool
     case_file: current-file
-    release_cue: Available as a neutral working aid; it contains no scored occupations or suggested solution.
     summary: A neutral worksheet for separating established facts from testable explanations.
     body: |
       **What is established?**
