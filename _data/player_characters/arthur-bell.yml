@@ -6,8 +6,7 @@ occupation_display: Surveyor of Risks
 occupation_full: Fire-insurance surveyor
 residence: Clerkenwell
 social_status: Self-made respectable commercial professional
-summary: You understand buildings, loads, commercial work, and practical movement by asking what the physical world required
-  somebody to do.
+summary: Arthur Bell is a quiet, dry, observant fire-insurance surveyor whose work has made him thoroughly familiar with the practical life of commercial premises.
 roleplay_anchor: Before deciding what happened, find what had to move.
 human_detail: Bell counts stairs in unfamiliar buildings.
 background: 'Bell is a self-made commercial professional whose authority was earned rather than inherited. His earlier working
@@ -44,6 +43,12 @@ knowledge:
   text: When something mechanical appears impossible, your first assumption is that you have missed the mechanism—not that
     ordinary rules have ceased to apply.
 people:
+- name: Eliza Price
+  relationship: Known connection
+  text: An established connection in Bell's ordinary life. Further particulars are not yet filed in the dossier.
+- name: Henry Pritchard
+  relationship: Known connection
+  text: An established connection in Bell's ordinary life. Further particulars are not yet filed in the dossier.
 - name: Professional associates & clients
   relationship: Working relationships
   text: Your livelihood depends on being trusted to report what you actually see, not what an owner, workman, or insurer wants
