@@ -1,18 +1,14 @@
 files:
   - id: current-file
     visible: true
-    title: DEMO — Current File Layout
+    title: The Double Event Inquiry
     status: open
     status_label: Open
-    summary: Non-canon validation material used only to test the player-facing Case File structure before real scenario content is approved.
-    development_only: true
-    known_people:
-      - name: Demonstration Contact — A. Mercer
-        note: Non-canon sample entry used to test a short person note and visual stacking.
-      - name: Demonstration Contact — Eleanor Vale
-        note: Non-canon sample with a longer note so the case-file layout can be judged when one entry wraps to several lines.
+    summary: Released records and working material from the current investigation. Only information already available to the investigators belongs here.
+    development_only: false
+    known_people: []
     known_locations:
-      - name: Demonstration Location — North Wharf
-        note: Layout sample only; not a campaign location.
-      - name: Demonstration Location — Archive Office
-        note: A second non-canon location used to test repeated entries and column balance.
+      - name: Mitre Square
+        note: Catherine Eddowes was found here in the early hours of Sunday, 30 September 1888.
+      - name: Goulston Street
+        note: A piece of Eddowes's apron was found here later that morning.
