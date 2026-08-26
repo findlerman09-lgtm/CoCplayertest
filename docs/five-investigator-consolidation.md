@@ -1,6 +1,6 @@
 # The Rippers — Five-Investigator Consolidation Handoff
 
-**Status:** roster consolidated / P-07 mechanics populated / P-08 player presentation reconciled to locked P-06 identity.
+**Status:** roster consolidated / P-07 mechanics populated / P-08 player presentation reconciled to locked P-06 identity, including the post-merge follow-up audit.
 
 This is a downstream player-site status record. It does not create campaign canon or replace the controlling character-development and PM files.
 
@@ -14,13 +14,15 @@ The P-08 architecture is retained, but locked P-06 identity controls whenever a 
 
 ## P-08 canon-reconciliation corrections
 
-- **Arthur Bell:** restored the stronger accepted one-sentence identity and the locked named people **Eliza Price** and **Henry Pritchard**. Their fuller reveal-safe particulars remain unfiled rather than being invented.
-- **Thomas Merrick:** restored the locked Player Edge titles and permissions **The Human Sequence**, **City Police Standing**, and **A Defensible Decision**. The P-08 replacement labels are discarded.
-- **Miriam Hart:** verified **Rebecca Hart** and **Sarah Feld** as material already present in the accepted baseline; retained the relief/referral identity/title hold; restored **Trust Is Borrowed** as the visible pressure anchor.
-- **Dr Laurence Kersey:** restored **Before the Cart Moved**, including the specific carman/cart sequence and the locked lesson, and retained **Alfred Kersey** in People Who Matter.
-- **Reporter:** no P-06 identity correction was required in this reconciliation; the publication-name and newspaper-title holds remain active.
+The initial reconciliation restored the most obvious omissions. A follow-up audit against the accepted P-06 dossier pages found additional presentation drift and restored the source material rather than preserving P-08 paraphrases merely for visual consistency.
 
-No P-07 mechanics were changed by this correction pass.
+- **Arthur Bell:** restored the accepted one-sentence identity, full P-06 background, the exact formative-history wording **“a warehouse fire in Wapping,”** the accepted human detail, the locked Player Edges **Loads & Movement** and **Commercial Premises**, and the named People Who Matter **Eliza Price** and **Henry Pritchard**. The P-08-only replacement Edge labels and third consistency Edge were removed.
+- **Thomas Merrick:** restored the accepted occupation display, full P-06 background, full tally-clerk formative history, human detail and People Who Matter prose while retaining the locked Player Edge titles and permissions **The Human Sequence**, **City Police Standing**, and **A Defensible Decision**. His City/Met authority ceiling remains unchanged.
+- **Miriam Hart:** restored the formal occupation display **Certificated Assistant Mistress, School Board for London**, the full P-06 background and Annie Feld history, human detail, exact accepted Player Edge prose, accepted Things You Know, and the accepted Rebecca Hart / Sarah Feld material. **Trust Is Borrowed** remains the visible pressure anchor; the exact school and relief/referral institutional identity remain held.
+- **Reporter:** restored the accepted P-06 background, Wapping-fire formative history, source-margin habit, exact Player Edge prose, accepted Things You Know, George Mercer material, and the accepted Bell/Miriam relationship language. The publication-name and newspaper-title holds remain active.
+- **Dr Laurence Kersey:** restored **Registered Medical Practitioner** as the dossier occupation, the accepted P-06 background, **Before the Cart Moved** with the specific carman/cart sequence and locked lesson, exact Player Edge and Things You Know prose, **Alfred Kersey**, and **Samuel Harcourt** as an accepted older medical colleague. Harcourt's exact institutional affiliation remains held; Harcourt himself is not withheld from People Who Matter.
+
+No P-07 mechanics were changed by either reconciliation pass.
 
 ## Player-facing roster
 
@@ -89,7 +91,7 @@ Professional access remains separate from inventory. Skills and Player Edges do 
 - exact practice address;
 - exact dispensary/institution;
 - minor medical-equipment terminology;
-- Samuel Harcourt institutional connection remains held and is not player-published.
+- Samuel Harcourt's exact institutional affiliation.
 
 These are editorial/institutional cleanup items, not mechanical blockers.
 
@@ -103,4 +105,4 @@ Clara Whitcombe remains a **non-canon development/regression reference** for UI 
 
 ## Readiness statement
 
-The five campaign investigators are mechanically populated and the P-08 player presentation has been reconciled back to locked P-06 identity where the original presentation pass drifted. Remaining named holds can be resolved later without redesigning the dossier or reopening P-07 balance.
+The five campaign investigators are mechanically populated and the P-08 player presentation now carries the accepted P-06 identity material without substituting consistency-driven paraphrases for locked dossier content. Remaining named holds can be resolved later without redesigning the dossier or reopening P-07 balance.
