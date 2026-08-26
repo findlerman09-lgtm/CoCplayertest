@@ -30,9 +30,13 @@
   <script defer src="{{ '/assets/pass-5e.js' | relative_url }}"></script>
 </head>
 <body class="app-body archive-guard-pending{% if page.character_slug %} is-locked{% endif %}" data-archive-guard data-archive-verifier="{{ site.data.site_state.archive.verifier }}" data-archive-root="{{ '/' | relative_url }}">
+  <noscript><div class="noscript-warning" role="alert"><strong>JavaScript is required for the player archive.</strong> Locked dossiers and archive records remain closed when scripting or WebCrypto is unavailable. Enable JavaScript and reload this page.</div></noscript>
+
   {% assign character = nil %}
+  {% assign player_character = nil %}
   {% if page.character_slug %}
     {% assign character = site.data.characters[page.character_slug] %}
+    {% assign player_character = site.data.player_characters[page.character_slug] %}
     {% capture character_base %}/characters/{{ page.character_slug }}{% endcapture %}
   {% endif %}
 
@@ -52,8 +56,14 @@
       <div class="global-meta">
         <span>London</span>
         <span>1888</span>
+        <button type="button" class="archive-control" data-lock-archive data-archive-root="{{ '/' | relative_url }}">Lock Archive</button>
+        <button type="button" class="archive-control" data-forget-device data-archive-root="{{ '/' | relative_url }}">Forget Device</button>
       </div>
     </header>
+
+    {% if character and character.legacy %}
+    <div class="noscript-warning" role="note"><strong>NON-CANON PROOF DOSSIER.</strong> This route is retained only as a UI/regression fixture and is not one of the five campaign investigators.</div>
+    {% endif %}
 
     {% if character %}
     <section class="character-gate" data-character-gate="{{ page.character_slug }}" data-salt="{{ character.lock.salt }}" data-verifier="{{ character.lock.verifier }}" data-iterations="{{ character.lock.iterations }}">
@@ -63,9 +73,9 @@
         <h1>Password Required</h1>
         <p>This character archive is reserved for its player. Enter the dossier password issued to you for play.</p>
         <form class="lock-form">
-          <label><span>Dossier password</span><input type="password" autocomplete="current-password" autofocus></label>
+          <label><span>Dossier password</span><input type="password" autocomplete="off" autocapitalize="characters" spellcheck="false" autofocus></label>
           <button type="submit">Open Dossier</button>
-          <p class="lock-status" data-lock-status>Your successful unlock will be remembered on this device.</p>
+          <p class="lock-status" data-lock-status role="status" aria-live="polite">Your successful unlock will be remembered on this device.</p>
         </form>
       </div>
     </section>
@@ -79,7 +89,7 @@
           <a class="context-back" href="{{ '/investigators/' | relative_url }}">← Private dossier</a>
           <div class="context-identity">
             <img src="{{ character.portrait | relative_url }}" alt="" aria-hidden="true">
-            <div><small>Investigator dossier</small><strong>{{ character.name }}</strong><span>{{ character.occupation }}</span></div>
+            <div><small>Investigator dossier</small><strong>{% if player_character %}{{ player_character.publication_name }}{% else %}{{ character.name }}{% endif %}</strong><span>{% if player_character %}{{ player_character.occupation_display }}{% else %}{{ character.occupation }}{% endif %}</span></div>
           </div>
           <nav class="context-nav" aria-label="Character dossier">
             <a href="{{ character_base | append: '/' | relative_url }}" {% if page.context_nav == 'overview' %}class="active"{% endif %}><span>01</span>Overview</a>
