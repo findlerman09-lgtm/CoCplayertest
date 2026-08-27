@@ -1,0 +1,152 @@
+/* WEB-RC1 clue-gate presentation.
+   Presentation only: the Keeper code controls an artifact release, never whether a core clue exists. */
+
+.document-release-guide{
+  margin-top:18px;
+}
+.document-release-guide .frame-body{
+  padding:18px 20px;
+}
+.document-release-guide .frame-body>strong{
+  display:block;
+  color:#e3d6bc;
+  font-size:1rem;
+  font-weight:500;
+}
+.document-release-guide .frame-body p{
+  max-width:72ch;
+  margin:.45rem 0 0;
+  color:#bdc6c1!important;
+}
+
+/* A sealed card should feel deliberately unavailable without making its explanation
+   dim or implying that the player has failed to find the underlying clue. */
+.document-record.is-sealed .document-status.sealed{
+  color:#e1b8a5;
+  border-color:rgba(159,77,65,.68);
+}
+.document-record.is-sealed .sealed-document-face>small{
+  color:#d0b471;
+}
+.document-record.is-sealed .sealed-document-face>strong{
+  color:#e4d8c1;
+}
+.document-record.is-sealed .sealed-document-face>p,
+.document-record.is-sealed .reveal-status{
+  color:#bcc5c0!important;
+}
+.document-record.is-sealed .reveal-form label span{
+  color:#c9b276;
+}
+.document-record.is-sealed .reveal-form input{
+  color:#ece2ce;
+  background:#081419;
+  border-color:rgba(197,163,95,.42);
+}
+.document-record.is-sealed .reveal-form input::placeholder{
+  color:#87928f;
+}
+
+/* Decrypted RC1.1 handouts share one restrained paper treatment.  Production art
+   can replace these surfaces later without changing the clue/release architecture. */
+.reveal-body{
+  color:#2c241a;
+  background:linear-gradient(135deg,#eee3c9,#dfd0ae 62%,#cdbb94);
+  box-shadow:inset 0 0 0 1px rgba(87,68,39,.16);
+}
+.reveal-body h2{
+  margin:0 0 1rem;
+  padding-bottom:.65rem;
+  border-bottom:1px solid rgba(103,79,42,.34);
+  color:#2a2117;
+  font-size:1.28rem;
+  font-weight:500;
+  letter-spacing:.025em;
+}
+.reveal-body h3{
+  margin:1.25rem 0 .45rem;
+  color:#3b2e20;
+  font-size:1rem;
+  font-weight:600;
+  letter-spacing:.035em;
+}
+.reveal-body p,
+.reveal-body li,
+.reveal-body td,
+.reveal-body th{
+  color:#352b20;
+  font-size:.96rem;
+  line-height:1.58;
+}
+.reveal-body p{
+  margin:.55rem 0;
+}
+.reveal-body strong{
+  color:#241c14;
+}
+.reveal-body em{
+  color:#584a38;
+}
+.reveal-body hr{
+  border:0;
+  border-top:1px solid rgba(103,79,42,.28);
+  margin:1.1rem 0;
+}
+.reveal-body table{
+  width:100%;
+  border-collapse:collapse;
+  margin:.7rem 0 1rem;
+  background:rgba(255,255,255,.12);
+}
+.reveal-body th,
+.reveal-body td{
+  padding:.58rem .66rem;
+  vertical-align:top;
+  border-bottom:1px solid rgba(103,79,42,.24);
+  text-align:left;
+}
+.reveal-body th{
+  color:#5b4727;
+  background:rgba(99,77,42,.08);
+  text-transform:uppercase;
+  letter-spacing:.075em;
+  font-size:.7rem;
+}
+.reveal-body tr:last-child td{
+  border-bottom:0;
+}
+.reveal-body ul,
+.reveal-body ol{
+  padding-left:1.35rem;
+}
+
+/* Worksheet-like empty rules remain obvious on screen and in print. */
+.reveal-body .worksheet-line,
+.reveal-body p:empty{
+  min-height:1.55rem;
+  border-bottom:1px solid rgba(77,59,35,.34);
+}
+
+@media(max-width:720px){
+  .reveal-body{
+    overflow-x:auto;
+  }
+  .reveal-body table{
+    min-width:520px;
+  }
+}
+
+@media print{
+  .document-release-guide,
+  .document-record.is-sealed{
+    display:none!important;
+  }
+  .document-record.is-unlocked .reveal-body{
+    color:#111;
+    background:#fff;
+    box-shadow:none;
+  }
+  .document-record.is-unlocked .reveal-body *{
+    color:#111!important;
+  }
+}

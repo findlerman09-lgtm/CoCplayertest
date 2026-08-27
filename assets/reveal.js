@@ -44,6 +44,12 @@ function setRevealOpenState(card) {
     }
     const metaStatus = record.querySelector('[data-document-meta-status]');
     if (metaStatus) metaStatus.textContent = 'Open';
+
+    // Sealed catalogue labels stay spoiler-safe before release. Once decrypted,
+    // promote the actual handout heading into the record summary for easier reuse.
+    const revealedHeading = body?.querySelector('h2');
+    const summaryTitle = record.querySelector('.document-summary-copy strong');
+    if (revealedHeading && summaryTitle) summaryTitle.textContent = revealedHeading.textContent.trim();
   }
 }
 
