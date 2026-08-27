@@ -3,3 +3,10 @@ archive:
   verifier: "SEvTG4iCxhMmMT4rhpl2/dWzDwPAaB0ecYrdqrCS2r4="
   iterations: 120000
 team_view: false
+web_rc1:
+  version: "WEB-RC1"
+  phase: "Rehearsal synchronization"
+  phase_short: "Rehearsal prep"
+  audit: "S-08 preflight — PASS"
+  final_audit: "Final S-08 pending live rehearsal"
+  materials: "Controlled RC1 release state"
