@@ -7,7 +7,7 @@
 # Supported kinds: person, portrait, photograph, location, evidence, scene.
 # The release password gates only the web artifact. It must never gate a core clue.
 items:
-  - id: penfold-location
+  - id: filed-location-01
     kind: location
     listed: true
     case_file: current-file
@@ -16,13 +16,13 @@ items:
     safe_title: "Filed Location"
     safe_summary: "A sealed location card may be opened when the Keeper releases it."
     lock:
-      id: "wij-location-penfold"
+      id: "wij-reward-01"
       iterations: 100000
       salt: "ymMrpjcT2QU2J//gJc5wcg=="
       iv: "fCjNQY/z4ZgJQtZc"
       ciphertext: "j7nTGZ3HVqAaKbxfLVf9jYKfWWw97goF9Qjmj3NDcgtz90z9do4IulsGvQHBQxfpDkmnv3NjN3QZvNNNmFL9cu/z/lVVAjSus5oJwnKXy6jlxihbHeW/gLPD9Sj61S3Pq6vSD5b7MRQgpnO9aMnGG7UqS5H0Eo0rTEyiqXzOY6NsfW3w3R6njHRxP1aG+6aAFYWaHPpXqbJNaoKG7w5TOFn1JkurRuarz7LO0fc0yXAdhFRQ9bFq1dAJeqMzTV89iTSPrRF4AVug91gyFey3hcHfUcSFdcNhQHWrSmJv7yWHPcwJf9o+QIUh4P7f7HE0yh/RpXqzkCaR+WoRg7JkAeTBClhRHOcTBXVyrXEP81Sws+nhvB/PYEuTmYejUTn9/+I3zsCh5dGKZYsCpXrXC+5uOjIweGLiqCSAJlqCm20mVtTHMgYnAqNIz8VeLZnU5vtVxKtYpOsQKaVnU51djg2/K2U+I1XBKLu83UAj1y2Vsed89tJ92jjpqdQ42Yk/SgrzW9t5z9p4sSn7+VExvlmHnpkAXpXztleBQ88ssOLUPXD9n6mHUJb+Bb6gzeYgCaMfCaCNasWer0WpmIi+Q1PkrCtT1+lhvB1PU8MdXggQFuEIGVUNGCaKfm1vZi21kaeIrbHhZBiZi7UFf+DmNdk2Zonp6rcfwP/lRNmNUHTkdJTcMJCOCtDdlO2tvbRUQ6a6zBvusZdlagak9FkWvvsGp5w7AbGk5ndKCsHKz+pDcl5KbrlqtbcYcDe3c7jslG28W/KXy27dEiTUnrFBZlffkq2uW3XVQYKpn4DhpmJY+kr86rUBHwPOLRwgJ7icxP0m4R8ewQTx3tGOFTvMr5YuT3sXH0cvG66pmG4B5G6Nb4hYY1zKw2BP4UCf005tl8TL7ngEM9gWwfAMOWf39KPXeMYtO5YZ/VVGvQtiSEc2VWe5D5D1Ej6XX7mQ9VFfHPy3COl6HBMm6Wxsfc7dRxZg1gzw+3odyYwxg2BHFZ13zaXCSOTZf1f9vK6nilx/bbZijz+bcGzj/1b+Q60/CEiR0j6cJRQ3tmsx0oJNEb6y9aLwxCvL6fvlVn9rdqn/VVoapV50KJ35CNxhF/733F1uiwKkGwvCJZlBZ4neHEa/cJXs0J7weE+nb/9pzl4Fr4aPJ71Kae4HWPGMH63rTjqp2muynFiTpmxVnVVNNhwa8wcf2bChxrfmoEgKXrzBigcx2kIqnnIEyJohN1hOO+i/6Snlmyx73ULTHjJOTcfL2A2fKjq2jGhSLeGl8ycPmYYVTeTOmdRqbquN+cPGLv1sCX5QItAkTCAGVZbVxL5IW5EI0oKmRjEDlmKpGuy613aj4k3ScvyZHvhx7qOHoPr1IsAN7gvIuJegZ4ZKellAvnLl/6TtKweN25mLS7iOIbCZWSVbvKiTzeLXjDKFj85aJqykz3AAqRe/cIr0VH81rrNaLz8YvfALumah+2qkVANnZ573fvhtC9NrpHsIJ0p0K5zWxn7yUB4zOQ+1qJEKRig2zpAB7PcHQ6X8B93b4pgFf/qaEpezSNYHPWuKWXzsJ5Mmla2JASsB3RrH0ZdOXcSSl+RPyZ1HRWAxP5Ls1EFH9qzpK2xwIZYXoa01vOmoGNrauqCOf3u0Jj+HOaOaMkRotsZGxIfLGCLjjDRzF6ON3HUuw/la0XGCWavsF0GKEDI4xGnCCxSDHo4DYRFe+ROoDalNbmyZDB9rtGhpdsrFC7IezshlPg//vjd7L1qJ0mq7E7ZChOz4VkoCHCFnnHzN3s1dTB4hoy+iR66Oj0EDyNiR3X0SHdGl+ZOm1CPCDGqd+AWwNbqYPQ7Bw4FnWVzXb+uH1rJ9NNMT7y2R+Gg7+tWbe/SzF7ACsEA2TGBbS0i7u5T7pcDOvyOdeG3CtCTuvVoFysE8Pt4L2FHEftTx/DXh8bwi9Ugw3J5ptJ5UUpM="
 
-  - id: penfold-personnel
+  - id: filed-personnel-01
     kind: person
     listed: true
     case_file: current-file
@@ -31,7 +31,7 @@ items:
     safe_title: "Filed Personnel"
     safe_summary: "A sealed workplace roster may be opened when the Keeper releases it."
     lock:
-      id: "wij-personnel-penfold"
+      id: "wij-reward-02"
       iterations: 100000
       salt: "8CTssPP6VVIc5g1qr7+WYw=="
       iv: "hUWlZsy6MiFoqV/2"
@@ -46,7 +46,7 @@ items:
     safe_title: "Filed Person"
     safe_summary: "A sealed person card may be opened when the Keeper releases it."
     lock:
-      id: "wij-person-vale"
+      id: "wij-reward-03"
       iterations: 100000
       salt: "vB/SbV86ZpceCz/2BOT7PA=="
       iv: "u91I3asjY+l8nnKK"
