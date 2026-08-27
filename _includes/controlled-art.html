@@ -1,0 +1,13 @@
+{% assign art_src = include.src %}
+{% assign art_alt = include.alt | default: '' %}
+{% assign art_caption = include.caption %}
+{% assign art_id = include.asset_id %}
+{% assign art_position = include.position | default: '50% 50%' %}
+{% assign art_full = include.full_src | default: art_src %}
+<figure class="controlled-art{% if include.class %} {{ include.class }}{% endif %}"{% if art_id %} data-asset-id="{{ art_id | escape }}"{% endif %}>
+  <button type="button" class="controlled-art-open" data-art-viewer data-art-src="{{ art_full | relative_url }}" data-art-alt="{{ art_alt | escape }}"{% if art_caption %} data-art-caption="{{ art_caption | escape }}"{% endif %} aria-label="Inspect image{% if art_caption %}: {{ art_caption | escape }}{% endif %}">
+    <img src="{{ art_src | relative_url }}" alt="{{ art_alt | escape }}" loading="lazy" decoding="async" style="object-position:{{ art_position }};"{% if include.width %} width="{{ include.width }}"{% endif %}{% if include.height %} height="{{ include.height }}"{% endif %}>
+    <span class="controlled-art-inspect" aria-hidden="true">Inspect</span>
+  </button>
+  {% if art_caption %}<figcaption>{{ art_caption }}</figcaption>{% endif %}
+</figure>

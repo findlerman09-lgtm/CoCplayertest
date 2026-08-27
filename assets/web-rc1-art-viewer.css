@@ -1,0 +1,119 @@
+/* WEB-RC1 controlled-art component. Final assets should drop into these slots without redesign. */
+.controlled-art{margin:1rem 0 1.35rem}
+.controlled-art-open{
+  position:relative;
+  display:block;
+  width:100%;
+  padding:0;
+  overflow:hidden;
+  border:1px solid rgba(196,154,76,.34);
+  background:#071318;
+  cursor:zoom-in;
+  box-shadow:0 12px 30px rgba(0,0,0,.2);
+}
+.controlled-art-open img{
+  display:block;
+  width:100%;
+  max-height:72vh;
+  object-fit:contain;
+  background:#071318;
+}
+.controlled-art-inspect{
+  position:absolute;
+  right:10px;
+  bottom:10px;
+  padding:5px 8px;
+  border:1px solid rgba(239,209,138,.42);
+  background:rgba(4,12,15,.82);
+  color:#e5d8bd;
+  font-size:.58rem;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  opacity:.78;
+  transition:opacity .15s ease,border-color .15s ease;
+}
+.controlled-art-open:hover .controlled-art-inspect,
+.controlled-art-open:focus-visible .controlled-art-inspect{opacity:1;border-color:rgba(239,209,138,.72)}
+.controlled-art figcaption{
+  margin:.55rem 0 0;
+  color:#aeb9b5;
+  font-size:.7rem;
+  line-height:1.5;
+}
+
+.art-viewer-dialog{
+  width:min(94vw,1200px);
+  max-width:1200px;
+  max-height:94vh;
+  padding:0;
+  border:1px solid rgba(196,154,76,.52);
+  background:#071318;
+  color:#e8dfcf;
+  box-shadow:0 24px 80px rgba(0,0,0,.65);
+}
+.art-viewer-dialog::backdrop{background:rgba(0,0,0,.82)}
+.art-viewer-shell{display:flex;flex-direction:column;max-height:92vh}
+.art-viewer-toolbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  padding:9px 12px;
+  border-bottom:1px solid rgba(196,154,76,.28);
+  background:rgba(16,39,44,.96);
+}
+.art-viewer-toolbar span{
+  min-width:0;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  color:#b8c2be;
+  font-size:.65rem;
+}
+.art-viewer-close{
+  flex:0 0 auto;
+  padding:6px 10px;
+  border:1px solid rgba(196,154,76,.42);
+  background:transparent;
+  color:#eadfc9;
+  font:inherit;
+  font-size:.65rem;
+  cursor:pointer;
+}
+.art-viewer-stage{
+  min-height:0;
+  overflow:auto;
+  display:grid;
+  place-items:center;
+  padding:16px;
+  background:#03090b;
+}
+.art-viewer-stage img{
+  display:block;
+  max-width:100%;
+  max-height:78vh;
+  width:auto;
+  height:auto;
+  object-fit:contain;
+}
+.art-viewer-caption{
+  margin:0;
+  padding:10px 14px 13px;
+  border-top:1px solid rgba(196,154,76,.2);
+  color:#b7c0bd;
+  font-size:.72rem;
+  line-height:1.5;
+}
+.art-viewer-caption:empty{display:none}
+
+@media(max-width:620px){
+  .art-viewer-dialog{width:98vw;max-height:98vh}
+  .art-viewer-stage{padding:8px}
+  .art-viewer-stage img{max-height:80vh}
+}
+@media print{
+  .controlled-art-open{border:0;box-shadow:none;background:#fff;cursor:default}
+  .controlled-art-inspect{display:none}
+  .controlled-art figcaption{color:#333}
+  .art-viewer-dialog{display:none!important}
+}
