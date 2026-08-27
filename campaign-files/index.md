@@ -20,8 +20,10 @@ summary: Shared material and known developments associated with cases already op
 {% else %}
 <div class="frame-grid">
   {% for file in visible_files %}
-    {% assign case_documents = site.data.documents.items | where: "released", true | where: "visibility", "shared" | where: "case_file", file.id %}
+    {% assign case_documents = site.data.documents.items | where: "listed", true | where: "visibility", "shared" | where: "case_file", file.id %}
     {% assign case_releases = site.data.case_releases.items | where: "listed", true | where: "case_file", file.id %}
+    {% assign people_count = file.known_people | size %}
+    {% assign location_count = file.known_locations | size %}
     <article class="frame dark-frame" id="case-{{ file.id }}">
       <header><span>{{ file.title }}</span><b>{{ file.status_label | default: file.status }}</b></header>
       <div class="frame-body">
@@ -34,14 +36,21 @@ summary: Shared material and known developments associated with cases already op
           <p>No contents are available from this file yet.</p>
         </section>
         {% else %}
+          <div class="case-file-progress-row" aria-label="Case file summary">
+            <div class="case-file-progress-chip"><b data-case-file-open-count>0</b><span>opened records</span></div>
+            <div class="case-file-progress-chip"><b>{{ location_count }}</b><span>known locations</span></div>
+            <div class="case-file-progress-chip"><b>{{ people_count }}</b><span>known people</span></div>
+          </div>
+
           {% if case_documents.size > 0 %}
           <section class="document-shelf case-folder-shelf">
-            <header><div><small>Filed Material</small><strong>Shared Documents</strong></div><span>{{ case_documents.size }}</span></header>
+            <header><div><small>Filed Material</small><strong>Opened Shared Documents</strong></div><span><span data-case-file-open-count>0</span> open</span></header>
             <div class="archive-document-links">
               {% for doc in case_documents %}
-              <a href="{{ '/documents/#document-' | append: doc.id | relative_url }}"><small>{{ doc.type_label | default: doc.type }}</small><strong>{{ doc.title }}</strong><span>{{ doc.summary }}</span></a>
+              <a href="{{ '/documents/#document-' | append: doc.id | relative_url }}" hidden data-case-file-opened-link="{{ doc.lock.id }}"><small>{{ doc.type_label | default: doc.type }}</small><strong data-case-file-opened-title>{{ doc.title }}</strong><span>{{ doc.summary }}</span></a>
               {% endfor %}
             </div>
+            <p class="case-folder-empty" data-case-file-open-empty>No shared document has been opened on this browser profile yet.</p>
           </section>
           {% endif %}
 
@@ -56,8 +65,6 @@ summary: Shared material and known developments associated with cases already op
           </section>
           {% endif %}
 
-          {% assign people_count = file.known_people | size %}
-          {% assign location_count = file.known_locations | size %}
           {% if people_count > 0 or location_count > 0 %}
           <div class="frame-grid two-one case-known-grid">
             {% if people_count > 0 %}
@@ -93,3 +100,5 @@ summary: Shared material and known developments associated with cases already op
   {% endfor %}
 </div>
 {% endif %}
+
+<script defer src="{{ '/assets/case-desk.js' | relative_url }}"></script>
