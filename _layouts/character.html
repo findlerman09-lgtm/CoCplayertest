@@ -15,6 +15,11 @@ layout: base
 {% assign knowledge_list = p.knowledge | default: page.knowledge %}
 {% assign people_list = p.people | default: page.people %}
 {% assign relationship_list = p.relationships %}
+{% assign portrait_display = p.portrait | default: page.portrait %}
+{% assign character_name_parts = character_name | split: ' ' %}
+{% assign first_name_part = character_name_parts | first %}
+{% assign last_name_part = character_name_parts | last %}
+{% capture character_initials %}{{ first_name_part | slice: 0 }}{{ last_name_part | slice: 0 }}{% endcapture %}
 {% capture character_base %}/characters/{{ page.character_slug }}{% endcapture %}
 <style>
 .overview-hero:before,.overview-portrait:before{display:none!important}
@@ -22,7 +27,13 @@ layout: base
 
 <section class="overview-hero" style="--hero-image:url('{{ page.hero_art | relative_url }}?v=5a1')">
   <div class="overview-art"></div>
-  <div class="overview-portrait"><img src="{{ page.portrait | relative_url }}?v=5a1" alt="Portrait of {{ character_name }}"></div>
+  <div class="overview-portrait">
+    {% if portrait_display and portrait_display != '/assets/favicon.svg' %}
+      <img src="{{ portrait_display | relative_url }}?v=5a1" alt="Portrait of {{ character_name }}">
+    {% else %}
+      <div class="overview-portrait-placeholder" role="img" aria-label="No portrait image is filed for {{ character_name }}"><span>{{ character_initials }}</span></div>
+    {% endif %}
+  </div>
   <div class="overview-copy">
     <p class="eyebrow">{{ occupation_display }} · Age {{ p.age | default: page.age }}</p>
     <h2>{{ character_name }}</h2>
