@@ -138,6 +138,9 @@
   font-size:.72rem;
   line-height:1.5;
 }
+.people-preview-list:has([data-case-known-people] .case-known-entry) .case-known-empty{
+  display:none;
+}
 @keyframes case-memory-file{
   from{opacity:0;transform:translateY(3px)}
   to{opacity:1;transform:none}
