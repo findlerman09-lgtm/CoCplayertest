@@ -74,3 +74,214 @@
 @media print{
   .relationship-grid{grid-template-columns:repeat(2,minmax(0,1fr));}
 }
+
+/* WEB-RC1 general polish pass — real-device rehearsal feedback.
+   The goal is legibility and containment without changing information hierarchy. */
+
+/* Permission/access lists: the legacy possession-row rule used a dark brown on
+   dark teal and also split the narrow side card into two tiny columns. */
+.frame-grid.two-one > .dark-frame .possession-list{
+  grid-template-columns:1fr;
+}
+.dark-frame .possession-row p,
+.link-frame .possession-row p,
+.edge-frame .possession-row p{
+  color:#cad3d0 !important;
+}
+.dark-frame .possession-row > span,
+.link-frame .possession-row > span,
+.edge-frame .possession-row > span{
+  color:#c5a35f;
+}
+.dark-frame .possession-row,
+.link-frame .possession-row,
+.edge-frame .possession-row{
+  border-bottom-color:rgba(197,163,95,.20);
+}
+.parchment-frame .possession-row p,
+.feature-frame .possession-row p{
+  color:#3d3327 !important;
+}
+.parchment-frame .possession-row > span,
+.feature-frame .possession-row > span{
+  color:#735c34;
+}
+.dark-frame .sheet-note,
+.link-frame .sheet-note,
+.edge-frame .sheet-note{
+  color:#b9c4c2 !important;
+}
+
+/* Small labels remain subordinate, but no longer drop into near-disabled contrast. */
+.condition-banner-row small,
+.tracker-heading > span,
+.sanity-period-meter > span,
+.quick-derived span,
+.characteristic-card small,
+.shortcut-list small,
+.context-cases > p{
+  color:#9da9a6;
+}
+.sanity-period-meter small{
+  color:#9da9a6 !important;
+}
+.frame > header b{
+  color:#96a3a2;
+}
+.mini-vitals span{
+  color:#9da9a6;
+  font-size:.60rem;
+}
+.characteristic-card small{
+  font-size:.62rem;
+}
+.condition-banner-row small,
+.tracker-heading > span,
+.sanity-period-meter > span,
+.quick-derived span,
+.quick-rule-stack small,
+.shortcut-list small{
+  font-size:.60rem;
+  line-height:1.35;
+}
+.workspace-titlebar small{
+  color:#a5b0ad;
+  font-size:.67rem;
+}
+.rail-kicker{
+  color:#bda56f;
+  font-size:.64rem;
+}
+.info-rail .rail-panel > p:not(.rail-kicker),
+.rail-fineprint{
+  color:#aab5b2;
+  font-size:.72rem;
+  line-height:1.58;
+}
+.recent-item small{
+  color:#bda56f;
+  font-size:.61rem;
+}
+.recent-item strong{
+  font-size:.79rem;
+  line-height:1.4;
+}
+.context-heading small,
+.context-identity small,
+.context-current-file small{
+  color:#bda56f;
+  font-size:.61rem;
+}
+.context-heading p,
+.context-current-file strong{
+  color:#adb7b4;
+  font-size:.78rem;
+  line-height:1.55;
+}
+.app-body .context-nav a span{
+  color:#b29a6b;
+}
+.document-shelf > header small{
+  color:#bda56f;
+  font-size:.61rem;
+}
+.document-summary-copy small{
+  color:#c1a366;
+  font-size:.62rem;
+}
+.document-summary-copy > span,
+.archive-document-links a > span{
+  color:#aab5b2;
+  font-size:.74rem;
+  line-height:1.5;
+}
+.document-metadata small{
+  color:#9da9a6;
+  font-size:.61rem;
+}
+.document-metadata strong{
+  color:#d0d6d3;
+  font-size:.73rem;
+}
+.archive-document-links small{
+  color:#bda56f;
+  font-size:.59rem;
+}
+.case-folder-empty,
+.case-file-sealed p{
+  color:#a5b0ad !important;
+}
+
+/* Slightly more air around dense working lists and controls. */
+.possession-row{
+  padding-block:10px;
+}
+.shortcut-list > a,
+.recent-item{
+  min-height:42px;
+}
+.frame-body{
+  overflow-wrap:break-word;
+}
+.frame > header span,
+.document-summary-copy,
+.context-identity > div{
+  min-width:0;
+}
+
+/* Until the controlled P-09 portraits arrive, do not enlarge the site favicon and
+   accidentally present it as character art. Use a neutral dossier monogram. */
+.context-identity:has(> img[src*="favicon.svg"]) > img,
+.overview-portrait:has(> img[src*="favicon.svg"]) > img{
+  display:none;
+}
+.context-identity:has(> img[src*="favicon.svg"])::before{
+  content:"R";
+  width:54px;
+  height:64px;
+  display:grid;
+  place-items:center;
+  border:1px solid #8f7446;
+  background:linear-gradient(145deg,#14252c,#0b171d);
+  color:#c5a35f;
+  font-size:1.35rem;
+  letter-spacing:.06em;
+}
+.overview-portrait:has(> img[src*="favicon.svg"])::after{
+  content:"R";
+  width:min(280px,72%);
+  aspect-ratio:4/5;
+  display:grid;
+  place-items:center;
+  margin:0 auto 32px;
+  border:1px solid rgba(197,163,95,.40);
+  box-shadow:inset 0 0 0 4px rgba(197,163,95,.04);
+  background:linear-gradient(160deg,rgba(20,37,44,.90),rgba(7,16,21,.94));
+  color:rgba(224,196,127,.72);
+  font-size:clamp(4rem,9vw,7rem);
+  font-weight:normal;
+}
+
+/* Keep dense multi-panel layouts comfortable just above the mobile-shell switch. */
+@media screen and (max-width:1100px){
+  .relationship-grid{
+    grid-template-columns:1fr;
+  }
+  .frame-grid.two-one{
+    grid-template-columns:1fr;
+  }
+  .frame-grid.two-one > .parchment-frame .possession-list,
+  .frame-grid.two-one > .feature-frame .possession-list{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+}
+
+@media screen and (max-width:760px){
+  .frame-grid.two-one > .parchment-frame .possession-list,
+  .frame-grid.two-one > .feature-frame .possession-list{
+    grid-template-columns:1fr;
+  }
+  .workspace-titlebar{
+    align-items:flex-start;
+  }
+}
