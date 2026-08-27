@@ -21,6 +21,20 @@ function rippersRefreshRecentUnlocks(lockId = null) {
   });
 }
 
+function rippersLoadCompanionScript(filename) {
+  const current = document.currentScript;
+  if (!current?.src) return;
+  const src = new URL(filename, current.src).href;
+  if (document.querySelector(`script[src="${src}"]`)) return;
+  const script = document.createElement('script');
+  script.src = src;
+  script.async = false;
+  document.head.appendChild(script);
+}
+
+rippersLoadCompanionScript('art-viewer.js');
+rippersLoadCompanionScript('rehearsal-tools.js');
+
 window.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.global-nav a.active, .context-nav a.active').forEach(link => {
     link.setAttribute('aria-current', 'page');
