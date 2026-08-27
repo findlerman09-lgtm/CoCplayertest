@@ -1,0 +1,76 @@
+/* WEB-RC1 targeted layout/readability corrections.
+   Presentation only: no scenario, dossier, mechanics, or release-state changes. */
+
+/* Relationship pages live inside a three-column application shell (context rail +
+   content + info rail). Three relationship cards therefore use the viewport as
+   the wrong breakpoint and can force the content track wider than its shell.
+   Two cards per row keeps the frame inside the available content column. */
+.relationship-grid{
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  max-width:100%;
+}
+.relationship-grid > .frame,
+.relationship-card,
+.relationship-note{
+  min-width:0;
+  max-width:100%;
+}
+.relationship-card > header span{
+  min-width:0;
+  overflow-wrap:anywhere;
+}
+
+/* Increase reading size and contrast on the parchment/dark content surfaces.
+   The previous ~14px body copy and muted brown/blue-grey values were visually
+   thin at ordinary desktop zoom. */
+.frame-body p{
+  font-size:.98rem;
+  line-height:1.68;
+}
+.parchment-frame .frame-body p,
+.feature-frame .frame-body p,
+.relationship-card p{
+  color:#403529 !important;
+}
+.relationship-heading small{
+  color:#5c4e3c;
+  font-size:.66rem;
+  line-height:1.35;
+}
+.relationship-heading strong{
+  color:#251f18;
+  font-size:1.05rem;
+  line-height:1.35;
+}
+.dark-frame .frame-body p,
+.link-frame .frame-body p,
+.edge-frame .frame-body p{
+  color:#b9c4c2;
+}
+.workspace-main > p{
+  color:#b9c4c2;
+  font-size:.98rem;
+  line-height:1.65;
+}
+
+/* The dossier rail remains secondary, but should not require squinting. */
+.app-body .context-identity span{
+  color:#c2ccca;
+  font-size:.8rem;
+  line-height:1.4;
+}
+.app-body .context-nav a{
+  color:#c4cdcb;
+  font-size:.78rem;
+}
+.app-body .context-back{
+  color:#9aa7a8;
+}
+
+@media(max-width:900px){
+  .relationship-grid{grid-template-columns:1fr;}
+}
+
+@media print{
+  .relationship-grid{grid-template-columns:repeat(2,minmax(0,1fr));}
+}
