@@ -1,0 +1,174 @@
+/* WEB-RC1 case-memory and related-route filing polish. */
+
+/* The Archive case desk now has three counters beside the introduction. */
+.case-desk-summary{
+  grid-template-columns:minmax(0,1.55fr) repeat(3,minmax(105px,.42fr));
+}
+
+.case-release-sheet{
+  color:#c8d1cd;
+}
+.case-release-sheet h2{
+  margin:0;
+  color:#f0dfbb;
+  font-family:Georgia,'Times New Roman',serif;
+  font-size:1.45rem;
+  font-weight:500;
+}
+.case-release-kicker{
+  margin:.28rem 0 1rem;
+  color:#b8c3bf;
+  font-size:.72rem;
+  letter-spacing:.05em;
+}
+.case-release-sheet h3{
+  margin:1rem 0 .45rem;
+  color:#d9bd79;
+  font-family:Georgia,'Times New Roman',serif;
+  font-size:.92rem;
+  font-weight:500;
+}
+.case-release-sheet p,
+.case-release-sheet li{
+  color:#c3ccc8;
+  font-size:.79rem;
+  line-height:1.62;
+}
+.case-release-sheet ul{
+  margin:.4rem 0 0;
+  padding-left:1.2rem;
+}
+.case-release-note{
+  margin-top:1rem!important;
+  padding-top:.8rem;
+  border-top:1px solid rgba(196,154,76,.18);
+  color:#a9b5b1!important;
+  font-size:.69rem!important;
+}
+.case-placeholder-art{
+  min-height:205px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:7px;
+  padding:24px;
+  border:1px solid rgba(196,154,76,.34);
+  background:
+    linear-gradient(rgba(7,18,22,.28),rgba(7,18,22,.28)),
+    repeating-linear-gradient(90deg,rgba(196,154,76,.035) 0 1px,transparent 1px 42px),
+    repeating-linear-gradient(0deg,rgba(196,154,76,.03) 0 1px,transparent 1px 32px),
+    #10272c;
+  text-align:center;
+}
+.case-placeholder-art>span{
+  color:#d7b86c;
+  font-family:Georgia,'Times New Roman',serif;
+  font-size:2rem;
+  letter-spacing:.08em;
+}
+.case-placeholder-art>strong{
+  color:#e9d7ae;
+  font-family:Georgia,'Times New Roman',serif;
+  font-size:1rem;
+  font-weight:500;
+}
+.case-placeholder-art>small{
+  max-width:38ch;
+  color:#aeb9b5;
+  font-size:.67rem;
+  line-height:1.45;
+}
+.case-person-roster{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:10px;
+  margin-top:16px;
+}
+.case-person-tile{
+  display:grid;
+  grid-template-columns:58px minmax(0,1fr);
+  gap:12px;
+  align-items:start;
+  padding:12px;
+  border:1px solid rgba(196,154,76,.2);
+  background:rgba(5,15,18,.52);
+}
+.case-person-monogram{
+  width:54px;
+  aspect-ratio:4/5;
+  display:grid;
+  place-items:center;
+  border:1px solid rgba(196,154,76,.34);
+  background:radial-gradient(circle at 50% 38%,rgba(196,154,76,.1),transparent 34%),linear-gradient(145deg,#10262b,#071318 68%);
+  color:#d3b66f;
+  font-family:Georgia,'Times New Roman',serif;
+  font-size:.86rem;
+  letter-spacing:.08em;
+}
+.case-person-tile strong{
+  display:block;
+  color:#eadfc9;
+  font-family:Georgia,'Times New Roman',serif;
+  font-size:.9rem;
+  font-weight:500;
+}
+.case-person-tile small{
+  display:block;
+  margin:.1rem 0 .32rem;
+  color:#a58f61;
+  font-size:.54rem;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+}
+.case-person-tile p{
+  margin:0;
+  color:#b9c4c0;
+  font-size:.7rem;
+  line-height:1.5;
+}
+
+/* Dynamic case memory is local-device filing state, never a hidden clue score. */
+.case-known-entry-local{
+  animation:case-memory-file .18s ease-out;
+}
+.case-known-empty{
+  margin:.25rem 0;
+  color:#776b5a;
+  font-size:.72rem;
+  line-height:1.5;
+}
+@keyframes case-memory-file{
+  from{opacity:0;transform:translateY(3px)}
+  to{opacity:1;transform:none}
+}
+
+/* Related route cards are absent until the associated correspondence has opened. */
+.case-release-record[hidden]{display:none!important}
+
+@media(max-width:980px){
+  .case-desk-summary{grid-template-columns:minmax(0,1fr) repeat(3,minmax(95px,.35fr))}
+  .case-desk-intro{grid-column:1/-1;padding-right:0}
+}
+@media(max-width:760px){
+  .case-desk-summary{grid-template-columns:1fr 1fr}
+  .case-person-roster{grid-template-columns:1fr}
+}
+@media(max-width:520px){
+  .case-desk-summary{grid-template-columns:1fr}
+  .case-person-tile{grid-template-columns:50px minmax(0,1fr)}
+  .case-person-monogram{width:46px}
+}
+@media print{
+  .case-release-sheet,
+  .case-release-sheet p,
+  .case-release-sheet li,
+  .case-release-note,
+  .case-person-tile p{color:#222!important}
+  .case-release-sheet h2,
+  .case-release-sheet h3,
+  .case-person-tile strong,
+  .case-placeholder-art>strong{color:#111!important}
+  .case-placeholder-art,
+  .case-person-tile{background:#fff;border-color:#aaa}
+}
