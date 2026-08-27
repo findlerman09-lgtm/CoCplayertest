@@ -1,138 +1,105 @@
 items:
   - id: handout-01-mitre-square-chronology
-    title: The Mitre Square Chronology
+    title: "The Mitre Square Chronology"
     type: report
-    type_label: Chronology
+    type_label: "Chronology"
     section: reports
     channel: documents
     visibility: shared
-    source: Current inquiry
-    date: Sunday, 30 September 1888
-    released: true
-    status: open
+    source: "Current inquiry"
+    date: "Sunday, 30 September 1888"
+    listed: true
+    released: false
+    status: sealed
     case_file: current-file
-    summary: A concise chronology separating established times from what remains unknown.
-    body: |
-      **Sunday, 30 September 1888**
-
-      **About 1:00 a.m.** — Catherine Eddowes released from Bishopsgate Police Station.
-
-      **1:30 a.m.** — PC Edward Watkins passes through Mitre Square; no body is present.
-
-      **About 1:35 a.m.** — Joseph Lawende and his companions see a man with a woman believed, from her clothing, to have been Eddowes near Church Passage. Lawende doubts he could recognize the man again.
-
-      **1:44 a.m.** — Watkins discovers Eddowes's body.
-
-      **About 2:55 a.m.** — PC Alfred Long finds a piece of Eddowes's apron in Goulston Street. He says it was not there when he passed at about 2:20.
-
-      **Established:** the outer murder window is 1:30–1:44. The apron piece was later elsewhere.
-
-      **Not established:** exact murder minute; offender's route; who carried the cloth; exact deposit time; authorship of the graffito.
+    summary: "A sealed timing ledger for the Double Event inquiry."
+    lock:
+      id: "wij-h1-timeline"
+      iterations: 100000
+      salt: "XuDCxlOjCRiDU6727vuhMQ=="
+      iv: "XBU8YDqnrcMC9eta"
+      ciphertext: "tSKNgROyeY9O2xMjN5Q0WHOlVIk2jsjd1bwArdZPa4mUCiYdZBn2biBe+eKBClZQ6XZMmBO6mw7ynKRwHQETtARyd8YUQWL3+0u1XyMUdYYWJAE5nIwk0imbBKOrFMu6XSlGJdpKeNgPj/4BZRZ8qwuusZ/PP0y1uR4Eqh3AvgfFcUPtcYoJfI/OhRWin4i2mTkznfWQEaOdB1WiTW5TM56xOkyWE3Bvc2EzSU1mZcwV2u2W4H3Wa4i+l9Pd3+DaqCajv/hU+CyGtl3K3Jf+eE7x8E/WO+514dqk4+rRbTxHbkUU3Hd39hkFA52J+U3awRYVNXUHft/ds8Hsc6xDpqFkfcbL0ORTw/3l2Jd1PGJ4J6SL/BX7pCsqJacFJUZSTg5uKgbWVhJ5gSHgVmiLqz72J4kOpXqfKUVoBuzeEcnuzz93gvYYtFPVbgQaLqw0ehJhO1b9GneGpuN0NNLa3c1B7MX4UiOXxMwYnGkfHnB52kL2agFkK0XnGRn4A2K+L4CI6XYZvfpBDX2/L7BrsI3SknwKWweJ71wGqlzQlyCVYqy7p6hgOybNJyeeRj3bj00mWwwas1WzyOVrQPv+51m+dJuwJ901z2IuyKMmk4sBqV543YjWcw4jIyZ5s8JhR+nuTIbPsjPpkTqB3cap8PO8ESNuAl/Bls3aHtGm4mNhCjj/quKnJj3NFM5QlmleueXkYtdvQymnxfnQeHEvi8kho78NHQ80+7dq5sS1Ra85aknwh+3f048+HWTMOc5m2IvTGxn9vOSqKguUQQa24Xr1KE2wIlmSO0WXwcOjK7mJX9TdNc1WFhjvAyqnf/8mPf7ff8iW0hVpoZqwJsY1tbHFlOr3xSMOby5aBGi2IZKf8jrQSvS1+/S8h7DRiblVKKJdSJILIl179QPGDdA9wH3J9dSM4OWOPfqA5YyukcvsCrgO0Lhwq31KkMrZgStjbLgRaPerhSVzIL0eZS+BgmSOC+7jQpkLBPGF3voQOjWN7MN0KqDPS1DC2jOd5BWwxhHOATdgV157Foj7Bble/4de4jGjBNI1yE4tUp7+cKPnHuSmH5IISZW4bK6ftG6wio4mbnQe9opoKAXHPFNlFPbBO2sGGdhDCwLeLVzeP95bRXp2ndl5Wfirq13BpXLVYd2lXJiEYX3fK4ZLvRCbB3AcRrn7hju9a9pID2q8sA9EZTqYgSfNOlqXU4dvu7RQFoJSP2LxcERwSQ0xqvvzzmZM7THQs5rG0okfV/yizolsTVrpi3wA8I7ufg0QCrYrTj6Ye89bHb+pM9vJokzYq7avYFTC0oFNi2xOt8cPlyRBI+y4QBy8f2XYVbYRQKy0ANFsA6WPxHveYY+9a/WylKqMkgOcgDxC0v+/cE9v3huM39mZ28rnzaEmNVU5ykgJWi9mP7AVvDsamLjnHj95akPpv0N5GELz/haan2IE+pSCV+mcGWaJdriYQVzu19X6xmE3GE6dvcfWdITOEEYgb6iXMkgfqLsBbmCGSpWpVTxOYIbANUC4Ip0DorvmRwJtxoeesTRhSD3KknM/h41QrM//wxO6lU0o1wi96XvcLdnmnMVjJ833Kd0bq7gHQjh9FEHnUgpeZ486xTcGlQD+OZekRob+kfQgCs9xI7cX"
 
   - id: handout-02-penfold-day-book
-    title: Extract from Penfold's Day Book
+    title: "Business Day-Book Extract"
     type: notebook
-    type_label: Day-book Extract
+    type_label: "Day-book Extract"
     section: notes
     channel: documents
     visibility: shared
-    source: Penfold & Co.
-    date: August–October 1888
+    source: "Commercial record"
+    date: "August–October 1888"
+    listed: true
     released: false
-    status: open
+    status: sealed
     case_file: current-file
-    summary: Ordinary removal and storage entries surrounding the jobs under inquiry.
-    body: |
-      **2 Aug.** Mrs W. Prentice—Whitechapel Road to Stepney Green. Two rooms. Bedding & one chest to store. Van.
-
-      **4 Aug.** R. L. Fenner—Aldgate to Bishopsgate. Office desk, chairs, four cases. Deliver same day.
-
-      **7 Aug.** C. H. Merton, agent—western Whitechapel premises. Residual shop & office effects. Selected goods to store; refuse as directed. Balance awaiting instruction. V./N.—ask re rear room.
-
-      **9 Aug.** Mrs T. Havers—Commercial Road to Mile End. Bedroom furniture & boxes. One van.
-
-      **11 Aug.** S. Dunning—effects to warehouse. Wardrobe, bedstead, chairs, trunks. Lot 47.
-
-      **27 Sept.** W. Canning for P. Griggs—Commercial Road premises. Remaining shop fittings & household effects. Part to store; trunks delivered.
-
-      **29 Sept.** Mrs Ellery—Whitechapel Road rooms to St George's. Two-room removal. Upper floor. V./N.
-
-      **1 Oct.** M. Sayer—two trunks & chest to store. Lot 52.
+    summary: "A sealed extract from an ordinary commercial day book."
+    lock:
+      id: "wij-h2-daybook"
+      iterations: 100000
+      salt: "b/Hgegr3+amAPTtW+FrZvA=="
+      iv: "mj/cUhvJcOwXJ8ns"
+      ciphertext: "fEXBJ8EWys3YRYE8YkBuZBPUDZOpvNwZE7xb2IIDtx5fxL4vm/XkeDLFTw4w8/qIQqQPRitGkpFaoRUHq2osva4TYK9Y4IcntCab64nw3dJfjzPt8J3qoG+/AWtMtdsbhrpjtQjKsHEKcCwAOGlz61k8fUfidvWY8ssyrnXlirUqXrcJKtFzKMhVKz7iG3wXT7D8sI9sSaRj8i1e2DIEsHG4EAIsHzNliyGWiJ7xoyhOCNZInaSnfnjoHK14pGhixbNADa4vmpLjZCYUAk+f2DI8P6sH5U6a8jDyLM040Ccd7aa2mckO4DrgDz99pIJE2lfR/KdpJ1heUKKtXMvTXvEP1ySnvxTa81ExkAIPdHDzF2TGHSKWM/tD/BWKu23xXihI3tdUhW9jnLlk+94mdhn1MREscYtZ16E951iBLCEDPCe1B5W3owB/o+jq1qO1e20SFJl0IduNl6RgEt6hifO690M7YD0Kc3jD2VYQBh+sgKXTjMNp7hflmNNKDL5r26Se0Wu7eFMweAMp+Vclt1vMbVvYV8xZjjCJrGvtUrzZwdAyUWw6L3kVAu1O+dkbgqfjGa4+t2M4QfOI+FRKpznTFEB1Te0eKOafOhvCScZD5VKz/DkLE97KvL+heJqUapZh3g1jVG6lYaKsxZJF2fm6qKbzrq+PvC3J+FHc7Trx7CcBhch9PsG+Vt0h6LZIgzayoe1+ZVJ53kSvrznFRDRtO3bNncl4EhgHx7T7E4Pde+CiufuIqkia/C81P26AAWdPBsZ+lIXnwhHNpI2nidFwkIFugPavv5wN/Mz3TPiqNwoRKQAQKXHOcMaCo4tXAbxi2Qs75UD93LvI4OAYbc3IksqujKeq+VZoDBtGqu4HQMzofZAMvKxC78B6r6wTvxf+3HczpVnyxafJQq8pHM12iEdMOBklTfpEMMidsiRoMHzOGHhBPF0F/kE3qeADeOByxu7cBUgEsvqsjL7i8m4/8UUeIswDDyfRe1ATtRqYdgqZkclujoZ8IkTQJfy2dsJxkod5lgVzQDi2AUBlUuSvT34jp0d+v5wIDVHuJX89L8qppaKNCqx4yXp8PheVJjIBqLp6CHoLBwh1in1NHmfwBgwAWPYNbqnw4L1KtrPHvTwNCgSTDy5vSGVkuz3j4q6u0EmtDfIV/6eqmU0N60TOD/JcpKiDaiBmIs/bWbaGM7S7T/53VqTYzXDFdWaCoKoKhS6InJSYULILpsWrLjUriaq5PVlcgUQrQJxGcb9vF7DBwqLFoOs2f95L5rr/7zafMiU+/L5GSwWsOr2pY8Vsi1dHX7cDMrzQLfOciRP1JuJ5sfatoSpqjC3hPMkVsIQmomw4bWevZF41uYJGBv1KOJTdiCahIkNGEvLohoVKY7hGKofSApnM9n9drfREPqVfWaC2U9gNvGaZOSU1mDV+3e15di9zfBRiA6GBBTqhd2ppWTpAxDH8iqPObi3KxBI3chw9sHxU0SYKHnLqdOknQM6xYVsBFykIvBWNXvJtMEd9OL8xJYFNsQ1lm4nZTGnLhEg/JBXv+e/BIKhXzU7FHX8GVrbMH9QKCECZTlNoUowYjsZqqjkZJeja7xmIQatTuAujvIHS1TTsvPvIhhyS31kjzKp4YHcwvc3dMpWmI3sXovRDRa9PRkD2sYQOFZWlQKAZN6YngeKZ/zcB3JiYKyVIxPg2E/+f/m0mlzUWsR8II2Oi1j0cQsG8ZJT522CwU/G1BpCEHoC5/0hPcPiDbFIx7ladUvvN5J3X9ej5rtdgHPPx4TRgomwjrcYykaC0dv0YsgVHEAstIkXSV3k5gIAv0jWtjbrS4TzHyrpu04ldT7RWSoSNCAPREpJLxfo2g1EJihIzImtEb1yvKm8uDuZU7jArzHbHWDv3VikTMlbu94M2"
 
   - id: handout-03-merton-query
-    title: Merton's Query
+    title: "Property Correspondence"
     type: letter
-    type_label: Business Correspondence
+    type_label: "Business Correspondence"
     section: correspondence
     channel: documents
     visibility: shared
-    source: C. H. Merton
-    date: 1888
+    source: "Filed correspondence"
+    date: "1888"
+    listed: true
     released: false
-    status: open
+    status: sealed
     case_file: current-file
-    summary: A customer-side query about a small locked case or parcel from the August removal.
-    body: |
-      Sir,
-
-      The former occupier has again asked whether a small locked case or parcel from the rear room was included among the miscellaneous effects removed on the 7th. I cannot identify it upon your account. Kindly ask the men whether it was placed with goods to store, treated as refuse, or left at the premises.
-
-      Yours,
-
-      C. H. Merton
-
-      *In Samuel's pencil at the foot:*
-
-      **Ask Vale / Naylor what came from rear.**
+    summary: "A sealed piece of customer-side business correspondence."
+    lock:
+      id: "wij-h3-query"
+      iterations: 100000
+      salt: "xTjm1WMxVJQ8MYhjrfCEWQ=="
+      iv: "xv7a3Mk7k+7WrdW0"
+      ciphertext: "SaTkP3VxfoBsl8LYfQMyZ4S5/Kr0r4TeCpj8v0XTCPQGwGPgixUmR7laRtM+wnPNIZaRakl0nMqGuQ/9vigUk1JpV5KvbuWXY71/nBa9IZC7GnPcwLeuqh8LDM1QRZbr8AmNTpK28rNagb1YvTEZE5xzFVaoLux9VKaKOPJ/2BPoGV3OWuKdlrF1L5wY+kTy75lXWlpBTLo6tetyWCxpbqvP5U4g5XyMwQPxxs3mgG0Owb9I5lstXtggARlPAWuoSCvzkl6OY9xUDWYzaGEIFdXsXoSn/CLChYbaGccTFJLMr8KG/b7M2ux86+SqOVe4fIWU3dhDNk8tv+GceC5keD4WQiYJ4J3J7xmt9lm773Ftwy9RrfDhOElGhPTtKjL+AD6ddZn3cNTRelQiQ7RLziJLTKxsJRAInl4RfQ1Gv4HpH6o/917nUqCG4wLvcTJqLz2+97s3kTote538rWqyGekckhiIIbouVC4+OEpRvC9HjzpyBaXIctTdb+M8WjS34GKDvmYx4BMLKyjaLlISoTJm3uoJt+9qYvxuEfDrcnXG5MIu51BLO+PSXnpUs0/D9OmAg5tdPEMjSJmJp7OHMbeXFmMCx0JU3Sv2EjA9AM02XkAkp+eQeUgBhu/DXIzc1XMOAAuBxvpBdIdFiyB7FRxQ4nljQFxe2ltcF+mr1Wzc1t6ruTBH8ImKs9YaRKIofzDPkYPYYcOYrSnpo9ThXBqcK9sUD+k5DuyPZ7MfL7jRFoyn1oJii/4vYpqGOmGjsS4o6OBeCpoeOuBpmKdhdZQxtSMtw5BnKvtUyC9azp1an2jMD4e63wc9cn9UgacEfxMJE+TqUwHf6ftodw=="
 
   - id: handout-04-canning-key-note
-    title: Canning's Key Note
+    title: "Key-Return Note"
     type: letter
-    type_label: Business Note
+    type_label: "Business Note"
     section: correspondence
     channel: documents
     visibility: shared
-    source: W. Canning
-    date: 1888
+    source: "Filed correspondence"
+    date: "1888"
+    listed: true
     released: false
-    status: open
+    status: sealed
     case_file: current-file
-    summary: Instructions concerning return of the rear-yard key after a removal.
-    body: |
-      Mr Penfold,
-
-      Please see that the rear-yard key is returned when the removal is finished. Cleaning men are expected Wednesday before the incoming tenant takes possession. The front key remains with me.
-
-      W. Canning
+    summary: "A sealed property note concerning access and return of a key."
+    lock:
+      id: "wij-h4-key"
+      iterations: 100000
+      salt: "SQH0l7tpPFUq3fAdZSzBZQ=="
+      iv: "kD6uSKPZpQ00m0BU"
+      ciphertext: "DVEkf3ay0YZso+eGCg4zVBk3rhC04HQgNvsW9363LzZDeZfNTv/3RG0qJ/zQjqSUZKtS04mydui1Bgz+M9aDSVZPpZAdPGQHn+JDq4Zs70VU+q8KhW6DzWar7RW/aHS30y4xM91/Fquo6A3jzfdb271i0YGoWsrVAqKVFZrxa/d605hJHH0qH2YdlsZGd9fFM4m7UyHNTzdjfX5W+W4Tk55Eb9+DT+3HfsVA8SecRtp6SdgSvsAPvAeh4iML9J7KCdxMRltOlOh2Dr4DqYRVXAR+dhA3D7ndCbbnVn7c1RxKXzTMfIFsNUJXQbUoM+zj6WmME4cVxtwamvb1eWY43NX1KH56Vy4+bTatTcPPPW1LdTYUW7rRe6WTGkKunVnYLHN3leiDPIthrWlfzPbwuO1fkV2CSRfhbaDywLEPbY8iXyrsb1aaAvVxzL8ZbZATFFmjY/TVUQ9yAsYySXGm+jAvAnFS84fh47hFXqukKjtuYvH4qwJoMJIo6jH2o0uci48Eo8lzw4fqL3tB"
 
   - id: handout-05-working-hypotheses
-    title: Working Hypotheses
+    title: "Working Hypotheses"
     type: notebook
-    type_label: Investigation Worksheet
+    type_label: "Investigation Worksheet"
     section: notes
     channel: documents
     visibility: shared
-    source: Investigator working paper
-    date: Current inquiry
-    released: true
-    status: open
+    source: "Investigator working paper"
+    date: "Current inquiry"
+    listed: true
+    released: false
+    status: sealed
     case_file: current-file
-    summary: A neutral worksheet for separating established facts from testable explanations.
-    body: |
-      **What is established?**
-
-      **What might explain it?**
-
-      **How could we test that explanation?**
-
-      **What does it account for?**
-
-      **What remains unexplained?**
-
-      **What ordinary records would it create?**
-
-      **Who would see it?**
-
-      **What kind of access would it require?**
-
-      **Where could we check it?**
+    summary: "A sealed worksheet for separating established facts from testable explanations."
+    lock:
+      id: "wij-h5-hypotheses"
+      iterations: 100000
+      salt: "wHzYrub1GJFx6ApjCS9ZQw=="
+      iv: "Tn+OeNWHA2pm2MEC"
+      ciphertext: "+hccZVg0gWqbSPG9RDC3sZ4twEwIQCweRXaKjXcJh2MC27SMMGqIhr5JkU1n6PukyBZGqCuDI2DYLLi6v/V4nI22YhQHqMKXNT+2Q/bBfBMs/D4KmyE2LLBT27zE4dmMOQi+7+3JcMvTE9UT+21cZk6QSknYFN8opUTfsxwAvqHQd/yPVOuhbQT9pBMsySjJUTXszgof337zXmWkmLmTDH+JCX2G1FuulVNgySt8hErLGX0F53FewX7ww8HUtQ37LYoIiP9qesnnS9No6kgpPCEroJ6NAd/XwPRIX5CHIa6GaHPvlGQc4LhhT18Dh0KskkdyYOPak8Uwf0lv71IbAM9qZ8nZn2EDiQ08lK5L+zKlz01YTk92pgAg5Cr5kUa+eBpYuk/YliKLa8RW5qn0WEEKodcAlXe7oPZtZNfCsyEI6ERHI3YK8BpMxUhKmteSHMuW6JLzMqaFmGEb7SqoQFMv2vrXz/mHm8GUGp8Yx0yjDL9cN27sTt+0xvvGRjoio72dkaOkY2Fy388YmUu2nMcHdPUrz8ofxZqPiT9p2ijlG8qkQLh4FU8ZA+NDOP5gu5oY/PZUdP6vUzyG1XXYSlMxymJq9a2mApO0gQMFLISMfvVaA4/i7kWrTynWfh9qJkIP36J0CTwC5Wa5/FnbEIn1M2e9DIQSP9vm1C3bB1/BOEaeSXkjK/LBBXiOi12GVeJTH7rKWmxJGf6Q6K3lsaptF20amNe1ZTweD3ds+uPHFctopBUz+jqxn8Hss3LUJP0WVS7azu4PKttQK3JEZBUb8nNinF3tEYpI6HdFTPBbW3ZRGyy4WTabo45fKl8FB9WtR0qY/RQ6QE2FfPDCnZw3qBHyzI3p7rbn9ked3v+31TMNIyqafYOvszWQLzN+aYKW++ZnGAJPfEYJtJ/ikbFLMMQhXvpPmlxWKV/AbLyU/eDlor5Cm/W6UHF4COcgxj+tx5wwnp7u+HSHSvwshuWgwHkf3kstmRABv14as8BvJLEkdxUA+oFJUBC6/0IxyJRdFZUXqMY0IgMjgp/cySjV+lrWVb4jTE09cPkHkCi3kayk8RZfDWKlSHXydkmu8XvVUPFP4k1e872Fpfht8T7kfmLtNMBifZc0mbp9Modof5eaDDObKzgJF3Cx/UHGwKFUpyobO5+wbmR9UOeBuzOi5/F+5bQLexn0f5SYVF/dE39tdJfHs9M5J7udxGuRRSY3n/EIaKLUBd/UKf0jjChxLLvncNS/xK0oHNFnYyZ11N0qAxtH6r6mezFlJohiEKbnTZRY22Y7OxqUZAtdKcQCe2meuPPjno5Kc7+j4aXIl6aUTt5YD6IJiwB8PdJyZ4eEveXirdZLz+GSXF9gAymmyvZoN0fDRrWt/zRXe2JnmbmvK2L8krO0XEVN2kaLzNCmuFRlzdmJ9CuxwegGtQ4SDIqPn90GaZAZDfEkGfUh2io5w9ywheX+2QrwXtuyl1aiOYNfO+/JqwVX2xlLhKgC7DmAwX8biO49mKbbw/wtFcYBdJ5u7j4ZPL5Rf/NVlob+IwQ1Z4UWR4l2Z4sTEgJWuls="
