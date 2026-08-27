@@ -1,0 +1,11 @@
+# Player-facing case-release registry.
+#
+# Keep unreleased person names, image paths, clue text, and other spoiler-bearing
+# content OUT of plaintext fields in this public repository. Before a release is
+# ready, leave it absent or listed: false. When Production/PM authorizes a sealed
+# release, use only reveal-safe catalogue copy here and place the true content in
+# the encrypted lock payload.
+#
+# Supported kinds: person, portrait, photograph, location, evidence, scene.
+# The release password gates only the web artifact. It must never gate a core clue.
+items: []
