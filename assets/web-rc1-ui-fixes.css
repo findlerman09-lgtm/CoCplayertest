@@ -54,16 +54,16 @@
 }
 
 /* The dossier rail remains secondary, but should not require squinting. */
-.context-identity span{
+.app-body .context-identity span{
   color:#c2ccca;
   font-size:.8rem;
   line-height:1.4;
 }
-.context-nav a{
+.app-body .context-nav a{
   color:#c4cdcb;
   font-size:.78rem;
 }
-.context-back{
+.app-body .context-back{
   color:#9aa7a8;
 }
 
