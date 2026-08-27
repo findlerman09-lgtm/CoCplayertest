@@ -9,18 +9,18 @@ breadcrumb: The Rippers / Documents
 kicker: Shared Material
 summary: Material currently available to the whole table.
 ---
-{% assign released = site.data.documents.items | where: "released", true | where: "visibility", "shared" %}
-{% assign images = released | where: "section", "images" %}
-{% assign correspondence = released | where: "section", "correspondence" %}
-{% assign reports = released | where: "section", "reports" %}
-{% assign notes = released | where: "section", "notes" %}
+{% assign listed = site.data.documents.items | where: "listed", true | where: "visibility", "shared" %}
+{% assign images = listed | where: "section", "images" %}
+{% assign correspondence = listed | where: "section", "correspondence" %}
+{% assign reports = listed | where: "section", "reports" %}
+{% assign notes = listed | where: "section", "notes" %}
 
-{% if released.size == 0 %}
+{% if listed.size == 0 %}
 <section class="document-empty-state">
   <span class="document-empty-mark">R</span>
   <small>Shared archive</small>
   <strong>No shared documents are filed yet.</strong>
-  <p>Only material actually released to the table will appear here.</p>
+  <p>Only material deliberately listed for the table will appear here.</p>
 </section>
 {% else %}
 <div class="document-library">
