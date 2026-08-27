@@ -44,11 +44,19 @@ function rippersOpenArtViewer(trigger) {
   dialog.showModal();
 }
 
-window.addEventListener('DOMContentLoaded', () => {
+function rippersInstallArtViewer() {
+  if (document.documentElement.dataset.rippersArtViewerInstalled === 'true') return;
+  document.documentElement.dataset.rippersArtViewerInstalled = 'true';
   document.addEventListener('click', event => {
     const trigger = event.target.closest?.('[data-art-viewer]');
     if (!trigger) return;
     event.preventDefault();
     rippersOpenArtViewer(trigger);
   });
-});
+}
+
+if (document.readyState === 'loading') {
+  window.addEventListener('DOMContentLoaded', rippersInstallArtViewer, { once: true });
+} else {
+  rippersInstallArtViewer();
+}
