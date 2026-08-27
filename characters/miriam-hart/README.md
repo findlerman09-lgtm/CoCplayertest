@@ -7,4 +7,4 @@
 - `/characters/miriam-hart/documents/` — Personal Documents
 - `/characters/miriam-hart/possessions/` — Possessions & Means
 
-Narrative content is character-development locked with the PM publication wording applied. The exact school, relief-contact identity/title, all language percentages, mechanical values, Credit Rating, Pulp talents, combat values, and period/economic equipment details remain withheld pending their assigned verification passes. The physician relationship is now resolved as Laurence Kersey. The dossier password is campaign-issued; only its salted verifier is stored in the public site repository.
+Miriam Hart's current narrative dossier and P-07 mechanical build are PM-reconciled and installed in the player site. Her relationship with Dr Laurence Kersey is resolved. Remaining editorial holds concern the exact school, relief/referral contact identity and title, and minor equipment terminology; they do not reopen her issued mechanics. Repeated physical portrait identity is controlled upstream rather than by placeholder website imagery. The dossier password is campaign-issued; only its salted verifier is stored in the public site repository.
