@@ -44,7 +44,9 @@ The archive key and any sealed-document reveal codes are separate access layers.
 
 ## Player-material release model
 
-Only material actually released to the table is rendered in Shared Documents and Case Files. RC1 handout text/assets are replaced only from the Production-controlled player-material package; the website does not promote draft manuscript text to final authority on its own.
+RC1.1 handouts may be listed in Shared Documents as **SEALED** placeholders before their contents are earned. A sealed placeholder exposes only reveal-safe catalogue information; the handout body is encrypted and opens locally only after the Keeper supplies its code word. Unlock state persists only in that browser profile.
+
+The release code controls the player artifact, not the underlying clue. Core facts remain available through the scenario's automatic and redundant clue routes even if a handout is never opened.
 
 ## Spoiler-control rule
 
