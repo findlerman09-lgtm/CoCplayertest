@@ -137,12 +137,193 @@
   max-height:none;
 }
 
+/* RC1 reward packets use deliberate dossier placeholders until final art arrives. */
+.release-dossier{
+  color:#d7dedb;
+}
+.release-dossier-copy>.eyebrow,
+.release-person-hero .eyebrow{
+  margin:0 0 .25rem;
+  color:#c6a967;
+  font-size:.62rem;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+}
+.release-dossier h2,
+.release-person-hero h2{
+  margin:0;
+  color:#f0dfbb;
+  font-family:Georgia,'Times New Roman',serif;
+  font-size:1.45rem;
+  font-weight:500;
+}
+.release-subtitle{
+  margin:.3rem 0 1rem;
+  color:#b9c4c0;
+  font-size:.8rem;
+  line-height:1.45;
+}
+.release-dossier-copy>p:not(.eyebrow):not(.release-subtitle):not(.release-filing-note){
+  color:#c8d0cc;
+  font-size:.82rem;
+  line-height:1.65;
+}
+.release-placeholder-plate{
+  min-height:230px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  margin-bottom:22px;
+  padding:28px;
+  border:1px solid rgba(196,154,76,.36);
+  background:
+    linear-gradient(rgba(7,18,22,.38),rgba(7,18,22,.38)),
+    repeating-linear-gradient(90deg,rgba(196,154,76,.035) 0 1px,transparent 1px 44px),
+    repeating-linear-gradient(0deg,rgba(196,154,76,.03) 0 1px,transparent 1px 34px),
+    #10272c;
+  text-align:center;
+}
+.release-placeholder-kicker{
+  color:#9d8a64;
+  font-size:.56rem;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+}
+.release-placeholder-plate strong{
+  color:#ead08a;
+  font-family:Georgia,'Times New Roman',serif;
+  font-size:1.55rem;
+  font-weight:500;
+  letter-spacing:.05em;
+}
+.release-placeholder-plate small{
+  color:#c5cec9;
+  font-size:.72rem;
+  letter-spacing:.08em;
+}
+.release-placeholder-plate em{
+  margin-top:12px;
+  color:#899795;
+  font-size:.64rem;
+  font-style:normal;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+.release-observation-list{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:8px;
+  margin:18px 0 0;
+}
+.release-observation-list>div{
+  padding:11px 12px;
+  border:1px solid rgba(196,154,76,.19);
+  background:rgba(5,15,18,.52);
+}
+.release-observation-list dt{
+  color:#aa915d;
+  font-size:.57rem;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+}
+.release-observation-list dd{
+  margin:.3rem 0 0;
+  color:#c4ceca;
+  font-size:.73rem;
+  line-height:1.48;
+}
+.release-person-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:10px;
+  margin-top:18px;
+}
+.release-person-card{
+  display:grid;
+  grid-template-columns:64px minmax(0,1fr);
+  gap:13px;
+  align-items:start;
+  padding:13px;
+  border:1px solid rgba(196,154,76,.2);
+  background:rgba(5,15,18,.54);
+}
+.release-person-placeholder{
+  width:58px;
+  aspect-ratio:4/5;
+  display:grid;
+  place-items:center;
+  border:1px solid rgba(196,154,76,.36);
+  background:radial-gradient(circle at 50% 38%,rgba(196,154,76,.1),transparent 34%),linear-gradient(145deg,#10262b,#071318 68%);
+  color:#d3b66f;
+  font-family:Georgia,'Times New Roman',serif;
+  font-size:.9rem;
+  letter-spacing:.08em;
+}
+.release-person-placeholder.large{
+  width:126px;
+  font-size:1.35rem;
+}
+.release-person-card small{
+  display:block;
+  color:#9f8b61;
+  font-size:.55rem;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+}
+.release-person-card strong{
+  display:block;
+  margin:.16rem 0 .35rem;
+  color:#eadfc9;
+  font-family:Georgia,'Times New Roman',serif;
+  font-size:.92rem;
+  font-weight:500;
+}
+.release-person-card p{
+  margin:0;
+  color:#b9c4c0;
+  font-size:.7rem;
+  line-height:1.5;
+}
+.release-person-hero{
+  display:grid;
+  grid-template-columns:126px minmax(0,1fr);
+  gap:20px;
+  align-items:center;
+  margin-bottom:20px;
+}
+.release-filing-note{
+  margin:18px 0 0;
+  padding-top:12px;
+  border-top:1px solid rgba(196,154,76,.18);
+  color:#929f9c;
+  font-size:.65rem;
+  line-height:1.5;
+}
+
 @media(max-width:800px){
   .case-release-grid{grid-template-columns:1fr}
   .case-release-body .case-person-summary{grid-template-columns:1fr}
+  .release-person-grid{grid-template-columns:1fr}
+}
+@media(max-width:560px){
+  .release-observation-list{grid-template-columns:1fr}
+  .release-person-hero{grid-template-columns:1fr}
 }
 
 @media print{
   .case-release-record.is-sealed{display:none!important}
   .case-release-record.is-unlocked{border:0;background:#fff;box-shadow:none}
+  .release-dossier,
+  .release-dossier-copy>p,
+  .release-subtitle,
+  .release-person-card p,
+  .release-observation-list dd{color:#222!important}
+  .release-dossier h2,
+  .release-person-card strong,
+  .release-placeholder-plate strong{color:#111!important}
+  .release-placeholder-plate,
+  .release-person-card,
+  .release-observation-list>div{background:#fff;border-color:#aaa}
 }
