@@ -88,10 +88,18 @@ async function unlockReveal(card, password) {
   body.innerHTML = html;
   setRevealOpenState(card);
 
-  const storageKey = `rippers-unlock-${card.dataset.lockId}`;
+  const lockId = card.dataset.lockId;
+  const storageKey = `rippers-unlock-${lockId}`;
+  const titleKey = `rippers-unlock-title-${lockId}`;
+  const timeKey = `rippers-unlock-time-${lockId}`;
+  const revealedTitle = body.querySelector('h2')?.textContent?.trim() || '';
+
   localStorage.setItem(storageKey, password);
+  if (revealedTitle) localStorage.setItem(titleKey, revealedTitle);
+  if (!localStorage.getItem(timeKey)) localStorage.setItem(timeKey, String(Date.now()));
+
   window.dispatchEvent(new CustomEvent('rippers:document-unlocked', {
-    detail: { lockId: card.dataset.lockId }
+    detail: { lockId, title: revealedTitle }
   }));
 }
 
@@ -103,6 +111,8 @@ async function tryStoredReveal(card) {
     await unlockReveal(card, saved);
   } catch {
     localStorage.removeItem(storageKey);
+    localStorage.removeItem(`rippers-unlock-title-${card.dataset.lockId}`);
+    localStorage.removeItem(`rippers-unlock-time-${card.dataset.lockId}`);
   }
 }
 
