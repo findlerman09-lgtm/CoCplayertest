@@ -1,7 +1,9 @@
+function rippersUnlockIsOpen(lockId) {
+  return Boolean(lockId && localStorage.getItem(`rippers-unlock-${lockId}`));
+}
+
 function rippersCaseDeskRefresh() {
   const entries = Array.from(document.querySelectorAll('[data-case-progress-lock]'));
-  if (!entries.length) return;
-
   let opened = 0;
   const recent = [];
 
@@ -9,10 +11,9 @@ function rippersCaseDeskRefresh() {
     const lockId = entry.dataset.caseProgressLock;
     if (!lockId) return;
 
-    const storageKey = `rippers-unlock-${lockId}`;
     const titleKey = `rippers-unlock-title-${lockId}`;
     const timeKey = `rippers-unlock-time-${lockId}`;
-    const isOpen = Boolean(localStorage.getItem(storageKey));
+    const isOpen = rippersUnlockIsOpen(lockId);
     const storedTitle = localStorage.getItem(titleKey);
     const storedTime = Number(localStorage.getItem(timeKey) || 0);
     const status = entry.querySelector('[data-case-progress-status]');
@@ -50,6 +51,7 @@ function rippersCaseDeskRefresh() {
   });
 
   const recentHost = document.querySelector('[data-case-recent]');
+  const recentWrap = recentHost?.closest('[data-case-recent-wrap]');
   if (recentHost) {
     const recentItems = recent
       .filter(item => item.time > 0)
@@ -58,9 +60,11 @@ function rippersCaseDeskRefresh() {
 
     if (!recentItems.length) {
       recentHost.hidden = true;
+      if (recentWrap) recentWrap.hidden = true;
       recentHost.innerHTML = '';
     } else {
       recentHost.hidden = false;
+      if (recentWrap) recentWrap.hidden = false;
       recentHost.innerHTML = recentItems.map(item => {
         const date = new Date(item.time);
         const stamp = Number.isNaN(date.getTime()) ? 'Opened on this device' : `Opened ${date.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })}`;
@@ -70,6 +74,25 @@ function rippersCaseDeskRefresh() {
       }).join('');
     }
   }
+
+  const openedLinks = Array.from(document.querySelectorAll('[data-case-file-opened-link]'));
+  let openedLinksCount = 0;
+  openedLinks.forEach(link => {
+    const isOpen = rippersUnlockIsOpen(link.dataset.caseFileOpenedLink);
+    link.hidden = !isOpen;
+    if (isOpen) {
+      openedLinksCount += 1;
+      const title = localStorage.getItem(`rippers-unlock-title-${link.dataset.caseFileOpenedLink}`);
+      const titleNode = link.querySelector('[data-case-file-opened-title]');
+      if (title && titleNode) titleNode.textContent = title;
+    }
+  });
+  document.querySelectorAll('[data-case-file-open-count]').forEach(el => {
+    el.textContent = String(openedLinksCount);
+  });
+  document.querySelectorAll('[data-case-file-open-empty]').forEach(el => {
+    el.hidden = openedLinksCount > 0;
+  });
 }
 
 window.addEventListener('DOMContentLoaded', rippersCaseDeskRefresh);
