@@ -1,5 +1,5 @@
 {% assign release = include.release %}
-<details id="release-{{ release.id }}" class="case-release-record case-release-kind-{{ release.kind | default: 'evidence' }}{% if release.status == 'sealed' %} is-sealed{% endif %}" data-release-record="{{ release.id }}" data-release-kind="{{ release.kind | default: 'evidence' }}">
+<details id="release-{{ release.id }}" class="case-release-record case-release-kind-{{ release.kind | default: 'evidence' }}{% if release.status == 'sealed' %} is-sealed{% endif %}" data-release-record="{{ release.id }}" data-release-kind="{{ release.kind | default: 'evidence' }}"{% if release.source_lock %} data-release-source-lock="{{ release.source_lock }}" hidden{% endif %}>
   <summary>
     <span class="case-release-mark" aria-hidden="true">{% case release.kind %}{% when 'person' %}P{% when 'portrait' %}P{% when 'photograph' %}▣{% when 'location' %}⌖{% when 'scene' %}◇{% else %}R{% endcase %}</span>
     <span class="case-release-summary-copy">
@@ -11,16 +11,16 @@
   </summary>
 
   <div class="case-release-content">
-    <section class="case-release-sealed" data-lock-id="{{ release.lock.id }}" data-salt="{{ release.lock.salt }}" data-iv="{{ release.lock.iv }}" data-ciphertext="{{ release.lock.ciphertext }}" data-iterations="{{ release.lock.iterations | default: 100000 }}">
+    <section class="case-release-sealed" data-lock-id="{{ release.lock.id }}"{% if release.source_lock %} data-source-lock="{{ release.source_lock }}"{% endif %} data-salt="{{ release.lock.salt }}" data-iv="{{ release.lock.iv }}" data-ciphertext="{{ release.lock.ciphertext }}" data-iterations="{{ release.lock.iterations | default: 100000 }}">
       <div class="sealed-document-face" data-reveal-locked>
         <span class="sealed-document-mark">R</span>
-        <small>Keeper release</small>
+        <small>{% if release.source_lock %}Related filing{% else %}Keeper release{% endif %}</small>
         <strong>Contents Sealed</strong>
         <p>{{ release.safe_summary | default: 'This case material has not yet been released to the table.' }}</p>
         <form class="reveal-form">
           <label><span>Code word</span><input type="password" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="Enter code word"></label>
           <button type="submit">Break Seal</button>
-          <p class="reveal-status" role="status" aria-live="polite">Awaiting code word.</p>
+          <p class="reveal-status" role="status" aria-live="polite">{% if release.source_lock %}This filing opens with its related document.{% else %}Awaiting code word.{% endif %}</p>
         </form>
       </div>
       <div class="case-release-body reveal-body" aria-live="polite" hidden></div>
