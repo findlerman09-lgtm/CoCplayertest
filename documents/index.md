@@ -32,7 +32,17 @@ summary: Material currently available to the whole table.
 </section>
 {% else %}
 <div class="document-library">
-  {% if images.size > 0 %}<section class="document-shelf" id="photographs"><header><div><small>Images & Maps</small><strong>Visual Records</strong></div><span>{{ images.size }}</span></header>{% for doc in images %}{% include document-record.html doc=doc %}{% endfor %}</section>{% endif %}
+  <section class="document-shelf" id="photographs">
+    <header><div><small>Images & Maps</small><strong>Visual Records</strong></div><span>{{ images.size }}</span></header>
+    {% if images.size > 0 %}
+      {% for doc in images %}{% include document-record.html doc=doc %}{% endfor %}
+    {% else %}
+    <div class="visual-record-empty">
+      <span class="visual-record-empty-mark" aria-hidden="true">▣</span>
+      <div><strong>No visual record has been filed yet.</strong><p>Photographs, maps, scene plates, and other released imagery will appear here when the investigation produces them.</p></div>
+    </div>
+    {% endif %}
+  </section>
   {% if correspondence.size > 0 %}<section class="document-shelf" id="correspondence"><header><div><small>Correspondence</small><strong>Letters & Telegrams</strong></div><span>{{ correspondence.size }}</span></header>{% for doc in correspondence %}{% include document-record.html doc=doc %}{% endfor %}</section>{% endif %}
   {% if reports.size > 0 %}<section class="document-shelf" id="reports"><header><div><small>Press & Reports</small><strong>Published & Formal Records</strong></div><span>{{ reports.size }}</span></header>{% for doc in reports %}{% include document-record.html doc=doc %}{% endfor %}</section>{% endif %}
   {% if notes.size > 0 %}<section class="document-shelf" id="notes"><header><div><small>Notes & Records</small><strong>Other Filed Material</strong></div><span>{{ notes.size }}</span></header>{% for doc in notes %}{% include document-record.html doc=doc %}{% endfor %}</section>{% endif %}
