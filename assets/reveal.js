@@ -26,6 +26,36 @@ function decodeRevealB64(b64) {
   return Uint8Array.from(atob(b64), c => c.charCodeAt(0));
 }
 
+function normalizeCaseMemory(nodes, type) {
+  const field = type === 'people' ? 'casePerson' : 'caseLocation';
+  const noteField = type === 'people' ? 'casePersonNote' : 'caseLocationNote';
+  const seen = new Set();
+  return Array.from(nodes).map(node => ({
+    name: (node.dataset[field] || '').trim(),
+    note: (node.dataset[noteField] || '').trim()
+  })).filter(item => {
+    if (!item.name) return false;
+    const key = item.name.toLocaleLowerCase();
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+}
+
+function rememberCaseMemory(lockId, body) {
+  if (!lockId || !body) return;
+  const people = normalizeCaseMemory(body.querySelectorAll('[data-case-person]'), 'people');
+  const locations = normalizeCaseMemory(body.querySelectorAll('[data-case-location]'), 'locations');
+  const key = `rippers-unlock-memory-${lockId}`;
+
+  if (!people.length && !locations.length) {
+    localStorage.removeItem(key);
+    return;
+  }
+
+  localStorage.setItem(key, JSON.stringify({ people, locations }));
+}
+
 function setRevealOpenState(card) {
   card.classList.add('is-unlocked');
   card.querySelectorAll('[data-reveal-locked]').forEach(el => { el.hidden = true; });
@@ -45,8 +75,6 @@ function setRevealOpenState(card) {
     const metaStatus = documentRecord.querySelector('[data-document-meta-status]');
     if (metaStatus) metaStatus.textContent = 'Open';
 
-    // Sealed catalogue labels stay spoiler-safe before release. Once decrypted,
-    // promote the actual handout heading into the record summary for easier reuse.
     const revealedHeading = body?.querySelector('h2');
     const summaryTitle = documentRecord.querySelector('.document-summary-copy strong');
     if (revealedHeading && summaryTitle) summaryTitle.textContent = revealedHeading.textContent.trim();
@@ -54,6 +82,7 @@ function setRevealOpenState(card) {
 
   const releaseRecord = card.closest('[data-release-record]');
   if (releaseRecord) {
+    releaseRecord.hidden = false;
     releaseRecord.classList.remove('is-sealed');
     releaseRecord.classList.add('is-unlocked');
     const status = releaseRecord.querySelector('[data-release-status]');
@@ -63,8 +92,6 @@ function setRevealOpenState(card) {
       status.classList.add('available');
     }
 
-    // Person/photo/location records may deliberately use an anonymous catalogue
-    // title while sealed. The true heading exists only inside encrypted content.
     const revealedHeading = body?.querySelector('h2');
     const releaseTitle = releaseRecord.querySelector('[data-release-title]');
     if (revealedHeading && releaseTitle) releaseTitle.textContent = revealedHeading.textContent.trim();
@@ -97,23 +124,52 @@ async function unlockReveal(card, password) {
   localStorage.setItem(storageKey, password);
   if (revealedTitle) localStorage.setItem(titleKey, revealedTitle);
   if (!localStorage.getItem(timeKey)) localStorage.setItem(timeKey, String(Date.now()));
+  rememberCaseMemory(lockId, body);
 
   window.dispatchEvent(new CustomEvent('rippers:document-unlocked', {
     detail: { lockId, title: revealedTitle }
   }));
 }
 
+function revealDependencyPassword(card) {
+  const sourceLock = card.dataset.sourceLock;
+  if (!sourceLock) return '';
+  return localStorage.getItem(`rippers-unlock-${sourceLock}`) || '';
+}
+
+function setDependentRecordVisibility(card) {
+  const releaseRecord = card.closest('[data-release-record]');
+  if (!releaseRecord || !card.dataset.sourceLock) return true;
+  const available = Boolean(revealDependencyPassword(card) || localStorage.getItem(`rippers-unlock-${card.dataset.lockId}`));
+  releaseRecord.hidden = !available;
+  return available;
+}
+
 async function tryStoredReveal(card) {
   const storageKey = `rippers-unlock-${card.dataset.lockId}`;
-  const saved = localStorage.getItem(storageKey);
+  const saved = localStorage.getItem(storageKey) || revealDependencyPassword(card);
+
+  if (!setDependentRecordVisibility(card)) return;
   if (!saved) return;
+
   try {
     await unlockReveal(card, saved);
   } catch {
     localStorage.removeItem(storageKey);
     localStorage.removeItem(`rippers-unlock-title-${card.dataset.lockId}`);
     localStorage.removeItem(`rippers-unlock-time-${card.dataset.lockId}`);
+    localStorage.removeItem(`rippers-unlock-memory-${card.dataset.lockId}`);
+    setDependentRecordVisibility(card);
   }
+}
+
+async function refreshDependentReleases(sourceLockId) {
+  if (!sourceLockId) return;
+  const dependentCards = document.querySelectorAll(`[data-source-lock="${CSS.escape(sourceLockId)}"]`);
+  dependentCards.forEach(card => {
+    setDependentRecordVisibility(card);
+    tryStoredReveal(card);
+  });
 }
 
 function openRecordFromHash({ smooth = false } = {}) {
@@ -127,7 +183,7 @@ function openRecordFromHash({ smooth = false } = {}) {
   }
 
   const target = document.getElementById(id);
-  if (!target) return;
+  if (!target || target.hidden) return;
 
   const record = target.matches?.('[data-document-record],[data-release-record]')
     ? target
@@ -142,6 +198,7 @@ function openRecordFromHash({ smooth = false } = {}) {
 window.addEventListener('DOMContentLoaded', () => {
   const cards = document.querySelectorAll('[data-lock-id]');
   cards.forEach(card => {
+    setDependentRecordVisibility(card);
     tryStoredReveal(card);
     const form = card.querySelector('.reveal-form');
     if (!form) return;
@@ -174,4 +231,7 @@ window.addEventListener('DOMContentLoaded', () => {
   openRecordFromHash();
 });
 
+window.addEventListener('rippers:document-unlocked', event => {
+  refreshDependentReleases(event.detail?.lockId);
+});
 window.addEventListener('hashchange', () => openRecordFromHash({ smooth: true }));
