@@ -7,4 +7,4 @@
 - `/characters/thomas-merrick/documents/` — Personal Documents
 - `/characters/thomas-merrick/possessions/` — Possessions & Means
 
-Narrative content is P-06 locked with the PM tally-clerk correction applied. Mechanical values and period-equipment details remain withheld pending P-07. The dossier password is campaign-issued; only its salted verifier is stored in the public site repository.
+Thomas Merrick's current narrative dossier and P-07 mechanical build are PM-reconciled and installed in the player site. Remaining editorial holds concern minor police-duty equipment terminology and period identification/credential wording; they do not reopen his issued mechanics or City of London Police identity. Repeated physical portrait identity is controlled upstream rather than by placeholder website imagery. The dossier password is campaign-issued; only its salted verifier is stored in the public site repository.
