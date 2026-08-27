@@ -32,24 +32,42 @@ function setRevealOpenState(card) {
   const body = card.querySelector('.reveal-body');
   if (body) body.hidden = false;
 
-  const record = card.closest('[data-document-record]');
-  if (record) {
-    record.classList.remove('is-sealed');
-    record.classList.add('is-unlocked');
-    const status = record.querySelector('[data-document-status]');
+  const documentRecord = card.closest('[data-document-record]');
+  if (documentRecord) {
+    documentRecord.classList.remove('is-sealed');
+    documentRecord.classList.add('is-unlocked');
+    const status = documentRecord.querySelector('[data-document-status]');
     if (status) {
       status.textContent = 'OPEN';
       status.classList.remove('sealed');
       status.classList.add('available');
     }
-    const metaStatus = record.querySelector('[data-document-meta-status]');
+    const metaStatus = documentRecord.querySelector('[data-document-meta-status]');
     if (metaStatus) metaStatus.textContent = 'Open';
 
     // Sealed catalogue labels stay spoiler-safe before release. Once decrypted,
     // promote the actual handout heading into the record summary for easier reuse.
     const revealedHeading = body?.querySelector('h2');
-    const summaryTitle = record.querySelector('.document-summary-copy strong');
+    const summaryTitle = documentRecord.querySelector('.document-summary-copy strong');
     if (revealedHeading && summaryTitle) summaryTitle.textContent = revealedHeading.textContent.trim();
+  }
+
+  const releaseRecord = card.closest('[data-release-record]');
+  if (releaseRecord) {
+    releaseRecord.classList.remove('is-sealed');
+    releaseRecord.classList.add('is-unlocked');
+    const status = releaseRecord.querySelector('[data-release-status]');
+    if (status) {
+      status.textContent = 'OPEN';
+      status.classList.remove('sealed');
+      status.classList.add('available');
+    }
+
+    // Person/photo/location records may deliberately use an anonymous catalogue
+    // title while sealed. The true heading exists only inside encrypted content.
+    const revealedHeading = body?.querySelector('h2');
+    const releaseTitle = releaseRecord.querySelector('[data-release-title]');
+    if (revealedHeading && releaseTitle) releaseTitle.textContent = revealedHeading.textContent.trim();
   }
 }
 
@@ -88,7 +106,7 @@ async function tryStoredReveal(card) {
   }
 }
 
-function openDocumentFromHash({ smooth = false } = {}) {
+function openRecordFromHash({ smooth = false } = {}) {
   if (!window.location.hash) return;
 
   let id;
@@ -101,9 +119,9 @@ function openDocumentFromHash({ smooth = false } = {}) {
   const target = document.getElementById(id);
   if (!target) return;
 
-  const record = target.matches?.('[data-document-record]')
+  const record = target.matches?.('[data-document-record],[data-release-record]')
     ? target
-    : target.closest?.('[data-document-record]');
+    : target.closest?.('[data-document-record],[data-release-record]');
   if (record?.tagName === 'DETAILS') record.open = true;
 
   window.requestAnimationFrame(() => {
@@ -143,7 +161,7 @@ window.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  openDocumentFromHash();
+  openRecordFromHash();
 });
 
-window.addEventListener('hashchange', () => openDocumentFromHash({ smooth: true }));
+window.addEventListener('hashchange', () => openRecordFromHash({ smooth: true }));
