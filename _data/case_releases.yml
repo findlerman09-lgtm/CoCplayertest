@@ -1,11 +1,53 @@
 # Player-facing case-release registry.
 #
 # Keep unreleased person names, image paths, clue text, and other spoiler-bearing
-# content OUT of plaintext fields in this public repository. Before a release is
-# ready, leave it absent or listed: false. When Production/PM authorizes a sealed
-# release, use only reveal-safe catalogue copy here and place the true content in
-# the encrypted lock payload.
+# content OUT of plaintext fields in this public repository. True content for the
+# active releases below lives only inside the encrypted lock payload.
 #
 # Supported kinds: person, portrait, photograph, location, evidence, scene.
 # The release password gates only the web artifact. It must never gate a core clue.
-items: []
+items:
+  - id: penfold-location
+    kind: location
+    listed: true
+    case_file: current-file
+    status: sealed
+    safe_label: "Location record"
+    safe_title: "Filed Location"
+    safe_summary: "A sealed location card may be opened when the Keeper releases it."
+    lock:
+      id: "wij-location-penfold"
+      iterations: 100000
+      salt: "ymMrpjcT2QU2J//gJc5wcg=="
+      iv: "fCjNQY/z4ZgJQtZc"
+      ciphertext: "j7nTGZ3HVqAaKbxfLVf9jYKfWWw97goF9Qjmj3NDcgtz90z9do4IulsGvQHBQxfpDkmnv3NjN3QZvNNNmFL9cu/z/lVVAjSus5oJwnKXy6jlxihbHeW/gLPD9Sj61S3Pq6vSD5b7MRQgpnO9aMnGG7UqS5H0Eo0rTEyiqXzOY6NsfW3w3R6njHRxP1aG+6aAFYWaHPpXqbJNaoKG7w5TOFn1JkurRuarz7LO0fc0yXAdhFRQ9bFq1dAJeqMzTV89iTSPrRF4AVug91gyFey3hcHfUcSFdcNhQHWrSmJv7yWHPcwJf9o+QIUh4P7f7HE0yh/RpXqzkCaR+WoRg7JkAeTBClhRHOcTBXVyrXEP81Sws+nhvB/PYEuTmYejUTn9/+I3zsCh5dGKZYsCpXrXC+5uOjIweGLiqCSAJlqCm20mVtTHMgYnAqNIz8VeLZnU5vtVxKtYpOsQKaVnU51djg2/K2U+I1XBKLu83UAj1y2Vsed89tJ92jjpqdQ42Yk/SgrzW9t5z9p4sSn7+VExvlmHnpkAXpXztleBQ88ssOLUPXD9n6mHUJb+Bb6gzeYgCaMfCaCNasWer0WpmIi+Q1PkrCtT1+lhvB1PU8MdXggQFuEIGVUNGCaKfm1vZi21kaeIrbHhZBiZi7UFf+DmNdk2Zonp6rcfwP/lRNmNUHTkdJTcMJCOCtDdlO2tvbRUQ6a6zBvusZdlagak9FkWvvsGp5w7AbGk5ndKCsHKz+pDcl5KbrlqtbcYcDe3c7jslG28W/KXy27dEiTUnrFBZlffkq2uW3XVQYKpn4DhpmJY+kr86rUBHwPOLRwgJ7icxP0m4R8ewQTx3tGOFTvMr5YuT3sXH0cvG66pmG4B5G6Nb4hYY1zKw2BP4UCf005tl8TL7ngEM9gWwfAMOWf39KPXeMYtO5YZ/VVGvQtiSEc2VWe5D5D1Ej6XX7mQ9VFfHPy3COl6HBMm6Wxsfc7dRxZg1gzw+3odyYwxg2BHFZ13zaXCSOTZf1f9vK6nilx/bbZijz+bcGzj/1b+Q60/CEiR0j6cJRQ3tmsx0oJNEb6y9aLwxCvL6fvlVn9rdqn/VVoapV50KJ35CNxhF/733F1uiwKkGwvCJZlBZ4neHEa/cJXs0J7weE+nb/9pzl4Fr4aPJ71Kae4HWPGMH63rTjqp2muynFiTpmxVnVVNNhwa8wcf2bChxrfmoEgKXrzBigcx2kIqnnIEyJohN1hOO+i/6Snlmyx73ULTHjJOTcfL2A2fKjq2jGhSLeGl8ycPmYYVTeTOmdRqbquN+cPGLv1sCX5QItAkTCAGVZbVxL5IW5EI0oKmRjEDlmKpGuy613aj4k3ScvyZHvhx7qOHoPr1IsAN7gvIuJegZ4ZKellAvnLl/6TtKweN25mLS7iOIbCZWSVbvKiTzeLXjDKFj85aJqykz3AAqRe/cIr0VH81rrNaLz8YvfALumah+2qkVANnZ573fvhtC9NrpHsIJ0p0K5zWxn7yUB4zOQ+1qJEKRig2zpAB7PcHQ6X8B93b4pgFf/qaEpezSNYHPWuKWXzsJ5Mmla2JASsB3RrH0ZdOXcSSl+RPyZ1HRWAxP5Ls1EFH9qzpK2xwIZYXoa01vOmoGNrauqCOf3u0Jj+HOaOaMkRotsZGxIfLGCLjjDRzF6ON3HUuw/la0XGCWavsF0GKEDI4xGnCCxSDHo4DYRFe+ROoDalNbmyZDB9rtGhpdsrFC7IezshlPg//vjd7L1qJ0mq7E7ZChOz4VkoCHCFnnHzN3s1dTB4hoy+iR66Oj0EDyNiR3X0SHdGl+ZOm1CPCDGqd+AWwNbqYPQ7Bw4FnWVzXb+uH1rJ9NNMT7y2R+Gg7+tWbe/SzF7ACsEA2TGBbS0i7u5T7pcDOvyOdeG3CtCTuvVoFysE8Pt4L2FHEftTx/DXh8bwi9Ugw3J5ptJ5UUpM="
+
+  - id: penfold-personnel
+    kind: person
+    listed: true
+    case_file: current-file
+    status: sealed
+    safe_label: "Personnel record"
+    safe_title: "Filed Personnel"
+    safe_summary: "A sealed workplace roster may be opened when the Keeper releases it."
+    lock:
+      id: "wij-personnel-penfold"
+      iterations: 100000
+      salt: "8CTssPP6VVIc5g1qr7+WYw=="
+      iv: "hUWlZsy6MiFoqV/2"
+      ciphertext: "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"
+
+  - id: filed-person-01
+    kind: person
+    listed: true
+    case_file: current-file
+    status: sealed
+    safe_label: "Person record"
+    safe_title: "Filed Person"
+    safe_summary: "A sealed person card may be opened when the Keeper releases it."
+    lock:
+      id: "wij-person-vale"
+      iterations: 100000
+      salt: "vB/SbV86ZpceCz/2BOT7PA=="
+      iv: "u91I3asjY+l8nnKK"
+      ciphertext: "STP98szP1fJMeAE2NraiXZdfr2/k+y7077oWwK4HXzTjRJWkoBQE9xe2foF7eXsKPManOhKv30BxYmeXesUFJ/YWX/RC5ACUgwrafa2WORqk+h3RTbsdtdyzVc0zr9LmSNLW1WzwLqjbd0pOfzpGvmXUS7isgwELlUPFcpnXxqOSgPIL/PgbNumEgCoeAQqspq+dZodG7e7ki5yNmi4lqvqYmU2fviF29CLAW+eHXp1/CAJSrPIDRLvCMt7hZAJlzzOU1yLUD/vPX41ZRKg/gXcdPzWWw0+XUTt5dwDpsqhkqRZJ1ir4e++0mt58OQPVYTV7FDf1/hPq6BVBRshzic9PgC0/FDr6SsxDpK5MClENghn79Ptva/5sQ1Owti8EKkEKvgFW4VRHpwdJOm6Pj+tE2QCNbdMfmHhGfCapeQWpspoholzhoaCf1A40PG5mJ7r/7bEUNVeL6t2PmsqzZhXW7yh1WgUxt6mXTl7S700HZwjaPdB/a7Rkk7YgQEm4cPJO0W2sSdnjgnSovMCspmxvbcvHeYC2mw2fbeKg/bNAao1pzxTcuSkL/Vg2Jd625sIqMYow+6FjlDUa9VQoflL1dsnfvEbVhQWBu0uQ38xBoaG7NwZcmYN6fyXFJnAaBieZZyRqFrdltD69rey3OiTX4qf/RSocnyzHZreYKrTliKxlwHsSIDl4JTbcqLY1lBL1CHXSbAhNz6MEbuyVYB7U+EEdgMXvqQIKXAiSitG/vfcqjpIzisUcFVZE9jm8tjvXjmXi9OrfzAGBwqmc1stKDOkf5T1X7MmL9YeN7aBrb473DZcmx12GjGg/G2Rl9obBqtjgwHoB5tSY+9WhmLVjK1x6ZDFxOTxQx2Zx2WLErjlpqeJQJH923O3y9jF3TuatHGoTuJhtOM1Ie0A3RYsjGJeycn3yMMGRjqxtmHoxGlFXppArC4eEnmfmVBSzR75CrAqA27mNZj1gNYyK7dUFHMQ8CmUdXptZeSMmyIyS7uphpvPRZGMIMsNKFohqZSBZQCU4gyuxOukyygP+Gc3nz7KGhH4X5C1nDCQq4vNQFAvebo6awhDSGn/PlIIVA42Jc8QFvjFJ0YYhkEQADndbISklFolOuJOMGnF0yd9k6Mqyzx+Sm/q5nttIqpWpY0g7mZ73LR6Gw/fxCz03Qhs7ISPJJDG/A++wiZOigrs/8m1/Yz0O8DhXNSnU9AVHBhz+qici5M9XIhhyayN2XF8hTyP2PFssoBNtePYZ227DNecrWCvi++Y1wwZC9yVBw3F47VUgEFe0BQRJLJf9OQw6hHHROgfQKE0ULKbd1F1aZK0BHv33Lfsn1xmNf8kVmFFjrueD03bDnax6SM6aYjmHzwJM0ErmHZQuNdlRNq1v1j10BZvpGdyLs8GDolf2lxLpOfInag8mOXlcSdX0G84HdlupOz9sEeulQxzXg4Xh/mg+RF3MfFZhtCG8fJXkXu/28ud3yr0H7h7L6gNI26XvznsY++1iYQiI9UUultv5HYM4PiAig8f3IMVoJ0vUuyUzMVDqzcn0X7D+2xkO2MjEn4Wr5qHK8+ark3a158t31NESyIl3J+LDRatJH+czZqRGJNRBbYVXjZldZYIwVEWviFvKlC2Tl8IXpQ8tW3MZgGzh/g7BhOF6tmI2760WLAWcmqX9a7A1lnic3Hw9rJnjmLw7cRwxH8AW/iVKqfdvnKyqnw=="
