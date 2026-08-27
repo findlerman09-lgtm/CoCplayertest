@@ -1,0 +1,134 @@
+/* WEB-RC1 contrast normalization.
+   Presentation only: preserve the dark teal / parchment / gold visual language while
+   preventing secondary copy from reading as disabled or muddy at normal table distance. */
+
+:root{
+  --web-dark-text:#c4cbc6;
+  --web-dark-text-soft:#b7c0bc;
+  --web-dark-text-dim:#a6b0ad;
+  --web-dark-gold:#d0b471;
+}
+
+/* Core dark-card prose. The explicit !important here is intentional: some cards
+   combine parchment-frame with link-frame, so older parchment text rules otherwise
+   win even though the rendered surface is dark. */
+.parchment-frame.link-frame .frame-body p,
+.dark-frame .frame-body p,
+.link-frame .frame-body p,
+.edge-frame .frame-body p,
+.dark-frame .frame-body li,
+.link-frame .frame-body li,
+.edge-frame .frame-body li,
+.dark-frame .frame-body dd,
+.link-frame .frame-body dd,
+.edge-frame .frame-body dd{
+  color:var(--web-dark-text)!important;
+}
+
+/* Supporting copy on dark UI surfaces: clearly secondary, but not near-disabled. */
+.section-summary,
+.investigator-copy p,
+.feature-character p,
+.archive-investigator-copy p,
+.rail-panel p:not(.rail-kicker),
+.rail-fineprint,
+.case-file-card p,
+.case-folder-empty,
+.case-file-sealed p,
+.sealed-document-face>p,
+.shortcut-list span,
+.document-summary-copy>span,
+.archive-document-links a>span,
+.context-heading p,
+.context-current-file strong,
+.context-identity span{
+  color:var(--web-dark-text-soft)!important;
+}
+
+/* Small utility labels retain hierarchy without falling below practical legibility. */
+.global-brand small,
+.global-meta,
+.workspace-titlebar small,
+.context-cases>p,
+.mini-vitals span,
+.recent-item small,
+.document-metadata small,
+.tracker-heading>span,
+.condition-banner-row small,
+.sanity-period-meter>span,
+.sanity-period-meter small,
+.quick-derived span,
+.quick-rule-stack small,
+.shortcut-list small,
+.context-back,
+.case-dot,
+.context-current-file small{
+  color:var(--web-dark-text-dim)!important;
+}
+
+/* Gold remains the accent rather than turning body text white. */
+.rail-kicker,
+.document-shelf>header small,
+.document-summary-copy small,
+.archive-document-links small,
+.context-heading small,
+.context-identity small,
+.context-current-file small,
+.recent-item small,
+.app-body .context-nav a span{
+  color:var(--web-dark-gold)!important;
+}
+
+/* Keep headings visibly distinct from body copy on dark panels. */
+.dark-frame .frame-body>strong,
+.link-frame .frame-body>strong,
+.edge-frame .frame-body>strong,
+.archive-investigator-copy strong,
+.document-summary-copy strong,
+.archive-document-links strong{
+  color:#e3d6bc;
+}
+.link-frame .frame-body>strong,
+.archive-primary .link-frame .frame-body>strong{
+  color:#e0c47f;
+}
+
+/* Navigation and sidebar text: restrained, but readable in peripheral vision. */
+.app-body .context-nav a{
+  color:#c1c9c6!important;
+}
+.case-dot span{
+  color:#aeb8b4;
+}
+.recent-item strong,
+.document-metadata strong{
+  color:#d5dad5!important;
+}
+
+/* Placeholder / sealed states should look unavailable through framing and labels,
+   not by making explanatory copy illegible. */
+.case-folder-empty,
+.case-file-sealed p,
+.sealed-document-face>p{
+  font-style:italic;
+}
+
+/* The archive landing cards are especially important at a glance. */
+.archive-primary .link-frame .frame-body p{
+  color:#c1c8c3!important;
+  font-size:.98rem;
+  line-height:1.65;
+}
+.archive-primary .link-frame .frame-body>strong{
+  font-size:1.05rem;
+}
+
+/* Slightly lift interactive secondary copy on hover/focus without bleaching it. */
+.link-frame:hover .frame-body p,
+.link-frame:focus-visible .frame-body p,
+.archive-document-links a:hover>span,
+.archive-document-links a:focus-visible>span,
+.recent-item:hover strong,
+.recent-item:focus-visible strong{
+  color:#d0d5d0!important;
+}
