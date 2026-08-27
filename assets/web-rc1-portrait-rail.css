@@ -1,0 +1,18 @@
+/* Replace the generic site favicon with a deliberate neutral dossier mark in the character rail.
+   Real approved portraits automatically bypass this rule once their image paths are installed. */
+@supports selector(.context-identity:has(img)) {
+  .context-identity:has(img[src$="assets/favicon.svg"]) img{display:none}
+  .context-identity:has(img[src$="assets/favicon.svg"])::before{
+    content:"R";
+    width:46px;
+    height:58px;
+    flex:0 0 auto;
+    display:grid;
+    place-items:center;
+    border:1px solid rgba(196,154,76,.36);
+    background:radial-gradient(circle at 50% 38%,rgba(196,154,76,.11),transparent 36%),linear-gradient(145deg,#10262b,#071318 68%);
+    color:#d9bb73;
+    font-family:Georgia,'Times New Roman',serif;
+    font-size:1rem;
+  }
+}
