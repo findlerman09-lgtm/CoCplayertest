@@ -15,6 +15,14 @@ summary: Material currently available to the whole table.
 {% assign reports = listed | where: "section", "reports" %}
 {% assign notes = listed | where: "section", "notes" %}
 
+<section class="frame dark-frame document-release-guide" aria-label="Sealed document release">
+  <header><span>Release protocol</span><b>RC1.1</b></header>
+  <div class="frame-body">
+    <strong>Some records are sealed until they are earned in play.</strong>
+    <p>When the Keeper gives the table a code word, open the matching record and enter it. A wrong code changes nothing; an opened record remains available in this browser profile.</p>
+  </div>
+</section>
+
 {% if listed.size == 0 %}
 <section class="document-empty-state">
   <span class="document-empty-mark">R</span>
