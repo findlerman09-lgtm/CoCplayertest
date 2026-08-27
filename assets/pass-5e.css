@@ -4,6 +4,7 @@
 @import url("web-rc1-case-release-gates.css");
 @import url("web-rc1-case-desk.css");
 @import url("web-rc1-case-memory.css");
+@import url("web-rc1-art-viewer.css");
 @import url("web-rc1-portrait-rail.css");
 
 /* Pass 5E — usability/accessibility closure. No architecture or mechanical changes. */
