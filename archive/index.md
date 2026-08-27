@@ -12,12 +12,14 @@ kicker: London · 1888
 summary: Your private investigator dossier and material already released in play.
 ---
 {% assign case_documents = site.data.documents.items | where: "listed", true | where: "visibility", "shared" | where: "case_file", "current-file" %}
-{% assign case_releases = site.data.case_releases.items | where: "listed", true | where: "case_file", "current-file" %}
+{% assign all_case_releases = site.data.case_releases.items | where: "listed", true | where: "case_file", "current-file" %}
+{% assign case_releases = all_case_releases | where: "ledger", true %}
 {% assign current_case = site.data.case_files.files | where: "id", "current-file" | first %}
 {% assign release_count = case_releases | size %}
 {% assign document_count = case_documents | size %}
 {% assign tracked_count = document_count | plus: release_count %}
 {% assign location_count = current_case.known_locations | size %}
+{% assign people_count = current_case.known_people | size %}
 
 <section class="frame dark-frame" aria-label="Website rehearsal status">
   <header><span>Build status</span><b>{{ site.data.site_state.web_rc1.version }}</b></header>
@@ -56,8 +58,9 @@ summary: Your private investigator dossier and material already released in play
         <strong>Your filed material grows as seals are broken.</strong>
         <p>This desk reflects what has been opened on this browser profile. It is a convenience for play, not a measure of investigative success.</p>
       </div>
-      <div class="case-desk-stat"><b><span data-case-desk-open>0</span>/<span data-case-desk-total>{{ tracked_count }}</span></b><span>records open</span></div>
-      <div class="case-desk-stat"><b>{{ location_count }}</b><span>known locations</span></div>
+      <div class="case-desk-stat"><b><span data-case-desk-open>0</span>/<span data-case-desk-total>{{ tracked_count }}</span></b><span>tracked records open</span></div>
+      <div class="case-desk-stat"><b data-case-desk-people data-base-count="{{ people_count }}">{{ people_count }}</b><span>known people</span></div>
+      <div class="case-desk-stat"><b data-case-desk-locations data-base-count="{{ location_count }}">{{ location_count }}</b><span>known locations</span></div>
     </div>
 
     <div class="case-progress-track" data-case-desk-progress role="progressbar" aria-label="Opened case records" aria-valuemin="0" aria-valuenow="0" aria-valuemax="{{ tracked_count }}"></div>
