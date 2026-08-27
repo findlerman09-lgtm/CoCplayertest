@@ -21,6 +21,7 @@ summary: Shared material and known developments associated with cases already op
 <div class="frame-grid">
   {% for file in visible_files %}
     {% assign case_documents = site.data.documents.items | where: "released", true | where: "visibility", "shared" | where: "case_file", file.id %}
+    {% assign case_releases = site.data.case_releases.items | where: "listed", true | where: "case_file", file.id %}
     <article class="frame dark-frame" id="case-{{ file.id }}">
       <header><span>{{ file.title }}</span><b>{{ file.status_label | default: file.status }}</b></header>
       <div class="frame-body">
@@ -39,6 +40,17 @@ summary: Shared material and known developments associated with cases already op
             <div class="archive-document-links">
               {% for doc in case_documents %}
               <a href="{{ '/documents/#document-' | append: doc.id | relative_url }}"><small>{{ doc.type_label | default: doc.type }}</small><strong>{{ doc.title }}</strong><span>{{ doc.summary }}</span></a>
+              {% endfor %}
+            </div>
+          </section>
+          {% endif %}
+
+          {% if case_releases.size > 0 %}
+          <section class="case-release-shelf" aria-label="Sealed case releases">
+            <header><div><small>Keeper-controlled release</small><strong>People & Visual Records</strong></div><span>{{ case_releases.size }} filed</span></header>
+            <div class="case-release-grid">
+              {% for release in case_releases %}
+                {% include case-release-record.html release=release %}
               {% endfor %}
             </div>
           </section>
@@ -72,7 +84,7 @@ summary: Shared material and known developments associated with cases already op
           </div>
           {% endif %}
 
-          {% if case_documents.size == 0 and people_count == 0 and location_count == 0 %}
+          {% if case_documents.size == 0 and case_releases.size == 0 and people_count == 0 and location_count == 0 %}
           <p class="case-folder-empty">Nothing else has been filed to this case yet.</p>
           {% endif %}
         {% endif %}
