@@ -7,6 +7,6 @@ web_rc1:
   version: "WHO_IS_JACK_RC1.2.1_REHEARSAL_EDITION"
   phase: "RC1.2.1 frozen-build synchronization"
   phase_short: "RC1.2.1 rehearsal"
-  audit: "S-08 PREFLIGHT / STATIC FAIRNESS AUDIT — PASS"
-  final_audit: "S-08 FINAL not yet run; pending live timed rehearsal"
+  audit: "S-08 PREFLIGHT / STATIC FAIRNESS AUDIT"
+  final_audit: "Formal post-rehearsal S-08 has not been run"
   materials: "Player website synchronized only against WHO_IS_JACK_RC1.2.1_REHEARSAL_EDITION; exact H1–H5 copy, sealed release behavior, current identity controls, and spoiler-safe delivery rules installed"
