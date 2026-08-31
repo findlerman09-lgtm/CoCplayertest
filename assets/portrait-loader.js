@@ -27,6 +27,9 @@
       const parent = image.parentElement;
       const placeholder = parent && parent.querySelector('[data-portrait-placeholder]');
       if (placeholder) placeholder.hidden = true;
+      document.querySelectorAll('.context-identity img').forEach((mirror) => {
+        mirror.src = image.src;
+      });
       image.removeAttribute('data-portrait-b64');
       image.classList.add('portrait-loaded');
     } catch (error) {
