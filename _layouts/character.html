@@ -2,6 +2,7 @@
 layout: base
 ---
 {% assign p = site.data.player_characters[page.character_slug] %}
+{% assign portrait_asset = site.data.portrait_assets[page.character_slug] %}
 {% assign character_name = p.publication_name | default: page.display_title | default: page.name %}
 {% assign occupation_display = p.occupation_display | default: page.occupation %}
 {% assign residence_display = p.residence | default: page.residence %}
@@ -28,7 +29,10 @@ layout: base
 <section class="overview-hero" style="--hero-image:url('{{ page.hero_art | relative_url }}?v=5a1')">
   <div class="overview-art"></div>
   <div class="overview-portrait">
-    {% if portrait_display and portrait_display != '/assets/favicon.svg' %}
+    {% if portrait_asset %}
+      <img src="{{ '/assets/favicon.svg' | relative_url }}" data-portrait-b64="{{ portrait_asset.source | relative_url }}" alt="{{ portrait_asset.alt | escape }}" hidden>
+      <div class="overview-portrait-placeholder" data-portrait-placeholder role="img" aria-label="Portrait loading for {{ character_name }}"><span>{{ character_initials }}</span></div>
+    {% elsif portrait_display and portrait_display != '/assets/favicon.svg' %}
       <img src="{{ portrait_display | relative_url }}?v=5a1" alt="Portrait of {{ character_name }}">
     {% else %}
       <div class="overview-portrait-placeholder" role="img" aria-label="No portrait image is filed for {{ character_name }}"><span>{{ character_initials }}</span></div>
@@ -124,3 +128,5 @@ layout: base
     <a href="{{ character_base | append: '/possessions/' | relative_url }}"><small>Resources</small><strong>Possessions & Means</strong><span>Equipment, standing, languages and legitimate access.</span></a>
   </div>
 </article>
+
+{% if portrait_asset %}<script defer src="{{ '/assets/portrait-loader.js' | relative_url }}"></script>{% endif %}
