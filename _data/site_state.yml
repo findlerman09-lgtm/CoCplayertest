@@ -4,9 +4,9 @@ archive:
   iterations: 120000
 team_view: false
 web_rc1:
-  version: "WEB-RC1"
-  phase: "Rehearsal synchronization"
-  phase_short: "Rehearsal prep"
-  audit: "S-08 preflight — PASS"
-  final_audit: "Final S-08 pending live rehearsal"
-  materials: "RC1.1 release system complete; asset-ingestion contract, controlled-art viewer, spoiler-safe pipeline, and rehearsal reset/preflight installed; feature development frozen pending assets/rehearsal defects"
+  version: "WHO_IS_JACK_RC1.2.1_REHEARSAL_EDITION"
+  phase: "RC1.2.1 frozen-build synchronization"
+  phase_short: "RC1.2.1 rehearsal"
+  audit: "S-08 PREFLIGHT / STATIC FAIRNESS AUDIT — PASS"
+  final_audit: "S-08 FINAL not yet run; pending live timed rehearsal"
+  materials: "Player website synchronized only against WHO_IS_JACK_RC1.2.1_REHEARSAL_EDITION; exact H1–H5 copy, sealed release behavior, current identity controls, and spoiler-safe delivery rules installed"
