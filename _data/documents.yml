@@ -1,105 +1,101 @@
 items:
-  - id: handout-01-mitre-square-chronology
-    title: "The Mitre Square Chronology"
-    type: report
-    type_label: "Chronology"
-    section: reports
-    channel: documents
-    visibility: shared
-    source: "Current inquiry"
-    date: "Sunday, 30 September 1888"
-    listed: true
-    released: false
-    status: sealed
-    case_file: current-file
-    summary: "A sealed timing ledger for the Double Event inquiry."
-    lock:
-      id: "wij-h1-timeline"
-      iterations: 100000
-      salt: "XuDCxlOjCRiDU6727vuhMQ=="
-      iv: "XBU8YDqnrcMC9eta"
-      ciphertext: "tSKNgROyeY9O2xMjN5Q0WHOlVIk2jsjd1bwArdZPa4mUCiYdZBn2biBe+eKBClZQ6XZMmBO6mw7ynKRwHQETtARyd8YUQWL3+0u1XyMUdYYWJAE5nIwk0imbBKOrFMu6XSlGJdpKeNgPj/4BZRZ8qwuusZ/PP0y1uR4Eqh3AvgfFcUPtcYoJfI/OhRWin4i2mTkznfWQEaOdB1WiTW5TM56xOkyWE3Bvc2EzSU1mZcwV2u2W4H3Wa4i+l9Pd3+DaqCajv/hU+CyGtl3K3Jf+eE7x8E/WO+514dqk4+rRbTxHbkUU3Hd39hkFA52J+U3awRYVNXUHft/ds8Hsc6xDpqFkfcbL0ORTw/3l2Jd1PGJ4J6SL/BX7pCsqJacFJUZSTg5uKgbWVhJ5gSHgVmiLqz72J4kOpXqfKUVoBuzeEcnuzz93gvYYtFPVbgQaLqw0ehJhO1b9GneGpuN0NNLa3c1B7MX4UiOXxMwYnGkfHnB52kL2agFkK0XnGRn4A2K+L4CI6XYZvfpBDX2/L7BrsI3SknwKWweJ71wGqlzQlyCVYqy7p6hgOybNJyeeRj3bj00mWwwas1WzyOVrQPv+51m+dJuwJ901z2IuyKMmk4sBqV543YjWcw4jIyZ5s8JhR+nuTIbPsjPpkTqB3cap8PO8ESNuAl/Bls3aHtGm4mNhCjj/quKnJj3NFM5QlmleueXkYtdvQymnxfnQeHEvi8kho78NHQ80+7dq5sS1Ra85aknwh+3f048+HWTMOc5m2IvTGxn9vOSqKguUQQa24Xr1KE2wIlmSO0WXwcOjK7mJX9TdNc1WFhjvAyqnf/8mPf7ff8iW0hVpoZqwJsY1tbHFlOr3xSMOby5aBGi2IZKf8jrQSvS1+/S8h7DRiblVKKJdSJILIl179QPGDdA9wH3J9dSM4OWOPfqA5YyukcvsCrgO0Lhwq31KkMrZgStjbLgRaPerhSVzIL0eZS+BgmSOC+7jQpkLBPGF3voQOjWN7MN0KqDPS1DC2jOd5BWwxhHOATdgV157Foj7Bble/4de4jGjBNI1yE4tUp7+cKPnHuSmH5IISZW4bK6ftG6wio4mbnQe9opoKAXHPFNlFPbBO2sGGdhDCwLeLVzeP95bRXp2ndl5Wfirq13BpXLVYd2lXJiEYX3fK4ZLvRCbB3AcRrn7hju9a9pID2q8sA9EZTqYgSfNOlqXU4dvu7RQFoJSP2LxcERwSQ0xqvvzzmZM7THQs5rG0okfV/yizolsTVrpi3wA8I7ufg0QCrYrTj6Ye89bHb+pM9vJokzYq7avYFTC0oFNi2xOt8cPlyRBI+y4QBy8f2XYVbYRQKy0ANFsA6WPxHveYY+9a/WylKqMkgOcgDxC0v+/cE9v3huM39mZ28rnzaEmNVU5ykgJWi9mP7AVvDsamLjnHj95akPpv0N5GELz/haan2IE+pSCV+mcGWaJdriYQVzu19X6xmE3GE6dvcfWdITOEEYgb6iXMkgfqLsBbmCGSpWpVTxOYIbANUC4Ip0DorvmRwJtxoeesTRhSD3KknM/h41QrM//wxO6lU0o1wi96XvcLdnmnMVjJ833Kd0bq7gHQjh9FEHnUgpeZ486xTcGlQD+OZekRob+kfQgCs9xI7cX"
-
-  - id: handout-02-penfold-day-book
-    title: "Business Day-Book Extract"
-    type: notebook
-    type_label: "Day-book Extract"
-    section: notes
-    channel: documents
-    visibility: shared
-    source: "Commercial record"
-    date: "August–October 1888"
-    listed: true
-    released: false
-    status: sealed
-    case_file: current-file
-    summary: "A sealed extract from an ordinary commercial day book."
-    lock:
-      id: "wij-h2-daybook"
-      iterations: 100000
-      salt: "b/Hgegr3+amAPTtW+FrZvA=="
-      iv: "mj/cUhvJcOwXJ8ns"
-      ciphertext: "fEXBJ8EWys3YRYE8YkBuZBPUDZOpvNwZE7xb2IIDtx5fxL4vm/XkeDLFTw4w8/qIQqQPRitGkpFaoRUHq2osva4TYK9Y4IcntCab64nw3dJfjzPt8J3qoG+/AWtMtdsbhrpjtQjKsHEKcCwAOGlz61k8fUfidvWY8ssyrnXlirUqXrcJKtFzKMhVKz7iG3wXT7D8sI9sSaRj8i1e2DIEsHG4EAIsHzNliyGWiJ7xoyhOCNZInaSnfnjoHK14pGhixbNADa4vmpLjZCYUAk+f2DI8P6sH5U6a8jDyLM040Ccd7aa2mckO4DrgDz99pIJE2lfR/KdpJ1heUKKtXMvTXvEP1ySnvxTa81ExkAIPdHDzF2TGHSKWM/tD/BWKu23xXihI3tdUhW9jnLlk+94mdhn1MREscYtZ16E951iBLCEDPCe1B5W3owB/o+jq1qO1e20SFJl0IduNl6RgEt6hifO690M7YD0Kc3jD2VYQBh+sgKXTjMNp7hflmNNKDL5r26Se0Wu7eFMweAMp+Vclt1vMbVvYV8xZjjCJrGvtUrzZwdAyUWw6L3kVAu1O+dkbgqfjGa4+t2M4QfOI+FRKpznTFEB1Te0eKOafOhvCScZD5VKz/DkLE97KvL+heJqUapZh3g1jVG6lYaKsxZJF2fm6qKbzrq+PvC3J+FHc7Trx7CcBhch9PsG+Vt0h6LZIgzayoe1+ZVJ53kSvrznFRDRtO3bNncl4EhgHx7T7E4Pde+CiufuIqkia/C81P26AAWdPBsZ+lIXnwhHNpI2nidFwkIFugPavv5wN/Mz3TPiqNwoRKQAQKXHOcMaCo4tXAbxi2Qs75UD93LvI4OAYbc3IksqujKeq+VZoDBtGqu4HQMzofZAMvKxC78B6r6wTvxf+3HczpVnyxafJQq8pHM12iEdMOBklTfpEMMidsiRoMHzOGHhBPF0F/kE3qeADeOByxu7cBUgEsvqsjL7i8m4/8UUeIswDDyfRe1ATtRqYdgqZkclujoZ8IkTQJfy2dsJxkod5lgVzQDi2AUBlUuSvT34jp0d+v5wIDVHuJX89L8qppaKNCqx4yXp8PheVJjIBqLp6CHoLBwh1in1NHmfwBgwAWPYNbqnw4L1KtrPHvTwNCgSTDy5vSGVkuz3j4q6u0EmtDfIV/6eqmU0N60TOD/JcpKiDaiBmIs/bWbaGM7S7T/53VqTYzXDFdWaCoKoKhS6InJSYULILpsWrLjUriaq5PVlcgUQrQJxGcb9vF7DBwqLFoOs2f95L5rr/7zafMiU+/L5GSwWsOr2pY8Vsi1dHX7cDMrzQLfOciRP1JuJ5sfatoSpqjC3hPMkVsIQmomw4bWevZF41uYJGBv1KOJTdiCahIkNGEvLohoVKY7hGKofSApnM9n9drfREPqVfWaC2U9gNvGaZOSU1mDV+3e15di9zfBRiA6GBBTqhd2ppWTpAxDH8iqPObi3KxBI3chw9sHxU0SYKHnLqdOknQM6xYVsBFykIvBWNXvJtMEd9OL8xJYFNsQ1lm4nZTGnLhEg/JBXv+e/BIKhXzU7FHX8GVrbMH9QKCECZTlNoUowYjsZqqjkZJeja7xmIQatTuAujvIHS1TTsvPvIhhyS31kjzKp4YHcwvc3dMpWmI3sXovRDRa9PRkD2sYQOFZWlQKAZN6YngeKZ/zcB3JiYKyVIxPg2E/+f/m0mlzUWsR8II2Oi1j0cQsG8ZJT522CwU/G1BpCEHoC5/0hPcPiDbFIx7ladUvvN5J3X9ej5rtdgHPPx4TRgomwjrcYykaC0dv0YsgVHEAstIkXSV3k5gIAv0jWtjbrS4TzHyrpu04ldT7RWSoSNCAPREpJLxfo2g1EJihIzImtEb1yvKm8uDuZU7jArzHbHWDv3VikTMlbu94M2"
-
-  - id: handout-03-merton-query
-    title: "Property Correspondence"
-    type: letter
-    type_label: "Business Correspondence"
-    section: correspondence
-    channel: documents
-    visibility: shared
-    source: "Filed correspondence"
-    date: "1888"
-    listed: true
-    released: false
-    status: sealed
-    case_file: current-file
-    summary: "A sealed piece of customer-side business correspondence."
-    lock:
-      id: "wij-h3-query"
-      iterations: 100000
-      salt: "xTjm1WMxVJQ8MYhjrfCEWQ=="
-      iv: "xv7a3Mk7k+7WrdW0"
-      ciphertext: "SaTkP3VxfoBsl8LYfQMyZ4S5/Kr0r4TeCpj8v0XTCPQGwGPgixUmR7laRtM+wnPNIZaRakl0nMqGuQ/9vigUk1JpV5KvbuWXY71/nBa9IZC7GnPcwLeuqh8LDM1QRZbr8AmNTpK28rNagb1YvTEZE5xzFVaoLux9VKaKOPJ/2BPoGV3OWuKdlrF1L5wY+kTy75lXWlpBTLo6tetyWCxpbqvP5U4g5XyMwQPxxs3mgG0Owb9I5lstXtggARlPAWuoSCvzkl6OY9xUDWYzaGEIFdXsXoSn/CLChYbaGccTFJLMr8KG/b7M2ux86+SqOVe4fIWU3dhDNk8tv+GceC5keD4WQiYJ4J3J7xmt9lm773Ftwy9RrfDhOElGhPTtKjL+AD6ddZn3cNTRelQiQ7RLziJLTKxsJRAInl4RfQ1Gv4HpH6o/917nUqCG4wLvcTJqLz2+97s3kTote538rWqyGekckhiIIbouVC4+OEpRvC9HjzpyBaXIctTdb+M8WjS34GKDvmYx4BMLKyjaLlISoTJm3uoJt+9qYvxuEfDrcnXG5MIu51BLO+PSXnpUs0/D9OmAg5tdPEMjSJmJp7OHMbeXFmMCx0JU3Sv2EjA9AM02XkAkp+eQeUgBhu/DXIzc1XMOAAuBxvpBdIdFiyB7FRxQ4nljQFxe2ltcF+mr1Wzc1t6ruTBH8ImKs9YaRKIofzDPkYPYYcOYrSnpo9ThXBqcK9sUD+k5DuyPZ7MfL7jRFoyn1oJii/4vYpqGOmGjsS4o6OBeCpoeOuBpmKdhdZQxtSMtw5BnKvtUyC9azp1an2jMD4e63wc9cn9UgacEfxMJE+TqUwHf6ftodw=="
-
-  - id: handout-04-canning-key-note
-    title: "Key-Return Note"
-    type: letter
-    type_label: "Business Note"
-    section: correspondence
-    channel: documents
-    visibility: shared
-    source: "Filed correspondence"
-    date: "1888"
-    listed: true
-    released: false
-    status: sealed
-    case_file: current-file
-    summary: "A sealed property note concerning access and return of a key."
-    lock:
-      id: "wij-h4-key"
-      iterations: 100000
-      salt: "SQH0l7tpPFUq3fAdZSzBZQ=="
-      iv: "kD6uSKPZpQ00m0BU"
-      ciphertext: "DVEkf3ay0YZso+eGCg4zVBk3rhC04HQgNvsW9363LzZDeZfNTv/3RG0qJ/zQjqSUZKtS04mydui1Bgz+M9aDSVZPpZAdPGQHn+JDq4Zs70VU+q8KhW6DzWar7RW/aHS30y4xM91/Fquo6A3jzfdb271i0YGoWsrVAqKVFZrxa/d605hJHH0qH2YdlsZGd9fFM4m7UyHNTzdjfX5W+W4Tk55Eb9+DT+3HfsVA8SecRtp6SdgSvsAPvAeh4iML9J7KCdxMRltOlOh2Dr4DqYRVXAR+dhA3D7ndCbbnVn7c1RxKXzTMfIFsNUJXQbUoM+zj6WmME4cVxtwamvb1eWY43NX1KH56Vy4+bTatTcPPPW1LdTYUW7rRe6WTGkKunVnYLHN3leiDPIthrWlfzPbwuO1fkV2CSRfhbaDywLEPbY8iXyrsb1aaAvVxzL8ZbZATFFmjY/TVUQ9yAsYySXGm+jAvAnFS84fh47hFXqukKjtuYvH4qwJoMJIo6jH2o0uci48Eo8lzw4fqL3tB"
-
-  - id: handout-05-working-hypotheses
-    title: "Working Hypotheses"
-    type: notebook
-    type_label: "Investigation Worksheet"
-    section: notes
-    channel: documents
-    visibility: shared
-    source: "Investigator working paper"
-    date: "Current inquiry"
-    listed: true
-    released: false
-    status: sealed
-    case_file: current-file
-    summary: "A sealed worksheet for separating established facts from testable explanations."
-    lock:
-      id: "wij-h5-hypotheses"
-      iterations: 100000
-      salt: "wHzYrub1GJFx6ApjCS9ZQw=="
-      iv: "Tn+OeNWHA2pm2MEC"
-      ciphertext: "+hccZVg0gWqbSPG9RDC3sZ4twEwIQCweRXaKjXcJh2MC27SMMGqIhr5JkU1n6PukyBZGqCuDI2DYLLi6v/V4nI22YhQHqMKXNT+2Q/bBfBMs/D4KmyE2LLBT27zE4dmMOQi+7+3JcMvTE9UT+21cZk6QSknYFN8opUTfsxwAvqHQd/yPVOuhbQT9pBMsySjJUTXszgof337zXmWkmLmTDH+JCX2G1FuulVNgySt8hErLGX0F53FewX7ww8HUtQ37LYoIiP9qesnnS9No6kgpPCEroJ6NAd/XwPRIX5CHIa6GaHPvlGQc4LhhT18Dh0KskkdyYOPak8Uwf0lv71IbAM9qZ8nZn2EDiQ08lK5L+zKlz01YTk92pgAg5Cr5kUa+eBpYuk/YliKLa8RW5qn0WEEKodcAlXe7oPZtZNfCsyEI6ERHI3YK8BpMxUhKmteSHMuW6JLzMqaFmGEb7SqoQFMv2vrXz/mHm8GUGp8Yx0yjDL9cN27sTt+0xvvGRjoio72dkaOkY2Fy388YmUu2nMcHdPUrz8ofxZqPiT9p2ijlG8qkQLh4FU8ZA+NDOP5gu5oY/PZUdP6vUzyG1XXYSlMxymJq9a2mApO0gQMFLISMfvVaA4/i7kWrTynWfh9qJkIP36J0CTwC5Wa5/FnbEIn1M2e9DIQSP9vm1C3bB1/BOEaeSXkjK/LBBXiOi12GVeJTH7rKWmxJGf6Q6K3lsaptF20amNe1ZTweD3ds+uPHFctopBUz+jqxn8Hss3LUJP0WVS7azu4PKttQK3JEZBUb8nNinF3tEYpI6HdFTPBbW3ZRGyy4WTabo45fKl8FB9WtR0qY/RQ6QE2FfPDCnZw3qBHyzI3p7rbn9ked3v+31TMNIyqafYOvszWQLzN+aYKW++ZnGAJPfEYJtJ/ikbFLMMQhXvpPmlxWKV/AbLyU/eDlor5Cm/W6UHF4COcgxj+tx5wwnp7u+HSHSvwshuWgwHkf3kstmRABv14as8BvJLEkdxUA+oFJUBC6/0IxyJRdFZUXqMY0IgMjgp/cySjV+lrWVb4jTE09cPkHkCi3kayk8RZfDWKlSHXydkmu8XvVUPFP4k1e872Fpfht8T7kfmLtNMBifZc0mbp9Modof5eaDDObKzgJF3Cx/UHGwKFUpyobO5+wbmR9UOeBuzOi5/F+5bQLexn0f5SYVF/dE39tdJfHs9M5J7udxGuRRSY3n/EIaKLUBd/UKf0jjChxLLvncNS/xK0oHNFnYyZ11N0qAxtH6r6mezFlJohiEKbnTZRY22Y7OxqUZAtdKcQCe2meuPPjno5Kc7+j4aXIl6aUTt5YD6IJiwB8PdJyZ4eEveXirdZLz+GSXF9gAymmyvZoN0fDRrWt/zRXe2JnmbmvK2L8krO0XEVN2kaLzNCmuFRlzdmJ9CuxwegGtQ4SDIqPn90GaZAZDfEkGfUh2io5w9ywheX+2QrwXtuyl1aiOYNfO+/JqwVX2xlLhKgC7DmAwX8biO49mKbbw/wtFcYBdJ5u7j4ZPL5Rf/NVlob+IwQ1Z4UWR4l2Z4sTEgJWuls="
+- id: handout-01-timing-ledger
+  title: The Mitre Square Chronology
+  type: report
+  type_label: Chronology
+  section: reports
+  channel: documents
+  visibility: shared
+  source: Current inquiry
+  date: Sunday, 30 September 1888
+  listed: true
+  released: false
+  status: sealed
+  case_file: current-file
+  summary: A sealed timing ledger for the Double Event inquiry.
+  lock:
+    id: wij-h1-timeline
+    iterations: 100000
+    salt: PazdjiSFXaSaoax+oLDiOQ==
+    iv: zd0uiH8DjNfWKKnH
+    ciphertext: f+2VCXlqO55qvJDj10FuR7pQ/buR6KLSifb0VCDWJkTe2EgpBQJhJIcVb0gOjsMusmYsp/OxFsuesZzLXlhqmSyeul71fVWNBdeTSGxIoVuXUAlxuubsBLd5RP7GWIL/E316wP3XHbUEp8fePIQTsrytadzKwHKSo5PpXbMawDCpWiek+8xHu+e45CXWJYc3v71rMvUu+D/4QjQGpbtVTFY11BlWTk6Vn6EsYvUQq4yMJ58G/ZIXfADo3X5QDjSNjXL0fIAujNLh9Qiy/GlX+B9+eKhXM93EL+QioMbU5aZXnL7x+2zss5Kxik3S/TxLaXyo3WuGWj/c2Kc0WR2hizIOoscOlSCyuOdugA/Lv0c9LSosHuhBo0vYSJEozQuy6qeuaMAVCPT2L11n/5wIpTJ42vgjes08y0JQxURiUUhhS2WTGP/f+XpTlAnu3+ybjn/V0c31FLwxY2ytryLPh+v31ftgcIcIbWWnEFA1vB+FTDNiFf5NfR0L/RfIO3CKGzxSngXvWcZ5yOTCNCX34UZ97Nvyg5idpVNM1G6u894KQJuXwTjVM9i/D3JlsNcn+vXHSeI4RxPMWF4RHZkMc3igDjprLj2owZYIb466ndKZ0p+pYMABU0Ca5iYUfM/sLcWWSsC/TZYHLMeotGG1+yIBsmziWc2BX57IJJnN3pJ+HxDosI4kMv0xe6+uyKFPRJ4gWKK0PBkAmiZJEBVI46+lF+zPlCnwg9sz6oRKxQL3Jh/8VBMbZfnX38djJbsMVSoYLcX1ZWXvPOXlyyOzxcsYbisEALvnv/lg0p+fVU0cYytG6mv5qQcsTM10XyJgHiK7YH+7CdqhGN7o8GWo9IY9UrbpOELyB/nIWjMQw3QMBYxi+FiyEf6np6Dz2UNcNQV6D5rKeuXmI7NbREIhHbovonF9SPnISBPDaBoBQmb8XJqoaUrj27fCsmRDGM2JWpwfbX8nM2EnEGuu1s2P4ATrEKj7DaWoGb4PSSnrUj1/7eh0umINnzk3S7rDPAQxk8dq8RubDzGgSnpzsPggJvs525mJpbCCnlJ/C52ZpmRomE4rWxZMpOmInhLDiAdIonzfEYOwQFPdJAyQa2MRxlMDVPDWncn87seLr7P5JS/naeub5S9bfSbyh5xJ3PEU7Cu96Ge5YBxzyb8vGEzp0rU4uADYPu0nXxP6ebj4Tt8Ls2k2/d1TPJO0YRxHO+vPKD65M6ZvYUOHmI9+2qtKbjorT5VR7TNsbiptAZHt4NJbeIpD/57R0EXrAixmTLVa71mspcwEer6xHj157AixJUyvYv3/2MISS8UyR01Hi/h6fSYzxLppMYDZXW4naHzfB2S/MH4WhC7h/UqZ847t4J0ohdnf8weAc7+Uu82BxfTHJV55biGEX28DwYBgj0kV7HKNg1YKzmXjH28m5ZKV19Zvna6x+VKTwU1KPyLmqfmBYZ/cVWPSKLChXytznA2ACSUh5NAOHj6r
+- id: handout-02-business-day-book
+  title: Business Day-Book Extract
+  type: notebook
+  type_label: Day-book Extract
+  section: notes
+  channel: documents
+  visibility: shared
+  source: Commercial record
+  date: August–October 1888
+  listed: true
+  released: false
+  status: sealed
+  case_file: current-file
+  summary: A sealed extract from an ordinary commercial day book.
+  lock:
+    id: wij-h2-daybook
+    iterations: 100000
+    salt: emEJ++kysnQcBCY1fxSrGw==
+    iv: 9+FIyDbeqA6I9SGy
+    ciphertext: pXGhsXSKYW10ISOMQHmR7qgc4QCMG3yeTHip5/Ra26TDWgCzEBhkgCa6Sen986t1XIyeR+JD0f+CkCdocipJmJbAt5ZS603qqIe6aqHkJeI/e2uuJOqFe5ig+nZIebsSFCFEPM/x7oAod4KvCtGTrr19YfZundiSGcBvCEQ7FUCmR5qikkFcUpTF2dj0vBVAM1B4LVzG9KR75UvtaNmTQOpsKAV+SPECN2a3PVeE8zzuoI2cbJQHTBRMoXSO/jADdbpjm6mIUX4B+P1K3AFaQZde6xq6LjdHZ2u8z5gEhBBg2vsd106Pv6JreCBsvA0d+z8IZXH+Dws2/uKoZdDLPxRTVkY4cvCwmeQ/JQc1wMf0dyqgAsJr+P6SUHAMly+pgxMsiZs9z3cZ+yAw3jVfHf8RvnCeotZN31HbnUN3ta1NiW9zQx2NyQh8TEJZdd+n6LOZXh9FtoKxtblOol6vktJSmstgMQkakTAwkyCS9jLei0lOKBru2Val+uqZ8B5aFt0tw5VHySRkF7uFn6WYTjrr0cD3wkUJ5FFoqVUUxo9sWjJzR51cQF7F8tAL6opiOfWF8IoNp8LSeGDrCk3n9RJlprq1CGWhaPLPef4/osG28AHuKGShefdMmCHQ7nwGeHzxq4GyJjdc/A8CJ5IbvHGzulMPfJfqPvNpKUuvYLZT3ihtn1imAT+fFbqucw/8ZoHtsAs/LZQ6/p2ze15rm2SSitHCUzieI08bJmGsUdmZWuq+DoO48UzEP4DH1EEqvZQcl+IXNfGeSD/HTeoQdyQwaCADKh0cNY0S471uiOkzKBIAszAgd1EcQbq/TRwEg+dyXmCGaOZke5YIfg2E1ZgF1xRYayAFXEASO7UGYNjRCQ+I2gbculQq/NRlyjxHidQNZ65IbIYdwyxOuMAwomH/+pFC564w9s7hnKG4iGqSvI7E+RUQ3Kll8g6PFF9zfCVeU5qj24Tq9Ivk7LpANfgoeShQM/m6aE2TDY781vW0RDFiZvu1jdgl0Fjw7NOZceloEO5V6F4SICt8Z82nvrg9FPzpj55t9TArSy9NqZwubPj/I3tFr8DsuPNGi2hIodUcyUkz3T/v7qVdweEv4RMY90PgQeKIumDn0sO3ahEyMwJFB6JpOhpcOgvw0yUt5tGbgaFHlpZKARTb2Sdkmic3ZQc6OJnWu8naYY7+0zWEzQySCMeg0rXhnZEZE0Rj9whlSYbiWIro9CQ16NWRaIf0Ve8tJFqF0U44JlLmhpTLlf4xmaR5fMaYokdeVReIDyA/tkeGs//kWBHEW0al3+CeG/3Lo21GPPQ33FqJe0sIkDxyGRNBdNrALTPHG9xKQQJ11wafJtslvi3TeXq2vJ3jYyQzQLSHk8lps4Hc90Pq1qLQ32kyugyNYNBCIEJqZF/9J3H+/JxbHQv5/VEyhE+q8G+cYpbKzQ7r9GoRWM+R1bY+ArsI4uhhwxpCQ/TbYmnxBmbvuRoBuj1REiBvqXyY0o9b8iiU9/4XcYWPijHoaYNkK0Y1accBsYtNADXVSyxzq0CDmoqexugjVydVweBoPtAqWkTvG3wvBh17HjczLMvoCol77Rlk+OrWlK6COhAeIRWcFpLYa7/LCe6YoQloRwjty3FGXjfceyKIr23Ma1z58dTokLo0c4xV9wvizzRZHeBg1P9Iyr18bvn9FFuWsfutCodB8NvjdndySlovaJKsI30J3a4fQpKmh6F6u6nCskJmKwA7XmO2REgBbB5RJySAlGYpnCXPgKxbK3izcMMovGHQ
+- id: handout-03-property-correspondence
+  title: Property Correspondence
+  type: letter
+  type_label: Business Correspondence
+  section: correspondence
+  channel: documents
+  visibility: shared
+  source: Filed correspondence
+  date: '1888'
+  listed: true
+  released: false
+  status: sealed
+  case_file: current-file
+  summary: A sealed piece of customer-side business correspondence.
+  lock:
+    id: wij-h3-query
+    iterations: 100000
+    salt: 8U+ADjrNRMF5cLSrd2bRhw==
+    iv: WIFH+3nAbgPz1EMO
+    ciphertext: v3xFaEYMYpZcY3gyUCMTH/2PzOdljd8dEsqg+8VYfc4rxd1yTdqhhRzKOuFAXsaRLUNzG2MGeZUlCCbZCObNK9QHFj9whQkxETlDHUWpor2mPr7eepiMVZEvGJvDXcugoyu5kmISwXh4ghryu3aTTNuUzlPu6Cs2ADWCTBmGO8QDgECZlvClX9ZUH9ePSO2HJlrf4LtxcVaFiEdr+OLZhyhLGneetR6LnYqN2e2SvuhnCpvIFBjPjguCIESdcz2OL+a7bOI19a3ZwTOHSnBo3qmKMmvOuO/u7lr6oZs6x2rOeX3uFq0U+kEcSzcHswnec+6LquG4K5jMYmHZ65pAta1czQDN5jaKu0gXgreVLppZoB35in/omcemdmAT519irkVsmB2iTLUzTQllEr/0xYVMVsezMNUna3LJsLIXGVmsO4YZXBP09woKYtCpAJtyJVYWpD56vZkxQnsIS8VTwNDkLUITW0uhcCARoenOfCCHb4a2Bmu2TvYqa9A0iov66D3QXYbShRfJ98I85xSrtH658XKqhUAk50nAr1wZca5bs4OvS8Kskg4Cda79L8giq+P1v3U758NRzLrOZrMC//D7CgDbc1hfGoL6ZsHHv5gcqavbPIfWJM/wQHqoib/g6lIWekchu8aUlq3HsgKMuuBa1Kvh+Wds8bPHToRp+NOc3u2S3Pq7TTCKtIqVw1JoJUa0/gxJyc0XiLxU3MhUAxr6bYw=
+- id: handout-04-key-return-note
+  title: Key-Return Note
+  type: letter
+  type_label: Business Note
+  section: correspondence
+  channel: documents
+  visibility: shared
+  source: Filed correspondence
+  date: '1888'
+  listed: true
+  released: false
+  status: sealed
+  case_file: current-file
+  summary: A sealed property note concerning access and return of a key.
+  lock:
+    id: wij-h4-key
+    iterations: 100000
+    salt: gJaC6Bk/vin7WycHVBjJCw==
+    iv: cqQBwmuJf1fpsEKD
+    ciphertext: joUV+hpNeMRkhCD+GTAAiqRuhj5g+w/xowJ2RPZArE0798B8+bJGlXVvH/qypC30UHo8kT9Z4arvdN+HL0A4KaYO+gY9hhRwSjBXJFMLJRB7CvjZmpz2DMTtbI1dA4uMjUsOTMYRhbcXcQWzMlmQyYKMHEqG66kOhmUQpSNs61JgSYQwM9VfhCHmuRozE/PT8DOX5GCZiNKq9fn2fOh+7XuZo0CpY9A4xkzj5wsGJ02JkBb8cztzblZ71M31WWbNKvLRECfQeWby7j+/g24l+szB2wl7/yAvSbcFbCDKz4sb4XCYxPHJ6qKYMSvbde3PFhNRnrFC/uu432NlJ0aLlfzcTTx1CJVwf6ZGwIfP+obdWifiKQe8YSOlc/rrev1esmh2g1dIx3pTFo1DLjJlvXmT8pVrEXi/ufUQG+h+uhAWPiaxCFU7JYE=
+- id: handout-05-working-hypotheses
+  title: Working Hypotheses
+  type: notebook
+  type_label: Working Sheet
+  section: notes
+  channel: documents
+  visibility: shared
+  source: Investigator working paper
+  date: Current inquiry
+  listed: true
+  released: false
+  status: sealed
+  case_file: current-file
+  summary: A sealed worksheet for separating established facts from testable explanations.
+  lock:
+    id: wij-h5-hypotheses
+    iterations: 100000
+    salt: mkg25dBQ5OX8NjlZhbJfRQ==
+    iv: z05ESaMGPIo6h8OZ
+    ciphertext: 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

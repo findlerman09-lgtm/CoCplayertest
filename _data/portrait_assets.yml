@@ -1,0 +1,22 @@
+# PM-approved P02 investigator portrait derivatives for the RC1.2.1 rehearsal player site.
+# Public filenames use neutral asset IDs. Names/descriptions belong only to already-issued investigator dossiers.
+arthur-bell:
+  asset_id: A1-POR-001
+  source: /assets/images/portraits/a1-por-001-player.webp.base64.txt
+  alt: "Arthur Bell, a broad-built, clean-shaven Victorian risk surveyor in a dark suit, holding a bowler beside building plans."
+thomas-merrick:
+  asset_id: A1-POR-002
+  source: /assets/images/portraits/a1-por-002-player.b64.txt
+  alt: "Thomas Merrick, a lean plain-clothes Victorian detective with a narrow moustache, writing in a pocket notebook."
+miriam-hart:
+  asset_id: A1-POR-003
+  source: /assets/images/portraits/a1-por-003-player.b64.txt
+  alt: "Miriam Hart, a composed Victorian School Board teacher with centre-parted dark hair, holding a lesson book beside classroom papers."
+clara-mercer:
+  asset_id: A1-POR-004
+  source: /assets/images/portraits/a1-por-004-player.b64.txt
+  alt: "Clara Mercer, a compact Victorian district reporter with chestnut hair and a small hat, writing in a pocket notebook."
+laurence-kersey:
+  asset_id: A1-POR-005
+  source: /assets/images/portraits/a1-por-005-player.b64.txt
+  alt: "Dr Laurence Kersey, a lean Victorian physician with a light narrow moustache, standing beside a worn medical bag."

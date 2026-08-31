@@ -34,6 +34,7 @@ function rippersLoadCompanionScript(filename) {
 
 rippersLoadCompanionScript('art-viewer.js');
 rippersLoadCompanionScript('rehearsal-tools.js');
+rippersLoadCompanionScript('portrait-loader.js');
 
 window.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.global-nav a.active, .context-nav a.active').forEach(link => {
