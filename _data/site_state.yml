@@ -9,4 +9,5 @@ web_rc1:
   phase_short: "RC1.2.1 rehearsal"
   audit: "S-08 PREFLIGHT / STATIC FAIRNESS AUDIT"
   final_audit: "Formal post-rehearsal S-08 has not been run"
-  materials: "Player website synchronized only against WHO_IS_JACK_RC1.2.1_REHEARSAL_EDITION; exact H1–H5 copy, sealed release behavior, PM-approved P02 investigator portraits, current identity controls, and spoiler-safe delivery rules installed"
+  asset_package: "P11_Final_Derivatives_Greyscale_Website_v01 — PM ACCEPTED / CLOSED"
+  materials: "Exact RC1.2.1 H1–H5 sealed release behavior, PM-approved P11 investigator portraits and branding, corrected encrypted staging for scene-released visual records, and P11-WEB-01 / P11-WEB-02 / P11-TXT-01 implementation controls installed"
