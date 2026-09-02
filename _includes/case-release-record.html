@@ -1,5 +1,5 @@
 {% assign release = include.release %}
-<details id="release-{{ release.id }}" class="case-release-record case-release-kind-{{ release.kind | default: 'evidence' }}{% if release.status == 'sealed' %} is-sealed{% endif %}" data-release-record="{{ release.id }}" data-release-kind="{{ release.kind | default: 'evidence' }}"{% if release.source_lock %} data-release-source-lock="{{ release.source_lock }}" hidden{% endif %}>
+<details id="release-{{ release.id }}" class="case-release-record case-release-kind-{{ release.kind | default: 'evidence' }}{% if release.status == 'sealed' %} is-sealed{% endif %}" data-release-record="{{ release.id }}" data-release-kind="{{ release.kind | default: 'evidence' }}"{% if release.hidden_until_unlocked %} data-hidden-release="true" hidden{% endif %}{% if release.source_lock %} data-release-source-lock="{{ release.source_lock }}" hidden{% endif %}>
   <summary>
     <span class="case-release-mark" aria-hidden="true">{% case release.kind %}{% when 'person' %}P{% when 'portrait' %}P{% when 'photograph' %}▣{% when 'location' %}⌖{% when 'scene' %}◇{% else %}R{% endcase %}</span>
     <span class="case-release-summary-copy">
@@ -24,6 +24,9 @@
         </form>
       </div>
       <div class="case-release-body reveal-body" aria-live="polite" hidden></div>
+      {% for art in release.art_locks %}
+      <span hidden data-encrypted-art data-art-index="{{ forloop.index0 }}" data-art-src="{{ art.src | relative_url }}" data-art-salt="{{ art.salt }}" data-art-iv="{{ art.iv }}" data-art-iterations="{{ art.iterations | default: 100000 }}" data-art-mime="{{ art.mime | default: 'image/webp' }}"></span>
+      {% endfor %}
     </section>
   </div>
 </details>
