@@ -26,7 +26,13 @@
       {% if doc.status == 'sealed' %}
       <section class="document-sealed" data-lock-id="{{ doc.lock.id }}" data-salt="{{ doc.lock.salt }}" data-iv="{{ doc.lock.iv }}" data-ciphertext="{{ doc.lock.ciphertext }}" data-iterations="{{ doc.lock.iterations | default: 100000 }}">
         <div class="sealed-document-face" data-reveal-locked>
+          {% if doc.sealed_asset %}
+          <figure class="sealed-document-preview">
+            <img src="{{ doc.sealed_asset | relative_url }}" alt="{{ doc.sealed_alt | default: 'Sealed player material.' | escape }}" loading="lazy" decoding="async">
+          </figure>
+          {% else %}
           <span class="sealed-document-mark">R</span>
+          {% endif %}
           <small>Code-word release</small>
           <strong>Contents Sealed</strong>
           <p>{{ doc.summary }}</p>
@@ -37,6 +43,9 @@
           </form>
         </div>
         <div class="document-paper reveal-body" aria-live="polite" hidden></div>
+        {% if doc.art_lock %}
+        <span hidden data-encrypted-art data-art-index="0" data-art-src="{{ doc.art_lock.src | relative_url }}" data-art-salt="{{ doc.art_lock.salt }}" data-art-iv="{{ doc.art_lock.iv }}" data-art-iterations="{{ doc.art_lock.iterations | default: 100000 }}" data-art-mime="{{ doc.art_lock.mime | default: 'image/png' }}" data-art-safe-alt="{{ doc.art_lock.alt | escape }}" data-art-safe-caption="{{ doc.art_lock.caption | escape }}"></span>
+        {% endif %}
       </section>
       {% else %}
         {% if doc.asset %}
