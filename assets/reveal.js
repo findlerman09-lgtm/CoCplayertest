@@ -98,6 +98,94 @@ function setRevealOpenState(card) {
   }
 }
 
+function releasedArtFigure(src, alt, caption) {
+  const figure = document.createElement('figure');
+  figure.className = 'controlled-art released-encrypted-art';
+
+  const button = document.createElement('button');
+  button.type = 'button';
+  button.className = 'controlled-art-open';
+  button.setAttribute('data-art-viewer', '');
+  button.dataset.artSrc = src;
+  button.dataset.artAlt = alt || '';
+  if (caption) button.dataset.artCaption = caption;
+  button.setAttribute('aria-label', caption ? `Inspect image: ${caption}` : 'Inspect released image');
+
+  const image = document.createElement('img');
+  image.src = src;
+  image.alt = alt || '';
+  image.loading = 'lazy';
+  image.decoding = 'async';
+
+  const inspect = document.createElement('span');
+  inspect.className = 'controlled-art-inspect';
+  inspect.setAttribute('aria-hidden', 'true');
+  inspect.textContent = 'Inspect';
+
+  button.append(image, inspect);
+  figure.appendChild(button);
+
+  if (caption) {
+    const figcaption = document.createElement('figcaption');
+    figcaption.textContent = caption;
+    figure.appendChild(figcaption);
+  }
+
+  return figure;
+}
+
+async function decryptRevealArts(card, password) {
+  const artNodes = Array.from(card.querySelectorAll('[data-encrypted-art]'));
+  if (!artNodes.length) return;
+
+  const body = card.querySelector('.reveal-body');
+  if (!body) return;
+
+  let stack = body.querySelector('[data-released-art-stack]');
+  if (!stack) {
+    stack = document.createElement('div');
+    stack.className = 'released-art-stack';
+    stack.setAttribute('data-released-art-stack', '');
+    const heading = body.querySelector('h2');
+    if (heading) heading.insertAdjacentElement('afterend', stack);
+    else body.prepend(stack);
+  }
+
+  for (let index = 0; index < artNodes.length; index += 1) {
+    const artNode = artNodes[index];
+    if (artNode.dataset.artLoaded === 'true') continue;
+
+    try {
+      const response = await fetch(artNode.dataset.artSrc, {
+        cache: 'force-cache',
+        credentials: 'same-origin'
+      });
+      if (!response.ok) throw new Error(`Released art unavailable: ${response.status}`);
+
+      const encrypted = new Uint8Array(await response.arrayBuffer());
+      const iterations = Number(artNode.dataset.artIterations || 100000);
+      const key = await deriveRevealKey(password, artNode.dataset.artSalt, iterations);
+      const iv = decodeRevealB64(artNode.dataset.artIv);
+      const plaintext = await crypto.subtle.decrypt({ name: 'AES-GCM', iv }, key, encrypted);
+      const blob = new Blob([plaintext], { type: artNode.dataset.artMime || 'application/octet-stream' });
+      const src = URL.createObjectURL(blob);
+
+      const metaIndex = artNode.dataset.artIndex || String(index);
+      const meta = body.querySelector(`[data-art-meta="${CSS.escape(metaIndex)}"]`);
+      const alt = meta?.dataset.artAlt || artNode.dataset.artSafeAlt || 'Released visual record.';
+      const caption = meta?.dataset.artCaption || artNode.dataset.artSafeCaption || '';
+
+      stack.appendChild(releasedArtFigure(src, alt, caption));
+      artNode.dataset.artLoaded = 'true';
+    } catch {
+      const note = document.createElement('p');
+      note.className = 'released-art-error';
+      note.textContent = 'The released image could not be loaded on this device. The accessible record remains available below.';
+      stack.appendChild(note);
+    }
+  }
+}
+
 async function unlockReveal(card, password) {
   const iterations = Number(card.dataset.iterations || 100000);
   const key = await deriveRevealKey(password, card.dataset.salt, iterations);
@@ -114,6 +202,9 @@ async function unlockReveal(card, password) {
   if (!body) throw new Error('Reveal body missing');
   body.innerHTML = html;
   setRevealOpenState(card);
+
+  // Image failure must never turn a correct clue/release code into a false lockout.
+  await decryptRevealArts(card, password);
 
   const lockId = card.dataset.lockId;
   const storageKey = `rippers-unlock-${lockId}`;
@@ -169,6 +260,62 @@ async function refreshDependentReleases(sourceLockId) {
   dependentCards.forEach(card => {
     setDependentRecordVisibility(card);
     tryStoredReveal(card);
+  });
+}
+
+async function tryHiddenVisualRelease(password) {
+  const cards = Array.from(document.querySelectorAll('[data-hidden-release="true"] [data-lock-id]'))
+    .filter(card => !localStorage.getItem(`rippers-unlock-${card.dataset.lockId}`));
+
+  for (const card of cards) {
+    try {
+      await unlockReveal(card, password);
+      const record = card.closest('[data-release-record]');
+      if (record) {
+        record.hidden = false;
+        record.open = true;
+        window.requestAnimationFrame(() => record.scrollIntoView({ behavior: 'smooth', block: 'start' }));
+      }
+      return record || true;
+    } catch {
+      // The same Keeper-provided code is tested against the unopened encrypted visual records.
+    }
+  }
+  return false;
+}
+
+function installVisualReleaseVault() {
+  document.querySelectorAll('[data-release-vault-form]').forEach(form => {
+    form.addEventListener('submit', async event => {
+      event.preventDefault();
+      const input = form.querySelector('input');
+      const status = form.querySelector('[data-release-vault-status]');
+      const password = (input?.value || '').trim().toUpperCase();
+
+      if (!password) {
+        if (status) status.textContent = 'Enter the Keeper-provided release code.';
+        return;
+      }
+
+      if (status) status.textContent = 'Checking the released-file registry…';
+      form.classList.add('is-working');
+      const buttons = form.querySelectorAll('button');
+      buttons.forEach(button => { button.disabled = true; });
+
+      try {
+        const opened = await tryHiddenVisualRelease(password);
+        if (opened) {
+          if (status) status.textContent = 'Visual record filed on this device.';
+          if (input) input.value = '';
+        } else {
+          if (status) status.textContent = 'That code did not match an unreleased visual record.';
+          input?.select();
+        }
+      } finally {
+        form.classList.remove('is-working');
+        buttons.forEach(button => { button.disabled = false; });
+      }
+    });
   });
 }
 
@@ -228,6 +375,7 @@ window.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  installVisualReleaseVault();
   openRecordFromHash();
 });
 
