@@ -1,4 +1,6 @@
 {% assign doc = include.doc %}
+{% assign h3_simple_gate = false %}
+{% if doc.id == 'handout-03-property-correspondence' %}{% assign h3_simple_gate = true %}{% endif %}
 <details id="document-{{ doc.id }}" class="document-record document-type-{{ doc.type }}{% if doc.status == 'sealed' %} is-sealed{% endif %}{% if doc.basis == 'development_only' %} is-development-demo{% endif %}" data-document-record="{{ doc.id }}" data-document-section="{{ doc.section }}" data-document-visibility="{{ doc.visibility }}">
   <summary>
     <span class="document-type-mark" aria-hidden="true">{% case doc.type %}{% when 'letter' %}✉{% when 'telegram' %}T{% when 'photograph' %}▣{% when 'newspaper' %}N{% when 'notebook' %}✎{% when 'report' %}R{% when 'map' %}⌖{% else %}•{% endcase %}</span>
@@ -23,7 +25,97 @@
     </aside>
 
     <div class="document-object document-object-{{ doc.type }}">
-      {% if doc.status == 'sealed' %}
+      {% if h3_simple_gate and doc.status == 'sealed' %}
+      <section class="document-sealed" data-simple-release data-simple-gate-id="{{ doc.lock.id }}">
+        <div class="sealed-document-face" data-simple-sealed>
+          <figure class="sealed-document-preview">
+            <img src="{{ '/assets/images/handouts/h3-sealed.svg' | relative_url }}" alt="{{ doc.sealed_alt | default: 'Player material H3 is sealed and its contents are not yet available.' | escape }}" loading="lazy" decoding="async">
+          </figure>
+          <small>Keeper release</small>
+          <strong>Contents Sealed</strong>
+          <p>{{ doc.summary }}</p>
+          <button type="button" data-simple-release-button>File Released Record</button>
+          <p class="reveal-status" data-simple-release-status role="status" aria-live="polite">Use this control when the Keeper releases the correspondence.</p>
+        </div>
+        <div class="document-paper reveal-body" data-simple-revealed aria-live="polite" hidden>
+          <h2>Merton's Query</h2>
+          <figure class="document-image-mount">
+            <img data-simple-revealed-image data-src="{{ '/assets/images/handouts/h3-revealed.svg' | relative_url }}" alt="Released player material H3; use the accompanying accessible transcription for document contents." loading="lazy" decoding="async">
+            <figcaption>Released player material H3.</figcaption>
+          </figure>
+          <details class="document-transcript">
+            <summary>Transcript</summary>
+            <pre class="document-transcript-text">{% include handouts/H3_Transcript_v01.txt %}</pre>
+          </details>
+        </div>
+      </section>
+      <script>
+      (() => {
+        const recordId = 'document-{{ doc.id }}';
+        const storagePrefix = 'rippers-unlock-';
+
+        function installH3SimpleGate() {
+          const record = document.getElementById(recordId);
+          const gate = record?.querySelector('[data-simple-release]');
+          if (!record || !gate) return;
+
+          const gateId = gate.dataset.simpleGateId;
+          const sealed = gate.querySelector('[data-simple-sealed]');
+          const revealed = gate.querySelector('[data-simple-revealed]');
+          const image = gate.querySelector('[data-simple-revealed-image]');
+          const button = gate.querySelector('[data-simple-release-button]');
+          const releaseStatus = gate.querySelector('[data-simple-release-status]');
+          const status = record.querySelector('[data-document-status]');
+          const metaStatus = record.querySelector('[data-document-meta-status]');
+          const summaryTitle = record.querySelector('.document-summary-copy strong');
+          const revealedTitle = revealed?.querySelector('h2')?.textContent?.trim() || "Merton's Query";
+          const storageKey = `${storagePrefix}${gateId}`;
+          const titleKey = `${storagePrefix}title-${gateId}`;
+          const timeKey = `${storagePrefix}time-${gateId}`;
+
+          function showReleased({ persist = true, announce = true } = {}) {
+            if (image && !image.getAttribute('src')) image.src = image.dataset.src || '';
+            if (sealed) sealed.hidden = true;
+            if (revealed) revealed.hidden = false;
+            record.classList.remove('is-sealed');
+            record.classList.add('is-unlocked');
+            if (status) {
+              status.textContent = 'OPEN';
+              status.classList.remove('sealed');
+              status.classList.add('available');
+            }
+            if (metaStatus) metaStatus.textContent = 'Open';
+            if (summaryTitle) summaryTitle.textContent = revealedTitle;
+            if (releaseStatus) releaseStatus.textContent = 'Opened.';
+
+            if (persist && gateId) {
+              localStorage.setItem(storageKey, 'released');
+              localStorage.setItem(titleKey, revealedTitle);
+              if (!localStorage.getItem(timeKey)) localStorage.setItem(timeKey, String(Date.now()));
+            }
+
+            if (announce && gateId) {
+              window.dispatchEvent(new CustomEvent('rippers:document-unlocked', {
+                detail: { lockId: gateId, title: revealedTitle }
+              }));
+            }
+          }
+
+          if (gateId && localStorage.getItem(storageKey)) {
+            showReleased({ persist: false, announce: true });
+          }
+
+          button?.addEventListener('click', () => showReleased());
+        }
+
+        if (document.readyState === 'loading') {
+          window.addEventListener('DOMContentLoaded', installH3SimpleGate, { once: true });
+        } else {
+          installH3SimpleGate();
+        }
+      })();
+      </script>
+      {% elsif doc.status == 'sealed' %}
       <section class="document-sealed" data-lock-id="{{ doc.lock.id }}" data-salt="{{ doc.lock.salt }}" data-iv="{{ doc.lock.iv }}" data-ciphertext="{{ doc.lock.ciphertext }}" data-iterations="{{ doc.lock.iterations | default: 100000 }}">
         <div class="sealed-document-face" data-reveal-locked>
           {% if doc.sealed_asset %}
