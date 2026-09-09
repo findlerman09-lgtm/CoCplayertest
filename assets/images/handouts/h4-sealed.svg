@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="8.5in" height="11in" viewBox="0 0 1700 2200">
+  <defs>
+    <pattern id="paper" width="70" height="70" patternUnits="userSpaceOnUse">
+      <circle cx="11" cy="17" r="1.2" fill="#8a806d" opacity=".12"/>
+      <circle cx="52" cy="39" r=".9" fill="#8a806d" opacity=".09"/>
+      <path d="M5 60L18 58M43 10L59 12" stroke="#8a806d" stroke-width="1" opacity=".06"/>
+    </pattern>
+    <pattern id="letterPaper" width="92" height="86" patternUnits="userSpaceOnUse">
+      <path d="M3 22L37 20M49 69L83 71" stroke="#7e735f" stroke-width="1" opacity=".06"/>
+      <circle cx="17" cy="63" r="1" fill="#786f60" opacity=".07"/>
+    </pattern>
+    <style>
+      .title { font-family:'P052','Palatino Linotype',serif; font-size:54px; font-weight:700; letter-spacing:1px; fill:#25231f; }
+      .generic-title { font-size:50px; letter-spacing:1.6px; }
+      .smallcaps { font-family:'Nimbus Sans',Arial,sans-serif; font-size:27px; font-weight:700; letter-spacing:1.3px; fill:#34342c; }
+      .ledger { font-family:'Z003','P052',serif; font-size:39px; fill:#2e302a; font-variant-ligatures:none; font-feature-settings:'liga' 0, 'clig' 0; }
+      .ledger-name { font-family:'Z003','P052',serif; font-size:39px; fill:#302e29; font-variant-ligatures:none; font-feature-settings:'liga' 0, 'clig' 0; }
+      .letter { font-family:'Z003','P052',serif; font-size:45px; fill:#2d2a26; font-variant-ligatures:none; font-feature-settings:'liga' 0, 'clig' 0; }
+      .letter-small { font-family:'Z003','P052',serif; font-size:42px; fill:#2d2a26; font-variant-ligatures:none; font-feature-settings:'liga' 0, 'clig' 0; }
+      .editorial { font-family:'Nimbus Roman No9 L','Times New Roman',serif; font-size:29px; font-style:italic; fill:#4a463e; }
+      .pencil { font-family:'Z003','P052',serif; font-size:43px; fill:#595852; font-variant-ligatures:none; font-feature-settings:'liga' 0, 'clig' 0; }
+      .seal-id { font-family:'P052','Palatino Linotype',serif; font-size:112px; font-weight:700; fill:#34342d; }
+      .seal-note { font-family:'Nimbus Sans',Arial,sans-serif; font-size:27px; font-weight:700; letter-spacing:2px; fill:#4b4a42; }
+    </style>
+  </defs>
+  <rect width="1700" height="2200" fill="#f4ebdc"/>
+  <rect width="1700" height="2200" fill="url(#paper)"/>
+  <rect x="140" y="91" width="12" height="12" fill="#6e2f29"/>
+  <text class="title generic-title" x="140" y="188">PLAYER MATERIAL H4</text>
+  <path d="M140 226H1560" stroke="#34352d" stroke-width="3"/>
+  
+  <g>
+    <rect x="455" y="545" width="820" height="985" fill="#e2dbc9" stroke="#5c5b52" stroke-width="3" opacity=".68" transform="rotate(-1.2 865 1038)"/>
+    <rect x="430" y="520" width="820" height="985" fill="#eee6d7" stroke="#4f5048" stroke-width="4" transform="rotate(.35 840 1012)"/>
+    <path d="M430 690L840 1020L1250 690" fill="none" stroke="#77766c" stroke-width="3" opacity=".42"/>
+    <path d="M430 1505L760 1170M1250 1505L920 1170" fill="none" stroke="#77766c" stroke-width="3" opacity=".3"/>
+    <text class="seal-id" x="840" y="925" text-anchor="middle">H4</text>
+    <path d="M670 985H1010" stroke="#5b5a51" stroke-width="3"/>
+    <text class="seal-note" x="840" y="1065" text-anchor="middle">THIS MATERIAL HAS NOT</text>
+    <text class="seal-note" x="840" y="1110" text-anchor="middle">YET BEEN RELEASED</text>
+  </g>
+
+</svg>

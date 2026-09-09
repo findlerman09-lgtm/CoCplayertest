@@ -19,7 +19,7 @@ summary: Material currently available to the whole table.
   <header><span>Release protocol</span><b>RC1.2.1</b></header>
   <div class="frame-body">
     <strong>Some records are sealed until they are earned in play.</strong>
-    <p>When the Keeper gives the table a code word, open the matching record and enter it. A wrong code changes nothing; an opened record remains available in this browser profile.</p>
+    <p>When the Keeper releases a record, use its release control to file the opened copy. An opened record remains available in this browser profile.</p>
   </div>
 </section>
 

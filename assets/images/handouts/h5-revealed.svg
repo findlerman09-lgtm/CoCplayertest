@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="8.5in" height="11in" viewBox="0 0 1700 2200">
+  <defs>
+    <pattern id="paper" width="70" height="70" patternUnits="userSpaceOnUse">
+      <rect width="70" height="70" fill="#f4ebdc"/>
+      <circle cx="11" cy="17" r="1.2" fill="#8a806d" opacity=".12"/>
+      <circle cx="52" cy="39" r=".9" fill="#8a806d" opacity=".09"/>
+      <path d="M5 60L18 58M43 10L59 12" stroke="#8a806d" stroke-width="1" opacity=".06"/>
+    </pattern>
+    <style><![CDATA[
+      text { font-variant-ligatures:none; font-feature-settings:'liga' 0; }
+      .paper { fill:url(#paper); }
+      .ink { fill:#25231f; }
+      .rule { stroke:#5d594e; stroke-width:2.6; fill:none; }
+      .frame { stroke:#34352d; stroke-width:4; fill:#f8f2e7; }
+      .heavy-rule { stroke:#34352d; stroke-width:7; fill:none; }
+      .title { font-family:'P052','Palatino Linotype',serif; font-size:58px; font-weight:700; letter-spacing:1.2px; fill:#25231f; }
+      .section { font-family:'Nimbus Sans',Arial,sans-serif; font-size:27px; font-weight:700; letter-spacing:1px; fill:#25231f; }
+      .prompt { font-family:'Nimbus Roman No9 L','Times New Roman',serif; font-size:28px; font-style:italic; fill:#3e3b34; }
+      .label { font-family:'Nimbus Roman No9 L','Times New Roman',serif; font-size:36px; font-weight:700; fill:#25231f; }
+    ]]></style>
+  </defs>
+
+  <rect class="paper" width="1700" height="2200"/>
+  <line x1="140" y1="105" x2="1560" y2="105" class="rule"/>
+  <rect x="140" y="91" width="12" height="12" fill="#6e2f29"/>
+  <text class="title" x="140" y="188">H5 — WORKING HYPOTHESES</text>
+  <line x1="140" y1="225" x2="1560" y2="225" class="heavy-rule"/>
+
+  <!-- Established physical facts. -->
+  <rect class="frame" x="140" y="275" width="1420" height="655"/>
+  <rect x="140" y="275" width="1420" height="115" fill="#e3ddcf"/>
+  <line x1="760" y1="275" x2="760" y2="390" class="rule"/>
+  <text class="section" x="170" y="345">ESTABLISHED PHYSICAL FACTS</text>
+  <text class="prompt" x="795" y="324">
+    <tspan x="795" dy="0">What is directly observed, timed, measured</tspan>
+    <tspan x="795" dy="38">or reliably recorded?</tspan>
+  </text>
+  <g class="rule">
+    <line x1="140" y1="390" x2="1560" y2="390"/>
+    <line x1="140" y1="570" x2="1560" y2="570"/>
+    <line x1="140" y1="750" x2="1560" y2="750"/>
+    <line x1="250" y1="477" x2="1510" y2="477"/>
+    <line x1="250" y1="535" x2="1510" y2="535"/>
+    <line x1="250" y1="657" x2="1510" y2="657"/>
+    <line x1="250" y1="715" x2="1510" y2="715"/>
+    <line x1="250" y1="837" x2="1510" y2="837"/>
+    <line x1="250" y1="895" x2="1510" y2="895"/>
+  </g>
+  <text class="label" x="175" y="505">1.</text>
+  <text class="label" x="175" y="685">2.</text>
+  <text class="label" x="175" y="865">3.</text>
+
+  <!-- Testable logistics hypotheses. -->
+  <rect class="frame" x="140" y="960" width="1420" height="595"/>
+  <rect x="140" y="960" width="1420" height="115" fill="#e3ddcf"/>
+  <line x1="760" y1="960" x2="760" y2="1075" class="rule"/>
+  <text class="section" x="170" y="1030">TESTABLE LOGISTICS HYPOTHESES</text>
+  <text class="prompt" x="795" y="1009">
+    <tspan x="795" dy="0">What movement, burden, route, access or timing</tspan>
+    <tspan x="795" dy="38">claim can the group test?</tspan>
+  </text>
+  <g class="rule">
+    <line x1="140" y1="1075" x2="1560" y2="1075"/>
+    <line x1="140" y1="1235" x2="1560" y2="1235"/>
+    <line x1="140" y1="1395" x2="1560" y2="1395"/>
+    <line x1="250" y1="1152" x2="1510" y2="1152"/>
+    <line x1="250" y1="1205" x2="1510" y2="1205"/>
+    <line x1="250" y1="1312" x2="1510" y2="1312"/>
+    <line x1="250" y1="1365" x2="1510" y2="1365"/>
+    <line x1="250" y1="1472" x2="1510" y2="1472"/>
+    <line x1="250" y1="1525" x2="1510" y2="1525"/>
+  </g>
+  <text class="label" x="175" y="1178">A.</text>
+  <text class="label" x="175" y="1338">B.</text>
+  <text class="label" x="175" y="1498">C.</text>
+
+  <!-- Next action. -->
+  <rect class="frame" x="140" y="1585" width="1420" height="260"/>
+  <rect x="140" y="1585" width="1420" height="115" fill="#e3ddcf"/>
+  <line x1="760" y1="1585" x2="760" y2="1700" class="rule"/>
+  <text class="section" x="170" y="1655">NEXT ACTION</text>
+  <text class="prompt" x="795" y="1634">
+    <tspan x="795" dy="0">What single action would most clearly distinguish</tspan>
+    <tspan x="795" dy="38">the leading explanations?</tspan>
+  </text>
+  <line x1="140" y1="1700" x2="1560" y2="1700" class="rule"/>
+  <text class="label" x="175" y="1788">→</text>
+  <line x1="250" y1="1765" x2="1510" y2="1765" class="rule"/>
+  <line x1="250" y1="1820" x2="1510" y2="1820" class="rule"/>
+
+  <!-- Falsification prompt. -->
+  <rect class="frame" x="140" y="1875" width="1420" height="255"/>
+  <rect x="140" y="1875" width="1420" height="100" fill="#e3ddcf"/>
+  <text class="section" x="170" y="1937">WHAT WOULD CHANGE OUR MINDS?</text>
+  <line x1="140" y1="1975" x2="1560" y2="1975" class="rule"/>
+  <line x1="250" y1="2040" x2="1510" y2="2040" class="rule"/>
+  <line x1="250" y1="2095" x2="1510" y2="2095" class="rule"/>
+</svg>
