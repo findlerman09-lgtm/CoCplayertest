@@ -26,8 +26,8 @@ summary: Shared material and known developments associated with cases already op
     {% assign location_count = file.known_locations | size %}
     {% assign initial_release_count = 0 %}
     {% for release in case_releases %}
-      {% unless release.source_lock %}
-        {% unless release.hidden_until_unlocked %}
+      {% unless release.hidden_until_dependency %}
+        {% unless release.hidden_until_unlocked or release.source_lock %}
           {% assign initial_release_count = initial_release_count | plus: 1 %}
         {% endunless %}
       {% endunless %}
@@ -65,18 +65,12 @@ summary: Shared material and known developments associated with cases already op
           {% if case_releases.size > 0 %}
           <section class="case-release-shelf" aria-label="Released people and visual records">
             <header><div><small>Keeper-controlled release</small><strong>People & Visual Records</strong></div><span><span data-case-release-visible-count>{{ initial_release_count }}</span> filed</span></header>
-            <div class="case-release-vault">
+            <div class="case-release-guide">
               <div class="case-release-vault-copy">
-                <small>Released visual filing</small>
-                <strong>Enter the code only when the Keeper gives it to the table.</strong>
-                <p>Approved art is pre-staged in encrypted form. The code files only the record earned in play; it does not determine whether a clue exists.</p>
+                <small>Simple scene release</small>
+                <strong>File a visual only when the Keeper releases it to the table.</strong>
+                <p>Opened records remain available in this browser profile. These controls prevent accidental spoilers during ordinary play; they are not passwords.</p>
               </div>
-              <form data-release-vault-form>
-                <label class="visually-hidden" for="visual-release-code-{{ forloop.index }}">Visual release code</label>
-                <input id="visual-release-code-{{ forloop.index }}" type="password" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="RELEASE CODE">
-                <button type="submit">File Record</button>
-                <p data-release-vault-status role="status" aria-live="polite">Awaiting a Keeper-provided release code.</p>
-              </form>
             </div>
             <div class="case-release-grid">
               {% for release in case_releases %}

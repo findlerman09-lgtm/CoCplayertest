@@ -30,9 +30,9 @@ layout: base
   <div class="overview-art"></div>
   <div class="overview-portrait">
     {% if portrait_asset %}
-      <img src="{{ '/assets/favicon.svg' | relative_url }}" data-portrait-b64="{{ portrait_asset.source | relative_url }}" alt="{{ portrait_asset.alt | escape }}" hidden>
-      <div class="overview-portrait-placeholder" data-portrait-placeholder role="img" aria-label="Portrait loading for {{ character_name }}"><span>{{ character_initials }}</span></div>
-    {% elsif portrait_display and portrait_display != '/assets/favicon.svg' %}
+      <img src="{{ portrait_asset.source | relative_url }}" data-approved-portrait alt="{{ portrait_asset.alt | escape }}" loading="eager" decoding="async">
+      <div class="overview-portrait-placeholder" data-portrait-placeholder role="img" aria-label="Portrait unavailable for {{ character_name }}" hidden><span>{{ character_initials }}</span></div>
+    {% elsif portrait_display %}
       <img src="{{ portrait_display | relative_url }}?v=5a1" alt="Portrait of {{ character_name }}">
     {% else %}
       <div class="overview-portrait-placeholder" role="img" aria-label="No portrait image is filed for {{ character_name }}"><span>{{ character_initials }}</span></div>
@@ -123,10 +123,8 @@ layout: base
   <div class="frame-body shortcut-list">
     <a href="{{ character_base | append: '/sheet/' | relative_url }}"><small>At the table</small><strong>Character Sheet</strong><span>Current condition, skills, combat, talent and improvement marks.</span></a>
     <a href="{{ character_base | append: '/people/' | relative_url }}"><small>Relationships</small><strong>People</strong><span>Personal connections and the investigators you already know.</span></a>
-    <a href="{{ character_base | append: '/correspondence/' | relative_url }}"><small>Private material</small><strong>Correspondence</strong><span>Letters, telegrams and code-word releases.</span></a>
+    <a href="{{ character_base | append: '/correspondence/' | relative_url }}"><small>Private material</small><strong>Correspondence</strong><span>Letters, telegrams and other private records.</span></a>
     <a href="{{ character_base | append: '/documents/' | relative_url }}"><small>Personal archive</small><strong>Documents</strong><span>Material received, created, or uniquely interpreted.</span></a>
     <a href="{{ character_base | append: '/possessions/' | relative_url }}"><small>Resources</small><strong>Possessions & Means</strong><span>Equipment, standing, languages and legitimate access.</span></a>
   </div>
 </article>
-
-{% if portrait_asset %}<script defer src="{{ '/assets/portrait-loader.js' | relative_url }}"></script>{% endif %}

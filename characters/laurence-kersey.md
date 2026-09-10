@@ -14,7 +14,7 @@ display_title: Dr. Laurence Kersey
 breadcrumb: The Rippers / Investigators / Laurence Kersey
 page_status: Active
 page_status_class: active
-portrait: /assets/favicon.svg
+portrait: /assets/images/portraits/A1-POR-005_Dr_Laurence_Kersey_Web_v01.webp
 hero_art: /assets/images/hero-collage-hd.webp
 tagline: "What changed first?"
 background: >-

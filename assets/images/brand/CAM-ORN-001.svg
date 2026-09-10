@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="2400" height="1600" viewBox="0 0 2400 1600">
+  <title>CAM-ORN-001 Ornament Family v01</title>
+  <desc>Reusable restrained editorial ornaments for The Rippers campaign.</desc>
+  <g fill="#1e1a17" stroke="#1e1a17" stroke-linecap="square">
+    <g id="divider-long" transform="translate(200 210)">
+      <path d="M0 70 H850 M1150 70 H2000" fill="none" stroke-width="8"/>
+      <path d="M0 90 H850 M1150 90 H2000" fill="none" stroke-width="2"/>
+      <rect x="970" y="40" width="60" height="60" fill="#6e2f29" stroke="none"/>
+      <path d="M910 70 H950 M1050 70 H1090" fill="none" stroke-width="8"/>
+    </g>
+    <g id="divider-short" transform="translate(650 500)">
+      <path d="M0 45 H445 M655 45 H1100" fill="none" stroke-width="6"/>
+      <path d="M0 64 H445 M655 64 H1100" fill="none" stroke-width="2"/>
+      <path d="M493 15 V94 M607 15 V94" fill="none" stroke-width="4"/>
+      <rect x="530" y="32" width="40" height="40" fill="#1e1a17" stroke="none"/>
+    </g>
+    <g id="section-terminal" transform="translate(860 790)">
+      <path d="M0 60 H210 V25 M680 60 H470 V25" fill="none" stroke-width="6"/>
+      <path d="M235 60 H310 M370 60 H445" fill="none" stroke-width="6"/>
+      <rect x="325" y="45" width="30" height="30" fill="#6e2f29" stroke="none"/>
+    </g>
+    <g id="folio-corner" transform="translate(300 1050)">
+      <path d="M0 190 V0 H300 M24 190 V24 H300" fill="none" stroke-width="5"/>
+      <rect x="-12" y="206" width="24" height="24" fill="#6e2f29" stroke="none"/>
+    </g>
+    <g id="evidence-bracket" transform="translate(960 1080)">
+      <path d="M0 0 H420 M0 0 V220 M0 220 H420" fill="none" stroke-width="6"/>
+      <path d="M34 34 H250 M34 110 H330 M34 186 H280" fill="none" stroke-width="3"/>
+      <rect x="456" y="86" width="48" height="48" fill="#6e2f29" stroke="none"/>
+    </g>
+    <g id="folio-rule" transform="translate(1600 1120)">
+      <path d="M0 0 H440" fill="none" stroke-width="5"/>
+      <path d="M0 20 H440" fill="none" stroke-width="2"/>
+      <path d="M0 -18 V38 M440 -18 V38" fill="none" stroke-width="5"/>
+      <rect x="202" y="64" width="36" height="36" fill="#1e1a17" stroke="none"/>
+    </g>
+  </g>
+</svg>

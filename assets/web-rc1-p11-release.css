@@ -1,66 +1,39 @@
-/* P11 accepted-art integration — encrypted release presentation.
-   Release-sensitive P11 art is never present as a raw public image. */
+/* Final P11 asset integration and trusted-table release presentation. */
 
-.sealed-document-preview{
-  margin:0 0 14px;
-  width:min(100%,520px);
-}
-.sealed-document-preview img{
+.global-wordmark{
   display:block;
-  width:100%;
-  height:auto;
-  border:1px solid rgba(196,154,76,.28);
-  box-shadow:0 10px 28px rgba(0,0,0,.18);
-}
-
-.released-art-stack{
-  display:grid;
-  gap:16px;
-  margin:18px 0 22px;
-}
-.released-encrypted-art{
-  margin:0;
-}
-.released-encrypted-art .controlled-art-open{
-  width:100%;
-}
-.released-encrypted-art img{
-  width:100%;
-  height:auto;
-  max-height:72vh;
+  width:min(168px,100%);
+  max-height:38px;
   object-fit:contain;
+  object-position:left center;
 }
-.released-art-error{
-  margin:0;
-  padding:12px 14px;
-  border:1px solid rgba(164,109,77,.38);
-  background:rgba(96,45,31,.08);
-  color:#7a5440;
-  font-size:.76rem;
-  line-height:1.5;
+.global-brand>span{flex:0 0 auto}
+.global-brand>span small{margin-top:0}
+
+.splash-mark{
+  display:block;
+  width:68px;
+  height:68px;
+  margin:0 auto 12px;
 }
-.released-transcript-wrap{
-  margin-top:18px;
-  border-top:1px solid rgba(89,70,43,.22);
-  padding-top:14px;
+.splash-wordmark{
+  display:block;
+  width:min(560px,80vw);
+  max-height:168px;
+  margin:0 auto;
 }
-.released-transcript-wrap>summary{
-  cursor:pointer;
-  font-weight:600;
-}
-.released-transcript{
-  margin:12px 0 0;
-  white-space:pre-wrap;
-  overflow-wrap:anywhere;
-  font:inherit;
-  line-height:1.58;
+.splash-ornament{
+  display:block;
+  width:min(460px,70vw);
+  max-height:72px;
+  margin:14px auto 20px;
 }
 
-.case-release-vault{
-  display:grid;
-  grid-template-columns:minmax(0,1fr) minmax(260px,.72fr);
-  gap:18px;
-  align-items:center;
+/* Broken portrait files fall back to plain dossier initials, never a campaign icon. */
+.context-portrait-placeholder:before,
+.overview-portrait-placeholder:before{content:none}
+
+.case-release-guide{
   margin:0 0 14px;
   padding:14px 16px;
   border:1px solid rgba(196,154,76,.24);
@@ -69,48 +42,79 @@
 .case-release-vault-copy small{
   display:block;
   color:#a99061;
-  font-size:.57rem;
+  font-size:.7rem;
   letter-spacing:.11em;
   text-transform:uppercase;
 }
 .case-release-vault-copy strong{
   display:block;
-  margin-top:2px;
+  margin-top:3px;
   color:#e6d9be;
-  font-size:.9rem;
+  font-size:1rem;
   font-weight:500;
 }
 .case-release-vault-copy p{
-  margin:.35rem 0 0;
+  margin:.4rem 0 0;
   color:#aeb9b5;
-  font-size:.7rem;
-  line-height:1.45;
-}
-.case-release-vault form{
-  display:grid;
-  grid-template-columns:minmax(0,1fr) auto;
-  gap:8px;
-}
-.case-release-vault input{
-  min-width:0;
-}
-.case-release-vault [data-release-vault-status]{
-  grid-column:1/-1;
-  margin:0;
-  min-height:1.25em;
-  color:#98a6a2;
-  font-size:.64rem;
-  line-height:1.4;
-}
-.case-release-vault form.is-working{
-  opacity:.78;
+  font-size:.82rem;
+  line-height:1.5;
 }
 
-@media(max-width:720px){
-  .case-release-vault{grid-template-columns:1fr}
+[data-simple-release-button]{
+  min-height:42px;
+  margin-top:14px;
+  padding:0 16px;
+  border:1px solid #735d39;
+  background:#26343a;
+  color:#ead7a9;
+  cursor:pointer;
+}
+[data-simple-release-button]:hover{border-color:#c5a35f;color:#fff0c9}
+[data-simple-release-button]:focus-visible{
+  outline:3px solid #e0c47f;
+  outline-offset:3px;
+}
+
+.case-release-record.is-unlocked .case-release-body{
+  display:block;
+}
+.case-release-body .eyebrow{margin:0 0 .35rem}
+.case-release-body h2{
+  margin:0 0 1rem;
+  color:#2b251e;
+  font-size:1.45rem;
+  font-weight:500;
+}
+.simple-release-art{margin:0}
+.simple-release-art .controlled-art-open{width:100%}
+.simple-release-art img{
+  display:block;
+  width:100%;
+  height:auto;
+  max-height:72vh;
+  object-fit:contain;
+}
+.released-art-error{
+  margin:12px 0 0;
+  padding:12px 14px;
+  border:1px solid rgba(164,109,77,.38);
+  background:rgba(96,45,31,.08);
+  color:#7a5440;
+  font-size:.82rem;
+  line-height:1.5;
+}
+
+@media(max-width:850px){
+  .global-wordmark{width:150px}
+}
+@media(max-width:580px){
+  .global-wordmark{width:172px;margin:auto}
+  .global-brand>span{display:none}
+  .splash-mark{width:58px;height:58px}
 }
 @media print{
-  .case-release-vault{display:none!important}
-  .released-encrypted-art button{border:0;background:transparent;padding:0}
-  .released-encrypted-art .controlled-art-inspect{display:none}
+  .case-release-guide,
+  [data-simple-release-sealed]{display:none!important}
+  .simple-release-art button{border:0;background:transparent;padding:0}
+  .simple-release-art .controlled-art-inspect{display:none}
 }

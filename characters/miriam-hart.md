@@ -14,7 +14,7 @@ display_title: Miriam Hart
 breadcrumb: The Rippers / Investigators / Miriam Hart
 page_status: Active
 page_status_class: active
-portrait: /assets/favicon.svg
+portrait: /assets/images/portraits/A1-POR-003_Miriam_Hart_Web_v01.webp
 hero_art: /assets/images/hero-collage-hd.webp
 tagline: "Tell me whose name it is first."
 background: >-

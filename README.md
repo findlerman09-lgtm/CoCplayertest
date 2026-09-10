@@ -6,9 +6,11 @@ Each investigator receives a private evolving dossier containing reveal-safe bac
 
 ## Current build status
 
-**WEB-RC1 — Rehearsal synchronization.**
+**WEB-RC1 — P11 approved-asset integration and final website QA.**
 
-The completed website/static review is **S-08 preflight — PASS**. It is not final S-08. Final S-08 occurs only after the live timed rehearsal and the resulting bounded correction pass.
+The site uses the frozen `WHO_IS_JACK_RC1.2.1_REHEARSAL_EDITION` campaign state. Implementation changes remain on a review branch until PM approval.
+
+Implementation QA is recorded in [`docs/WEB_FINAL_QA_2026-09-10.md`](docs/WEB_FINAL_QA_2026-09-10.md).
 
 This repository is a downstream implementation surface. It does **not** create or supersede campaign canon.
 
@@ -32,27 +34,25 @@ Clara Whitcombe retains prototype mechanics only because her purpose is regressi
 
 ## Visual-control boundary
 
-Final investigator identity and scenario art are consumed only from PM-controlled upstream character/art sources. Proof art, placeholder portraits, and website assets do not establish physical identity or story facts.
+Final investigator identity and scenario art are consumed only from PM-approved P11 derivatives. Proof art and placeholders do not establish physical identity or story facts.
 
-Unreleased reveal-gated scenario imagery is not committed to the player payload merely because the website can hide an element. The public repository remains a theatrical spoiler gate, not confidential storage.
+The site is for a trusted tabletop group. Its release controls prevent accidental spoilers during ordinary navigation; they are not security controls, and the repository must not be treated as confidential storage.
 
 ## Access model
 
-Investigator dossiers use campaign-issued passwords. Only salted PBKDF2 verifiers are stored in this public repository; plaintext dossier passwords are distributed separately.
-
-The archive key and any sealed-document reveal codes are separate access layers. Existing **SEALED** document behavior must remain intact when controlled material is added or released.
+The existing archive and investigator-dossier access gates remain separate from player-material releases. The H1–H5 handouts and staged visuals use simple Keeper-directed release controls with browser-local persistence; they do not use passwords or encryption.
 
 ## Player-material release model
 
-RC1.1 handouts may be listed in Shared Documents as **SEALED** placeholders before their contents are earned. A sealed placeholder exposes only reveal-safe catalogue information; the handout body is encrypted and opens locally only after the Keeper supplies its code word. Unlock state persists only in that browser profile.
+H1–H5 may be listed in Shared Documents as **SEALED** placeholders before their contents are earned. When the Keeper releases one, the player uses its release control to file the approved artifact and accessible transcript. Release state persists only in that browser profile.
 
-The release code controls the player artifact, not the underlying clue. Core facts remain available through the scenario's automatic and redundant clue routes even if a handout is never opened.
+NPC portraits and Penfold scenes use scene-release controls. Surgeon `003B`, Surgeon `003C`, and `A1-ART-005` are post-direct-reveal material. `A1-ART-005` remains unavailable until a direct Surgeon visual has first been filed.
+
+The release control files the player artifact; it does not gate the underlying clue. Core facts remain available through the scenario's automatic and redundant clue routes even if a handout is never opened.
 
 ## Spoiler-control rule
 
-Never publish an unrevealed clue, Keeper secret, future NPC betrayal, hidden condition, or future character development into player-facing HTML, Markdown, YAML, JSON, JavaScript, CSS, comments, or public commit history.
-
-A hidden browser element is not secret. Future material remains in Keeper/project files until it is actually released in play.
+Keeper-only maps, Surgeon `003A`, and Surgeon `003D`–`003F` do not belong in player navigation or player-site assets. Staged player visuals are loaded only after their release control is used. A hidden browser element is not secret; this separation is for ordinary table use, not adversarial access.
 
 ## Development principle
 

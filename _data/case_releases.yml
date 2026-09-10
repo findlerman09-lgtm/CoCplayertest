@@ -1,170 +1,210 @@
-# P11-corrected RC1.2.1 player-facing encrypted visual release registry.
-# P11 is PM ACCEPTED / CLOSED. These records implement mandatory WEB-02 staging:
-# release-sensitive NPC/location/Act III art is encrypted at rest and is not exposed
-# as raw public image files, filenames, captions, thumbnails, alt text, or metadata.
-# The code gates are theatrical delivery only and never gate scenario clues.
+# Trusted-table release registry for the ten approved player-facing visual assets.
+# These gates prevent accidental spoilers in ordinary use; they are not security controls.
 items:
 - id: visual-record-01
-  kind: evidence
+  kind: location
   listed: true
   ledger: false
-  hidden_until_unlocked: true
   case_file: current-file
   status: sealed
-  safe_label: Released visual record
+  safe_label: Scene-release visual
   safe_title: Filed Visual Record
-  safe_summary: This record appears only after the Keeper releases it.
+  safe_summary: Open this record only when the Keeper releases the location view.
   lock:
     id: wij-visual-01
-    iterations: 100000
-    salt: +9jhRgUrAh6vA3n2ovZN1w==
-    iv: jAP48D/Rc0BAgO1D
-    ciphertext: QOEteu/xHOtV537AGEWGpLM0yasD63Pij8EbVri7dXwzH+Blpv4cDe8uP9cR6x0xTJWeOL2fKmD49GGGBzvmQk2rb0rim49Eh3JkUW5xntPhtriuO7mmWQWsT9lRw8u1fwIqAuPqXU0MsPQq5X4nom4HT2LmY2rB7brOs3918/Ka/8t6gL3nnBZh2Bxfb8Sgayg7KpGOTtH7EORLbrS8YL5U4toXUgsG+50v3dtzfMB5lfW9RdD1zBr1syrWycdVYidHy7gdpGWLa/Mpc2MzBh2Ru+wHvWVZbITk02S9yNdu3TI33mEiZpzXPMhEai9/vdDL5v+qVew/YmpSl+GCAShMCGJiLjBvIR/OnKRTNj918bpMzI0DtxFyFvhHS4ZaKbazh7JmnzwhhJi2S7mhOuzmN6VjgUbH3j9TF5c1XkBuib9Pj96chTaAFd6IPn8CLbhoBJYVFcr/WdYE3uwr9EdgjNvR2LzJacwqp8/7tfpJUDXosO6c81tX0D4EyidsJxYI8GUjU6pI254KFUjV26FXK7kym5KtfbmGL4ys+jEVjrPCYZUVxRCFdYo24JJVzkJ5STDwZn7kmbQ+Mq8s5YFz/Xg1UPYz9CwbgmSNCofS8ckoeNMkG1nod6CqckpOjD8RneGYgH+IWx6aIyHQrGywI3P5tSZ9koYH0wJ3SeSgDaU0oeiK8P/dXmEO1rOlo70HQeIf7fPJKR+MPPaw+B8bLVq5FtBoyZJkgSca/Xk2hzvDBIdBhuul0paeTClNLw1oHXQMRpx2xknl4fFjVf0yoLEpPUY5mmh8KQcsiCt0zuvfQxrXiDJz0J8v7/kS+DGnBcEe59zsKVcNcfD5EquHENG4nvfWoaKQ4zL+Qw6EgnqKqD3KH8QqcxZLpzwTCP+jf7WYiRos2NSJKCnvOtaWXKmx+Xxx+C/MgroVJerkmaXSd79MrUeSWI4XqYfcNTRWiFT2Fc6lBajX84K6zy3mwWU+4+ZH9iakLrzdxT2++t5GWLJMHmMlqZ63iE6PeRgyD8Vno5M4z/baAOHZX9FjLtt3xaff//LJpjpwmQ==
-  art_locks:
-  - src: /assets/release/visuals/v01.bin
-    iterations: 100000
-    salt: 7GNhXQzIrK06Apv21T+l+A==
-    iv: XWItno0CWMX8HRTZ
-    mime: image/webp
-  - src: /assets/release/visuals/v02.bin
-    iterations: 100000
-    salt: J/dNBS2zA2CbpLmmaOvXnw==
-    iv: TAjFWIj4ZKXfgfSi
-    mime: image/webp
-- id: visual-record-02
-  kind: evidence
+  asset_id: A1-ART-001
+  title: Penfold & Co. Yard
+  asset: /assets/images/releases/scenes/A1-ART-001_Penfold_Yard_Web_v02.webp
+  alt: A cramped late-Victorian furniture-removal yard with a small office, gated passage, covered van, horse, loft stair, workers, furniture and packing materials.
+  caption: Penfold & Co. yard.
+  release_hint: File this record when the Keeper releases the yard scene.
+  memory:
+    kind: location
+    name: Penfold & Co. yard
+    note: A cramped furniture-removal yard with an office, gated passage and loft stair.
+
+- id: visual-record-08
+  kind: scene
   listed: true
   ledger: false
-  hidden_until_unlocked: true
   case_file: current-file
   status: sealed
-  safe_label: Released visual record
+  safe_label: Scene-release visual
   safe_title: Filed Visual Record
-  safe_summary: This record appears only after the Keeper releases it.
+  safe_summary: Open this record only when the Keeper releases the scene view.
+  lock:
+    id: wij-visual-08
+  asset_id: A1-ART-002
+  title: Penfold & Co. Covered Removal Van
+  asset: /assets/images/releases/scenes/A1-ART-002_Penfold_Removal_Van_Web_v02.webp
+  alt: A one-horse late-Victorian covered furniture-removal van in a brick yard, its rear doors open onto blankets, rope and ordinary furniture.
+  caption: A Penfold & Co. covered removal van.
+  release_hint: File this record when the Keeper releases the removal-van scene.
+
+- id: visual-record-02
+  kind: portrait
+  listed: true
+  ledger: false
+  case_file: current-file
+  status: sealed
+  safe_label: Scene-release portrait
+  safe_title: Filed Visual Record
+  safe_summary: Open this record only when the Keeper releases the portrait.
   lock:
     id: wij-visual-02
-    iterations: 100000
-    salt: fbFHIFmXvYgrk2batxKiIQ==
-    iv: KKJfuucQ0uAHXUV2
-    ciphertext: vfqkrfIIUz7MPSU18sYz42F20ROLNGKwYBnD+xODaOCB3yo4DNy7pNFxThUwdeBVIwqZ2FnstfCV3n4HsYgoE0iN67NuCbk9FZ/iX9VWqG3dIB/fl2fqy3vJ1tpc1RzRccLGFX4uhu8amEfjt8pPpRGYZtvQ/nUb2kce3eHnIsMg67Kz72bBh7S9EOcw+v8s2f8bf42OAdw/r3x56X1irU941UtAhbg8WjZXbdkfNxJUxdDx8vz6cnnJJOp/9jA/s/3kuAPTSRXIJLejM9lZrKCoFKiREos9X7AACtkOUBIBtMJQwXsEgZh55JAuBhRe9QAlXhc0vDXkFSRjNlYas0azXHJBXDU4DLOp/sAnifeBiP48PBeFezi0UKMjBRLDbOdEeudvCdNWKj9P+lotuaYqTo/e1RsTZGoQv73+HrjtAlGzs9tzdRR07q7f3kLUYTQIAqfcBdCvpssEyoGmvd8=
-  art_locks:
-  - src: /assets/release/visuals/v03.bin
-    iterations: 100000
-    salt: RmEGnRL+eH8004bxL6I0bw==
-    iv: gF8ABO0r/iUlKXP2
-    mime: image/webp
+  asset_id: A1-POR-006
+  title: Edwin Vale
+  asset: /assets/images/releases/npcs/A1-POR-006_Edwin_Vale_Web_v01.webp
+  alt: Edwin Vale, an ordinary Victorian London removal porter in worn work clothes, folding a packing blanket in a furniture yard.
+  caption: Edwin Vale.
+  release_hint: File this record when the Keeper releases this person’s portrait.
+  memory:
+    kind: person
+    name: Edwin Vale
+    note: A removal porter in worn work clothes.
+
 - id: visual-record-03
-  kind: evidence
+  kind: portrait
   listed: true
   ledger: false
-  hidden_until_unlocked: true
   case_file: current-file
   status: sealed
-  safe_label: Released visual record
+  safe_label: Scene-release portrait
   safe_title: Filed Visual Record
-  safe_summary: This record appears only after the Keeper releases it.
+  safe_summary: Open this record only when the Keeper releases the portrait.
   lock:
     id: wij-visual-03
-    iterations: 100000
-    salt: ZINV9xGVgjcpzpC/N6y84g==
-    iv: 4Ik4mLHOsqYVRfDA
-    ciphertext: dJGN2pr1VWgVbX61mpwvAntJIJyt/t2gzHW2euoKA1/dcqrcvpYpqKITi0HtnZr79YYvYTjvx1crYvlezCkNiHRoJOdU/k4goxJAC2C9jKzOcyHtEobplnkTKmVaR8j6DW2mzX3I5to55lrUbrnsiEfVyIYwyUbiB7eHVPjAIHTkGa5sWrgo1wRl3e9H1lUA6cMWXAy+0aHpUb1ehK4gY5W67/6lGboGxiEkDXm9M1Bp8BDGe9SilmXvY9iw9Kx8yQiyNjuqW3Vs9Oi3NRc3KzzrXgwo8mxCjC7lGsBR+7YdyMySSOnyoxbxZ3tqAyCK+wbCEfI7kVxVxMVvBlCpvOyslUQrQlAVoS1tiaY/IvbcNTWv/65gECiiMZrNSgcmR44hIEq819QObMKj2Wu7Vr6ifD4vMOHy8LItwQmL/ckWvvGHwU4VzSUr6/Bv7NUV+n2f8KS+X3yvkJUTA/pxNaAWc+PKew==
-  art_locks:
-  - src: /assets/release/visuals/v04.bin
-    iterations: 100000
-    salt: RZQBTKuZKkcQ6FsZ+DwP3Q==
-    iv: lLvfIn9J09Fi7FQb
-    mime: image/webp
+  asset_id: A1-POR-007
+  title: Samuel Penfold
+  asset: /assets/images/releases/npcs/A1-POR-007_Samuel_Penfold_Web_v01.webp
+  alt: Samuel Penfold, a compact greying removal-firm proprietor holding a rule and cord beside a furniture piece.
+  caption: Samuel Penfold.
+  release_hint: File this record when the Keeper releases this person’s portrait.
+  memory:
+    kind: person
+    name: Samuel Penfold
+    note: The compact, greying proprietor of a removal firm.
+
 - id: visual-record-04
-  kind: evidence
+  kind: portrait
   listed: true
   ledger: false
-  hidden_until_unlocked: true
   case_file: current-file
   status: sealed
-  safe_label: Released visual record
+  safe_label: Scene-release portrait
   safe_title: Filed Visual Record
-  safe_summary: This record appears only after the Keeper releases it.
+  safe_summary: Open this record only when the Keeper releases the portrait.
   lock:
     id: wij-visual-04
-    iterations: 100000
-    salt: 4OhfFC58Ltb0PypIcb+8cQ==
-    iv: X952ogUWmHoxm8vR
-    ciphertext: scScqjZH9AVEYH8orcCF7kc9xKWLh+qR1SvLm2s4oy3bJC6thyrtYBYu9GXL6UuR8pyM+X9jJXQ3az4UeecCH2yhGU1pJ0IXfb/bvPlv58FUWV7HGwueoOrXlTtd6d46UaTubZBtCIFO3H5AJPPN6/0nipeszT0kTSbf3Iq5SBpNY83kx4cN+DMsIWvfFVF7P9yPz1cuqF7nRSzlzbLQ8Yp5qd+9n0lXuyG77PEoOI0ukj2mrMHmMLrPpiVsdP+yovWfdV22gi86+aQnD+OAWPVNpkG6RXa5UfutyvqzmxyfB8/+h0+N0DNNZ0b4lz0oosmRywROVFv7mJxXuSEnd2dp6LebeU4CrP6Ij4YQhSkMg4Wzv8iqaJQ19r3OJ7j2eGjaMln/MA1hWn/6ZNNvVuBUW9VThkYAAPev2g85bMZk03IZpZosDbnHoBhVU4rfahn9FgX9w8ZlhOmVS22I1ttJJd7vGCVeDBONJ9yZU/TXBvDFPOMGtq8U+K+f/F7O8iwzCQ==
-  art_locks:
-  - src: /assets/release/visuals/v05.bin
-    iterations: 100000
-    salt: S4F1PIvtLaUFal+/+GJ5NA==
-    iv: TJAzwfbUxGVchYL5
-    mime: image/webp
+  asset_id: A1-POR-008
+  title: Martha Penfold
+  asset: /assets/images/releases/npcs/A1-POR-008_Martha_Penfold_Web_v01.webp
+  alt: Martha Penfold, a practical Victorian bookkeeper writing in a ledger while watching the adjoining work yard.
+  caption: Martha Penfold.
+  release_hint: File this record when the Keeper releases this person’s portrait.
+  memory:
+    kind: person
+    name: Martha Penfold
+    note: A practical bookkeeper who watches the adjoining work yard.
+
 - id: visual-record-05
-  kind: evidence
+  kind: portrait
   listed: true
   ledger: false
-  hidden_until_unlocked: true
   case_file: current-file
   status: sealed
-  safe_label: Released visual record
+  safe_label: Scene-release portrait
   safe_title: Filed Visual Record
-  safe_summary: This record appears only after the Keeper releases it.
+  safe_summary: Open this record only when the Keeper releases the portrait.
   lock:
     id: wij-visual-05
-    iterations: 100000
-    salt: Bt52qU54tGF+pBI8h3UcEA==
-    iv: VuTvhClDl9jIHHz/
-    ciphertext: PJ/QoTULhJtbeCW8xtABjKDp2/RL3YwOEgrUEiyQpuL3qo7r6dSU733n7gHAVnK23WbXssJNZClFqnxYhfSqHJwjOFpXwHF/YTWO7VuUDpifqYWdZ3VKDfhTEUdmQWuwrQI7obrKoclchElh7nRQYza47LEMCNlW/csz+U4+8vmM83ltB7MNF9JlNOTtOFfU6TnI1ny+L+Z3Gg1zTCO0gjQGwbvVRueqRmHNktGl8ashCxCATAR0y0kPgr2PQKtzp/gEiQ/lTNyLeMvzJrWEdhRbrbD0WXGA+S7poDhhVSZ6mk7f/aap485PT6jWKDmT4S5P6C4eigdi2vQVTB/ku1EsS6vXGrxWWV1i2UaISfeJKjFOYVzfQo6EM6PEXa5HejPWcXbK4PDlVLBJzyUBtDuJeMLnDwP0pu8a3Ag3b6DWBSTvkQNBA01TU6E3VLqmZnEgH7mVlQUqGePJUujSB7bywrPS/CLJfSXP87lPHAndNLy15/mY
-  art_locks:
-  - src: /assets/release/visuals/v06.bin
-    iterations: 100000
-    salt: mX2YkwsCI/ziuLNadb4ASQ==
-    iv: aEx3xfFA6g/VTLAy
-    mime: image/webp
+  asset_id: A1-POR-009
+  title: Thomas Naylor
+  asset: /assets/images/releases/npcs/A1-POR-009_Thomas_Naylor_Web_v01.webp
+  alt: Thomas Naylor, an experienced Victorian porter with broad hands and a sloped working posture, seated with a folded furniture blanket.
+  caption: Thomas Naylor.
+  release_hint: File this record when the Keeper releases this person’s portrait.
+  memory:
+    kind: person
+    name: Thomas Naylor
+    note: An experienced porter with broad hands and a sloped working posture.
+
 - id: visual-record-06
-  kind: evidence
+  kind: portrait
   listed: true
   ledger: false
-  hidden_until_unlocked: true
   case_file: current-file
   status: sealed
-  safe_label: Released visual record
+  safe_label: Scene-release portrait
   safe_title: Filed Visual Record
-  safe_summary: This record appears only after the Keeper releases it.
+  safe_summary: Open this record only when the Keeper releases the portrait.
   lock:
     id: wij-visual-06
-    iterations: 100000
-    salt: jneW7v7b9RVu13UuG+gYlg==
-    iv: WVk8m7SAUIcKAzN3
-    ciphertext: 4lFnRnObzyDTXvCeNkIi4wlL7PkjX5hf9OllIOCFgmXtLqiDjfBAI8j+5T6RuybdSzyXros6X7IVu/LdXbCoaFhw+mBBnDerB52P/qJulSpiVdgP6ndiv9JgHqRZ4c0GaQ0KAytRlqaMzVQXBwYG7V28DCKyLk9iAIndjz6KtLRBF6eQRERi0x6MMEK5ZGAIxNBEuVphs6sx8Mqs30TW5luCbGvnagM9bZFuJf5dFgwMbwjeji9e3/kqw/ro/xaqtLEcSKpXj3F6w5IrjrP47vVGB/jL7A9uJmmxyWg15ytkmS0UtCFQD743RVTmTyEl8s8zAtWVlvvvq0FeatgwLkaHG+ucFJchkXzczPPPQNXks/5qGjTbNexT2+zaug1UJGBdJpLaXbJSaCaNdN99YM6iJbU75wnRGFreoHNuD/RE0rGWd4o/GkXq2aups53J4fAU86FlTp4f4NDdk3neDEB54b4jpv0BsmX2PcgPMpxL+b2DFXsaAlA=
-  art_locks:
-  - src: /assets/release/visuals/v07.bin
-    iterations: 100000
-    salt: 7xMxnU4NouzAVSogAf4Peg==
-    iv: fvxO5vwjEPwJ1GDI
-    mime: image/webp
+  asset_id: A1-POR-010
+  title: William Fawcett
+  asset: /assets/images/releases/npcs/A1-POR-010_William_Fawcett_Web_v01.webp
+  alt: William Fawcett, a young Victorian yard hand with rolled sleeves, carrying a bucket and cloth among stored furniture.
+  caption: William Fawcett.
+  release_hint: File this record when the Keeper releases this person’s portrait.
+  memory:
+    kind: person
+    name: William Fawcett
+    note: A young yard hand with rolled sleeves.
+
 - id: visual-record-07
-  kind: evidence
+  kind: scene
   listed: true
   ledger: false
-  hidden_until_unlocked: true
   case_file: current-file
   status: sealed
-  safe_label: Released visual record
+  safe_label: Direct-reveal visual
   safe_title: Filed Visual Record
-  safe_summary: This record appears only after the Keeper releases it.
+  safe_summary: Open this record only when the Keeper releases the direct-reveal view.
   lock:
     id: wij-visual-07
-    iterations: 100000
-    salt: QlTbNroyI6jHx/yFvm5EQQ==
-    iv: /4FAw9Y8mV5uIuGx
-    ciphertext: XQtnuFWDQJOI1Ct/uPyCE+C0dL6eolm9JT8w6iWcogg7Rbb4SDJLt7AGddCA4hrS7uU8rdME7eDENb4yJOO2jorIF25U7CwNqpdVH5cgp4OaeBVKXEUor/RhQSzsGfJEbsn/n76ZrdlMFZ/Gop+scXrGDHLgysIbqWGzJ1wqWxaHuJpkgJA0B7eCwwAVSTomv0tn2xXIvqHYwsiKKz7ySaw5jb/ec6l/thmwc7Q66CbdK+h15g0GizZFQttbBEdB1nCM50EvLXxwepd3eKRTcNc0DhEWwLx4GPDfMr7Uv0Ku7S/tHdB3R7RIW+fNEgDidc/ojDJq5EQIoUEci6HINLU9lv1KHdpHVBrsFjSehA+URtCtXY/4AZcAkXFjQYvHnK2thd+4bklA8u62UlyDvItMwuvgim2JIZvriFJGo4fbcRnugjsTK4gfSWCdTqOeQnsQ2OKgnTCjxEiCdyMlpMVLIEibgA36kZePXX1Qd2yxNBGmRvhSfWBmhlj899LLN8U5VY6GQd9pGU6/xAPAK2/lWqCnF/yfeoekJLt+2bDNLDv6/M7TExlIsnQP9w/woZNngavvdptdA0ltQxg/JROeLWkNrroubiUJMbEB8snjh7m9Ho65FFnOJoOuJIq//688mfksJZS4d4I7mVaONs2a5YjfDQv/VramYI5tqRz7zwIcSDMXJpvHmQJnlEz15FT8C1DYXR2BlIaaB+HqWOn+KbLzSba+xEEKB/F3YMPM5g/I3J5Ai7Hb5z1uAa4bc3GDIm3grQajuXLP65RMUqjPcxg8W3T0aG1aTBvCVLuTymrVWdrygJWNpyQC4UsGg3wqnFBwuY5skwdNh3E8d14=
-  art_locks:
-  - src: /assets/release/visuals/v08.bin
-    iterations: 100000
-    salt: cIv9UvWfk9x7Gpn8lF2W6Q==
-    iv: ee+qq5Q2YO/FgX7D
-    mime: image/webp
-  - src: /assets/release/visuals/v09.bin
-    iterations: 100000
-    salt: FvcScmUaiQ88vwIIqe+osQ==
-    iv: kWEVg0+VU0SW9sPn
-    mime: image/webp
+  asset_id: A1-ART-003B
+  title: The Surgeon — Partial Deployment
+  asset: /assets/images/releases/surgeon/A1-ART-003B_Partial_Web_v02.webp
+  alt: An open dark carrying case integrated with a low, partially deployed worked frame on a warehouse floor.
+  caption: A compact carrying case partly deployed into a low specialist frame.
+  release_hint: File this only when the Keeper confirms the direct-reveal condition.
+
+- id: visual-record-09
+  kind: scene
+  listed: true
+  ledger: false
+  case_file: current-file
+  status: sealed
+  safe_label: Direct-reveal visual
+  safe_title: Filed Visual Record
+  safe_summary: Open this record only when the Keeper releases the direct-reveal view.
+  lock:
+    id: wij-visual-09
+  asset_id: A1-ART-003C
+  title: The Surgeon — Operating
+  asset: /assets/images/releases/surgeon/A1-ART-003C_Operating_Web_v02.webp
+  alt: A human operator kneels beside a low, case-integrated specialist apparatus with an open-web frame and a small remote probe assembly.
+  caption: A human operator uses the deployed apparatus.
+  release_hint: File this only when the Keeper confirms the direct-reveal condition.
+
+- id: visual-record-10
+  kind: scene
+  listed: true
+  ledger: false
+  case_file: current-file
+  status: sealed
+  safe_label: Post-response visual
+  safe_title: Filed Visual Record
+  safe_summary: This record becomes available after the first direct reveal.
+  lock:
+    id: wij-visual-10
+  asset_id: A1-ART-005
+  title: Act III — Containment and Revelation
+  asset: /assets/images/releases/act-iii/A1-ART-005_Act_III_Service_Court_Post_Reveal_v01.webp
+  alt: Five investigators move to contain Edwin Vale and interfere with a low, case-integrated apparatus in an enclosed London service court.
+  caption: Investigators intervene in a service court.
+  release_hint: File this only after the players have declared their physical response to the first direct Surgeon reveal, or after the scene resolves.
+  depends_on_any:
+  - wij-visual-07
+  - wij-visual-09
+  hidden_until_dependency: true
