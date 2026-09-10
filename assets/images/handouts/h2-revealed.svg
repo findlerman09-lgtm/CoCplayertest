@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="8.5in" height="11in" viewBox="0 0 1700 2200">
+  <defs>
+    <pattern id="paper" width="70" height="70" patternUnits="userSpaceOnUse">
+      <circle cx="11" cy="17" r="1.2" fill="#8a806d" opacity=".12"/>
+      <circle cx="52" cy="39" r=".9" fill="#8a806d" opacity=".09"/>
+      <path d="M5 60L18 58M43 10L59 12" stroke="#8a806d" stroke-width="1" opacity=".06"/>
+    </pattern>
+    <pattern id="letterPaper" width="92" height="86" patternUnits="userSpaceOnUse">
+      <path d="M3 22L37 20M49 69L83 71" stroke="#7e735f" stroke-width="1" opacity=".06"/>
+      <circle cx="17" cy="63" r="1" fill="#786f60" opacity=".07"/>
+    </pattern>
+    <style>
+      .title { font-family:'P052','Palatino Linotype',serif; font-size:54px; font-weight:700; letter-spacing:1px; fill:#25231f; }
+      .generic-title { font-size:50px; letter-spacing:1.6px; }
+      .smallcaps { font-family:'Nimbus Sans',Arial,sans-serif; font-size:27px; font-weight:700; letter-spacing:1.3px; fill:#34342c; }
+      .ledger { font-family:'Z003','P052',serif; font-size:39px; fill:#2e302a; font-variant-ligatures:none; font-feature-settings:'liga' 0, 'clig' 0; }
+      .ledger-name { font-family:'Z003','P052',serif; font-size:39px; fill:#302e29; font-variant-ligatures:none; font-feature-settings:'liga' 0, 'clig' 0; }
+      .letter { font-family:'Z003','P052',serif; font-size:45px; fill:#2d2a26; font-variant-ligatures:none; font-feature-settings:'liga' 0, 'clig' 0; }
+      .letter-small { font-family:'Z003','P052',serif; font-size:42px; fill:#2d2a26; font-variant-ligatures:none; font-feature-settings:'liga' 0, 'clig' 0; }
+      .editorial { font-family:'Nimbus Roman No9 L','Times New Roman',serif; font-size:29px; font-style:italic; fill:#4a463e; }
+      .pencil { font-family:'Z003','P052',serif; font-size:43px; fill:#595852; font-variant-ligatures:none; font-feature-settings:'liga' 0, 'clig' 0; }
+      .seal-id { font-family:'P052','Palatino Linotype',serif; font-size:112px; font-weight:700; fill:#34342d; }
+      .seal-note { font-family:'Nimbus Sans',Arial,sans-serif; font-size:27px; font-weight:700; letter-spacing:2px; fill:#4b4a42; }
+    </style>
+  </defs>
+  <rect width="1700" height="2200" fill="#f4ebdc"/>
+  <rect width="1700" height="2200" fill="url(#paper)"/>
+  <rect x="140" y="91" width="12" height="12" fill="#6e2f29"/>
+  <text class="title" x="140" y="188">H2 — EXTRACT FROM PENFOLD&#x27;S DAY BOOK</text>
+  <path d="M140 226H1560" stroke="#34352d" stroke-width="3"/>
+  <rect x="140" y="300" width="1420" height="1655" fill="#f8f0e1" stroke="#47463d" stroke-width="4"/>
+<rect x="140" y="300" width="1420" height="110" fill="#ddd6c7"/>
+<path d="M330 300V1955M735 300V1955" stroke="#72796e" stroke-width="3" opacity=".78"/>
+<path d="M140 410H1560" stroke="#47463d" stroke-width="4"/>
+<text class="smallcaps" x="164" y="371">DATE</text>
+<text class="smallcaps" x="354" y="371">CUSTOMER / ROUTE</text>
+<text class="smallcaps" x="759" y="371">ENTRY</text>
+<path d="M140 600H1560" stroke="#7e8177" stroke-width="2.2" opacity=".78"/>
+<text class="ledger" x="164" y="482" transform="rotate(-0.12 164 482)"><tspan x="164" dy="0">2 Aug.</tspan></text>
+<text class="ledger-name" x="354" y="482" transform="rotate(0.10 354 482)"><tspan x="354" dy="0">Mrs W. Prentice</tspan></text>
+<text class="ledger" x="759" y="482" transform="rotate(-0.08 759 482)"><tspan x="759" dy="0">Whitechapel Road to Stepney Green.</tspan><tspan x="759" dy="43">Two rooms. Bedding &amp; one chest to store. Van.</tspan></text>
+<rect x="140" y="600" width="1420" height="170" fill="#ece5d7" opacity=".5"/>
+<path d="M140 770H1560" stroke="#7e8177" stroke-width="2.2" opacity=".78"/>
+<text class="ledger" x="164" y="672" transform="rotate(-0.12 164 672)"><tspan x="164" dy="0">4 Aug.</tspan></text>
+<text class="ledger-name" x="354" y="672" transform="rotate(0.10 354 672)"><tspan x="354" dy="0">R. L. Fenner</tspan></text>
+<text class="ledger" x="759" y="672" transform="rotate(-0.08 759 672)"><tspan x="759" dy="0">Aldgate to Bishopsgate. Office desk, chairs,</tspan><tspan x="759" dy="43">four cases. Deliver same day.</tspan></text>
+<path d="M140 1035H1560" stroke="#7e8177" stroke-width="2.2" opacity=".78"/>
+<text class="ledger" x="164" y="842" transform="rotate(-0.12 164 842)"><tspan x="164" dy="0">7 Aug.</tspan></text>
+<text class="ledger-name" x="354" y="842" transform="rotate(0.10 354 842)"><tspan x="354" dy="0">C. H. Merton, agent</tspan></text>
+<text class="ledger" x="759" y="842" transform="rotate(-0.08 759 842)"><tspan x="759" dy="0">Western Whitechapel premises. Residual shop &amp;</tspan><tspan x="759" dy="43">office effects. Selected goods to store; refuse as</tspan><tspan x="759" dy="43">directed. Balance awaiting instruction. V./N.—</tspan><tspan x="759" dy="43">ask re rear room.</tspan></text>
+<rect x="140" y="1035" width="1420" height="180" fill="#ece5d7" opacity=".5"/>
+<path d="M140 1215H1560" stroke="#7e8177" stroke-width="2.2" opacity=".78"/>
+<text class="ledger" x="164" y="1107" transform="rotate(-0.12 164 1107)"><tspan x="164" dy="0">9 Aug.</tspan></text>
+<text class="ledger-name" x="354" y="1107" transform="rotate(0.10 354 1107)"><tspan x="354" dy="0">Mrs T. Havers</tspan></text>
+<text class="ledger" x="759" y="1107" transform="rotate(-0.08 759 1107)"><tspan x="759" dy="0">Commercial Road to Mile End. Bedroom furniture</tspan><tspan x="759" dy="43">&amp; boxes. One van.</tspan></text>
+<path d="M140 1395H1560" stroke="#7e8177" stroke-width="2.2" opacity=".78"/>
+<text class="ledger" x="164" y="1287" transform="rotate(-0.12 164 1287)"><tspan x="164" dy="0">11 Aug.</tspan></text>
+<text class="ledger-name" x="354" y="1287" transform="rotate(0.10 354 1287)"><tspan x="354" dy="0">S. Dunning</tspan></text>
+<text class="ledger" x="759" y="1287" transform="rotate(-0.08 759 1287)"><tspan x="759" dy="0">Effects to warehouse. Wardrobe, bedstead, chairs,</tspan><tspan x="759" dy="43">trunks. Lot 47.</tspan></text>
+<rect x="140" y="1395" width="1420" height="205" fill="#ece5d7" opacity=".5"/>
+<path d="M140 1600H1560" stroke="#7e8177" stroke-width="2.2" opacity=".78"/>
+<text class="ledger" x="164" y="1467" transform="rotate(-0.12 164 1467)"><tspan x="164" dy="0">27 Sept.</tspan></text>
+<text class="ledger-name" x="354" y="1467" transform="rotate(0.10 354 1467)"><tspan x="354" dy="0">W. Canning for</tspan><tspan x="354" dy="47">P. Griggs</tspan></text>
+<text class="ledger" x="759" y="1467" transform="rotate(-0.08 759 1467)"><tspan x="759" dy="0">Commercial Road premises. Remaining shop fittings</tspan><tspan x="759" dy="43">&amp; household effects. Part to store; trunks delivered.</tspan></text>
+<path d="M140 1805H1560" stroke="#7e8177" stroke-width="2.2" opacity=".78"/>
+<text class="ledger" x="164" y="1672" transform="rotate(-0.12 164 1672)"><tspan x="164" dy="0">29 Sept.</tspan></text>
+<text class="ledger-name" x="354" y="1672" transform="rotate(0.10 354 1672)"><tspan x="354" dy="0">Mrs Ellery</tspan></text>
+<text class="ledger" x="759" y="1672" transform="rotate(-0.08 759 1672)"><tspan x="759" dy="0">Whitechapel Road rooms to St George’s. Two-room</tspan><tspan x="759" dy="43">removal. Upper floor. V./N.</tspan></text>
+<rect x="140" y="1805" width="1420" height="150" fill="#ece5d7" opacity=".5"/>
+<path d="M140 1955H1560" stroke="#7e8177" stroke-width="2.2" opacity=".78"/>
+<text class="ledger" x="164" y="1877" transform="rotate(-0.12 164 1877)"><tspan x="164" dy="0">1 Oct.</tspan></text>
+<text class="ledger-name" x="354" y="1877" transform="rotate(0.10 354 1877)"><tspan x="354" dy="0">M. Sayer</tspan></text>
+<text class="ledger" x="759" y="1877" transform="rotate(-0.08 759 1877)"><tspan x="759" dy="0">Two trunks &amp; chest to store. Lot 52.</tspan></text>
+<path d="M168 321C300 312 485 322 620 316" stroke="#8b7760" stroke-width="5" opacity=".09"/>
+<path d="M1010 1990C1160 1983 1320 1995 1490 1986" stroke="#745f4b" stroke-width="5" opacity=".07"/>
+</svg>

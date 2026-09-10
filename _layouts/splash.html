@@ -5,11 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#071014">
   <title>The Rippers</title>
-  <link rel="icon" type="image/svg+xml" href="{{ '/assets/favicon.svg' | relative_url }}">
+  <link rel="icon" type="image/svg+xml" href="{{ '/assets/images/brand/CAM-SMK-001.svg' | relative_url }}">
+  <link rel="alternate icon" href="{{ '/assets/images/brand/favicon.ico' | relative_url }}">
+  <link rel="apple-touch-icon" href="{{ '/assets/images/brand/CAM-SMK-001-512.png' | relative_url }}">
   <link rel="stylesheet" href="{{ '/assets/rippers.css' | relative_url }}">
   <link rel="stylesheet" href="{{ '/assets/pass-1-5.css' | relative_url }}">
   <link rel="stylesheet" href="{{ '/assets/pass-1-6.css' | relative_url }}">
   <link rel="stylesheet" href="{{ '/assets/pass-5.css' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/assets/web-rc1-p11-release.css' | relative_url }}">
   <script defer src="{{ '/assets/archive-gate.js' | relative_url }}"></script>
 </head>
 <body class="splash-body">
@@ -17,10 +20,11 @@
   <main class="splash-screen" style="--splash-image:url('{{ '/assets/images/hero-collage-hd.webp' | relative_url }}?v=5c1')">
     <div class="splash-vignette"></div>
     <div class="splash-copy" data-archive-gate data-salt="{{ site.data.site_state.archive.salt }}" data-verifier="{{ site.data.site_state.archive.verifier }}" data-iterations="{{ site.data.site_state.archive.iterations }}" data-target="{{ '/archive/' | relative_url }}" data-site-root="{{ '/' | relative_url }}">
-      <div class="splash-monogram">R</div>
+      <img class="splash-mark" src="{{ '/assets/images/brand/CAM-SMK-001.svg' | relative_url }}" alt="">
       <p>London · 1888</p>
-      <h1>The Rippers</h1>
-      <div class="splash-rule"><span></span><i>✦</i><span></span></div>
+      <h1 class="visually-hidden">The Rippers</h1>
+      <img class="splash-wordmark" src="{{ '/assets/images/brand/CAM-LOG-001.svg' | relative_url }}" alt="The Rippers">
+      <img class="splash-ornament" src="{{ '/assets/images/brand/CAM-ORN-001.svg' | relative_url }}" alt="">
       <div class="archive-key-wrap">
         <form class="archive-key-form" data-archive-key-form>
           <label class="visually-hidden" for="archive-key">Archive key</label>

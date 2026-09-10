@@ -1,0 +1,120 @@
+/* Final P11 asset integration and trusted-table release presentation. */
+
+.global-wordmark{
+  display:block;
+  width:min(168px,100%);
+  max-height:38px;
+  object-fit:contain;
+  object-position:left center;
+}
+.global-brand>span{flex:0 0 auto}
+.global-brand>span small{margin-top:0}
+
+.splash-mark{
+  display:block;
+  width:68px;
+  height:68px;
+  margin:0 auto 12px;
+}
+.splash-wordmark{
+  display:block;
+  width:min(560px,80vw);
+  max-height:168px;
+  margin:0 auto;
+}
+.splash-ornament{
+  display:block;
+  width:min(460px,70vw);
+  max-height:72px;
+  margin:14px auto 20px;
+}
+
+/* Broken portrait files fall back to plain dossier initials, never a campaign icon. */
+.context-portrait-placeholder:before,
+.overview-portrait-placeholder:before{content:none}
+
+.case-release-guide{
+  margin:0 0 14px;
+  padding:14px 16px;
+  border:1px solid rgba(196,154,76,.24);
+  background:rgba(5,15,18,.52);
+}
+.case-release-vault-copy small{
+  display:block;
+  color:#a99061;
+  font-size:.7rem;
+  letter-spacing:.11em;
+  text-transform:uppercase;
+}
+.case-release-vault-copy strong{
+  display:block;
+  margin-top:3px;
+  color:#e6d9be;
+  font-size:1rem;
+  font-weight:500;
+}
+.case-release-vault-copy p{
+  margin:.4rem 0 0;
+  color:#aeb9b5;
+  font-size:.82rem;
+  line-height:1.5;
+}
+
+[data-simple-release-button]{
+  min-height:42px;
+  margin-top:14px;
+  padding:0 16px;
+  border:1px solid #735d39;
+  background:#26343a;
+  color:#ead7a9;
+  cursor:pointer;
+}
+[data-simple-release-button]:hover{border-color:#c5a35f;color:#fff0c9}
+[data-simple-release-button]:focus-visible{
+  outline:3px solid #e0c47f;
+  outline-offset:3px;
+}
+
+.case-release-record.is-unlocked .case-release-body{
+  display:block;
+}
+.case-release-body .eyebrow{margin:0 0 .35rem}
+.case-release-body h2{
+  margin:0 0 1rem;
+  color:#2b251e;
+  font-size:1.45rem;
+  font-weight:500;
+}
+.simple-release-art{margin:0}
+.simple-release-art .controlled-art-open{width:100%}
+.simple-release-art img{
+  display:block;
+  width:100%;
+  height:auto;
+  max-height:72vh;
+  object-fit:contain;
+}
+.released-art-error{
+  margin:12px 0 0;
+  padding:12px 14px;
+  border:1px solid rgba(164,109,77,.38);
+  background:rgba(96,45,31,.08);
+  color:#7a5440;
+  font-size:.82rem;
+  line-height:1.5;
+}
+
+@media(max-width:850px){
+  .global-wordmark{width:150px}
+}
+@media(max-width:580px){
+  .global-wordmark{width:172px;margin:auto}
+  .global-brand>span{display:none}
+  .splash-mark{width:58px;height:58px}
+}
+@media print{
+  .case-release-guide,
+  [data-simple-release-sealed]{display:none!important}
+  .simple-release-art button{border:0;background:transparent;padding:0}
+  .simple-release-art .controlled-art-inspect{display:none}
+}

@@ -1,9 +1,210 @@
-# RC1.2.1 frozen-build player-facing case-release registry.
-#
-# WHO_IS_JACK_RC1.2.1_REHEARSAL_EDITION defines five player handouts (H1–H5)
-# as the controlled player artifact packet. Earlier website-only reward packets and
-# companion filing are therefore dormant for this frozen rehearsal build.
-#
-# Keep the release component/infrastructure available for later explicitly approved
-# player-safe visual derivatives, but do not populate it from superseded specialist notes.
-items: []
+# Trusted-table release registry for the ten approved player-facing visual assets.
+# These gates prevent accidental spoilers in ordinary use; they are not security controls.
+items:
+- id: visual-record-01
+  kind: location
+  listed: true
+  ledger: false
+  case_file: current-file
+  status: sealed
+  safe_label: Scene-release visual
+  safe_title: Filed Visual Record
+  safe_summary: Open this record only when the Keeper releases the location view.
+  lock:
+    id: wij-visual-01
+  asset_id: A1-ART-001
+  title: Penfold & Co. Yard
+  asset: /assets/images/releases/scenes/A1-ART-001_Penfold_Yard_Web_v02.webp
+  alt: A cramped late-Victorian furniture-removal yard with a small office, gated passage, covered van, horse, loft stair, workers, furniture and packing materials.
+  caption: Penfold & Co. yard.
+  release_hint: File this record when the Keeper releases the yard scene.
+  memory:
+    kind: location
+    name: Penfold & Co. yard
+    note: A cramped furniture-removal yard with an office, gated passage and loft stair.
+
+- id: visual-record-08
+  kind: scene
+  listed: true
+  ledger: false
+  case_file: current-file
+  status: sealed
+  safe_label: Scene-release visual
+  safe_title: Filed Visual Record
+  safe_summary: Open this record only when the Keeper releases the scene view.
+  lock:
+    id: wij-visual-08
+  asset_id: A1-ART-002
+  title: Penfold & Co. Covered Removal Van
+  asset: /assets/images/releases/scenes/A1-ART-002_Penfold_Removal_Van_Web_v02.webp
+  alt: A one-horse late-Victorian covered furniture-removal van in a brick yard, its rear doors open onto blankets, rope and ordinary furniture.
+  caption: A Penfold & Co. covered removal van.
+  release_hint: File this record when the Keeper releases the removal-van scene.
+
+- id: visual-record-02
+  kind: portrait
+  listed: true
+  ledger: false
+  case_file: current-file
+  status: sealed
+  safe_label: Scene-release portrait
+  safe_title: Filed Visual Record
+  safe_summary: Open this record only when the Keeper releases the portrait.
+  lock:
+    id: wij-visual-02
+  asset_id: A1-POR-006
+  title: Edwin Vale
+  asset: /assets/images/releases/npcs/A1-POR-006_Edwin_Vale_Web_v01.webp
+  alt: Edwin Vale, an ordinary Victorian London removal porter in worn work clothes, folding a packing blanket in a furniture yard.
+  caption: Edwin Vale.
+  release_hint: File this record when the Keeper releases this person’s portrait.
+  memory:
+    kind: person
+    name: Edwin Vale
+    note: A removal porter in worn work clothes.
+
+- id: visual-record-03
+  kind: portrait
+  listed: true
+  ledger: false
+  case_file: current-file
+  status: sealed
+  safe_label: Scene-release portrait
+  safe_title: Filed Visual Record
+  safe_summary: Open this record only when the Keeper releases the portrait.
+  lock:
+    id: wij-visual-03
+  asset_id: A1-POR-007
+  title: Samuel Penfold
+  asset: /assets/images/releases/npcs/A1-POR-007_Samuel_Penfold_Web_v01.webp
+  alt: Samuel Penfold, a compact greying removal-firm proprietor holding a rule and cord beside a furniture piece.
+  caption: Samuel Penfold.
+  release_hint: File this record when the Keeper releases this person’s portrait.
+  memory:
+    kind: person
+    name: Samuel Penfold
+    note: The compact, greying proprietor of a removal firm.
+
+- id: visual-record-04
+  kind: portrait
+  listed: true
+  ledger: false
+  case_file: current-file
+  status: sealed
+  safe_label: Scene-release portrait
+  safe_title: Filed Visual Record
+  safe_summary: Open this record only when the Keeper releases the portrait.
+  lock:
+    id: wij-visual-04
+  asset_id: A1-POR-008
+  title: Martha Penfold
+  asset: /assets/images/releases/npcs/A1-POR-008_Martha_Penfold_Web_v01.webp
+  alt: Martha Penfold, a practical Victorian bookkeeper writing in a ledger while watching the adjoining work yard.
+  caption: Martha Penfold.
+  release_hint: File this record when the Keeper releases this person’s portrait.
+  memory:
+    kind: person
+    name: Martha Penfold
+    note: A practical bookkeeper who watches the adjoining work yard.
+
+- id: visual-record-05
+  kind: portrait
+  listed: true
+  ledger: false
+  case_file: current-file
+  status: sealed
+  safe_label: Scene-release portrait
+  safe_title: Filed Visual Record
+  safe_summary: Open this record only when the Keeper releases the portrait.
+  lock:
+    id: wij-visual-05
+  asset_id: A1-POR-009
+  title: Thomas Naylor
+  asset: /assets/images/releases/npcs/A1-POR-009_Thomas_Naylor_Web_v01.webp
+  alt: Thomas Naylor, an experienced Victorian porter with broad hands and a sloped working posture, seated with a folded furniture blanket.
+  caption: Thomas Naylor.
+  release_hint: File this record when the Keeper releases this person’s portrait.
+  memory:
+    kind: person
+    name: Thomas Naylor
+    note: An experienced porter with broad hands and a sloped working posture.
+
+- id: visual-record-06
+  kind: portrait
+  listed: true
+  ledger: false
+  case_file: current-file
+  status: sealed
+  safe_label: Scene-release portrait
+  safe_title: Filed Visual Record
+  safe_summary: Open this record only when the Keeper releases the portrait.
+  lock:
+    id: wij-visual-06
+  asset_id: A1-POR-010
+  title: William Fawcett
+  asset: /assets/images/releases/npcs/A1-POR-010_William_Fawcett_Web_v01.webp
+  alt: William Fawcett, a young Victorian yard hand with rolled sleeves, carrying a bucket and cloth among stored furniture.
+  caption: William Fawcett.
+  release_hint: File this record when the Keeper releases this person’s portrait.
+  memory:
+    kind: person
+    name: William Fawcett
+    note: A young yard hand with rolled sleeves.
+
+- id: visual-record-07
+  kind: scene
+  listed: true
+  ledger: false
+  case_file: current-file
+  status: sealed
+  safe_label: Direct-reveal visual
+  safe_title: Filed Visual Record
+  safe_summary: Open this record only when the Keeper releases the direct-reveal view.
+  lock:
+    id: wij-visual-07
+  asset_id: A1-ART-003B
+  title: The Surgeon — Partial Deployment
+  asset: /assets/images/releases/surgeon/A1-ART-003B_Partial_Web_v02.webp
+  alt: An open dark carrying case integrated with a low, partially deployed worked frame on a warehouse floor.
+  caption: A compact carrying case partly deployed into a low specialist frame.
+  release_hint: File this only when the Keeper confirms the direct-reveal condition.
+
+- id: visual-record-09
+  kind: scene
+  listed: true
+  ledger: false
+  case_file: current-file
+  status: sealed
+  safe_label: Direct-reveal visual
+  safe_title: Filed Visual Record
+  safe_summary: Open this record only when the Keeper releases the direct-reveal view.
+  lock:
+    id: wij-visual-09
+  asset_id: A1-ART-003C
+  title: The Surgeon — Operating
+  asset: /assets/images/releases/surgeon/A1-ART-003C_Operating_Web_v02.webp
+  alt: A human operator kneels beside a low, case-integrated specialist apparatus with an open-web frame and a small remote probe assembly.
+  caption: A human operator uses the deployed apparatus.
+  release_hint: File this only when the Keeper confirms the direct-reveal condition.
+
+- id: visual-record-10
+  kind: scene
+  listed: true
+  ledger: false
+  case_file: current-file
+  status: sealed
+  safe_label: Post-response visual
+  safe_title: Filed Visual Record
+  safe_summary: This record becomes available after the first direct reveal.
+  lock:
+    id: wij-visual-10
+  asset_id: A1-ART-005
+  title: Act III — Containment and Revelation
+  asset: /assets/images/releases/act-iii/A1-ART-005_Act_III_Service_Court_Post_Reveal_v01.webp
+  alt: Five investigators move to contain Edwin Vale and interfere with a low, case-integrated apparatus in an enclosed London service court.
+  caption: Investigators intervene in a service court.
+  release_hint: File this only after the players have declared their physical response to the first direct Surgeon reveal, or after the scene resolves.
+  depends_on_any:
+  - wij-visual-07
+  - wij-visual-09
+  hidden_until_dependency: true

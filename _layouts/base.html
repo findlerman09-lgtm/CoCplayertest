@@ -5,7 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#091116">
   <title>{{ page.title | default: page.display_title | default: page.name | default: site.title }} — The Rippers</title>
-  <link rel="icon" type="image/svg+xml" href="{{ '/assets/favicon.svg' | relative_url }}">
+  <link rel="icon" type="image/svg+xml" href="{{ '/assets/images/brand/CAM-SMK-001.svg' | relative_url }}">
+  <link rel="alternate icon" href="{{ '/assets/images/brand/favicon.ico' | relative_url }}">
+  <link rel="apple-touch-icon" href="{{ '/assets/images/brand/CAM-SMK-001-512.png' | relative_url }}">
   <link rel="stylesheet" href="{{ '/assets/rippers.css' | relative_url }}">
   <link rel="stylesheet" href="{{ '/assets/architecture.css' | relative_url }}">
   <link rel="stylesheet" href="{{ '/assets/state.css' | relative_url }}">
@@ -27,6 +29,7 @@
   <script defer src="{{ '/assets/private-effects.js' | relative_url }}"></script>
   <script defer src="{{ '/assets/pass-1-5.js' | relative_url }}"></script>
   <script defer src="{{ '/assets/investigator-gate.js' | relative_url }}"></script>
+  <script defer src="{{ '/assets/simple-release.js' | relative_url }}"></script>
   <script defer src="{{ '/assets/pass-5e.js' | relative_url }}"></script>
 </head>
 <body class="app-body archive-guard-pending{% if page.character_slug %} is-locked{% endif %}" data-archive-guard data-archive-verifier="{{ site.data.site_state.archive.verifier }}" data-archive-root="{{ '/' | relative_url }}">
@@ -34,17 +37,19 @@
 
   {% assign character = nil %}
   {% assign player_character = nil %}
+  {% assign portrait_asset = nil %}
   {% if page.character_slug %}
     {% assign character = site.data.characters[page.character_slug] %}
     {% assign player_character = site.data.player_characters[page.character_slug] %}
+    {% assign portrait_asset = site.data.portrait_assets[page.character_slug] %}
     {% capture character_base %}/characters/{{ page.character_slug }}{% endcapture %}
   {% endif %}
 
   <div class="app-shell">
     <header class="global-bar">
       <a class="global-brand" href="{{ '/archive/' | relative_url }}" aria-label="The Rippers archive">
-        <span class="brand-mark">R</span>
-        <span><b>The Rippers</b><small>Player Archive</small></span>
+        <img class="global-wordmark" src="{{ '/assets/images/brand/CAM-LOG-001.svg' | relative_url }}" alt="The Rippers">
+        <span><small>Player Archive</small></span>
       </a>
 
       <nav class="global-nav" aria-label="Primary navigation">
@@ -88,7 +93,15 @@
           {% if character %}
           <a class="context-back" href="{{ '/investigators/' | relative_url }}">← Private dossier</a>
           <div class="context-identity">
-            <img src="{{ character.portrait | relative_url }}" alt="" aria-hidden="true">
+            {% assign context_name = player_character.publication_name | default: character.name %}
+            {% assign context_name_parts = context_name | split: ' ' %}
+            {% capture context_initials %}{{ context_name_parts | first | slice: 0 }}{{ context_name_parts | last | slice: 0 }}{% endcapture %}
+            {% if portrait_asset %}
+            <img src="{{ portrait_asset.source | relative_url }}" data-approved-portrait alt="" aria-hidden="true" decoding="async">
+            <div class="context-portrait-placeholder" data-portrait-placeholder role="img" aria-label="Portrait unavailable for {{ context_name }}" hidden><span>{{ context_initials }}</span></div>
+            {% else %}
+            <div class="context-portrait-placeholder" role="img" aria-label="No portrait is filed for {{ context_name }}"><span>{{ context_initials }}</span></div>
+            {% endif %}
             <div><small>Investigator dossier</small><strong>{% if player_character %}{{ player_character.publication_name }}{% else %}{{ character.name }}{% endif %}</strong><span>{% if player_character %}{{ player_character.occupation_display }}{% else %}{{ character.occupation }}{% endif %}</span></div>
           </div>
           <nav class="context-nav" aria-label="Character dossier">

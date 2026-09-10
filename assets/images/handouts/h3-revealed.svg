@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="8.5in" height="11in" viewBox="0 0 1700 2200">
+  <defs>
+    <pattern id="paper" width="70" height="70" patternUnits="userSpaceOnUse">
+      <circle cx="11" cy="17" r="1.2" fill="#8a806d" opacity=".12"/>
+      <circle cx="52" cy="39" r=".9" fill="#8a806d" opacity=".09"/>
+      <path d="M5 60L18 58M43 10L59 12" stroke="#8a806d" stroke-width="1" opacity=".06"/>
+    </pattern>
+    <pattern id="letterPaper" width="92" height="86" patternUnits="userSpaceOnUse">
+      <path d="M3 22L37 20M49 69L83 71" stroke="#7e735f" stroke-width="1" opacity=".06"/>
+      <circle cx="17" cy="63" r="1" fill="#786f60" opacity=".07"/>
+    </pattern>
+    <style>
+      .title { font-family:'P052','Palatino Linotype',serif; font-size:54px; font-weight:700; letter-spacing:1px; fill:#25231f; }
+      .generic-title { font-size:50px; letter-spacing:1.6px; }
+      .smallcaps { font-family:'Nimbus Sans',Arial,sans-serif; font-size:27px; font-weight:700; letter-spacing:1.3px; fill:#34342c; }
+      .ledger { font-family:'Z003','P052',serif; font-size:39px; fill:#2e302a; font-variant-ligatures:none; font-feature-settings:'liga' 0, 'clig' 0; }
+      .ledger-name { font-family:'Z003','P052',serif; font-size:39px; fill:#302e29; font-variant-ligatures:none; font-feature-settings:'liga' 0, 'clig' 0; }
+      .letter { font-family:'Z003','P052',serif; font-size:45px; fill:#2d2a26; font-variant-ligatures:none; font-feature-settings:'liga' 0, 'clig' 0; }
+      .letter-small { font-family:'Z003','P052',serif; font-size:42px; fill:#2d2a26; font-variant-ligatures:none; font-feature-settings:'liga' 0, 'clig' 0; }
+      .editorial { font-family:'Nimbus Roman No9 L','Times New Roman',serif; font-size:29px; font-style:italic; fill:#4a463e; }
+      .pencil { font-family:'Z003','P052',serif; font-size:43px; fill:#595852; font-variant-ligatures:none; font-feature-settings:'liga' 0, 'clig' 0; }
+      .seal-id { font-family:'P052','Palatino Linotype',serif; font-size:112px; font-weight:700; fill:#34342d; }
+      .seal-note { font-family:'Nimbus Sans',Arial,sans-serif; font-size:27px; font-weight:700; letter-spacing:2px; fill:#4b4a42; }
+    </style>
+  </defs>
+  <rect width="1700" height="2200" fill="#f4ebdc"/>
+  <rect width="1700" height="2200" fill="url(#paper)"/>
+  <rect x="140" y="91" width="12" height="12" fill="#6e2f29"/>
+  <text class="title" x="140" y="188">H3 — MERTON&#x27;S QUERY</text>
+  <path d="M140 226H1560" stroke="#34352d" stroke-width="3"/>
+  <g transform="rotate(-0.18 850 1080)">
+<rect x="205" y="300" width="1290" height="1510" fill="#f8f0e1" stroke="#777163" stroke-width="3"/>
+<rect x="205" y="300" width="1290" height="1510" fill="url(#letterPaper)"/>
+<path d="M225 790H1475M225 1300H1475" stroke="#8b8171" stroke-width="2" opacity=".14" stroke-dasharray="16 15"/>
+<path d="M250 335C520 326 705 340 930 331" stroke="#6f6454" stroke-width="5" opacity=".06"/>
+<text class="letter" x="285" y="438"><tspan x="285" dy="0">Sir,</tspan></text>
+<text class="letter-small" x="285" y="555"><tspan x="285" dy="0">The former occupier has again asked whether a small</tspan><tspan x="285" dy="67">locked case or parcel from the rear room was included</tspan><tspan x="285" dy="67">among the miscellaneous effects removed on the 7th.</tspan><tspan x="285" dy="67">I cannot identify it upon your account. Kindly ask the men</tspan><tspan x="285" dy="67">whether it was placed with goods to store, treated as</tspan><tspan x="285" dy="67">refuse, or left at the premises.</tspan></text>
+<text class="letter" x="285" y="1065"><tspan x="285" dy="0">Yours,</tspan></text>
+<text class="letter" x="285" y="1160"><tspan x="285" dy="0">C. H. Merton</tspan></text>
+<text class="editorial" x="285" y="1385"><tspan x="285" dy="0">In Samuel&#x27;s pencil at the foot:</tspan></text>
+<path d="M275 1435H1410" stroke="#77756f" stroke-width="2" opacity=".38"/>
+<text class="pencil" x="320" y="1518" transform="rotate(-0.55 320 1518)"><tspan x="320" dy="0">Ask Vale / Naylor what came from rear.</tspan></text>
+<path d="M1150 1740C1250 1728 1350 1746 1430 1738" stroke="#6f6454" stroke-width="6" opacity=".06"/>
+</g>
+</svg>

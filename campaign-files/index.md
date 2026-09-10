@@ -25,7 +25,13 @@ summary: Shared material and known developments associated with cases already op
     {% assign people_count = file.known_people | size %}
     {% assign location_count = file.known_locations | size %}
     {% assign initial_release_count = 0 %}
-    {% for release in case_releases %}{% unless release.source_lock %}{% assign initial_release_count = initial_release_count | plus: 1 %}{% endunless %}{% endfor %}
+    {% for release in case_releases %}
+      {% unless release.hidden_until_dependency %}
+        {% unless release.hidden_until_unlocked or release.source_lock %}
+          {% assign initial_release_count = initial_release_count | plus: 1 %}
+        {% endunless %}
+      {% endunless %}
+    {% endfor %}
     <article class="frame dark-frame" id="case-{{ file.id }}">
       <header><span>{{ file.title }}</span><b>{{ file.status_label | default: file.status }}</b></header>
       <div class="frame-body">
@@ -57,8 +63,15 @@ summary: Shared material and known developments associated with cases already op
           {% endif %}
 
           {% if case_releases.size > 0 %}
-          <section class="case-release-shelf" aria-label="Sealed case releases">
+          <section class="case-release-shelf" aria-label="Released people and visual records">
             <header><div><small>Keeper-controlled release</small><strong>People & Visual Records</strong></div><span><span data-case-release-visible-count>{{ initial_release_count }}</span> filed</span></header>
+            <div class="case-release-guide">
+              <div class="case-release-vault-copy">
+                <small>Simple scene release</small>
+                <strong>File a visual only when the Keeper releases it to the table.</strong>
+                <p>Opened records remain available in this browser profile. These controls prevent accidental spoilers during ordinary play; they are not passwords.</p>
+              </div>
+            </div>
             <div class="case-release-grid">
               {% for release in case_releases %}
                 {% include case-release-record.html release=release %}

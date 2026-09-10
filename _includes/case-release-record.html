@@ -1,9 +1,21 @@
 {% assign release = include.release %}
-<details id="release-{{ release.id }}" class="case-release-record case-release-kind-{{ release.kind | default: 'evidence' }}{% if release.status == 'sealed' %} is-sealed{% endif %}" data-release-record="{{ release.id }}" data-release-kind="{{ release.kind | default: 'evidence' }}"{% if release.source_lock %} data-release-source-lock="{{ release.source_lock }}" hidden{% endif %}>
+{% assign release_dependencies = release.depends_on_any | join: ',' %}
+<details
+  id="release-{{ release.id }}"
+  class="case-release-record case-release-kind-{{ release.kind | default: 'evidence' }} is-sealed"
+  data-release-record="{{ release.id }}"
+  data-release-kind="{{ release.kind | default: 'evidence' }}"
+  data-simple-case-release
+  data-lock-id="{{ release.lock.id }}"
+  data-revealed-title="{{ release.title | escape }}"
+  {% if release_dependencies != '' %}data-release-depends-any="{{ release_dependencies }}"{% endif %}
+  {% if release.hidden_until_dependency %}data-hidden-until-dependency hidden{% endif %}
+  {% if release.memory %}data-memory-kind="{{ release.memory.kind }}" data-memory-name="{{ release.memory.name | escape }}" data-memory-note="{{ release.memory.note | escape }}"{% endif %}
+>
   <summary>
     <span class="case-release-mark" aria-hidden="true">{% case release.kind %}{% when 'person' %}P{% when 'portrait' %}P{% when 'photograph' %}▣{% when 'location' %}⌖{% when 'scene' %}◇{% else %}R{% endcase %}</span>
     <span class="case-release-summary-copy">
-      <small>{{ release.safe_label | default: 'Sealed case material' }}</small>
+      <small>{{ release.safe_label | default: 'Keeper-controlled release' }}</small>
       <strong data-release-title>{{ release.safe_title | default: 'Filed Record' }}</strong>
       {% if release.safe_summary %}<span>{{ release.safe_summary }}</span>{% endif %}
     </span>
@@ -11,19 +23,35 @@
   </summary>
 
   <div class="case-release-content">
-    <section class="case-release-sealed" data-lock-id="{{ release.lock.id }}"{% if release.source_lock %} data-source-lock="{{ release.source_lock }}"{% endif %} data-salt="{{ release.lock.salt }}" data-iv="{{ release.lock.iv }}" data-ciphertext="{{ release.lock.ciphertext }}" data-iterations="{{ release.lock.iterations | default: 100000 }}">
-      <div class="sealed-document-face" data-reveal-locked>
+    <section class="case-release-sealed" data-lock-id="{{ release.lock.id }}">
+      <div class="sealed-document-face" data-simple-release-sealed>
         <span class="sealed-document-mark">R</span>
-        <small>{% if release.source_lock %}Related filing{% else %}Keeper release{% endif %}</small>
+        <small>Keeper release</small>
         <strong>Contents Sealed</strong>
-        <p>{{ release.safe_summary | default: 'This case material has not yet been released to the table.' }}</p>
-        <form class="reveal-form">
-          <label><span>Code word</span><input type="password" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="Enter code word"></label>
-          <button type="submit">Break Seal</button>
-          <p class="reveal-status" role="status" aria-live="polite">{% if release.source_lock %}This filing opens with its related document.{% else %}Awaiting code word.{% endif %}</p>
-        </form>
+        <p>{{ release.safe_summary | default: 'This visual record has not yet been released to the table.' }}</p>
+        <button type="button" data-simple-release-button>File Released Record</button>
+        <p class="reveal-status" data-simple-release-status role="status" aria-live="polite">{{ release.release_hint }}</p>
       </div>
-      <div class="case-release-body reveal-body" aria-live="polite" hidden></div>
+
+      <div class="case-release-body reveal-body" data-simple-release-body aria-live="polite" hidden>
+        <p class="eyebrow">{{ release.asset_id }}</p>
+        <h2>{{ release.title }}</h2>
+        <figure class="controlled-art simple-release-art" data-asset-id="{{ release.asset_id }}">
+          <button
+            type="button"
+            class="controlled-art-open"
+            data-art-viewer
+            data-art-src="{{ release.asset | relative_url }}"
+            data-art-alt="{{ release.alt | escape }}"
+            data-art-caption="{{ release.caption | escape }}"
+            aria-label="Inspect image: {{ release.caption | escape }}"
+          >
+            <img data-simple-release-image data-src="{{ release.asset | relative_url }}" alt="{{ release.alt | escape }}" loading="lazy" decoding="async">
+            <span class="controlled-art-inspect" aria-hidden="true">Inspect</span>
+          </button>
+          <figcaption>{{ release.caption }}</figcaption>
+        </figure>
+      </div>
     </section>
   </div>
 </details>

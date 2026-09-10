@@ -1,4 +1,61 @@
 {% assign doc = include.doc %}
+{% assign simple_gate = false %}
+{% assign simple_gate_id = '' %}
+{% assign simple_revealed_title = '' %}
+{% assign simple_sealed_asset = '' %}
+{% assign simple_revealed_asset = '' %}
+{% assign simple_sealed_alt = 'Sealed player material; contents are not yet available.' %}
+{% assign simple_revealed_alt = 'Released player material; use the accompanying accessible transcription for document contents.' %}
+{% assign simple_caption = 'Released player material.' %}
+{% assign simple_release_hint = 'Use this control when the Keeper releases this record.' %}
+{% case doc.id %}
+{% when 'handout-01-timing-ledger' %}
+  {% assign simple_gate = true %}
+  {% assign simple_gate_id = 'wij-h1-timeline' %}
+  {% assign simple_revealed_title = 'The Mitre Square Chronology' %}
+  {% assign simple_revealed_asset = '/assets/images/handouts/h1-revealed.svg' %}
+  {% assign simple_revealed_alt = 'Printable period-style chronology with a Time column and an Established Event column, followed by established and not-established summary rows.' %}
+  {% assign simple_caption = 'A two-column chronology listing established times and events connected to Mitre Square.' %}
+  {% assign simple_release_hint = 'Use this control when the Keeper releases the chronology.' %}
+{% when 'handout-02-business-day-book' %}
+  {% assign simple_gate = true %}
+  {% assign simple_gate_id = 'wij-h2-daybook' %}
+  {% assign simple_revealed_title = "Extract from Penfold's Day Book" %}
+  {% assign simple_sealed_asset = '/assets/images/handouts/h2-sealed.svg' %}
+  {% assign simple_revealed_asset = '/assets/images/handouts/h2-revealed.svg' %}
+  {% assign simple_sealed_alt = 'Player material H2 is sealed and its contents are not yet available.' %}
+  {% assign simple_revealed_alt = 'Released player material H2; use the accompanying accessible transcription for document contents.' %}
+  {% assign simple_caption = 'Released player material H2.' %}
+  {% assign simple_release_hint = 'Use this control when the Keeper releases the office record.' %}
+{% when 'handout-03-property-correspondence' %}
+  {% assign simple_gate = true %}
+  {% assign simple_gate_id = 'wij-h3-query' %}
+  {% assign simple_revealed_title = "Merton's Query" %}
+  {% assign simple_sealed_asset = '/assets/images/handouts/h3-sealed.svg' %}
+  {% assign simple_revealed_asset = '/assets/images/handouts/h3-revealed.svg' %}
+  {% assign simple_sealed_alt = 'Player material H3 is sealed and its contents are not yet available.' %}
+  {% assign simple_revealed_alt = 'Released player material H3; use the accompanying accessible transcription for document contents.' %}
+  {% assign simple_caption = 'Released player material H3.' %}
+  {% assign simple_release_hint = 'Use this control when the Keeper releases the correspondence.' %}
+{% when 'handout-04-key-return-note' %}
+  {% assign simple_gate = true %}
+  {% assign simple_gate_id = 'wij-h4-key' %}
+  {% assign simple_revealed_title = "Canning's Key Note" %}
+  {% assign simple_sealed_asset = '/assets/images/handouts/h4-sealed.svg' %}
+  {% assign simple_revealed_asset = '/assets/images/handouts/h4-revealed.svg' %}
+  {% assign simple_sealed_alt = 'Player material H4 is sealed and its contents are not yet available.' %}
+  {% assign simple_revealed_alt = 'Released player material H4; use the accompanying accessible transcription for document contents.' %}
+  {% assign simple_caption = 'Released player material H4.' %}
+  {% assign simple_release_hint = 'Use this control when the Keeper releases the key note.' %}
+{% when 'handout-05-working-hypotheses' %}
+  {% assign simple_gate = true %}
+  {% assign simple_gate_id = 'wij-h5-hypotheses' %}
+  {% assign simple_revealed_title = 'Working Hypotheses' %}
+  {% assign simple_revealed_asset = '/assets/images/handouts/h5-revealed.svg' %}
+  {% assign simple_revealed_alt = 'Period-style worksheet with numbered fact fields, lettered hypothesis fields, a next-action field and a final field asking what would change the group’s minds.' %}
+  {% assign simple_caption = 'A printable worksheet for recording physical facts, testable logistics hypotheses, a next action and evidence that could change the group’s conclusions.' %}
+  {% assign simple_release_hint = 'Use this control when the Keeper releases the working sheet.' %}
+{% endcase %}
 <details id="document-{{ doc.id }}" class="document-record document-type-{{ doc.type }}{% if doc.status == 'sealed' %} is-sealed{% endif %}{% if doc.basis == 'development_only' %} is-development-demo{% endif %}" data-document-record="{{ doc.id }}" data-document-section="{{ doc.section }}" data-document-visibility="{{ doc.visibility }}">
   <summary>
     <span class="document-type-mark" aria-hidden="true">{% case doc.type %}{% when 'letter' %}✉{% when 'telegram' %}T{% when 'photograph' %}▣{% when 'newspaper' %}N{% when 'notebook' %}✎{% when 'report' %}R{% when 'map' %}⌖{% else %}•{% endcase %}</span>
@@ -23,20 +80,114 @@
     </aside>
 
     <div class="document-object document-object-{{ doc.type }}">
-      {% if doc.status == 'sealed' %}
-      <section class="document-sealed" data-lock-id="{{ doc.lock.id }}" data-salt="{{ doc.lock.salt }}" data-iv="{{ doc.lock.iv }}" data-ciphertext="{{ doc.lock.ciphertext }}" data-iterations="{{ doc.lock.iterations | default: 100000 }}">
-        <div class="sealed-document-face" data-reveal-locked>
+      {% if simple_gate and doc.status == 'sealed' %}
+      <section class="document-sealed" data-simple-release data-simple-gate-id="{{ simple_gate_id }}">
+        <div class="sealed-document-face" data-simple-sealed>
+          {% if simple_sealed_asset != '' %}
+          <figure class="sealed-document-preview">
+            <img src="{{ simple_sealed_asset | relative_url }}" alt="{{ simple_sealed_alt | escape }}" loading="lazy" decoding="async">
+          </figure>
+          {% else %}
           <span class="sealed-document-mark">R</span>
-          <small>Code-word release</small>
+          {% endif %}
+          <small>Keeper release</small>
           <strong>Contents Sealed</strong>
           <p>{{ doc.summary }}</p>
-          <form class="reveal-form">
-            <label><span>Code word</span><input type="password" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="Enter code word"></label>
-            <button type="submit">Break Seal</button>
-            <p class="reveal-status">Awaiting code word.</p>
-          </form>
+          <button type="button" data-simple-release-button>File Released Record</button>
+          <p class="reveal-status" data-simple-release-status role="status" aria-live="polite">{{ simple_release_hint }}</p>
         </div>
-        <div class="document-paper reveal-body" aria-live="polite" hidden></div>
+        <div class="document-paper reveal-body" data-simple-revealed aria-live="polite" hidden>
+          <h2>{{ simple_revealed_title }}</h2>
+          <figure class="document-image-mount">
+            <img data-simple-revealed-image data-src="{{ simple_revealed_asset | relative_url }}" alt="{{ simple_revealed_alt | escape }}" loading="lazy" decoding="async">
+            <figcaption>{{ simple_caption }}</figcaption>
+          </figure>
+          <details class="document-transcript">
+            <summary>Transcript</summary>
+            <pre class="document-transcript-text">{% case doc.id %}{% when 'handout-01-timing-ledger' %}{% include handouts/H1_Mitre_Square_Chronology_Transcript_v01.txt %}{% when 'handout-02-business-day-book' %}{% include handouts/H2_Transcript_v01.txt %}{% when 'handout-03-property-correspondence' %}{% include handouts/H3_Transcript_v01.txt %}{% when 'handout-04-key-return-note' %}{% include handouts/H4_Transcript_v01.txt %}{% when 'handout-05-working-hypotheses' %}{% include handouts/H5_Working_Hypotheses_Transcript_v01.txt %}{% endcase %}</pre>
+          </details>
+        </div>
+      </section>
+      <script>
+      (() => {
+        const recordId = 'document-{{ doc.id }}';
+        const gateId = '{{ simple_gate_id }}';
+        const revealedTitle = {{ simple_revealed_title | jsonify }};
+        const storagePrefix = 'rippers-unlock-';
+
+        function installSimpleGate() {
+          const record = document.getElementById(recordId);
+          const gate = record?.querySelector('[data-simple-release]');
+          if (!record || !gate || !gateId) return;
+
+          const sealed = gate.querySelector('[data-simple-sealed]');
+          const revealed = gate.querySelector('[data-simple-revealed]');
+          const image = gate.querySelector('[data-simple-revealed-image]');
+          const button = gate.querySelector('[data-simple-release-button]');
+          const releaseStatus = gate.querySelector('[data-simple-release-status]');
+          const status = record.querySelector('[data-document-status]');
+          const metaStatus = record.querySelector('[data-document-meta-status]');
+          const summaryTitle = record.querySelector('.document-summary-copy strong');
+          const storageKey = `${storagePrefix}${gateId}`;
+          const titleKey = `${storagePrefix}title-${gateId}`;
+          const timeKey = `${storagePrefix}time-${gateId}`;
+
+          function showReleased({ persist = true, announce = true } = {}) {
+            if (image && !image.getAttribute('src')) image.src = image.dataset.src || '';
+            if (sealed) sealed.hidden = true;
+            if (revealed) revealed.hidden = false;
+            record.classList.remove('is-sealed');
+            record.classList.add('is-unlocked');
+            if (status) {
+              status.textContent = 'OPEN';
+              status.classList.remove('sealed');
+              status.classList.add('available');
+            }
+            if (metaStatus) metaStatus.textContent = 'Open';
+            if (summaryTitle) summaryTitle.textContent = revealedTitle;
+            if (releaseStatus) releaseStatus.textContent = 'Opened.';
+
+            if (persist) {
+              localStorage.setItem(storageKey, 'released');
+              localStorage.setItem(titleKey, revealedTitle);
+              if (!localStorage.getItem(timeKey)) localStorage.setItem(timeKey, String(Date.now()));
+            }
+
+            if (announce) {
+              window.dispatchEvent(new CustomEvent('rippers:document-unlocked', {
+                detail: { lockId: gateId, title: revealedTitle }
+              }));
+            }
+          }
+
+          if (localStorage.getItem(storageKey)) {
+            showReleased({ persist: false, announce: true });
+          }
+
+          button?.addEventListener('click', () => showReleased());
+        }
+
+        if (document.readyState === 'loading') {
+          window.addEventListener('DOMContentLoaded', installSimpleGate, { once: true });
+        } else {
+          installSimpleGate();
+        }
+      })();
+      </script>
+      {% elsif doc.status == 'sealed' %}
+      <section class="document-sealed">
+        <div class="sealed-document-face">
+          {% if doc.sealed_asset %}
+          <figure class="sealed-document-preview">
+            <img src="{{ doc.sealed_asset | relative_url }}" alt="{{ doc.sealed_alt | default: 'Sealed player material.' | escape }}" loading="lazy" decoding="async">
+          </figure>
+          {% else %}
+          <span class="sealed-document-mark">R</span>
+          {% endif %}
+          <small>Keeper release</small>
+          <strong>Contents Sealed</strong>
+          <p>{{ doc.summary }}</p>
+        </div>
       </section>
       {% else %}
         {% if doc.asset %}

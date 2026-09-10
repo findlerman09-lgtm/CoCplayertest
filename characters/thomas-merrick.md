@@ -14,7 +14,7 @@ display_title: Thomas Merrick
 breadcrumb: The Rippers / Investigators / Thomas Merrick
 page_status: Active
 page_status_class: active
-portrait: /assets/favicon.svg
+portrait: /assets/images/portraits/A1-POR-002_Thomas_Merrick_Web_v01.webp
 hero_art: /assets/images/hero-collage-hd.webp
 tagline: "An honest witness can still be wrong."
 background: >-

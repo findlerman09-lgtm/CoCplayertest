@@ -1,5 +1,4 @@
-/* WEB-RC1 generic person/photo/location release gates.
-   These styles are dormant until _data/case_releases.yml contains listed:true entries. */
+/* WEB-RC1 trusted-table person/photo/location release gates. */
 
 .case-release-shelf{
   margin-top:22px;
@@ -103,10 +102,7 @@
   border-color:rgba(86,142,102,.55);
 }
 
-/* Decrypted portrait/photo payloads may safely contain the actual title and image.
-   Until final art is authorized, do not commit the underlying image as a normal
-   public asset. A future encrypted payload may embed a data URI or consume a file
-   only after that file itself is approved for public release. */
+/* Released portraits and scene views use the approved staged player derivatives. */
 .case-release-body figure{
   margin:0 0 1rem;
 }

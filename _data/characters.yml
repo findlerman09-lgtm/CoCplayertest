@@ -43,7 +43,7 @@ clara-whitcombe:
 arthur-bell:
   name: Arthur Bell
   occupation: Fire-insurance Surveyor of Risks
-  portrait: /assets/favicon.svg
+  portrait: /assets/images/portraits/A1-POR-001_Arthur_Bell_Web_v01.webp
   status: Issued
   hp: 13
   max_hp: 13
@@ -124,7 +124,7 @@ arthur-bell:
 thomas-merrick:
   name: Thomas Merrick
   occupation: Detective Constable, City of London Police
-  portrait: /assets/favicon.svg
+  portrait: /assets/images/portraits/A1-POR-002_Thomas_Merrick_Web_v01.webp
   status: Issued
   hp: 13
   max_hp: 13
@@ -205,7 +205,7 @@ thomas-merrick:
 miriam-hart:
   name: Miriam Hart
   occupation: Certificated Assistant Mistress, School Board for London
-  portrait: /assets/favicon.svg
+  portrait: /assets/images/portraits/A1-POR-003_Miriam_Hart_Web_v01.webp
   status: Issued
   hp: 11
   max_hp: 11
@@ -278,7 +278,7 @@ miriam-hart:
 clara-mercer:
   name: Clara Mercer
   occupation: Reporter — East-End district
-  portrait: /assets/favicon.svg
+  portrait: /assets/images/portraits/A1-POR-004_Clara_Mercer_Web_v01.webp
   status: Issued
   hp: 11
   max_hp: 11
@@ -359,7 +359,7 @@ clara-mercer:
 laurence-kersey:
   name: Laurence Kersey
   occupation: Registered Medical Practitioner
-  portrait: /assets/favicon.svg
+  portrait: /assets/images/portraits/A1-POR-005_Dr_Laurence_Kersey_Web_v01.webp
   status: Issued
   hp: 13
   max_hp: 13

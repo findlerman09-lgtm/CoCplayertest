@@ -14,7 +14,7 @@ display_title: Clara Mercer
 breadcrumb: The Rippers / Investigators / Clara Mercer
 page_status: Active
 page_status_class: active
-portrait: /assets/favicon.svg
+portrait: /assets/images/portraits/A1-POR-004_Clara_Mercer_Web_v01.webp
 hero_art: /assets/images/hero-collage-hd.webp
 tagline: "Who heard it first?"
 background: >-
