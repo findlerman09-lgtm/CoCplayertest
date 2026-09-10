@@ -33,7 +33,7 @@
 
 /* A broken seal becomes the document. Do not leave the obsolete code-entry face behind. */
 .document-sealed .sealed-document-face[hidden],.document-sealed.is-unlocked .sealed-document-face{display:none!important}
-.document-sealed.is-unlocked .reveal-body{padding-top:0}
+.document-record.is-unlocked .document-sealed .reveal-body{display:block;padding-top:0}
 .document-record.is-unlocked .document-object{padding-top:30px}
 
 /* Balance the anonymous Investigator landing card without disclosing the investigator before dossier unlock. */
