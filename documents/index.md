@@ -16,7 +16,7 @@ summary: Material currently available to the whole table.
 {% assign notes = listed | where: "section", "notes" %}
 
 <section class="frame dark-frame document-release-guide" aria-label="Sealed document release">
-  <header><span>Release protocol</span><b>RC1.2.1</b></header>
+  <header><span>Release protocol</span></header>
   <div class="frame-body">
     <strong>Some records are sealed until they are earned in play.</strong>
     <p>When the Keeper releases a record, use its release control to file the opened copy. An opened record remains available in this browser profile.</p>
