@@ -21,14 +21,6 @@ summary: Your private investigator dossier and material already released in play
 {% assign location_count = current_case.known_locations | size %}
 {% assign people_count = current_case.known_people | size %}
 
-<section class="frame dark-frame" aria-label="Website rehearsal status">
-  <header><span>Build status</span><b>{{ site.data.site_state.web_rc1.version }}</b></header>
-  <div class="frame-body">
-    <strong>{{ site.data.site_state.web_rc1.phase }}</strong>
-    <p>{{ site.data.site_state.web_rc1.audit }}. {{ site.data.site_state.web_rc1.final_audit }}.</p>
-  </div>
-</section>
-
 <div class="frame-grid archive-primary">
   <a class="frame feature-frame" href="{{ '/investigators/' | relative_url }}">
     <header><span>Investigator</span><b>01</b></header>
