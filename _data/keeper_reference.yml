@@ -3,6 +3,8 @@
 arthur-bell:
   featured: [spot-hidden, mechanical-repair, drive-carriage]
   useful: [appraise, accounting, navigate, climb]
+  hook: >-
+    Returning from a late warehouse-fire assessment in Wapping, Bell is called by a runner from an insured concern near Aldgate to a loaded handcart jammed against a service gate. Awkward weight dictates posture, routes, helpers, access, and where someone can pause unseen.
   automatic: "Ordinary commercial premises, loads, packing, cartage, storage, and practical movement constraints."
   spotlight: "When weight, access, routes, leverage, or a physical mechanism matters."
   clue: "A practical discrepancy in handling goods, structures, or the route through a space."
@@ -10,6 +12,8 @@ arthur-bell:
 thomas-merrick:
   featured: [law, psychology, spot-hidden]
   useful: [listen, track, brawl, navigate]
+  hook: >-
+    Merrick arrives at Mitre Square after PC Watkins raises the alarm. Detective Inspector James McWilliam tasks him with preserving a usable witness sequence as statements, people, and police jurisdictions multiply.
   automatic: "Ordinary City police procedure, interview practice, records, and the difference between suspicion and grounds for action."
   spotlight: "When witness accounts, routes, pursuit, restraint, or a defensible decision matters."
   clue: "A testable human sequence assembled from statements, times, routes, and records."
@@ -17,6 +21,8 @@ thomas-merrick:
 miriam-hart:
   featured: [library-use, listen, psychology]
   useful: [persuade, reassure, navigate, spot-hidden]
+  hook: >-
+    Sarah Feld brings Miriam a hurried police inquiry with a stale Feld address and an uncertain name. Miriam protects Annie Feld's welfare and accurate account while tracing how one uncertain record can become several false institutional stories.
   automatic: "How household names, temporary addresses, school records, and referral relationships can differ from an official label."
   spotlight: "When patient listening, reassurance, a household record, or an existing bond of trust matters."
   clue: "A dated address, name, or household account checked against the person behind it."
@@ -24,6 +30,8 @@ miriam-hart:
 clara-mercer:
   featured: [listen, fast-talk, stealth]
   useful: [persuade, library-use, spot-hidden, navigate]
+  hook: >-
+    Already working the East-End district after news from Berner Street, Clara receives conflicting versions of the Mitre Square medical story from a runner. She must decide whether to repeat the dramatic version or trace it to someone who actually heard the doctor, knowing publication has consequences.
   automatic: "How reporting, repeated rumor, sources, and publication can change later accounts."
   spotlight: "When tracing a claim to its source, moving quickly, following someone, or weighing publication consequences."
   clue: "The provenance of an already encountered statement or a distinction between independent accounts and repetition."
@@ -31,6 +39,8 @@ clara-mercer:
 laurence-kersey:
   featured: [medicine, first-aid, psychology]
   useful: [reassure, listen, biology, pharmacy]
+  hook: >-
+    Miriam summons Kersey to help Annie Feld, left wheezing, trembling, and bruised by panic and a crowd. He has previously treated another Feld household member; he separates the observed sequence from false causal certainty because the panic and breathlessness preceded the minor head injury.
   automatic: "Ordinary medical practice, living-patient needs, and separating an observed condition from a causal inference."
   spotlight: "When someone needs assessment or rescue, or when the order of symptoms and events matters."
   clue: "A medically supported observation or testable causal sequence from facts already in play."

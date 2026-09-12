@@ -73,7 +73,7 @@ summary: A local, Keeper-directed view of the five issued investigators. Open it
           <div class="keeper-columns">
             <section>
               <h3>Adventure I Hook</h3>
-              <p>Not specified in the approved character data; consult the issued scenario introduction.</p>
+              <p>{{ guide.hook }}</p>
               <h3>Competence Spotlight</h3>
               <p><strong>{{ person.player_edges[0].title }}</strong> — {{ person.player_edges[0].text }}</p>
               <h3>Pressure Point</h3>
