@@ -1,0 +1,47 @@
+.keeper-reference{margin-top:18px}
+.keeper-reference [hidden]{display:none!important}
+.keeper-reference .frame-body{padding:22px}
+.keeper-open,.keeper-tabs button{border:1px solid rgba(224,196,127,.55);background:#12252d;color:#ebd7a6;cursor:pointer}
+.keeper-open{margin-top:12px;padding:12px 18px;text-transform:uppercase;letter-spacing:.1em;font-size:.72rem}
+.keeper-open:hover,.keeper-open:focus-visible,.keeper-tabs button:hover,.keeper-tabs button:focus-visible{background:#25414a;outline:2px solid #e0c47f;outline-offset:2px}
+.keeper-local-note{margin:0 0 15px;color:#bac4c1;font-size:.84rem}
+.keeper-tabs{display:flex;gap:6px;overflow-x:auto;padding:4px 3px 12px;scrollbar-color:#9f8554 #0a171d}
+.keeper-tabs button{flex:0 0 auto;min-height:44px;padding:9px 13px;white-space:nowrap;font-size:.76rem}
+.keeper-tabs button[aria-selected=true]{background:#d6c093;color:#13252b;border-color:#e5cc93;font-weight:bold}
+.keeper-panel{padding-top:18px;border-top:1px solid rgba(197,163,95,.34)}
+.keeper-panel h2{margin:4px 0;font-weight:500;font-size:clamp(1.5rem,3vw,2.15rem)}
+.keeper-panel h3{margin:22px 0 9px;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:#e1c989}
+.keeper-panel p,.keeper-panel li,.keeper-panel dd{line-height:1.5;font-size:.84rem}
+.keeper-panel p{margin:8px 0;color:#c6d0cc}
+.keeper-panel ul{margin:8px 0;padding-left:20px}
+.keeper-panel li{margin-bottom:6px}
+.keeper-identity{display:grid;grid-template-columns:minmax(0,2fr) minmax(180px,1fr);gap:20px}
+.keeper-identity small,.keeper-role span,.keeper-section-lead{color:#c5a35f;text-transform:uppercase;letter-spacing:.1em;font-size:.65rem}
+.keeper-role{align-self:center;border-left:2px solid #9f8554;padding-left:16px}
+.keeper-role span{display:block;margin-bottom:7px}
+.keeper-stats,.keeper-characteristics{display:grid;grid-template-columns:repeat(auto-fit,minmax(90px,1fr));gap:7px;margin:0}
+.keeper-stats div,.keeper-characteristics div{padding:9px;border:1px solid rgba(197,163,95,.24);background:#0b1c22}
+.keeper-stats dt,.keeper-characteristics dt{color:#aebbb8;font-size:.65rem}
+.keeper-stats dd,.keeper-characteristics dd{margin:3px 0 0;font-size:1.18rem;color:#f0e2c7}
+.keeper-characteristics{margin-top:8px;grid-template-columns:repeat(auto-fit,minmax(68px,1fr))}
+.keeper-characteristics div{padding:7px}
+.keeper-characteristics dd{font-size:.95rem}
+.keeper-columns{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
+.keeper-columns>section{min-width:0}
+.keeper-section-lead{margin:8px 0!important}
+.keeper-skills,.keeper-combat{margin:0;display:grid;gap:5px}
+.keeper-skills div,.keeper-combat div{display:flex;justify-content:space-between;gap:10px;padding:7px 9px;border-bottom:1px solid rgba(197,163,95,.19)}
+.keeper-skills.featured div{background:rgba(197,163,95,.12);border-left:2px solid #d9be7f}
+.keeper-skills dt,.keeper-combat dt{font-size:.8rem}
+.keeper-skills dd,.keeper-combat dd{margin:0;white-space:nowrap;color:#f3d895;font-weight:bold}
+.keeper-talent{padding:12px;border:1px solid rgba(197,163,95,.27)}
+.keeper-talent strong,.keeper-talent span{display:block}
+.keeper-talent strong{color:#f0d593;margin-bottom:5px}
+.keeper-relations{max-height:none}
+.keeper-use{border-left:1px solid rgba(197,163,95,.3);padding-left:20px}
+.keeper-use dl{margin:0}
+.keeper-use dl div{margin:0 0 13px}
+.keeper-use dt{color:#e1c989;font-size:.72rem;font-weight:bold}
+.keeper-use dd{margin:4px 0;color:#c6d0cc}
+@media(max-width:740px){.keeper-columns,.keeper-identity{grid-template-columns:1fr;gap:0}.keeper-use{border-left:0;border-top:1px solid rgba(197,163,95,.3);padding:0}.keeper-tabs button{font-size:.72rem}}
+@media print{.keeper-reference .keeper-tabs{display:none!important}.keeper-panel{break-inside:avoid}.keeper-panel p,.keeper-panel li,.keeper-panel dd{color:#222}}
