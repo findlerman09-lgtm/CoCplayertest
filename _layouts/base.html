@@ -22,6 +22,7 @@
   <link rel="stylesheet" href="{{ '/assets/pass-5c.css' | relative_url }}">
   <link rel="stylesheet" href="{{ '/assets/pass-5d.css' | relative_url }}">
   <link rel="stylesheet" href="{{ '/assets/pass-5e.css' | relative_url }}">
+  {% if page.keeper_reference %}<link rel="stylesheet" href="{{ '/assets/keeper-reference.css' | relative_url }}">{% endif %}
   <script defer src="{{ '/assets/archive-gate.js' | relative_url }}"></script>
   <script defer src="{{ '/assets/reveal.js' | relative_url }}"></script>
   <script defer src="{{ '/assets/character-lock.js' | relative_url }}"></script>
@@ -111,6 +112,7 @@
             <a href="{{ character_base | append: '/correspondence/' | relative_url }}" {% if page.context_nav == 'correspondence' %}class="active"{% endif %}><span>04</span>Correspondence</a>
             <a href="{{ character_base | append: '/documents/' | relative_url }}" {% if page.context_nav == 'documents' %}class="active"{% endif %}><span>05</span>Documents</a>
             <a href="{{ character_base | append: '/possessions/' | relative_url }}" {% if page.context_nav == 'possessions' %}class="active"{% endif %}><span>06</span>Possessions</a>
+            <a href="{{ '/investigators/keeper-reference/' | relative_url }}"><span>↗</span>Keeper Reference</a>
           </nav>
           <div class="context-current-file">
             <small>Current file</small>

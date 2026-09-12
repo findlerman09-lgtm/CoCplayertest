@@ -31,3 +31,4 @@ breadcrumb: The Rippers / Investigator
     </div>
   </div>
 </section>
+<p class="section-summary" style="margin:18px auto;max-width:560px;text-align:center"><a href="{{ '/investigators/keeper-reference/' | relative_url }}">Keeper Character Reference</a> · A separate, locally opened table reference.</p>
