@@ -16,7 +16,11 @@ summary: A local, Keeper-directed view of the five issued investigators. Open it
   <div class="frame-body">
     <div data-keeper-closed>
       <p>Five investigator summaries for use while running the game.</p>
-      <button type="button" class="keeper-open" data-keeper-open aria-controls="keeper-reference-content" aria-expanded="false">Open Keeper Reference</button>
+      <form class="lock-form keeper-key-form" data-keeper-key-form>
+        <label for="keeper-reference-key"><span>Keeper passcode</span><input id="keeper-reference-key" type="password" autocomplete="off" autocapitalize="characters" spellcheck="false" required></label>
+        <button type="submit" class="keeper-open" data-keeper-open aria-controls="keeper-reference-content" aria-expanded="false">Open Keeper Reference</button>
+        <p class="lock-status" data-keeper-key-status role="status" aria-live="polite">Your successful unlock will be remembered on this device.</p>
+      </form>
     </div>
     <div id="keeper-reference-content" data-keeper-content hidden>
       <p class="keeper-local-note">Open on this browser. This view does not change player dossiers or campaign records.</p>
