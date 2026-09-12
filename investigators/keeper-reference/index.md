@@ -9,13 +9,13 @@ hide_info_rail: true
 keeper_reference: true
 breadcrumb: The Rippers / Investigator / Keeper Reference
 kicker: Live table
-summary: A local, Keeper-directed view of the five issued investigators. Open it only on the Keeper's device.
+summary: A local, Keeper-directed view of the five investigators and the Adventure I running notes. Open it only on the Keeper's device.
 ---
 <section class="keeper-reference frame dark-frame" data-keeper-reference>
   <header><span>Investigator Quick Reference</span></header>
   <div class="frame-body">
     <div data-keeper-closed>
-      <p>Five investigator summaries for use while running the game.</p>
+      <p>Five investigator summaries and Adventure I running notes for use at the table.</p>
       <form class="lock-form keeper-key-form" data-keeper-key-form>
         <label for="keeper-reference-key"><span>Keeper passcode</span><input id="keeper-reference-key" type="password" autocomplete="off" autocapitalize="characters" spellcheck="false" required></label>
         <button type="submit" class="keeper-open" data-keeper-open aria-controls="keeper-reference-content" aria-expanded="false">Open Keeper Reference</button>
@@ -24,11 +24,12 @@ summary: A local, Keeper-directed view of the five issued investigators. Open it
     </div>
     <div id="keeper-reference-content" data-keeper-content hidden>
       <p class="keeper-local-note">Open on this browser. This view does not change player dossiers or campaign records.</p>
-      <div class="keeper-tabs" role="tablist" aria-label="Investigators">
+      <div class="keeper-tabs" role="tablist" aria-label="Keeper reference sections">
         {% for slot in site.data.investigator_slots %}
           {% assign person = site.data.player_characters[slot.slug] %}
           <button type="button" role="tab" id="keeper-tab-{{ slot.slug }}" aria-controls="keeper-panel-{{ slot.slug }}" aria-selected="{% if forloop.first %}true{% else %}false{% endif %}" tabindex="{% if forloop.first %}0{% else %}-1{% endif %}" data-keeper-tab="{{ slot.slug }}">{{ person.publication_name }}</button>
         {% endfor %}
+        <button type="button" role="tab" id="keeper-tab-scenario" aria-controls="keeper-panel-scenario" aria-selected="false" tabindex="-1" data-keeper-tab="scenario">Scenario</button>
       </div>
       {% for slot in site.data.investigator_slots %}
         {% assign person = site.data.player_characters[slot.slug] %}
@@ -108,6 +109,60 @@ summary: A local, Keeper-directed view of the five issued investigators. Open it
           </div>
         </article>
       {% endfor %}
+      <article class="keeper-panel" id="keeper-panel-scenario" role="tabpanel" aria-labelledby="keeper-tab-scenario" data-keeper-panel="scenario" hidden>
+        <div class="keeper-identity">
+          <div><small>Adventure I · London, 30 September–1 October 1888</small><h2>Who Is Jack?</h2><p>One session: 215 designed minutes and 25 minutes of protected elasticity.</p></div>
+          <p class="keeper-role"><span>Keeper truth</span>Edwin Vale is the human killer. The Clockwork Surgeon is an impossible physical apparatus that requires his placement and manipulation; it does not act on its own.</p>
+        </div>
+
+        <div class="keeper-columns">
+          <section>
+            <h3>Investigation spine</h3>
+            <ol>
+              <li>Establish the human offender's need for privacy, position, access, carrying, concealment, and storage.</li>
+              <li>Compare viable commercial trades; reach Penfold through ordinary inquiry.</li>
+              <li>Use records, workers, and contradictions to identify Vale. Preserve at least two independent evidence families plus corroboration.</li>
+              <li>Follow the move to Act III. Reveal gross impossibility directly, teach stable geometry through visible cause and effect, and let the players disrupt the operation and stop Vale.</li>
+            </ol>
+          </section>
+          <section>
+            <h3>Table clock</h3>
+            <ul>
+              <li><strong>0:22</strong> · Prologue closes; cut toward Monday.</li>
+              <li><strong>1:14</strong> · Penfold reached; Act I ends.</li>
+              <li><strong>2:19</strong> · Vale known; investigation becomes movement.</li>
+              <li><strong>3:22</strong> · Act III complete; Vale stopped and Surgeon unusable.</li>
+              <li><strong>3:35</strong> · Designed play complete; elasticity begins.</li>
+              <li><strong>3:45</strong> · Add no fresh complexity; resolve only Surgeon state and Vale outcome.</li>
+              <li><strong>3:58</strong> · State the real victory and stop.</li>
+            </ul>
+          </section>
+        </div>
+
+        <div class="keeper-columns">
+          <section>
+            <h3>Beats to protect</h3>
+            <ul>
+              <li>Mitre Square's outer murder window is <strong>1:30–1:44 a.m.</strong>; relay the Goulston apron discovery at about <strong>2:55 a.m.</strong>, not earlier.</li>
+              <li>Cadosch: “I looked” → “He looked at me” → a brief impossible downward glimpse. His account identifies neither Vale nor Penfold and teaches no Surgeon operating rule.</li>
+              <li>Keep facts separate from hypotheses. The first direct, testable Surgeon revelation belongs in Act III.</li>
+              <li>Default to no new victim. Early seizure, restraint, containment, or prevented deployment is a legitimate win.</li>
+            </ul>
+          </section>
+          <section>
+            <h3>Handout release reminders</h3>
+            <ul>
+              <li><strong>H1 · Chronology:</strong> at synthesis after the principal times are gathered.</li>
+              <li><strong>H2 · Penfold day book:</strong> when the office record is secured by ordinary access, persuasion, or search.</li>
+              <li><strong>H3 · Merton's Query:</strong> when the correspondence is found or produced.</li>
+              <li><strong>H4 · Canning's Key Note:</strong> with the relevant key or office material.</li>
+              <li><strong>H5 · Working Hypotheses:</strong> at first group synthesis; leave it on the table.</li>
+            </ul>
+            <h3>When play slows</h3>
+            <p>Give automatic information for a reasonable professional action. Roll for extra detail, speed, cooperation, or risk; failure changes cost or position, not whether the essential route exists. At 3:45 remove secondary complications, not earned consequences.</p>
+          </section>
+        </div>
+      </article>
     </div>
   </div>
 </section>
