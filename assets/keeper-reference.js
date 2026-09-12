@@ -2,9 +2,12 @@
   const root = document.querySelector('[data-keeper-reference]');
   if (!root) return;
 
-  const openKey = 'rippers-keeper-reference-open:v1';
+  const openKey = 'rippers-keeper-reference-open:v2';
   const tabKey = 'rippers-keeper-reference-tab:v1';
   const button = root.querySelector('[data-keeper-open]');
+  const form = root.querySelector('[data-keeper-key-form]');
+  const input = form.querySelector('input');
+  const status = form.querySelector('[data-keeper-key-status]');
   const closed = root.querySelector('[data-keeper-closed]');
   const content = root.querySelector('[data-keeper-content]');
   const tabs = [...root.querySelectorAll('[data-keeper-tab]')];
@@ -35,7 +38,16 @@
     select(saved < 0 ? 0 : saved);
   }
 
-  button.addEventListener('click', open);
+  form.addEventListener('submit', event => {
+    event.preventDefault();
+    if (input.value.trim().toUpperCase() !== 'BATMAN') {
+      status.textContent = 'That passcode does not open the Keeper Reference.';
+      input.select();
+      return;
+    }
+    input.value = '';
+    open();
+  });
   tabs.forEach((tab, index) => {
     tab.addEventListener('click', () => select(index));
     tab.addEventListener('keydown', event => {
