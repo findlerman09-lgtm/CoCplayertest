@@ -1,16 +1,13 @@
 # Player-side state storage
 
-The static GitHub Pages site stores transient play state in the player's browser via `localStorage`.
+The static GitHub Pages site stores play state per investigator in `localStorage` under `rippers-character-state:<slug>`. Existing HP, SAN, Luck, Mythos, wound/insanity state and improvement marks remain in this envelope. Private effects and access/release gates retain their existing separate keys.
 
-Stored locally per investigator:
+The investigator-development review branch adds schema 3: permanent skill overrides, append-only development audit entries, completion receipts, per-skill mastery claims and a durable in-flight dice journal. These fields are retained by tracker reset and protected from rollback through tracker import. Hard/Extreme and the sheet's combat/language references display current skill values. Original P-07 data remains the starting baseline.
 
-- current HP;
-- current SAN;
-- current Luck;
-- Major Wound marker;
-- skill-use improvement checkmarks;
-- successful dossier unlock state.
+Development is **not activated**: the repository currently has no authoritative completed-adventure/participation projection or adventure-scoped check source. No check origins are inferred. See [the PM handoff](INVESTIGATOR_DEVELOPMENT_PM_HANDOFF_2026-10-16.md) for the read-only adapter contract, migration requirements and all acceptance results.
 
-This is intentionally lightweight for a three-scenario campaign. Permanent character changes, including resolved skill increases between scenarios, remain canonical in the repository and should be published back to the character data after the Keeper resolves development.
+Web Locks serialize current-client writes across tabs; each write rereads the latest envelope. Dice reservations and results are persisted before proceeding. Incomplete unsaved results fail closed for Keeper review rather than rerolling. A final commit applies the value, mark clearing, SAN/mastery and audit together. A browser without Web Locks has no development roll action.
 
-Because this is browser-local state, it does not automatically follow the player to another device. Export/import or cross-device synchronization can be considered later only if playtesting shows it is needed.
+This remains browser-local persistence, not an account-backed or cross-device authority. Clearing/evicting storage, console edits or an old client can invalidate that model. Progression backups can be exported, but imports with differing development history require Keeper reconciliation; silent replacement is disallowed. PM must decide whether this model is acceptable or authorize a shared durable backend. The previous workflow published Keeper-resolved advancement back to repository data; that reconciliation policy also requires a decision before activation.
+
+No campaign completion, release state, Keeper information, credentials or next-adventure state is written by the development feature.

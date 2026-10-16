@@ -19,7 +19,7 @@
       <header><span>Languages</span><b>03</b></header>
       <div class="frame-body quick-rule-stack">
         {% for language in p.languages %}
-        <div><strong>{{ language.name }} {{ language.value }}</strong>{% if language.note %}<p>{{ language.note }}</p>{% endif %}</div>
+        <div><strong>{{ language.name }} <span data-current-skill="language-own-{{ forloop.index }}">{{ language.value }}</span></strong>{% if language.note %}<p>{{ language.note }}</p>{% endif %}</div>
         {% endfor %}
       </div>
     </article>

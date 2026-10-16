@@ -106,7 +106,7 @@
         {% assign extreme = skill.value | divided_by: 5 %}
         <label class="skill-check-row{% unless skill.improvable %} disabled{% endunless %}">
           {% if skill.improvable %}<input type="checkbox" data-skill-check="{{ skill.id }}" data-skill-name="{{ skill.name }}" data-skill-value="{{ skill.value }}">{% else %}<span></span>{% endif %}
-          <span>{{ skill.name }}<small class="skill-thresholds">Hard {{ hard }} · Extreme {{ extreme }}</small>{% unless skill.improvable %}<small>Not improvement-check eligible</small>{% endunless %}</span><b>{{ skill.value }}%</b>
+          <span>{{ skill.name }}<small class="skill-thresholds" data-current-thresholds="{{ skill.id }}">Hard {{ hard }} · Extreme {{ extreme }}</small>{% unless skill.improvable %}<small>Not improvement-check eligible</small>{% endunless %}</span><b data-current-skill="{{ skill.id }}" data-skill-suffix="%">{{ skill.value }}%</b>
         </label>
         {% endfor %}
       </div>
@@ -128,10 +128,10 @@
       <header><span>Talent & Combat</span><b>04</b></header>
       <div class="frame-body quick-rule-stack">
         <div><small>Talent</small><strong>{{ p.talent.name }}</strong><p>{{ p.talent.effect }} {{ p.talent.note }}</p></div>
-        <div><small>Brawl</small><strong>{{ p.combat.brawl }} · {{ p.combat.unarmed_damage }}</strong></div>
-        <div><small>Dodge</small><strong>{{ p.combat.dodge }}</strong></div>
+        <div><small>Brawl</small><strong><span data-current-skill="brawl" data-skill-suffix="%">{{ p.combat.brawl }}</span> · {{ p.combat.unarmed_damage }}</strong></div>
+        <div><small>Dodge</small><strong data-current-skill="dodge" data-skill-suffix="%">{{ p.combat.dodge }}</strong></div>
         <div><small>Build</small><strong>{{ p.combat.build }}</strong></div>
-        <div><small>Weapons</small><strong>{{ p.combat.firearm }}</strong></div>
+        <div><small>Weapons</small><strong data-firearm-reference>{{ p.combat.firearm }}</strong></div>
         <p>{{ p.combat.note }}</p>
       </div>
     </article>
@@ -141,15 +141,25 @@
       <div class="frame-body quick-rule-stack">
         <div><small>Credit Rating</small><strong>{{ p.credit_rating }}</strong><p>{{ p.wealth_note }}</p></div>
         {% for language in p.languages %}
-        <div><small>Language</small><strong>{{ language.name }} {{ language.value }}</strong>{% if language.note %}<p>{{ language.note }}</p>{% endif %}
+        <div><small>Language</small><strong>{{ language.name }} <span data-current-skill="language-own-{{ forloop.index }}">{{ language.value }}</span></strong>{% if language.note %}<p>{{ language.note }}</p>{% endif %}
           {% if language.note contains 'Own' %}<label class="language-improvement"><input type="checkbox" data-skill-check="language-own-{{ forloop.index }}" data-skill-name="Language (Own: {{ language.name }})" data-skill-value="{{ language.value }}"> Mark eligible improvement use</label>{% endif %}
         </div>
         {% endfor %}
         <button class="small-action" type="button" data-reset-character-state>Reset local tracker</button>
-        <p class="sheet-note">Reset restores this device's condition, private effects, Luck, Mythos, and improvement state to the dossier defaults.</p>
+        <p class="sheet-note">Reset restores current conditions and unprocessed marks. Permanent skill development, mastery and history are retained.</p>
       </div>
     </article>
   </div>
 </div>
 
 {% include player-rules-at-a-glance.html %}
+
+<section class="frame dark-frame development-frame" data-development aria-labelledby="development-heading">
+  <header><span id="development-heading">Investigator Development</span><b data-development-status>LOCKED</b></header>
+  <div class="frame-body">
+    <p class="development-subtitle">What did you learn from the case?</p>
+    <div data-development-content></div>
+    <p data-development-notice role="status" aria-live="polite"></p>
+    <div data-development-history></div>
+  </div>
+</section>
