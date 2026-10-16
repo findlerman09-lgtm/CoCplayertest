@@ -2,7 +2,7 @@ window.addEventListener('DOMContentLoaded', () => {
   const root = document.querySelector('[data-character-state]');
   if (!root) return;
 
-  const SCHEMA_VERSION = 2;
+  const SCHEMA_VERSION = 4;
   const slug = root.dataset.characterState;
   const dataVersion = String(root.dataset.stateVersion || '1');
   const maxHp = Number(root.dataset.maxHp || root.dataset.defaultHp || 0);
@@ -21,7 +21,12 @@ window.addEventListener('DOMContentLoaded', () => {
     sanityPeriodLoss: 0,
     lastHpNotice: '',
     lastSanNotice: '',
-    skillChecks: []
+    skillChecks: [],
+    skillValues: {},
+    developmentHistory: [],
+    developmentSummaries: [],
+    masteryClaimed: {},
+    developmentJournal: null
   };
 
   const storageKey = `rippers-character-state:${slug}`;
@@ -34,6 +39,9 @@ window.addEventListener('DOMContentLoaded', () => {
       const raw = localStorage.getItem(key);
       return raw ? JSON.parse(raw) : null;
     } catch {
+      if (key === storageKey || key === legacyKey) {
+        throw new Error('Saved tracker state cannot be read. It has not been replaced. Restore access to storage or ask the Keeper to review the saved state.');
+      }
       return null;
     }
   }
@@ -57,31 +65,64 @@ window.addEventListener('DOMContentLoaded', () => {
       if (String(candidate.dataVersion || '') !== dataVersion || Number(candidate.schemaVersion) !== SCHEMA_VERSION) {
         migrationNotice = 'Saved tracker state was migrated to the current dossier data version.';
       }
-      return { ...defaults, ...candidate.state };
+      return window.RippersAdventureState.ensure({ ...defaults, ...candidate.state });
     }
 
     migrationNotice = 'Legacy tracker state was migrated to the current version.';
-    return { ...defaults, ...candidate };
+    return window.RippersAdventureState.ensure({ ...defaults, ...candidate });
   }
 
   function loadState() {
     const stable = normalizeStoredState(readStored(storageKey));
     if (stable) {
-      persist(stable);
       return stable;
     }
 
     const legacy = normalizeStoredState(readStored(legacyKey));
     if (legacy) {
-      persist(legacy);
-      localStorage.removeItem(legacyKey);
       return legacy;
     }
 
-    return { ...defaults };
+    return window.RippersAdventureState.ensure(defaults);
   }
 
-  let state = loadState();
+  let state;
+  try { state = loadState(); } catch (error) {
+    const warning = document.createElement('p');
+    warning.setAttribute('role', 'alert');
+    warning.textContent = error.message;
+    root.prepend(warning);
+    return;
+  }
+  const lockName = `rippers-character-write:${slug}`;
+  const progressionFields = ['skillValues', 'developmentHistory', 'developmentSummaries', 'masteryClaimed', 'developmentJournal', 'adventureProgress', 'experienceChecks', 'unattributedChecks'];
+
+  function withState(action) {
+    return async (...args) => {
+      const run = async () => {
+        state = loadState();
+        if (state.developmentJournal) throw new Error('Finish the recorded development check before changing tracker state. An interrupted roll may require Keeper review.');
+        return action(...args);
+      };
+      try {
+        // Existing trackers remain usable on older browsers. Development itself
+        // requires Web Locks and will not roll without cross-tab serialization.
+        return await (navigator.locks ? navigator.locks.request(lockName, run) : run());
+      } catch (error) {
+        state = loadState();
+        render();
+        window.alert(error.message || 'The tracker could not be saved.');
+      }
+    };
+  }
+
+  function refreshState() {
+    state = loadState();
+    render();
+    window.dispatchEvent(new CustomEvent('rippers:state-change', { detail: { slug, state } }));
+  }
+  window.addEventListener('storage', event => { if (event.key === storageKey) refreshState(); });
+  window.addEventListener('pageshow', refreshState);
 
   function clamp(value, min, max) {
     return Math.min(max, Math.max(min, value));
@@ -143,6 +184,25 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 
   function render() {
+    document.querySelectorAll('[data-current-skill]').forEach(el => {
+      const value = state.skillValues?.[el.dataset.currentSkill];
+      if (Number.isSafeInteger(value)) el.textContent = `${value}${el.dataset.skillSuffix || ''}`;
+    });
+    document.querySelectorAll('[data-current-thresholds]').forEach(el => {
+      const value = state.skillValues?.[el.dataset.currentThresholds];
+      if (Number.isSafeInteger(value)) {
+        const { hard, extreme } = window.RippersSkillValues.thresholds(value);
+        el.textContent = `Hard ${hard} · Extreme ${extreme}`;
+      }
+    });
+    document.querySelectorAll('[data-skill-check]').forEach(input => {
+      const value = state.skillValues?.[input.dataset.skillCheck];
+      if (Number.isSafeInteger(value)) input.dataset.skillValue = value;
+    });
+    document.querySelectorAll('[data-firearm-reference]').forEach(el => {
+      const value = state.skillValues?.handgun;
+      if (Number.isSafeInteger(value)) el.textContent = el.textContent.replace(/(Handgun )\d+%/, `$1${value}%`);
+    });
     document.querySelectorAll('[data-state-display="hp"]').forEach(el => el.textContent = state.hp);
     document.querySelectorAll('[data-state-display="sanity"]').forEach(el => el.textContent = state.sanity);
     document.querySelectorAll('[data-state-display="max-sanity"]').forEach(el => el.textContent = sanityCap());
@@ -158,7 +218,11 @@ window.addEventListener('DOMContentLoaded', () => {
 
     document.querySelectorAll('[data-skill-check]').forEach(input => {
       input.checked = state.skillChecks.includes(input.dataset.skillCheck);
+      input.disabled = window.RippersAdventureState.current(state).status !== 'active' || Boolean(state.developmentJournal);
     });
+
+    const clearChecks = document.querySelector('[data-clear-skill-checks]');
+    if (clearChecks) clearChecks.disabled = window.RippersAdventureState.current(state).status !== 'active';
 
     document.querySelectorAll('[data-sanity-period-loss]').forEach(el => el.textContent = state.sanityPeriodLoss);
     document.querySelectorAll('[data-sanity-period-start]').forEach(el => el.textContent = state.sanityPeriodStart);
@@ -256,9 +320,10 @@ window.addEventListener('DOMContentLoaded', () => {
     });
 
     dialog.querySelector('[data-export-player-state]')?.addEventListener('click', () => {
+      state = loadState();
       const payload = {
         format: 'rippers-player-state',
-        version: 2,
+        version: 4,
         schemaVersion: SCHEMA_VERSION,
         dataVersion,
         character: slug,
@@ -280,13 +345,13 @@ window.addEventListener('DOMContentLoaded', () => {
       if (status) status.textContent = 'State backup exported.';
     });
 
-    importInput?.addEventListener('change', async () => {
+    importInput?.addEventListener('change', withState(async () => {
       const file = importInput.files?.[0];
       if (!file) return;
 
       try {
         const payload = JSON.parse(await file.text());
-        if (payload?.format !== 'rippers-player-state' || ![1, 2].includes(Number(payload?.version))) {
+        if (payload?.format !== 'rippers-player-state' || ![1, 2, 3, 4].includes(Number(payload?.version))) {
           throw new Error('That file is not a supported Rippers player-state backup.');
         }
         if (payload.character !== slug) {
@@ -303,6 +368,24 @@ window.addEventListener('DOMContentLoaded', () => {
         }
 
         const importedState = { ...defaults, ...payload.characterState };
+        // A backup cannot roll back committed progression or remove a reservation.
+        // Browser persistence is the approved model. Transferring differing
+        // progression remains a deliberate Keeper reconciliation operation.
+        for (const key of progressionFields) {
+          const incoming = payload.characterState[key];
+          if (incoming !== undefined && JSON.stringify(incoming) !== JSON.stringify(state[key])) {
+            throw new Error('This backup has different development history. Keeper reconciliation is required; progression cannot be replaced through tracker import.');
+          }
+          importedState[key] = state[key];
+        }
+        if (state.developmentHistory.length || window.RippersAdventureState.current(state).status !== 'active') {
+          importedState.skillChecks = state.skillChecks;
+        } else {
+          const marks = new Set(importedState.skillChecks);
+          const current = state.adventureProgress.current;
+          importedState.experienceChecks = state.experienceChecks.filter(check => check.adventure_id !== current || check.resolved || marks.has(check.skill_id));
+          importedState.unattributedChecks = state.unattributedChecks.filter(id => marks.has(id));
+        }
         importedState.cthulhuMythos = clamp(Number(importedState.cthulhuMythos || 0), 0, 99);
         const importedCap = Math.max(0, Math.min(configuredMaxSanity, 99 - importedState.cthulhuMythos));
         importedState.sanity = clamp(Number(importedState.sanity), 0, importedCap);
@@ -319,21 +402,21 @@ window.addEventListener('DOMContentLoaded', () => {
         if (status) status.textContent = error?.message || 'That backup could not be imported.';
         importInput.value = '';
       }
-    });
+    }));
   }
 
   document.querySelectorAll('[data-state-delta]').forEach(button => {
-    button.addEventListener('click', () => {
+    button.addEventListener('click', withState(() => {
       const key = button.dataset.stateKey;
       const delta = Number(button.dataset.stateDelta);
       const max = key === 'sanity' ? sanityCap() : Number(button.dataset.stateMax || 999);
       state[key] = clamp(Number(state[key]) + delta, 0, max);
       saveState();
-    });
+    }));
   });
 
   document.querySelectorAll('[data-state-input]').forEach(input => {
-    input.addEventListener('change', () => {
+    input.addEventListener('change', withState(() => {
       const key = input.dataset.stateInput;
       if (key === 'majorWound') {
         const wasMarked = Boolean(state.majorWound);
@@ -361,10 +444,10 @@ window.addEventListener('DOMContentLoaded', () => {
       const max = key === 'sanity' ? sanityCap() : Number(input.max || 999);
       state[key] = clamp(Number(input.value), 0, max);
       saveState();
-    });
+    }));
   });
 
-  document.querySelector('[data-apply-damage]')?.addEventListener('click', () => {
+  document.querySelector('[data-apply-damage]')?.addEventListener('click', withState(() => {
     const input = document.querySelector('[data-damage-entry]');
     const damage = Math.max(0, Math.floor(Number(input?.value || 0)));
     if (!damage) return;
@@ -390,9 +473,9 @@ window.addEventListener('DOMContentLoaded', () => {
 
     if (input) input.value = '';
     saveState();
-  });
+  }));
 
-  document.querySelector('[data-apply-sanity-loss]')?.addEventListener('click', () => {
+  document.querySelector('[data-apply-sanity-loss]')?.addEventListener('click', withState(() => {
     if (state.temporaryCheckPending) {
       state.lastSanNotice = 'Resolve the pending INT check before entering another SAN-loss event.';
       saveState();
@@ -435,10 +518,10 @@ window.addEventListener('DOMContentLoaded', () => {
 
     if (input) input.value = '';
     saveState();
-  });
+  }));
 
   document.querySelectorAll('[data-temp-resolution]').forEach(button => {
-    button.addEventListener('click', () => {
+    button.addEventListener('click', withState(() => {
       if (!state.temporaryCheckPending) return;
       const result = button.dataset.tempResolution;
       state.temporaryCheckPending = false;
@@ -451,10 +534,10 @@ window.addEventListener('DOMContentLoaded', () => {
         state.lastSanNotice = 'INT roll failed: no temporary insanity from that one-time loss.';
       }
       saveState();
-    });
+    }));
   });
 
-  document.querySelector('[data-reset-sanity-period]')?.addEventListener('click', () => {
+  document.querySelector('[data-reset-sanity-period]')?.addEventListener('click', withState(() => {
     if (!window.confirm('Start a new cumulative SAN-loss period? Do this only when the Keeper determines a new period of safety/rest begins.')) return;
     state.sanityPeriodStart = state.sanity;
     state.sanityPeriodLoss = 0;
@@ -463,9 +546,9 @@ window.addEventListener('DOMContentLoaded', () => {
       ? `New SAN-loss period started at ${state.sanity} SAN. ${active} remains active; any further SAN loss causes another bout until the Keeper ends the condition.`
       : `New SAN-loss period started at ${state.sanity} SAN. A fresh one-fifth threshold is now being tracked.`;
     saveState();
-  });
+  }));
 
-  document.querySelector('[data-clear-sanity-condition]')?.addEventListener('click', () => {
+  document.querySelector('[data-clear-sanity-condition]')?.addEventListener('click', withState(() => {
     if (state.sanity <= 0) {
       state.lastSanNotice = 'SAN is 0: permanent insanity cannot be ended with this control.';
       saveState();
@@ -478,34 +561,40 @@ window.addEventListener('DOMContentLoaded', () => {
     state.indefiniteInsanity = false;
     state.lastSanNotice = 'Insanity condition ended by Keeper decision. Remaining bout cards are cleared. SAN total and the cumulative SAN-loss period are unchanged.';
     saveState();
-  });
+  }));
 
   document.querySelectorAll('[data-skill-check]').forEach(input => {
-    input.addEventListener('change', () => {
+    input.addEventListener('change', withState(() => {
       const id = input.dataset.skillCheck;
-      const checks = new Set(state.skillChecks);
-      input.checked ? checks.add(id) : checks.delete(id);
-      state.skillChecks = [...checks];
+      window.RippersAdventureState.mark(state, id, input.checked);
       saveState();
-    });
+    }));
   });
 
-  document.querySelector('[data-clear-skill-checks]')?.addEventListener('click', () => {
+  document.querySelector('[data-clear-skill-checks]')?.addEventListener('click', withState(() => {
     if (!state.skillChecks.length) return;
     if (!window.confirm('Clear all resolved improvement checks?')) return;
-    state.skillChecks = [];
+    if (window.RippersAdventureState.current(state).status !== 'active') return;
+    for (const id of [...state.skillChecks]) window.RippersAdventureState.mark(state, id, false);
     saveState();
-  });
+  }));
 
-  document.querySelector('[data-reset-character-state]')?.addEventListener('click', () => {
-    if (!window.confirm('Reset this investigator tracker to the dossier defaults? This clears HP/SAN/Luck changes, Mythos, conditions, improvement marks, and private effects on this device.')) return;
-    state = { ...defaults, skillChecks: [] };
+  document.querySelector('[data-reset-character-state]')?.addEventListener('click', withState(() => {
+    if (!window.confirm('Reset current conditions to dossier defaults? This clears HP/SAN/Luck changes, Mythos, conditions and private effects. Adventure progress, experience marks, permanent skill development, mastery and history are retained.')) return;
+    const progression = Object.fromEntries(progressionFields.map(key => [key, state[key]]));
+    state = { ...defaults, ...progression, skillChecks: state.skillChecks };
     migrationNotice = '';
     saveState();
     emit('tracker-reset');
-  });
+  }));
 
-  persist(state);
   render();
   setupStateSettings();
+  const store = {
+    root, slug, read: () => loadState(), write: persist, lockName,
+    maxSanity: value => Math.max(0, Math.min(configuredMaxSanity, 99 - Number(value.cthulhuMythos || 0))),
+    refresh: refreshState
+  };
+  window.RippersAdventureUI.mount(store);
+  window.RippersDevelopmentUI?.mount(store);
 });

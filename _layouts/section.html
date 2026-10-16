@@ -24,6 +24,8 @@ layout: base
   {% include people-page.html %}
 {% elsif p and page.context_nav == 'possessions' %}
   {% include possessions-means.html %}
+{% elsif p and page.context_nav == 'scenario' %}
+  {% include scenario-workspace.html %}
 {% else %}
   {{ content }}
 {% endif %}

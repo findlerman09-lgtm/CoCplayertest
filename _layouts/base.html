@@ -26,6 +26,12 @@
   <script defer src="{{ '/assets/archive-gate.js' | relative_url }}"></script>
   <script defer src="{{ '/assets/reveal.js' | relative_url }}"></script>
   <script defer src="{{ '/assets/character-lock.js' | relative_url }}"></script>
+  <link rel="stylesheet" href="{{ '/assets/development.css' | relative_url }}">
+  <script defer src="{{ '/assets/adventure-state.js' | relative_url }}"></script>
+  <script defer src="{{ '/assets/adventure-ui.js' | relative_url }}"></script>
+  <script defer src="{{ '/assets/skill-values.js' | relative_url }}"></script>
+  <script defer src="{{ '/assets/development-engine.js' | relative_url }}"></script>
+  <script defer src="{{ '/assets/development-ui.js' | relative_url }}"></script>
   <script defer src="{{ '/assets/character-state.js' | relative_url }}"></script>
   <script defer src="{{ '/assets/private-effects.js' | relative_url }}"></script>
   <script defer src="{{ '/assets/pass-1-5.js' | relative_url }}"></script>
@@ -112,6 +118,7 @@
             <a href="{{ character_base | append: '/correspondence/' | relative_url }}" {% if page.context_nav == 'correspondence' %}class="active"{% endif %}><span>04</span>Correspondence</a>
             <a href="{{ character_base | append: '/documents/' | relative_url }}" {% if page.context_nav == 'documents' %}class="active"{% endif %}><span>05</span>Documents</a>
             <a href="{{ character_base | append: '/possessions/' | relative_url }}" {% if page.context_nav == 'possessions' %}class="active"{% endif %}><span>06</span>Possessions</a>
+            {% unless character.legacy %}<a href="{{ character_base | append: '/scenario/' | relative_url }}" data-next-scenario-link hidden><span>07</span>Next Scenario</a>{% endunless %}
             <a href="{{ '/investigators/keeper-reference/' | relative_url }}"><span>↗</span>Keeper Reference</a>
           </nav>
           <div class="context-current-file">

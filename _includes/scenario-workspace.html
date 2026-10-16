@@ -1,0 +1,14 @@
+<section class="frame dark-frame development-frame">
+  <header><span>Scenario Workspace</span><b>Investigator</b></header>
+  <div class="frame-body" data-scenario-workspace>
+    <p>Complete investigator development to open this workspace.</p>
+  </div>
+</section>
+<template data-scenario-tools>
+  <nav class="scenario-tools" aria-label="Scenario tools">
+    <a class="small-action" href="{{ '/characters/' | append: page.character_slug | append: '/sheet/' | relative_url }}">Character Sheet & Development</a>
+    <a class="small-action" href="{{ '/characters/' | append: page.character_slug | append: '/correspondence/' | relative_url }}">Private Correspondence</a>
+    <a class="small-action" href="{{ '/characters/' | append: page.character_slug | append: '/documents/' | relative_url }}">Personal Documents</a>
+    <a class="small-action" href="{{ '/documents/' | relative_url }}">Shared Documents</a>
+  </nav>
+</template>
