@@ -1,107 +1,93 @@
 # Between-adventure investigator development — PM handoff
 
-Date: 16 October 2026  
-Base reviewed: `defe3ecef314294cd52442fadb35656d5a7a7707`  
-Review branch: `codex/investigator-development`  
-Disposition: **HOLD — integration dependencies remain; do not merge or deploy.**
+Updated: 16 October 2026, following the user's persistence and scenario-UI clarification
+Review branch: `codex/investigator-development`
+PR: https://github.com/findlerman09-lgtm/CoCplayertest/pull/51
+Disposition: **READY FOR PM QA — not merged or deployed.**
 
-The requested development engine, sequential player interface, persistent results and sheet integration are implemented for review. The production site intentionally exposes no roll action without a valid upstream context. This is not a claim that the live campaign workflow is ready.
+The user approved browser persistence and specified that upgrading investigators must unlock the second-scenario UI. That clarification supersedes the earlier restriction against unlocking that UI. The development engine still never marks an adventure complete, starts one, releases a handout, opens SEALED correspondence or writes Keeper/scenario mechanics. Separate bookkeeping controls record Keeper-confirmed completion and the start of the second adventure; UI availability reads the completed development receipt.
 
-## Dependencies requiring PM decision
+## Player / Keeper flow
 
-1. **Completion and participation source is absent.** `_data/case_files.yml` has a player archive entry with `status: open`; it does not establish an identified completed adventure or investigator participation. `_data/site_state.yml` records website production status, not adventure completion. Neither has been reinterpreted. PM must identify/provide the authoritative read-only source, or authorize a separately scoped upstream implementation.
-2. **Existing experience marks have no adventure origin.** `character-state.js` stores `skillChecks: [skillId, ...]`. No date, release key, current case label or filename can safely assign those marks to an adventure. PM/Keeper must reconcile existing marks and supply their real origin. This change does not alter which uses earn checks or silently migrate them to Adventure I.
-3. **Persistence is browser-local.** The existing site has no account-backed character store. This implementation enforces uniqueness and preserves results within the same origin/browser profile, including concurrent tabs and sign-out/return. It does not establish cross-device uniqueness, remote backup, or protection against deliberate storage clearing, eviction, console edits, or an older deployed client overwriting the tracker. PM must approve this bounded storage model or authorize a durable shared store before activation. Existing repository guidance treated permanent advancement as a Keeper-published data update; that publication/reconciliation policy must be settled too. P-07 files were not overwritten.
+1. During **Who is Jack?**, the player marks eligible skills as before. New marks automatically record that adventure as their origin; the rules for earning a mark are unchanged.
+2. In **Adventure Progress**, confirm that the Keeper ended the adventure and this investigator participated. Older marks are listed and require a separate confirmation that they belong to this adventure. If that is incorrect, correct the marked skills with the Keeper before continuing. No existing mark is silently attributed.
+3. Press **Finish Adventure (Keeper confirmed)**. Marks are frozen for that completed adventure. Investigator Development becomes available.
+4. Resolve each checked skill deliberately. Every result and any mastery/SAN reward is saved. Once all eligible checks are resolved, the **How is Jack?** workspace becomes available automatically for that investigator. An adventure with no eligible checks completes and unlocks cleanly without dice.
+5. **Open next scenario workspace** shows the upgraded investigator's existing sheet, correspondence, personal documents and shared-document tools. **Begin Scenario (Keeper confirmed)** is a separate action that starts attributing new marks to How is Jack?. Old marks remain resolved and values/history carry forward.
 
-## Changes
+The completion confirmation is made in each investigator's browser profile, following the Keeper's instruction. There is no central account synchronization or new Keeper-authentication system; this follows the site's existing trusted-table, Keeper-confirmed control pattern. The unlock is per investigator, not a requirement that all five investigators finish together.
+
+There was no second-scenario player workspace in the repository. This change adds its gated shell and links to existing tools. Scenario-specific scenes, text and handouts have not been invented or added. Existing release controls still decide when material can be opened.
+
+## Files/components changed
 
 | Files | Purpose |
 | --- | --- |
-| `assets/development-engine.js` | Eligibility, per-event identity, durable dice journal, permanent values, mastery, audit entries and completion summaries. No adventure/release writes. |
-| `assets/skill-values.js` | Shared runtime Hard/Extreme calculation using floor division, matching the existing sheet's Liquid integer division. |
-| `assets/development-ui.js`, `assets/development.css` | Sequential skill cards, result explanations, mastery/cap display, completion and archived summaries, responsive styling. |
-| `assets/character-state.js` | Schema 3; serialized tracker writes, permanent skill rendering, progression-preserving reset/import, storage refresh, fail-closed corrupt-storage handling. |
-| `_includes/character-sheet.html` | Development panel and live skill, threshold, combat and language references. Existing controls remain. |
-| `_includes/possessions-means.html` | Own-language values reflect saved development. |
-| `_layouts/base.html` | Load the new runtime/style components before the existing tracker. |
-| `_config.yml` | Exclude QA fixtures from the published site. |
-| `tests/development.test.cjs`, `tests/development-browser.cjs` | Rule/persistence checks and browser tests using actual sheet/base templates with explicitly fictional upstream fixtures. |
-| `docs/state-storage-note.md`, this handoff | Storage behavior, activation dependencies, test results and migration instructions. |
+| `assets/adventure-state.js` | Browser-local current adventure, Keeper-confirmed completion/participation, check origins, explicit legacy reconciliation, and second-workspace eligibility. |
+| `assets/adventure-ui.js` | Completion confirmation, read-only context provider, workspace availability, and a distinct Keeper-confirmed scenario-start action. |
+| `assets/development-engine.js` | Eligibility, unique event identity, durable dice journal, permanent skill values, mastery/SAN, immutable audit entries and completion receipts. |
+| `assets/development-ui.js`, `assets/development.css` | Sequential development cards, result explanations, mastery/cap detail, archived summaries and responsive workspace controls. |
+| `assets/skill-values.js` | Shared runtime Hard/Extreme calculation; integer floor division matches the original Liquid sheet convention. |
+| `assets/character-state.js` | Schema 4; serialized writes, progression-safe resets/imports, adventure-scoped marks, permanent values in sheet/combat/language references. |
+| `_includes/character-sheet.html`, `_includes/possessions-means.html` | Development and progress panels; current skill/language values. |
+| `_includes/scenario-workspace.html`, five `characters/<slug>/scenario.md` files | Gated second-scenario workspace for the five canonical investigators. |
+| `_layouts/base.html`, `_layouts/section.html` | Runtime components, hidden-until-earned navigation, workspace routing. |
+| `_config.yml` | Excludes tests from the published site. |
+| `tests/development.test.cjs`, `tests/adventure-state.test.cjs`, `tests/development-browser.cjs` | Engine, bookkeeping and real-controls browser QA. |
+| `docs/state-storage-note.md`, this file | Current behavior, migration and QA evidence. |
 
-No `_data` files, investigator identities, starting builds, talents, Luck rules, scenario/reveal scripts, Keeper content or release conditions changed. Clara Mercer remains the canonical reporter; the newspaper title remains held. The non-canon Whitcombe fixture is not promoted into the live roster.
+No `_data` files or P-07 starting values changed. Clara Mercer remains the canonical reporter; her newspaper title remains held. No talents, Luck rules, scenario mechanics, Keeper content, handout/reveal scripts or existing release conditions changed. Whitcombe remains a non-canon fixture.
 
-## Read-only upstream contract
+## Data, eligibility and persistence
 
-The production bundle does **not** install this provider. Its owner must expose:
+The existing `rippers-character-state:<slug>` envelope advances to schema 4 and retains its data version. Added fields are:
 
-```js
-window.RippersDevelopmentContext = {
-  async read(investigatorId) {
-    // Read the authoritative source; return only the allowed projection below.
-    // Return null when completion/participation/origins cannot be established.
-  }
-};
-```
+- `skillValues`: current permanent skill overrides, leaving P-07 as the starting baseline.
+- `developmentHistory`: append-only audit entries identified by `[investigator_id, adventure_id, skill_id]`.
+- `developmentSummaries`: completion receipts, including no-check adventures.
+- `masteryClaimed`: per-skill identity of the first awarded mastery event.
+- `developmentJournal`: one unfinished resolution or `null`.
+- `adventureProgress`: current adventure ID and each adventure's active/completed state, participation confirmation and timestamps.
+- `experienceChecks`: adventure ID, skill ID, earned and resolved flags.
+- `unattributedChecks`: older marks awaiting the user's explicit origin confirmation.
 
-The return value must have this shape (values below are QA examples, not canon):
+`RippersAdventureUI` supplies `RippersDevelopmentContext.read(investigatorId)` from that saved bookkeeping. Its projection contains only investigator ID, current adventure ID/title, completion/active status, participation and the complete scoped check list. Development rereads it under the write lock at action time. The engine accepts no completion/start/release writer. Unknown/unattributed checks and missing participation fail closed.
 
-```json
-{
-  "investigator_id": "arthur-bell",
-  "adventure_id": "qa-case-one",
-  "adventure_title": "QA Completed Case",
-  "status": "completed",
-  "active_adventure": false,
-  "participated": true,
-  "checks_complete": true,
-  "checks": [
-    { "adventure_id": "qa-case-one", "skill_id": "spot-hidden", "earned": true, "resolved": false }
-  ]
-}
-```
+Each successful skill resolution clears its active mark and sets that specific adventure/check record to resolved. The next adventure can earn another mark for the same skill. All required audit fields are retained, plus the player-safe adventure title, individual mastery dice and SAN maximum at resolution. Failed improvement stores a null D10 and unchanged value; successful skill values can exceed 100.
 
-`checks_complete` certifies that this is the complete check inventory, not a partial fetch. A missing/malformed projection, an active adventure, a nonparticipant, or an unmapped earned check fails closed. An authoritative empty list yields a persisted no-check completion summary. A current adventure title must already be player-safe; the adapter must never supply a hidden/next-adventure title. IDs use lowercase letters, digits and hyphens.
+All writes share the Web Lock `rippers-character-write:<slug>` and reread current storage while holding it. A durable pending reservation precedes each die stage; the generated D100, D10 and 2D6 results are stored before proceeding. Final skill values, mark clearing, SAN/mastery, history and completion receipt commit together in one atomic localStorage write. Duplicate event requests return their original record. Tabs cannot independently resolve the same event.
 
-The feature rereads context under the exclusive write lock at action time and refuses an unexpected adventure switch. Its only output is the existing character-state envelope. It never calls an upstream writer, marks an adventure complete, or releases material. The adapter may notify a changed projection with `rippers:development-context-change`. Do not ship the QA adapter as the live source.
+Stored-result interruptions resume with **Finish Recorded Development**. If execution/storage failed between a pending reservation and saving its result, the reservation blocks replacement dice and requires Keeper reconciliation. There is no automatic reroll. A pending journal also blocks unrelated tracker changes. Corrupt/unreadable storage is not replaced with defaults.
 
-## Schema, persistence and recovery
+Mastery requires the first successful crossing from below 90 to at least 90 and an unclaimed skill flag. Its 2D6 reward is capped by the current normal SAN maximum, including Mythos. Subsequent above-90 improvements do not repeat the reward; starting values already at 90 do not trigger it. SAN gains do not reset insanity conditions or the loss period. A roll of +9 at SAN 95 with max 99 applies 4 and displays **5 points limited**.
 
-The existing `rippers-character-state:<slug>` key and `dataVersion` remain. The envelope advances to `schemaVersion: 3`, adding:
+The second workspace's availability derives from the first adventure's completed development receipt. That derived UI unlock writes no release keys and does not start the next adventure. A separate explicit start action advances the bookkeeping and begins with clean marks. The earned workspace remains available during later play/development.
 
-- `skillValues`: current permanent skill overrides; P-07 remains the starting baseline.
-- `developmentHistory`: append-only resolved audit records keyed by the JSON tuple `[investigator_id, adventure_id, skill_id]`.
-- `developmentSummaries`: completed-adventure receipts, including zero-check completion.
-- `masteryClaimed`: per-skill identity of the first paid mastery event.
-- `developmentJournal`: at most one unfinished event, or `null`.
+## Migration and browser-persistence scope
 
-Every audit record retains all requested fields plus the player-safe adventure title, individual mastery dice and SAN maximum at resolution. Failure stores `improvement_roll: null`; success may exceed 100. SAN gain does not reset insanity conditions or the SAN-loss period. Mastery requires a successful first crossing from below 90 to at least 90 and an unclaimed skill flag; starting values already at 90 do not generate an award.
+Existing v1/v2/v3 state is read compatibly and written as schema 4 on mutation. Existing checkmarks stay unassigned until the player explicitly confirms their origin at completion. Newly marked checks receive the current adventure ID. Existing language IDs and the site's original earning controls are retained, including languages that have no check control. Reset retains adventure progress, experience marks, permanent increases, mastery and history while restoring current conditions. Legacy imports cannot roll back committed progress or resurrect processed marks; differing progression backups require Keeper reconciliation.
 
-All tracker mutations and development use the same Web Lock, `rippers-character-write:<slug>`, and reread current storage under that lock. The tuple is checked before RNG. A durable pending reservation precedes each D100, D10 or 2D6 generation; the generated result is then saved. Final skill values, cleared local mark, SAN, mastery flag, audit and completion receipt are committed together in one atomic `localStorage.setItem`. A completed event returns its stored result without drawing dice.
+Browser persistence is the user's approved storage model. State survives refresh, back navigation, duplicate clicks, closing/reopening, and lock/sign-out/return in the same origin/profile. It does not synchronize devices or protect against explicit storage clearing/eviction, console edits, or an older deployed client overwriting data. Exports include the full state. Use one browser profile per investigator and refresh older open tabs when this version is eventually deployed. No shared backend is required or pending for this implementation.
 
-If a result was stored but a later stage failed, **Finish Recorded Development** resumes from stored dice. If execution/storage failed between reservation and result storage, the pending reservation blocks replacement dice and requires Keeper reconciliation; there is deliberately no automatic reroll or reset button. Other tracker mutations are blocked while that journal is unresolved. This is a fail-closed exception, not a completed audit result.
+## UI states
 
-Tracker reset retains progression/history/mastery. Legacy imports retain existing progression and cannot resurrect processed marks. A backup whose progression differs from this browser is rejected for Keeper reconciliation, including transfer to a fresh device; exports still contain the full progress. No cross-device import guarantee is claimed. Corrupt/unreadable tracker JSON is not silently replaced with defaults.
+- **LOCKED:** active adventure, unconfirmed participation/origins or unavailable context; no roll action.
+- **AVAILABLE:** completed-adventure heading, first eligible skill and deliberate roll action.
+- **IN PROGRESS:** saved result cards followed by the next skill; second workspace remains locked.
+- **COMPLETE:** immutable summary, updated values and mastery detail; second workspace link appears automatically after Adventure I. No eligible checks produces a persistent clean completion.
+- **ARCHIVED:** prior development summaries stay viewable during the next adventure without reroll controls.
+- **Second workspace:** direct navigation before the unlock shows a generic locked message without the second title. After unlock it shows How is Jack? and the existing dossier/document tools; scenario-specific content remains to be supplied through normal release work.
 
-Existing v1/v2 trackers are read compatibly; schema 3 is written on the next authorized mutation. No adventure attribution is guessed. Before activation, reconcile legacy skill IDs (including existing `language-own-N` IDs), check origins and any previously awarded mastery/history. The language earning controls remain exactly as found, including languages that currently have no check control.
-
-## Player states — descriptions verified in browser
-
-- **LOCKED:** explanation only; no dice button. Missing upstream data and active adventures both fail closed.
-- **AVAILABLE:** completed adventure title, first eligible checked skill, current value and deliberate **Make Development Roll** action.
-- **IN PROGRESS:** committed result cards followed by the next checked skill. No page-load batch rolls.
-- **COMPLETE:** permanent result list with pre/post values, dice, Hard/Extreme and mastery/SAN cap details; no development button. An empty eligible inventory displays a clean completion message and saves its receipt.
-- **ARCHIVED:** prior summaries in an expandable read-only history. No reroll control is present, including while a later adventure is active.
-
-Desktop and 390px mobile screens were inspected. The existing dark teal/gold dossier styling is retained. For a reward roll of 9 at SAN 95 with maximum 99, the UI correctly reports **5 points limited** (4 applied).
+Desktop and 390px mobile layouts were inspected. The existing teal/gold dossier styling is retained.
 
 ## Acceptance results
 
-**All 20 requested checks pass at the engine/fixture level.** The full browser flow uses the actual Liquid sheet and base templates and local QA data. These results do not certify live campaign eligibility or distributed persistence; those remain blocked by the dependencies above.
+**All twenty original checks pass, with test 20 updated for the user's explicit workspace-unlock instruction.** The integrated browser pass uses the actual new bookkeeping and controls, not an injected completion provider. The older fixture-provider pass is retained for isolated concurrency, offline, failure and mastery checks.
 
 | # | Acceptance test | Result / evidence |
 | --- | --- | --- |
 | 1 | Locked during active adventure | PASS — engine and browser; no action. |
-| 2 | Available after completion | PASS with read-only fixture; completion object unchanged. Live adapter absent. |
+| 2 | Available after completion | PASS — real Keeper-confirmed completion feeds a read-only development projection; rolling never changes completion. |
 | 3 | Only checked skills | PASS — unchecked skills absent and direct attempts rejected. |
 | 4 | Exclusions | PASS — characteristics, Mythos, Credit Rating, Luck, SAN and talents rejected. |
 | 5 | One D100 | PASS — repeat/reopen use original audit; browser reload/back retain count. |
@@ -117,23 +103,25 @@ Desktop and 390px mobile screens were inspected. The existing dark teal/gold dos
 | 15 | SAN maximum | PASS — Mythos-sensitive engine cap; browser 95 to 99 truncation verified. |
 | 16 | Mastery once | PASS — later above-90 improvement adds no second reward. |
 | 17 | Audit persists | PASS — reopen, lock/return, tracker reset and legacy import preserve history. |
-| 18 | Adventure attribution | PASS — audit retains origin; wrong/unattributed checks cannot resolve. Legacy migration remains PM work. |
+| 18 | Adventure attribution | PASS — new marks record origin; old marks require explicit confirmation in the UI; audit retains origin. |
 | 19 | Next adventure clean | PASS — increased values persist, old checks cleared, new empty case has no rolls. |
-| 20 | Spoiler regression | PASS for this change — no scenario/release data or scripts changed; sentinel release state unchanged through browser flow; unsafe context fields are not copied. Full live release rehearsal still belongs to PM QA. |
+| 20 | Spoiler regression | PASS — the user-authorized second workspace unlocks after development; SEALED/reveal scripts, release keys and content remain unchanged. Unsafe context fields are not copied. |
 
-Additional tests cover missing participation, missing provider, incomplete check inventory, unmapped skills, languages, durable empty summaries, failed result writes, stored-D100 recovery and failed-final-commit recovery without repeating SAN. **27 Node tests pass**, plus the rendered-source browser suite. No JavaScript exceptions in the completed browser run. `git diff --check` and syntax checks pass.
 
-Browser validation used Chromium 153 and LiquidJS rendering of the repository's real templates, with the existing integer-division convention registered. This is **not** a full Ruby/Jekyll production build; Ruby/Jekyll was unavailable here. PM should run the native Pages build before approving a merge.
+**37 Node tests pass**, plus both browser modes. Additional coverage includes explicit legacy-origin confirmation, participation confirmation, partial development keeping the second workspace locked, automatic last-check and no-check unlock, direct-route gating, separate scenario start, fresh second-adventure origins, persistent baseline values, unchanged release keys, two-tab duplicate resolution, offline resolution on a loaded page, reset/import protection and mobile layout. Completed browser runs have no JavaScript exceptions. Syntax checks and `git diff --check` pass.
+
+Browser validation used Chromium 153 and LiquidJS rendering of the real repository templates, registering the existing integer-division convention. A native Ruby/Jekyll production build remains a PM QA check: Ruby/Jekyll was unavailable and package installation was blocked by environment permissions. No release build or deployment is claimed.
 
 Reproduce:
 
 ```sh
-node --test tests/development.test.cjs
-# Install liquidjs, js-yaml and playwright outside the source tree or in a QA environment.
-# Ensure Playwright Chromium is installed; QA_CHROMIUM_PATH can select an existing binary.
+node --test tests/*.test.cjs
+# QA environment: liquidjs, js-yaml, playwright and Chromium installed outside source.
 NODE_PATH=/path/to/qa/node_modules node tests/development-browser.cjs
+QA_REAL_ADVENTURE=1 NODE_PATH=/path/to/qa/node_modules node tests/development-browser.cjs
+# Optional QA_CHROMIUM_PATH selects an existing Chromium binary.
 ```
 
-The browser fixture is excluded from the published site and does not ship test adventures or deterministic dice. No merge, production deployment, adventure completion or release action has been performed.
+QA fixtures and deterministic dice are excluded from the published site. No production adventure has been marked complete, no production release has been opened, and the draft has not been merged or deployed.
 
-**BETWEEN-ADVENTURE LEVEL UP — HOLD / ISSUE REQUIRES PM DECISION**
+**BETWEEN-ADVENTURE LEVEL UP — READY FOR PM QA**

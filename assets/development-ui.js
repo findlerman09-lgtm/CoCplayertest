@@ -29,7 +29,7 @@
     if (!panel) return;
     const catalog = [...store.root.querySelectorAll('[data-skill-check]')].map(input => ({
       id: input.dataset.skillCheck, name: input.dataset.skillName, value: Number(input.dataset.skillValue),
-      kind: 'skill', improvable: !input.disabled
+      kind: 'skill', improvable: true
     }));
     const content = panel.querySelector('[data-development-content]');
     const status = panel.querySelector('[data-development-status]');
@@ -55,7 +55,10 @@
           await navigator.locks.request(store.lockName, async () => {
             const fresh = store.read();
             const freshContext = await readContext();
-            if (engine.completeSummary(fresh, freshContext, store.slug, catalog, () => new Date().toISOString())) store.write(fresh);
+            if (engine.completeSummary(fresh, freshContext, store.slug, catalog, () => new Date().toISOString())) {
+              store.write(fresh);
+              store.refresh();
+            }
           });
         } catch { notice.textContent = 'The completion summary could not be saved. Please reopen development when storage is available.'; }
         if (sequence !== rendering) return;

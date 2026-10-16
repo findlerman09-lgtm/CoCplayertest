@@ -146,13 +146,19 @@
         </div>
         {% endfor %}
         <button class="small-action" type="button" data-reset-character-state>Reset local tracker</button>
-        <p class="sheet-note">Reset restores current conditions and unprocessed marks. Permanent skill development, mastery and history are retained.</p>
+        <p class="sheet-note">Reset restores current conditions. Experience marks, adventure progress, permanent skill development, mastery and history are retained.</p>
       </div>
     </article>
   </div>
 </div>
 
 {% include player-rules-at-a-glance.html %}
+
+<section class="frame dark-frame development-frame">
+  <header><span>Adventure Progress</span><b>Keeper confirmed</b></header>
+  <div class="frame-body" data-adventure-controls></div>
+  <div class="frame-body"><a class="small-action" data-next-scenario-link hidden href="{{ '/characters/' | append: page.character_slug | append: '/scenario/' | relative_url }}">Open next scenario workspace</a></div>
+</section>
 
 <section class="frame dark-frame development-frame" data-development aria-labelledby="development-heading">
   <header><span id="development-heading">Investigator Development</span><b data-development-status>LOCKED</b></header>

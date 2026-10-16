@@ -2,7 +2,7 @@ window.addEventListener('DOMContentLoaded', () => {
   const root = document.querySelector('[data-character-state]');
   if (!root) return;
 
-  const SCHEMA_VERSION = 3;
+  const SCHEMA_VERSION = 4;
   const slug = root.dataset.characterState;
   const dataVersion = String(root.dataset.stateVersion || '1');
   const maxHp = Number(root.dataset.maxHp || root.dataset.defaultHp || 0);
@@ -65,11 +65,11 @@ window.addEventListener('DOMContentLoaded', () => {
       if (String(candidate.dataVersion || '') !== dataVersion || Number(candidate.schemaVersion) !== SCHEMA_VERSION) {
         migrationNotice = 'Saved tracker state was migrated to the current dossier data version.';
       }
-      return { ...defaults, ...candidate.state };
+      return window.RippersAdventureState.ensure({ ...defaults, ...candidate.state });
     }
 
     migrationNotice = 'Legacy tracker state was migrated to the current version.';
-    return { ...defaults, ...candidate };
+    return window.RippersAdventureState.ensure({ ...defaults, ...candidate });
   }
 
   function loadState() {
@@ -83,7 +83,7 @@ window.addEventListener('DOMContentLoaded', () => {
       return legacy;
     }
 
-    return { ...defaults };
+    return window.RippersAdventureState.ensure(defaults);
   }
 
   let state;
@@ -95,7 +95,7 @@ window.addEventListener('DOMContentLoaded', () => {
     return;
   }
   const lockName = `rippers-character-write:${slug}`;
-  const progressionFields = ['skillValues', 'developmentHistory', 'developmentSummaries', 'masteryClaimed', 'developmentJournal'];
+  const progressionFields = ['skillValues', 'developmentHistory', 'developmentSummaries', 'masteryClaimed', 'developmentJournal', 'adventureProgress', 'experienceChecks', 'unattributedChecks'];
 
   function withState(action) {
     return async (...args) => {
@@ -218,7 +218,11 @@ window.addEventListener('DOMContentLoaded', () => {
 
     document.querySelectorAll('[data-skill-check]').forEach(input => {
       input.checked = state.skillChecks.includes(input.dataset.skillCheck);
+      input.disabled = window.RippersAdventureState.current(state).status !== 'active' || Boolean(state.developmentJournal);
     });
+
+    const clearChecks = document.querySelector('[data-clear-skill-checks]');
+    if (clearChecks) clearChecks.disabled = window.RippersAdventureState.current(state).status !== 'active';
 
     document.querySelectorAll('[data-sanity-period-loss]').forEach(el => el.textContent = state.sanityPeriodLoss);
     document.querySelectorAll('[data-sanity-period-start]').forEach(el => el.textContent = state.sanityPeriodStart);
@@ -319,7 +323,7 @@ window.addEventListener('DOMContentLoaded', () => {
       state = loadState();
       const payload = {
         format: 'rippers-player-state',
-        version: 3,
+        version: 4,
         schemaVersion: SCHEMA_VERSION,
         dataVersion,
         character: slug,
@@ -347,7 +351,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
       try {
         const payload = JSON.parse(await file.text());
-        if (payload?.format !== 'rippers-player-state' || ![1, 2, 3].includes(Number(payload?.version))) {
+        if (payload?.format !== 'rippers-player-state' || ![1, 2, 3, 4].includes(Number(payload?.version))) {
           throw new Error('That file is not a supported Rippers player-state backup.');
         }
         if (payload.character !== slug) {
@@ -365,8 +369,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
         const importedState = { ...defaults, ...payload.characterState };
         // A backup cannot roll back committed progression or remove a reservation.
-        // Transferring progression to another browser is deliberately not supported
-        // until PM chooses a canonical synchronized store.
+        // Browser persistence is the approved model. Transferring differing
+        // progression remains a deliberate Keeper reconciliation operation.
         for (const key of progressionFields) {
           const incoming = payload.characterState[key];
           if (incoming !== undefined && JSON.stringify(incoming) !== JSON.stringify(state[key])) {
@@ -374,7 +378,14 @@ window.addEventListener('DOMContentLoaded', () => {
           }
           importedState[key] = state[key];
         }
-        if (state.developmentHistory.length) importedState.skillChecks = state.skillChecks;
+        if (state.developmentHistory.length || window.RippersAdventureState.current(state).status !== 'active') {
+          importedState.skillChecks = state.skillChecks;
+        } else {
+          const marks = new Set(importedState.skillChecks);
+          const current = state.adventureProgress.current;
+          importedState.experienceChecks = state.experienceChecks.filter(check => check.adventure_id !== current || check.resolved || marks.has(check.skill_id));
+          importedState.unattributedChecks = state.unattributedChecks.filter(id => marks.has(id));
+        }
         importedState.cthulhuMythos = clamp(Number(importedState.cthulhuMythos || 0), 0, 99);
         const importedCap = Math.max(0, Math.min(configuredMaxSanity, 99 - importedState.cthulhuMythos));
         importedState.sanity = clamp(Number(importedState.sanity), 0, importedCap);
@@ -555,9 +566,7 @@ window.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('[data-skill-check]').forEach(input => {
     input.addEventListener('change', withState(() => {
       const id = input.dataset.skillCheck;
-      const checks = new Set(state.skillChecks);
-      input.checked ? checks.add(id) : checks.delete(id);
-      state.skillChecks = [...checks];
+      window.RippersAdventureState.mark(state, id, input.checked);
       saveState();
     }));
   });
@@ -565,14 +574,15 @@ window.addEventListener('DOMContentLoaded', () => {
   document.querySelector('[data-clear-skill-checks]')?.addEventListener('click', withState(() => {
     if (!state.skillChecks.length) return;
     if (!window.confirm('Clear all resolved improvement checks?')) return;
-    state.skillChecks = [];
+    if (window.RippersAdventureState.current(state).status !== 'active') return;
+    for (const id of [...state.skillChecks]) window.RippersAdventureState.mark(state, id, false);
     saveState();
   }));
 
   document.querySelector('[data-reset-character-state]')?.addEventListener('click', withState(() => {
-    if (!window.confirm('Reset current conditions to dossier defaults? This clears HP/SAN/Luck changes, Mythos, conditions, improvement marks, and private effects. Permanent skill development, mastery and history are retained.')) return;
+    if (!window.confirm('Reset current conditions to dossier defaults? This clears HP/SAN/Luck changes, Mythos, conditions and private effects. Adventure progress, experience marks, permanent skill development, mastery and history are retained.')) return;
     const progression = Object.fromEntries(progressionFields.map(key => [key, state[key]]));
-    state = { ...defaults, ...progression, skillChecks: [] };
+    state = { ...defaults, ...progression, skillChecks: state.skillChecks };
     migrationNotice = '';
     saveState();
     emit('tracker-reset');
@@ -580,9 +590,11 @@ window.addEventListener('DOMContentLoaded', () => {
 
   render();
   setupStateSettings();
-  window.RippersDevelopmentUI?.mount({
+  const store = {
     root, slug, read: () => loadState(), write: persist, lockName,
     maxSanity: value => Math.max(0, Math.min(configuredMaxSanity, 99 - Number(value.cthulhuMythos || 0))),
     refresh: refreshState
-  });
+  };
+  window.RippersAdventureUI.mount(store);
+  window.RippersDevelopmentUI?.mount(store);
 });

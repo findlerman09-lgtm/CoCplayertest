@@ -128,6 +128,9 @@
     record.resolved_at = now();
     state.skillValues = { ...state.skillValues, [skillId]: record.post_value };
     state.skillChecks = (state.skillChecks || []).filter(id => id !== skillId);
+    if (state.experienceChecks) state.experienceChecks = state.experienceChecks.map(check =>
+      check.adventure_id === context.adventure_id && check.skill_id === skillId
+        ? { ...check, earned: false, resolved: true } : check);
     // Local consumption is adventure-scoped. An upstream snapshot may still
     // contain the earned check: the unique history identity always wins.
     state.developmentHistory = [...history(state), copy(record)];

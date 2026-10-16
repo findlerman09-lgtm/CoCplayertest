@@ -13,5 +13,11 @@
 .development-frame button:disabled { opacity: .55; cursor: wait; }
 .development-frame summary { cursor: pointer; padding: 12px 0; color: #efd18a; }
 .development-frame [data-development-notice]:empty { display: none; }
+[data-next-scenario-link][hidden] { display: none !important; }
+[data-adventure-controls] label { display: block; margin: 14px 0; line-height: 1.6; color: #d0d6d3; }
+[data-adventure-controls] input { accent-color: #bda269; width: 18px; height: 18px; vertical-align: middle; }
+[data-adventure-controls] button { margin-top: 14px; min-height: 44px; }
+.scenario-tools { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
+.scenario-tools a { text-decoration: none; line-height: 1.5; }
 @media (max-width: 600px) { .development-card,.development-result { padding: 14px; } }
 @media print { .development-frame button { display: none; } }

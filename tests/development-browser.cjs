@@ -24,8 +24,11 @@ const key = 'rippers-character-state:arthur-bell';
   const scope = { site: { title: 'The Rippers', data }, page: { character_slug: 'arthur-bell', title: 'Character Sheet', context_nav: 'sheet', top_nav: 'investigators' } };
   scope.content = await liquid.parseAndRender(fs.readFileSync(path.join(root, '_includes/character-sheet.html'), 'utf8'), scope);
   const html = await liquid.parseAndRender(fs.readFileSync(path.join(root, '_layouts/base.html'), 'utf8'), scope);
+  const scenarioScope = { ...scope, page: { ...scope.page, title: 'Scenario Workspace', context_nav: 'scenario' } };
+  scenarioScope.content = await liquid.parseAndRender(fs.readFileSync(path.join(root, '_includes/scenario-workspace.html'), 'utf8'), scenarioScope);
+  const scenarioHTML = await liquid.parseAndRender(fs.readFileSync(path.join(root, '_layouts/base.html'), 'utf8'), scenarioScope);
   const server = http.createServer((req, res) => {
-    if (req.url === '/' || req.url.startsWith('/characters/')) { res.setHeader('Content-Type','text/html'); res.end(html); return; }
+    if (req.url === '/' || req.url.startsWith('/characters/')) { res.setHeader('Content-Type','text/html'); res.end(req.url.includes('/scenario/') ? scenarioHTML : html); return; }
     const file = path.join(root, decodeURIComponent(req.url.split('?')[0]));
     if (!file.startsWith(root + path.sep) || !fs.existsSync(file) || !fs.statSync(file).isFile()) { res.statusCode = 404; res.end(); return; }
     res.setHeader('Content-Type', file.endsWith('.js') ? 'application/javascript' : file.endsWith('.css') ? 'text/css' : file.endsWith('.svg') ? 'image/svg+xml' : 'application/octet-stream');
@@ -37,13 +40,13 @@ const key = 'rippers-character-state:arthur-bell';
     const context = await browser.newContext({ viewport: { width: 1440, height: 1000 } });
     const errors = [];
     context.on('page', page => { page.on('pageerror', error => errors.push(error.message)); page.on('dialog', dialog => dialog.accept()); });
-    await context.addInitScript(({ archive, dossier }) => {
+    await context.addInitScript(({ archive, dossier, fixtureProvider }) => {
       if (location.origin === 'null') return;
       if (!sessionStorage.getItem('qa-logged-out')) {
         localStorage.setItem('rippers-archive-access', archive);
         localStorage.setItem('rippers-dossier-access:arthur-bell', dossier);
       }
-      window.RippersDevelopmentContext = { read: () => JSON.parse(localStorage.getItem('qa-context') || 'null') };
+      if (fixtureProvider) window.RippersDevelopmentContext = { read: () => JSON.parse(localStorage.getItem('qa-context') || 'null') };
       Object.defineProperty(crypto, 'getRandomValues', { value: array => {
         const rolls = JSON.parse(localStorage.getItem('qa-rolls') || '[]');
         if (!rolls.length) throw Error('Unexpected random draw');
@@ -52,12 +55,83 @@ const key = 'rippers-character-state:arthur-bell';
         localStorage.setItem('qa-draws', String(Number(localStorage.getItem('qa-draws') || 0) + 1));
         return array;
       }});
-    }, { archive: data.site_state.archive.verifier, dossier: data.characters['arthur-bell'].lock.verifier });
+    }, { archive: data.site_state.archive.verifier, dossier: data.characters['arthur-bell'].lock.verifier, fixtureProvider: !process.env.QA_REAL_ADVENTURE });
     const page = await context.newPage();
     const url = `http://127.0.0.1:${server.address().port}/characters/arthur-bell/sheet/`;
     await page.goto(url);
     const panel = page.locator('[data-development]');
     const status = page.locator('[data-development-status]');
+    if (process.env.QA_REAL_ADVENTURE) {
+      const scenarioURL = url.replace('/sheet/', '/scenario/');
+      await page.waitForFunction(() => document.querySelector('[data-development-status]').textContent==='LOCKED');
+      assert.equal(await page.locator('[data-next-scenario-link]:visible').count(), 0);
+      await page.goto(scenarioURL);
+      await page.waitForFunction(() => document.querySelector('[data-scenario-workspace]').textContent.includes('locked'));
+      assert.doesNotMatch(await page.locator('main').textContent(), /How is Jack/);
+      await page.evaluate(key => {
+        localStorage.setItem(key, JSON.stringify({schemaVersion:2,dataVersion:'2',state:{hp:13,sanity:60,luck:55,skillChecks:['spot-hidden']}}));
+        localStorage.setItem('qa-rolls',JSON.stringify([82,6,1]));
+        localStorage.setItem('qa-draws','0');
+        localStorage.setItem('rippers-unlock-preserve-fixture','yes');
+      },key);
+      await page.goto(url);
+      assert.equal(await page.locator('[data-confirm-legacy-checks]').count(),1);
+      await page.locator('[data-skill-check="stealth"]').check();
+      await page.waitForFunction(key => JSON.parse(localStorage.getItem(key)).state.experienceChecks.some(c=>c.skill_id==='stealth' && c.adventure_id==='who-is-jack'),key);
+      const finish = page.getByRole('button',{name:'Finish Adventure (Keeper confirmed)'});
+      assert.equal(await finish.isEnabled(),false);
+      await page.locator('[data-confirm-adventure]').check();
+      assert.equal(await finish.isEnabled(),false);
+      await page.locator('[data-confirm-legacy-checks]').check();
+      await finish.click();
+      await page.waitForFunction(() => document.querySelector('[data-development-status]').textContent==='AVAILABLE');
+      assert.equal(await page.locator('[data-skill-check="spot-hidden"]').isDisabled(),true);
+      assert.equal(await page.locator('[data-next-scenario-link]:visible').count(),0);
+      await panel.getByRole('button',{name:'Make Development Roll'}).click();
+      await page.waitForFunction(() => document.querySelector('[data-development-status]').textContent==='IN PROGRESS');
+      assert.equal(await page.locator('[data-next-scenario-link]:visible').count(),0);
+      await panel.getByRole('button',{name:'Make Development Roll'}).click();
+      await page.waitForFunction(() => document.querySelector('[data-development-status]').textContent==='COMPLETE');
+      await page.waitForFunction(() => [...document.querySelectorAll('[data-next-scenario-link]')].some(link=>!link.hidden));
+      const upgraded = await page.evaluate(key=>JSON.parse(localStorage.getItem(key)).state,key);
+      assert.equal(upgraded.adventureProgress.current,'who-is-jack');
+      assert.equal(upgraded.skillValues['spot-hidden'],76);
+      assert.equal(upgraded.developmentHistory.length,2);
+      assert.ok(upgraded.experienceChecks.every(c=>c.resolved && !c.earned));
+      assert.equal(await page.evaluate(()=>localStorage.getItem('qa-draws')),'3');
+      console.log('PASS integrated: Keeper completion, explicit legacy origins, permanent upgrades and automatic workspace unlock');
+      await page.getByRole('link',{name:'Open next scenario workspace'}).click();
+      await page.waitForFunction(()=>document.querySelector('[data-scenario-workspace]').textContent.includes('How is Jack?'));
+      assert.equal(await page.getByRole('link',{name:'Character Sheet & Development'}).count(),1);
+      if (process.env.QA_SCREENSHOT_DIR) await page.locator('[data-scenario-workspace]').screenshot({path:path.join(process.env.QA_SCREENSHOT_DIR,'scenario-two.png')});
+      await page.getByRole('button',{name:'Begin Scenario (Keeper confirmed)'}).click();
+      await page.waitForFunction(key=>JSON.parse(localStorage.getItem(key)).state.adventureProgress.current==='how-is-jack',key);
+      await page.getByRole('link',{name:'Character Sheet & Development'}).click();
+      await page.waitForFunction(()=>document.querySelector('[data-development-status]').textContent==='LOCKED');
+      assert.equal(await page.locator('[data-skill-check="spot-hidden"]').isChecked(),false);
+      assert.equal(await page.locator('[data-current-skill="spot-hidden"]').textContent(),'76%');
+      await page.locator('[data-skill-check="spot-hidden"]').check();
+      await page.waitForFunction(key=>JSON.parse(localStorage.getItem(key)).state.experienceChecks.some(c=>c.skill_id==='spot-hidden' && c.adventure_id==='how-is-jack' && c.earned && !c.resolved),key);
+      await page.reload();
+      assert.equal(await page.locator('[data-current-skill="spot-hidden"]').textContent(),'76%');
+      assert.equal(await page.locator('[data-skill-check="spot-hidden"]').isChecked(),true);
+      assert.equal(await page.evaluate(()=>localStorage.getItem('rippers-unlock-preserve-fixture')),'yes');
+      console.log('PASS integrated: second scenario starts separately, new marks get second origin, values/history and releases survive reload');
+      // Independent no-check profile simulation; no development dice should run.
+      await page.evaluate(key=>{ localStorage.setItem(key,JSON.stringify({schemaVersion:2,dataVersion:'2',state:{hp:13,sanity:60,luck:55,skillChecks:[]}})); },key);
+      await page.reload();
+      await page.locator('[data-confirm-adventure]').check();
+      await page.getByRole('button',{name:'Finish Adventure (Keeper confirmed)'}).click();
+      await page.waitForFunction(()=>[...document.querySelectorAll('[data-next-scenario-link]')].some(link=>!link.hidden));
+      assert.match(await panel.textContent(), /No eligible experience checks/);
+      assert.equal(await page.evaluate(()=>localStorage.getItem('qa-draws')),'3');
+      await page.setViewportSize({width:390,height:844});
+      assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
+      if (process.env.QA_SCREENSHOT_DIR) await page.locator('[data-adventure-controls]').screenshot({path:path.join(process.env.QA_SCREENSHOT_DIR,'completion-mobile.png')});
+      assert.deepEqual(errors,[]);
+      console.log('PASS integrated: no-check completion unlocks automatically with no dice, mobile fits, no JavaScript errors');
+      return;
+    }
     await page.waitForFunction(() => document.querySelector('[data-development-content]').textContent.includes('unavailable'));
     assert.equal(await panel.locator('button').count(), 0);
     console.log('PASS browser: missing upstream adapter fails closed');
