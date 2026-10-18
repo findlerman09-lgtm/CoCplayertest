@@ -1,0 +1,11 @@
+[data-scenario-art] { margin: 1.5rem 0; }
+.a2-banner { display:block; width:100%; max-width:766px; height:auto; margin:0 auto 1.5rem; border-radius:8px; }
+.a2-art-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr)); gap:1rem; }
+.a2-art-card { padding:1rem; border:1px solid #52635d; border-radius:6px; min-width:0; background:#101d21; }
+.a2-art-card h4 { margin:0 0 1rem; color:#dcc791; }
+.a2-art-card label { display:block; font-size:.9rem; }
+.a2-art-card input { display:block; box-sizing:border-box; width:100%; margin:.5rem 0; padding:.65rem; background:#091116; color:#eee; border:1px solid #718578; border-radius:4px; }
+.a2-art-card figure { margin:1rem 0 0; text-align:center; }
+.a2-art-card img { display:block; max-width:100%; height:auto; margin:auto; }
+.a2-art-card figcaption { margin-top:.6rem; color:#d1c4a2; }
+.a2-art-card [role=status] { font-size:.85rem; }

@@ -5,6 +5,7 @@
   </div>
 </section>
 <template data-scenario-tools>
+  <div data-scenario-art data-art-base="{{ '/assets/scenario-two/' | relative_url }}"></div>
   <nav class="scenario-tools" aria-label="Scenario tools">
     <a class="small-action" href="{{ '/characters/' | append: page.character_slug | append: '/sheet/' | relative_url }}">Character Sheet & Development</a>
     <a class="small-action" href="{{ '/characters/' | append: page.character_slug | append: '/correspondence/' | relative_url }}">Private Correspondence</a>

@@ -89,6 +89,7 @@
         } else workspace.append(node('p', adventure.status === 'active' ? 'Adventure active. New experience checks belong to this adventure.' : 'Adventure complete. Return to your character sheet for development.'));
         const links = document.querySelector('[data-scenario-tools]');
         if (links) workspace.append(links.content.cloneNode(true));
+        window.RippersScenarioArt?.mount(workspace.querySelector('[data-scenario-art]'));
       }
     }
     window.addEventListener('rippers:state-change', event => { if (event.detail?.slug === store.slug) render(); });
