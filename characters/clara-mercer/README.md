@@ -1,10 +1,5 @@
-# Clara Mercer dossier routes
+# Clara Mercer — archived after death in play
 
-- `/characters/clara-mercer/` — Overview
-- `/characters/clara-mercer/sheet/` — Character Sheet
-- `/characters/clara-mercer/people/` — People
-- `/characters/clara-mercer/correspondence/` — Correspondence
-- `/characters/clara-mercer/documents/` — Personal Documents
-- `/characters/clara-mercer/possessions/` — Possessions & Means
+Clara was the original reporter investigator. Her death during Adventure I remains a campaign event; her earlier scene record, professional relationships, property and consequences are not overwritten.
 
-Clara Mercer is the locked reporter identity for the live five-investigator ensemble, and her P-07 mechanical build is PM-reconciled and installed in the player site. Her fictional newspaper title remains held; the website does not invent or preserve a provisional employer title as canon. Remaining editorial hold is limited to minor equipment terminology. Repeated physical portrait identity is controlled upstream rather than by placeholder website imagery. The dossier password is campaign-issued; only its salted verifier is stored in the public repository.
+Her active slot is now Edith Calder, who met and competed with Clara during the actual adventure. The prior exchange is not invented here. Clara's dossier files remain in the repository for Keeper history, but her former password verifier is disabled and the active cabinet no longer lists her.

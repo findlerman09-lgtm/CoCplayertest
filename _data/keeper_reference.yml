@@ -36,6 +36,15 @@ clara-mercer:
   spotlight: "When tracing a claim to its source, moving quickly, following someone, or weighing publication consequences."
   clue: "The provenance of an already encountered statement or a distinction between independent accounts and repetition."
   not_automatic: "No warrant, guaranteed source, camera, private records by right, or power to make her paper publish or suppress copy."
+edith-calder:
+  featured: [fast-talk, shorthand, library-use, law]
+  useful: [spot-hidden, stealth, listen, navigate, persuade]
+  hook: >-
+    After Clara Mercer's death, Edith follows the professional and personal consequences of the story they both pursued. They were competing reporters who met earlier in the actual adventure. Edith may join at the ongoing Penfold inquiry, during a credible lull after the crisis, or at the next adventure opening. Their actual earlier exchange, not invented new evidence, governs her first words.
+  automatic: "Ordinary court and press routines, shorthand reporting, and how accounts change when printed or repeated."
+  spotlight: "When an interview, record, source comparison, or fast-moving pursuit needs a different observer."
+  clue: "The source of an already established claim or a legal/reporting connection the group has genuinely earned."
+  not_automatic: "No inherited Clara clues, possessions or private documents; no police authority, instant source network, unrestricted premises access or knowledge of the impossible."
 laurence-kersey:
   featured: [medicine, first-aid, psychology]
   useful: [reassure, listen, biology, pharmacy]

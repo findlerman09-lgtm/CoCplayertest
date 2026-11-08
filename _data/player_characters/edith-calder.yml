@@ -1,0 +1,113 @@
+investigator_id: REPLACEMENT_SS_01
+publication_name: Edith Calder
+name_status: issued_replacement
+age: 31
+occupation_display: Freelance Court and District Reporter
+occupation_full: Independent court and district reporter in London; no fixed newspaper affiliation
+residence: Modest rented rooms within reach of London's courts and eastern districts
+social_status: Independent, financially precarious working professional
+summary: You seek the firsthand observation beneath the polished report, even when the truth embarrasses your own profession.
+roleplay_anchor: Who saw it, before anyone wrote it?
+human_detail: Edith numbers every interview in her notebook. When a story is repeated by someone who was not there, she marks the account with a small question mark.
+background: >-
+  Edith Calder built a precarious freelance career on court reports, interviews and district dispatches. Without a salaried newsroom to protect her, she makes her living by reaching witnesses first, taking accurate shorthand, and checking a promising story against records before selling her copy. Her directness has won grudging respect and cost her assignments.
+history: >-
+  Edith was a professional rival of Clara Mercer. They pursued some of the same East-End stories, competed for access and copy, and actually interacted earlier during the current Ripper investigation. The substance and tone of that encounter are whatever happened at the table; no earlier words or discoveries are invented here. Clara's death has made the rivalry painfully permanent, but it does not make Edith an inheritor of Clara's private evidence or possessions.
+player_edges:
+- label: Competence spotlight
+  title: The Verbatim Difference
+  text: Edith can take exact shorthand and compare what a person said with later claims about their words. This skill can expose reporting errors and changed accounts, not magically reveal lies.
+- label: Unique access
+  title: The Court Steps
+  text: Court corridors, newspaper exchanges, runners and working clerks give Edith plausible ways to seek public records or request an introduction. No person is obliged to cooperate.
+- label: Personal responsibility
+  title: A Competitor's Debt
+  text: Edith must decide whether to tell an honest account of Clara's final work even when the facts threaten Edith's reputation or contradict what she wrote before.
+knowledge:
+- title: Evidence Before Headlines
+  text: A newspaper story does not become independent corroboration simply because several papers repeat it.
+- title: Shorthand Is Not Omniscience
+  text: Accurate notes preserve what was spoken, not whether the speaker was truthful.
+- title: A Reporter Has No Warrant
+  text: Professional confidence does not confer police authority or access to private records.
+people:
+- name: Clara Mercer
+  relationship: Deceased professional rival
+  text: Edith competed with Clara for stories and spoke with her during this adventure. Remember the actual encounter; Edith has no claim to Clara's notes or private materials.
+- name: Court and newspaper workers
+  relationship: Working contacts
+  text: Individual clerks, compositors, messengers and sellers may recognize Edith's work. Their help depends on specific relationships, permissions and circumstances.
+relationships:
+- name: Arthur Bell
+  relationship: Another investigator
+  text: Bell's work with physical systems complements Edith's ability to establish who first reported a claim; no personal acquaintance is assumed.
+- name: Thomas Merrick
+  relationship: Police counterpart
+  text: Merrick can give a defensible account of procedure; Edith cannot commandeer his evidence or his authority.
+- name: Miriam Hart
+  relationship: Fellow investigator
+  text: Miriam's care for household accounts can challenge Edith's habit of turning people's experiences into copy.
+- name: Dr Laurence Kersey
+  relationship: Fellow investigator
+  text: Medical testimony needs careful attribution. Edith does not claim private access to his case notes.
+known_pressure: >-
+  Clara is dead; the story continues. Edith has to decide when an account is worth printing and when the people affected deserve her silence. Freelance income, professional rivalry and the need to be trusted all pull in different directions.
+characteristics:
+- { name: STR, value: 45, half: 22, fifth: 9 }
+- { name: CON, value: 65, half: 32, fifth: 13 }
+- { name: SIZ, value: 55, half: 27, fifth: 11 }
+- { name: DEX, value: 70, half: 35, fifth: 14 }
+- { name: APP, value: 55, half: 27, fifth: 11 }
+- { name: INT, value: 75, half: 37, fifth: 15 }
+- { name: POW, value: 65, half: 32, fifth: 13 }
+- { name: EDU, value: 75, half: 37, fifth: 15 }
+derived:
+  hp: 12
+  sanity: 65
+  mp: 13
+  luck: 55
+  mov: 8
+  db: '0'
+  build: 0
+  dodge: 45
+talent:
+  name: Keen Vision
+  effect: Gain a bonus die on Spot Hidden rolls.
+  note: A keen eye for ordinary physical details, not supernatural sight or automatic clue discovery.
+credit_rating: 15
+wealth_note: Freelance income varies; rent and reporting costs are never far from Edith's mind.
+languages:
+- name: English
+  value: 75
+  note: Language (Own)
+combat:
+  brawl: 35%
+  unarmed_damage: 1D3
+  dodge: 45%
+  build: 0
+  firearm: None routinely carried
+  note: Edith avoids direct violence where possible. Her advantage is observation and quick action, not combat prowess.
+carried:
+- Reporter’s notebook, pencils and shorthand materials.
+- Ordinary purse, keys and personal effects.
+- No routine firearm or camera.
+owned_available:
+- Personal notes from Edith’s own work, not Clara’s case file.
+- Public newspaper copies and court reports available by ordinary purchase or access.
+- Usual writing materials and inexpensive professional supplies.
+professional_access:
+- Public hearings, filing counters and court precincts where attendance is permitted.
+- Press rooms and news exchanges by customary access or invitation.
+- Relevant reporters, runners, clerks and printers who actually know Edith.
+- Public streets, shops and businesses where she may ask questions.
+requires_permission:
+- Private employer papers, locked premises and restricted legal documents.
+- Access to police records, witnesses under control and medical notes.
+- Use of another newspaper's staff, telegraph credit or confidential records.
+access_limits:
+- No police authority, search power or right to private business books.
+- No automatic access to Clara Mercer's possessions, notes, sources or character progress.
+- No guaranteed source, truthful answer, editor or favorable publication.
+- No magic, supernatural abilities, special weapons or impossible technology.
+editorial_holds:
+- Details of the earlier real Clara/Edith conversation belong to the table record and are not retrospectively authored.

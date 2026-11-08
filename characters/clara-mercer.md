@@ -12,8 +12,8 @@ character_slug: clara-mercer
 context_nav: overview
 display_title: Clara Mercer
 breadcrumb: The Rippers / Investigators / Clara Mercer
-page_status: Active
-page_status_class: active
+page_status: Deceased · archived
+page_status_class: archived
 portrait: /assets/images/portraits/A1-POR-004_Clara_Mercer_Web_v01.webp
 hero_art: /assets/images/hero-collage-hd.webp
 tagline: "Who heard it first?"

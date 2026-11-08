@@ -16,6 +16,10 @@ clara-mercer:
   asset_id: A1-POR-004
   source: /assets/images/portraits/A1-POR-004_Clara_Mercer_Web_v01.webp
   alt: "Clara Mercer, a compact Victorian district reporter with chestnut hair and a small hat, writing in a pocket notebook."
+edith-calder:
+  asset_id: A1-POR-011
+  source: /assets/images/portraits/A1-POR-011_Edith_Calder_Web_v01.webp
+  alt: "Edith Calder, a Victorian freelance reporter in a dark jacket and broad-brimmed hat, in a sepia portrait."
 laurence-kersey:
   asset_id: A1-POR-005
   source: /assets/images/portraits/A1-POR-005_Dr_Laurence_Kersey_Web_v01.webp

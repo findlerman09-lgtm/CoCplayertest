@@ -279,7 +279,7 @@ clara-mercer:
   name: Clara Mercer
   occupation: Reporter — East-End district
   portrait: /assets/images/portraits/A1-POR-004_Clara_Mercer_Web_v01.webp
-  status: Issued
+  status: Deceased / archived
   hp: 11
   max_hp: 11
   sanity: 65
@@ -288,7 +288,7 @@ clara-mercer:
   state_version: 2
   lock:
     salt: waAxbwvaOlbLow+qpOrtDA==
-    verifier: gyiuCjoh+HkA/oa3GEWXHPGlOk4mhbXBWwerV76DFkk=
+    verifier: PENDING
     iterations: 120000
   skills:
   - id: listen
@@ -355,6 +355,41 @@ clara-mercer:
   - type: Dossier
     label: Clara Mercer
     href: /characters/clara-mercer/
+
+edith-calder:
+  name: Edith Calder
+  occupation: Freelance Court and District Reporter
+  portrait: /assets/images/portraits/A1-POR-011_Edith_Calder_Web_v01.webp
+  status: Issued
+  hp: 12
+  max_hp: 12
+  sanity: 65
+  max_sanity: 99
+  luck: 55
+  state_version: 1
+  lock:
+    salt: "zFS7YfHejGrTWQU/XDSQDg=="
+    verifier: "GegNSlyb5Zo3dszuy/jQL9qsRfp9480l1Bpya9I1ZeQ="
+    iterations: 120000
+  skills:
+  - { id: law, name: "Law", value: 55, improvable: true }
+  - { id: history, name: "History", value: 35, improvable: true }
+  - { id: fast-talk, name: "Fast Talk", value: 65, improvable: true }
+  - { id: library-use, name: "Library Use", value: 60, improvable: true }
+  - { id: listen, name: "Listen", value: 55, improvable: true }
+  - { id: persuade, name: "Persuade", value: 50, improvable: true }
+  - { id: spot-hidden, name: "Spot Hidden", value: 55, improvable: true }
+  - { id: credit-rating, name: "Credit Rating", value: 15, improvable: false }
+  - { id: shorthand, name: "Art/Craft (Shorthand)", value: 65, improvable: true }
+  - { id: stealth, name: "Stealth", value: 50, improvable: true }
+  - { id: navigate, name: "Navigate", value: 40, improvable: true }
+  - { id: dodge, name: "Dodge", value: 45, improvable: true }
+  - { id: brawl, name: "Fighting (Brawl)", value: 35, improvable: true }
+  - { id: first-aid, name: "First Aid", value: 40, improvable: true }
+  recent:
+  - type: Dossier
+    label: Edith Calder
+    href: /characters/edith-calder/
 
 laurence-kersey:
   name: Laurence Kersey
